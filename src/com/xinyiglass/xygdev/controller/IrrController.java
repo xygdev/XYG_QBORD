@@ -22,8 +22,8 @@ public class IrrController  extends BaseController  {
 	public void getDefaultIrr() throws Exception
 	{   	
 		//获取用户的默认打开的交互式报表定义
-		Long userId=1L;//getParaToLong("USER_ID");
-		String interactCode=getPara("INTERACT_CODE");
+		Long userId = getParaToLong("USER_ID");
+		String interactCode = getPara("INTERACT_CODE");
 		renderStr(irrPub.getIrr(irrPub.getDefaultIrrHid(userId, interactCode)));
 	}
 
@@ -42,8 +42,7 @@ public class IrrController  extends BaseController  {
 		String orderBy=getPara("ORDER_BY");
 		int pageSize=this.getParaToInt("PAGE_SIZE");
 		String seq=getPara("SEQ");
-		PlsqlRetValue ret=irrPub.saveIrr(userId, interactCode, userInteractName, description
-															, publicFlag, autoqueryFlag, defaultFlag, orderBy, pageSize, seq);
+		PlsqlRetValue ret=irrPub.saveIrr(userId, interactCode, userInteractName, description, publicFlag, autoqueryFlag, defaultFlag, orderBy, pageSize, seq);
 		//前端判断：0：处理成功。非0：处理失败。
 		renderStr(ret.toJsonStr()); 
 	}

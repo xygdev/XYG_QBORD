@@ -32,10 +32,6 @@ public class UserVO extends BaseEntity  implements FactoryBean,RowMapper<UserVO>
       mapCol.put("wechatCode", "WECHAT_CODE");
       mapCol.put("mobileNumber", "MOBILE_NUMBER");
       mapCol.put("emailAddr", "EMAIL_ADDR");
-      mapCol.put("respId", "RESP_ID");
-      mapCol.put("respCode", "RESP_CODE");
-      mapCol.put("respName", "RESP_NAME");
-      mapCol.put("respApplId", "RESP_APPL_ID");
       mapCol.put("createdBy", "CREATED_BY");
       mapCol.put("creationDate", "CREATION_DATE");
       mapCol.put("lastUpdatedBy", "LAST_UPDATED_BY");
@@ -58,10 +54,6 @@ public class UserVO extends BaseEntity  implements FactoryBean,RowMapper<UserVO>
    private String wechatCode;
    private Long mobileNumber;
    private String emailAddr;
-   private Long respId;
-   private String respCode;
-   private String respName;
-   private Long respApplId;
    private Long createdBy;
    private java.util.Date creationDate;
    private Long lastUpdatedBy;
@@ -158,30 +150,6 @@ public class UserVO extends BaseEntity  implements FactoryBean,RowMapper<UserVO>
    }
    public void setEmailAddr(String emailAddr) {
       this.emailAddr = emailAddr;
-   }
-   public Long getRespId() {
-      return respId;
-   }
-   public void setRespId(Long respId) {
-      this.respId = respId;
-   }
-   public String getRespCode() {
-      return respCode;
-   }
-   public void setRespCode(String respCode) {
-      this.respCode = respCode;
-   }
-   public String getRespName() {
-      return respName;
-   }
-   public void setRespName(String respName) {
-      this.respName = respName;
-   }
-   public Long getRespApplId() {
-      return respApplId;
-   }
-   public void setRespApplId(Long respApplId) {
-      this.respApplId = respApplId;
    }
    public Long getCreatedBy() {
       return createdBy;

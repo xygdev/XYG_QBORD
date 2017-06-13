@@ -6,29 +6,31 @@
                     Last Update By:bird
                           修改日志
            2016.7.13   创建文件,并新增插件配置说明  
-		   2016.8.11   整合Spring框架进行的修改:和数据库栏位相关的变量统一大写。另外，插件js名称添加irr关键字。 by sam.t     
+		   2016.8.11   整合Spring框架进行的修改:和数据库栏位相关的变量统一大写。另外，插件js名称添加irr关键字。 by sam.t 
+		   2017.6.12   配置autoquery参数    
 *********************************************************/
 (function($) {
+	
 	/****属性设置****/
 	options={
 	    		
-	}
-
+	}   
+	
 	/**************************
-        	默认属性
+			默认属性
 	**************************/	
 	var defaults = {  
 		userid:'#USER_ID',     			/****用户id值存放标签id****/
 		interactcode:'#INTERACT_CODE',  /****报表格式code值存放标签id****/
 		orderpara:'#ORDER_BY',        /****排序参数值存放标签id****/
-		headerid:'#HEADER_ID',      	/****报表格式头id值存放标签id****/
+		headerid:'HEADER_ID',      	/****报表格式头id值存放标签id****/
 		pageframe:'table',             
 		pagesize:'#page_size',          /****每页显示行数值存放标签id****/
-		setframe:'#setting',			/****设置框id****/
-		tableid:'#tb',					/****表格id****/
+		setframe:'setting',			/****设置框id****/
 		refresh:'#refresh',				/****刷新按钮id****/
 		url:'irr/getDefaultIrr.do'	   /****ajax get地址****/
 	}; 
+	
 		
 	/****继承默认属性****/
     var options = $.extend({}, defaults, options); 
@@ -49,6 +51,10 @@
 				$('#'+options.pageframe+' input[data-type="orderby"]').val(data.rows.HEADER[0].ORDER_BY);
 				$(options.headerid).val(data.rows.HEADER[0].HEADER_ID);
 				$('#'+options.pageframe+' input[data-type="pagesize"]').val(data.rows.HEADER[0].PAGE_SIZE);
+				/****ADD BY BIRD  2017.06.12 START****/
+				$('#'+options.pageframe+' input[data-type="autoquery"]').val(data.rows.HEADER[0].AUTOQUERY_FLAG);
+				autoquery = data.rows.HEADER[0].AUTOQUERY_FLAG;
+				/****ADD BY BIRD  2017.06.12 END****/
 				$(options.setframe+' i[data-value]').css('visibility','hidden');
 		        $(options.setframe+' i[data-value="'+data.rows.HEADER[0].PAGE_SIZE+'"]').css('visibility','visible');
 		        $('table[data-table="'+tablename+'"] th').css('display','none');
@@ -115,6 +121,7 @@
 		},
 		error: function () {
 			alert("获取Json数据失败");
+			//console.log('该页面无用户个人配置');
 		}
 	}); 
     
@@ -148,7 +155,7 @@
 			userid:'#USER_ID',     			/****用户id值存放标签id****/
 			interactcode:'#INTERACT_CODE',  /****报表格式code值存放标签id****/
 			interactname:'#USER_INTERACT_NAME',	/****报表格式name值存放标签id****/
-			interactdesc:'#DESCRIPTION',	/****报表格式desc值存放标签id****/
+			interactdesc:'#CONFIG_DESCRIPTION',	/****报表格式desc值存放标签id****/
 			orderpara:'#ORDER_BY',        /****排序参数值存放标签id****/
 			headerid:'#HEADER_ID',      	/****报表格式头id值存放标签id****/
 			pagesize:'#page_size',          /****每页显示行数值存放标签id****/

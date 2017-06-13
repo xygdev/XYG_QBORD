@@ -22,16 +22,54 @@ public class LovService {
 	@Autowired
 	PagePub pagePub;
 	
-	/***人员选择LOV***/
-	public String findEmpForPage(int pageSize,int pageNo,boolean goLastPage,String fullName,String employeeNumber,Long loginId) throws Exception{
+	/***用户LOV***/
+	public String findUserForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		sqlBuf.append("SELECT FULL_NAME,EMPLOYEE_NUMBER,EMAIL_ADDRESS,WORK_TELEPHONE,PERSON_ID "
-				+ " FROM XYG_ALH_PER_PEOPLE "
-				+ "  WHERE SYSDATE BETWEEN EFFECTIVE_START_DATE AND NVL(EFFECTIVE_END_DATE,SYSDATE+1) ");
-		sqlBuf.append(SqlStmtPub.getAndStmt("FULL_NAME", fullName,paramMap));
-		sqlBuf.append(SqlStmtPub.getAndStmt("EMPLOYEE_NUMBER", employeeNumber,paramMap));
-		sqlBuf.append(" ORDER BY 1 ");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, pageSize, pageNo, goLastPage);
+		sqlBuf.append("SELECT USER_ID,USER_NAME,DESCRIPTION FROM XYG_ALD_USER");
+		sqlBuf.append(" WHERE (END_DATE IS NULL OR END_DATE > SYSDATE)");
+		sqlBuf.append(SqlStmtPub.getAndStmt("USER_NAME", conditionMap.get("userName"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION", conditionMap.get("userDesc"),paramMap));
+		sqlBuf.append(" ORDER BY USER_ID ");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***职责LOV***/
+	public String findRespForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT RESP_ID,RESP_CODE,RESP_NAME,DESCRIPTION FROM XYG_ALD_RESP");
+		sqlBuf.append(" WHERE (END_DATE IS NULL OR END_DATE > SYSDATE)");
+		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_CODE", conditionMap.get("respCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_NAME", conditionMap.get("respName"),paramMap));
+		sqlBuf.append(" ORDER BY RESP_ID ");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	
+	/***员工LOV***/
+	public String findEmpForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT PERSON_ID EMP_ID,FULL_NAME ENAME,EMPLOYEE_NUMBER EMPNO FROM XYG_ALH_PER_PEOPLE");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append(SqlStmtPub.getAndStmt("FULL_NAME",conditionMap.get("ename"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("EMPLOYEE_NUMBER", conditionMap.get("eno"),paramMap));
+		sqlBuf.append(" ORDER BY EMP_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***工作组LOV***/
+	public String findGroupForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT GROUP_ID,GROUP_CODE,GROUP_NAME,DESCRIPTION FROM XYG_ALD_GROUP_HEADERS");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(SqlStmtPub.getAndStmt("GROUP_CODE",conditionMap.get("groupCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("GROUP_NAME", conditionMap.get("groupName"),paramMap));
+		sqlBuf.append(" ORDER BY GROUP_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
 	}
 }

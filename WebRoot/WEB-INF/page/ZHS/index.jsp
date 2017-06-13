@@ -158,6 +158,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav"> 
+              <!-- 公告 -->
+              <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bullhorn"></i>
+                  <span data-type="tips" class="label label-danger"></span>
+                </a>
+              </li>
+            
+              <!-- 邮箱 -->            
               <li class="dropdown messages-menu" id="mailbox">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>

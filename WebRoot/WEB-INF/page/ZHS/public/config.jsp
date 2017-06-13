@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" pageEncoding="utf-8" %>
 <html>
   <body>
+    <%
+        String tableId = request.getParameter("tableId");
+     %>
     <!-- 个人配置区域 start -->
     <div id="config">
       <div class="title pointer">
@@ -31,7 +34,7 @@
             <input type="checkbox" name="AUTOQUERY_FLAG" id="AUTOQUERY_FLAG"> 
           </div>
           <div class="item">
-            <button class='pointer' data-config="save" >保存</button>
+            <button class='pointer' data-config="save" data-tableid=<%=tableId %>>保存</button>
           </div>
         </div>
         <div id="tabs-2" class='tab'>
@@ -40,7 +43,7 @@
             <select id="loding_format"></select>
           </div>
           <div class="item">
-            <button class='pointer' data-config="load">加载</button>
+            <button class='pointer' data-config="load" data-tableid=<%=tableId %>>加载</button>
           </div>
         </div>
       </div>

@@ -17,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import xygdev.commons.core.BaseController;
 import xygdev.commons.core.Server;
 import xygdev.commons.entity.PlsqlRetValue;
+import xygdev.commons.entity.SqlResultSet;
 import xygdev.commons.util.TypeConvert;
 
 import com.xinyiglass.xygdev.entity.UserVO;
 import com.xinyiglass.xygdev.service.LoginService;
+import com.xinyiglass.xygdev.service.RespVOService;
 import com.xinyiglass.xygdev.service.UserVOService;
 import com.xinyiglass.xygdev.util.Constant;
 import com.xinyiglass.xygdev.util.GlobalInit;
@@ -34,6 +36,8 @@ public class LoginController extends BaseController {
 	UserVOService uvos;
 	@Autowired
 	LoginService ls;
+	@Autowired
+	RespVOService rvos;
 		
 	@RequestMapping("/")
 	public String login(){
@@ -79,8 +83,9 @@ public class LoginController extends BaseController {
 			 this.setSessionAttr("USER_NAME", user.getUserName());
 			 this.setSessionAttr("DESC", user.getDescription());
 			 this.setSessionAttr("IMG", user.getImgUrl());
-			 this.setSessionAttr("RESP_ID", user.getRespId());
-			 this.setSessionAttr("RESP", user.getRespName());
+			 SqlResultSet resp = rvos.getResp(user.getUserId(), loginId);
+			 this.setSessionAttr("RESP_ID",resp.getResultSet().get(0)[0].toString());
+			 this.setSessionAttr("RESP", resp.getResultSet().get(0)[1].toString());
 			 this.setSessionAttr("USER_TYPE", user.getUserType());
 			 if(retCode==1){
 				 mv.setViewName("redirect:/modifyPWD.do");
@@ -122,14 +127,9 @@ public class LoginController extends BaseController {
 		if(ret.getRetcode()!=0){
 			LogUtil.log("Error:"+ret.getErrbuf());
 		}	
+		String lang = this.getSessionAttr("LANG");
 		this.getSession().invalidate();
-		/*Enumeration<String> sessionKeys = sess.getAttributeNames();
-		while(sessionKeys.hasMoreElements()){
-			sess.removeAttribute(sessionKeys.nextElement());
-		}*/
-		//LogUtil.log("TEST LOGIN_ID:"+sess.getAttribute("LOGIN_ID"));
-		//mv.setViewName("page/login-ch");
-		if(this.getSessionAttr("LANG").equals("ZHS")){
+		if(lang.equals("ZHS")){
 			mv.setViewName("login-zhs");
 		}else{
 			mv.setViewName("login-us");
@@ -159,22 +159,6 @@ public class LoginController extends BaseController {
 			ip = request.getRemoteAddr();     
 		}     
 		return ip;
-		/*
-        String ip = request.getHeader("X-Forwarded-For");
-        if(StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
-            //多次反向代理后会有多个ip值，第一个ip才是真实ip
-            int index = ip.indexOf(",");
-            if(index != -1){
-                return ip.substring(0,index);
-            }else{
-                return ip;
-            }
-        }
-        ip = request.getHeader("X-Real-IP");
-        if(StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
-            return ip;
-        }
-        return request.getRemoteAddr();*/
     }
 	
 	public static void main(String[] args) {

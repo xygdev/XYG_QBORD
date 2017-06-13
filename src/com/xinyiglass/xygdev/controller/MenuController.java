@@ -9,6 +9,7 @@ import com.xinyiglass.xygdev.service.MenuHeaderVOService;
 import com.xinyiglass.xygdev.service.RespVOService;
 
 import xygdev.commons.core.BaseController;
+import xygdev.commons.util.TypeConvert;
 
 @Controller
 @RequestMapping("/menu")
@@ -21,7 +22,7 @@ public class MenuController extends BaseController {
 	
 	@RequestMapping("/getPersonalMenu.do")
     public void getPersonalMenu() throws Exception{
-    	Long respId = (Long)this.getSessionAttr("RESP_ID");
+    	Long respId = TypeConvert.str2Long(this.getSessionAttr("RESP_ID").toString());
     	Long menuId = rvs.findMenuId(respId,loginId);
     	this.response.getWriter().print(mhvs.findPersonalMenuById(menuId,loginId));
     	//this.renderStr(mhvs.findPersonalMenuById(menuId,loginId));

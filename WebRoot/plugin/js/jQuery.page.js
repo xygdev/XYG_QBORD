@@ -119,8 +119,9 @@
 						$('table[data-table="'+tablename+'"] tr').css('display','');
 						if(parseInt(data.pageMinRow)!=0){
 							jsontype=$('#'+options.pageframe+' input[data-type="jsontype"]').val();
+							$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','inherit');//ADD BY BIRD 2017.06.08
 							jQuery.json.getContent(data,jsontype);/****获取json遍历数据，插入表格****/
-							$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','inherit');//MODIFY BY BIRD 2017.05.25
+							//$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','inherit');//MODIFY BY BIRD 2017.05.25
 							for(j=0;j<=(pageSize-(pageMaxRow-pageMinRow+1));j++){/****隐藏空白行****/
 								$('table[data-table="'+tablename+'"] tr:eq('+(pageSize-j+1)+')').css('display','none');
 		                	}
@@ -158,6 +159,7 @@
 						}else{
 							if(options.pagetype=='nextpage'){								
 								if($('#'+options.pageframe+' i[data-pagetype="lastpage"]').length>0){
+									$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','hidden');//ADD BY BIRD 2017.06.08
 									layer.msg("当前页无数据,即将自动跳转到最后一页");	
 									$('#'+options.pageframe+' i[data-pagetype="lastpage"]').click();
 								}else{

@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import xygdev.commons.page.PagePub;
-import xygdev.commons.sqlStmt.SqlStmtPub;
 
 //类似Lov的处理
 @Service
@@ -19,31 +18,30 @@ public class ListService {
 	@Autowired
 	PagePub pagePub;
 	
-	public String findForLookup(String lookupType,Long loginId) throws Exception{
+	public String findForUserType(Long loginId,String lang) throws Exception{
 		String sql = "SELECT MEANING DISPLAY,LOOKUP_CODE VALUE"
 				+ " FROM XYG_ALD_LOOKUP_VALUES  "
-				+ " WHERE LOOKUP_TYPE = :1 "
-				+ " AND LANGUAGE = 'ZHS' "
+				+ " WHERE LOOKUP_TYPE = 'XYG_ALD_USER_TYPE' "
+				+ " AND LANGUAGE = :1 "
 				+ " AND ENABLED_FLAG='Y' "
 				+ " AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1) "
-				+ " ORDER BY 1 ";
+				+ " ORDER BY LOOKUP_CODE";
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
-		paramMap.put("1", lookupType);
+		paramMap.put("1", lang);
 		return pagePub.qSqlForJson(sql, paramMap);
 	}
 	
-	public String findForLookupByTag(String lookupType,String tag,Long loginId) throws Exception{
-		Map<String,Object> paramMap=new HashMap<String,Object>();
-		StringBuffer sqlBuff = new StringBuffer();
-		sqlBuff.append("SELECT MEANING DISPLAY,LOOKUP_CODE VALUE"
+	public String findForEnableFlag(Long loginId,String lang) throws Exception{
+		String sql = "SELECT MEANING DISPLAY,LOOKUP_CODE VALUE"
 				+ " FROM XYG_ALD_LOOKUP_VALUES  "
-				+ " WHERE LANGUAGE = 'ZHS' "
+				+ " WHERE LOOKUP_TYPE = 'XYG_ALD_YN' "
+				+ " AND LANGUAGE = :1 "
+				+ " AND ENABLED_FLAG='Y' "
 				+ " AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1) "
-				+ " AND ENABLED_FLAG='Y' ");
-		sqlBuff.append(SqlStmtPub.getAndStmt("LOOKUP_TYPE",lookupType,paramMap,true));
-		sqlBuff.append(SqlStmtPub.getAndStmt("TAG",tag,paramMap,true));
-		sqlBuff.append(" ORDER BY  1");
-		return pagePub.qSqlForJson(sqlBuff.toString(), paramMap);
+				+ " ORDER BY LOOKUP_CODE DESC";
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		paramMap.put("1", lang);
+		return pagePub.qSqlForJson(sql, paramMap);
 	}
 	
 }
