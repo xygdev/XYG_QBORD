@@ -2,7 +2,7 @@
                     jQuery 分页功能
                     Create Date:2015.12.12
                     Create By:bird
-                    Last Update Date:2017.5.25
+                    Last Update Date:2017.6.14
                     Last Update By:bird
                           修改日志
            2015.12.12   创建文件
@@ -20,7 +20,8 @@
                         修改bug，设置当数据只有一页时，同时隐藏上一页，下一页等四个按钮
            2016.9.05    修改bug，当条件查询查无数据时，显示查无数据，并且隐藏隐藏上一页，
            				下一页等四个按钮以及清空记录数栏位
-           2017.5.25    
+           2017.6.14    在ajax的error：function中新增刷新当前iframe逻辑
+ 		                检查是否session过期导致error	   
 *********************************************************/
 (function($) {                                      	
 	/******************listener start***********************
@@ -190,7 +191,13 @@
 						$(options.load).hide();/****隐藏加载动画****/
 					},
 					error: function () {
-						layer.alert('获取Json数据失败',{title:'警告',offset:[150]});				
+						/***ADD BY BIRD 2017.06.14 START***/
+						layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+						    //console.log("处于一个iframe中");
+						    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
+						/***ADD BY BIRD 2017.06.14 END***/
 					}
 				});	
 		    }

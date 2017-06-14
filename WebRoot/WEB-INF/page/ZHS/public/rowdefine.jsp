@@ -52,15 +52,8 @@
              //resizeMode:'flex'
              resizeMode:'overflow',
              onResize:function(){
-                //设置非Webkit的滚动条
-             	if (!/webkit/.test(navigator.userAgent.toLowerCase())) {
-    		    	//console.log("not webit");
-    		    	$(".table").mCustomScrollbar("update");
-					//$(".table").mCustomScrollbar({
-					//	axis:"x",
-					//	scrollInertia:0
-					//});	
-    			}
+                //设置滚动条
+    		    $(".table").mCustomScrollbar("update");
              }
        	 });
        	 
@@ -76,15 +69,8 @@
             	 //resizeMode:'flex'
             	 resizeMode:'overflow',
              	 onResize:function(){
-             	     //设置非Webkit的滚动条
-             	 	 if (!/webkit/.test(navigator.userAgent.toLowerCase())) {
-    		    	     //console.log("not webit");
-    		    	     $(".table").mCustomScrollbar("update");
-						 //$(".table").mCustomScrollbar({
-						 //	 axis:"x",
-						 //	 scrollInertia:0
-						 //});	
-    				 }
+             	     //设置滚动条
+    		    	 $(".table").mCustomScrollbar("update");
              	}
     		 });
     	  }

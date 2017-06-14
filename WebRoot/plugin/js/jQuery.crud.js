@@ -2,7 +2,7 @@
                     jQuery 增删查改功能
                     Create Date:2015.1.20
                     Create By:bird
-                    Last Update Date:2016.7.12
+                    Last Update Date:2017.6.14
                     Last Update By:bird
                           修改日志
            2015.1.20   创建文件
@@ -28,8 +28,10 @@
 		               如果为false,则存在值为空的必填项
 		   2016.8.26   优化代码，减少输入参数
 		   2016.8.31   新增条件查询功能
-		   2017.1.5 新增匿名函数功能：afterdatafunc，作用是数据完成后自动执行的
- 						对应的crudtype方法：pre-update/update/insert/lovquery
+		   2017.1.5    新增匿名函数功能：afterdatafunc，作用是数据完成后自动执行的
+ 					   对应的crudtype方法：pre-update/update/insert/lovquery
+ 		   2017.6.14   在ajax的error：function中新增刷新当前iframe逻辑
+ 		               检查是否session过期导致error	
 ***************************************************************************************/
 (function($) {
 	/******************listener start***********************
@@ -141,7 +143,13 @@
 				    		}	
 						},
 						error: function () {
-							layer.alert('获取Json数据失败',{title:'警告',offset:[150]});
+							/***ADD BY BIRD 2017.06.14 START***/
+							layer.msg('获取JSON数据失败');	
+							if(window.frameElement != null){
+							    //console.log("处于一个iframe中");
+							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+							}	
+							/***ADD BY BIRD 2017.06.14 END***/
 						}
 					}); 
 					return;			
@@ -180,8 +188,13 @@
 						}
 					},
 					error: function () {
-						//alert("获取Json数据失败");
-						layer.alert('获取Json数据失败',{title:'警告',offset:[150]});
+						/***ADD BY BIRD 2017.06.14 START***/
+						layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+						    //console.log("处于一个iframe中");
+						    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
+						/***ADD BY BIRD 2017.06.14 END***/
 					}
 				});			
 			}
@@ -215,7 +228,13 @@
 							}				  
 				    	},
 				    	error: function () {
-				    		layer.alert('获取Json数据失败',{title:'警告',offset:[150]});
+				    		/***ADD BY BIRD 2017.06.14 START***/
+							layer.msg('获取JSON数据失败');	
+							if(window.frameElement != null){
+							    //console.log("处于一个iframe中");
+							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+							}	
+							/***ADD BY BIRD 2017.06.14 END***/
 				    	}			
 				    });	
 				/*****************************************/
@@ -268,7 +287,13 @@
 							}				  
 				    	},
 				    	error: function () {
-				    		layer.alert('获取Json数据失败',{title:'警告',offset:[150]});
+				    		/***ADD BY BIRD 2017.06.14 START***/
+							layer.msg('获取JSON数据失败');	
+							if(window.frameElement != null){
+							    //console.log("处于一个iframe中");
+							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+							}	
+							/***ADD BY BIRD 2017.06.14 END***/
 				    	}			
 				    });	
 				/*****************************************/
@@ -341,7 +366,13 @@
 						}
 					},
 					error: function () {
-						layer.alert('获取Json数据失败',{title:'警告',offset:[150]});
+						/***ADD BY BIRD 2017.06.14 START***/
+						layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+						    //console.log("处于一个iframe中");
+						    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
+						/***ADD BY BIRD 2017.06.14 END***/
 					}
 				}); 
 			}

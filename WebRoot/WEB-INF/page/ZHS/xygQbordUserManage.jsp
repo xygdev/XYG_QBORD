@@ -290,14 +290,14 @@
     		//$("#detail_ui").draggable({ handle: ".title"});
     		$("#query").draggable({ handle: ".title"});
     		
-    		//设置非Webkit的滚动条
-    		if (!/webkit/.test(navigator.userAgent.toLowerCase())) {
-    		    //console.log("not webit");
-				$(".table").mCustomScrollbar({
-					axis:"x",
-					scrollInertia:0
-				});	
-    		}
+    		//设置滚动条
+    		//if (!/webkit/.test(navigator.userAgent.toLowerCase())) {
+    		//console.log("not webit");
+			$(".table").mCustomScrollbar({
+				axis:"x",
+				scrollInertia:0
+			});	
+    		//}
     		
     		//初始化CRUD和LOV条件查询
     		$().crudListener();	

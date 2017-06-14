@@ -4,6 +4,10 @@
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.do</location>
+  </error-page>
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -24,6 +28,11 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
+  <!-- Session 验证Filter -->
+  <filter>    
+    <filter-name>SecurityServlet</filter-name>    
+    <filter-class>com.xinyiglass.xygdev.util.SecurityServlet</filter-class>    
+  </filter> 
   <!-- 字符编码Filter -->
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
@@ -33,6 +42,11 @@
       <param-value>utf-8</param-value>
     </init-param>
   </filter>
+  <!-- Session 验证Filter Mapping -->
+  <filter-mapping>    
+    <filter-name>SecurityServlet</filter-name>    
+    <url-pattern>*.do</url-pattern>    
+  </filter-mapping>  
   <!-- 字符编码Filter Mapping-->
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>

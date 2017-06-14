@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -127,12 +128,16 @@ public class LoginController extends BaseController {
 		if(ret.getRetcode()!=0){
 			LogUtil.log("Error:"+ret.getErrbuf());
 		}	
-		String lang = this.getSessionAttr("LANG");
-		this.getSession().invalidate();
-		if(lang.equals("ZHS")){
-			mv.setViewName("login-zhs");
+		if(this.getSession().equals(true)){
+			String lang = this.getSessionAttr("LANG");
+			this.getSession().invalidate();
+			if(lang.equals("ZHS")){
+				mv.setViewName("login-zhs");
+			}else{
+				mv.setViewName("login-us");
+			}
 		}else{
-			mv.setViewName("login-us");
+			mv.setViewName("login-zhs");	
 		}
 		return mv;
 	}
@@ -143,9 +148,23 @@ public class LoginController extends BaseController {
 	}
 	
 	@RequestMapping(value="/404.do")
-	public String pageNotFonud(){
-		return "404notFound";
+	public String pageNotFonud(Model m){
+		String iserror = "error";
+		m.addAttribute("errorCode",iserror);
+		return "publicError";
+	}
+	
+	@RequestMapping(value="/sessionTO.do")
+	public String sessionTimeout(Model m){
+		String iserror = "sessionTO";
+		m.addAttribute("errorCode",iserror);
+		return "publicError";
 	}	
+	
+	@RequestMapping(value="/sessionDestroy.do")
+	public void sessionDestroy(){
+		this.getSession().invalidate();
+	}
 	
 	public static String getIp(HttpServletRequest request) {
 		String ip = request.getHeader("x-forwarded-for");     

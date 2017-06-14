@@ -20,6 +20,7 @@
 			    2017.03.06 大规模改动 新增tab滑动条操作
 			    2017.06.06 修改Function的HREF属性名称为URL
 			               修改js文件名称为jQuery.automenu.js
+			    2017.06.14 修改tabSelection方法中，refresh按钮的tab选择器
 	*******************************************************/
     //监听浏览器尺寸变化,iframe高度随浏览器变化而动态变化
     var isResizing = false;
@@ -254,7 +255,8 @@
     		$('a.content_tab.active').click();
     		$('a.content_tab').not('a[data-tabfunc="0"]').not('a.active').remove();
     	}else if(tabtype='refreshTab'){
-    		var tabfunc = $('a.content_tab .active').data('tabfunc');
+    		var tabfunc = $('a.content_tab.active').attr('data-tabfunc');//选择器修改 MODIFY BY BIRD 2017.06.14
+    		//console.log(tabfunc);
     		$('iframe[data-tabfunc="'+tabfunc+'"').attr('src', $('iframe[data-tabfunc="'+tabfunc+'"').attr('src'));
     	}
     }

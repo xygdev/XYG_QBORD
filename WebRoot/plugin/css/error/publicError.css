@@ -1,0 +1,31 @@
+
+@CHARSET "UTF-8";
+*{margin:0;padding:0;}
+html{width:100%;height:100%;}
+body{font:normal "kepler-std",sans-serif;background:#222d32;overflow:hidden;width:100%;height:100%;}
+.hidden{display:none;}
+.road{background: url(/image/error/road.png);width:100%;height:107px;position:relative;left:0;top:550px;}
+.x404 img{display:block;width:182px;height:135px;position:relative;top:380px;}
+.carimage{animation:caranimi 5s;-webkit-animation:caranimi 5s;-moz-animation:caranimi 5s;animation-fill-mode:forwards;-webkit-animation-fill-mode:forwards;-moz-animation-fill-mode:forwards;}
+.x404 .container{padding:3em 0 ;margin-top:-148px;}
+.x404 .container h3{padding:0 1em;text-align:center;line-height:1.3;letter-spacing:0.05em;color:#fff;font-size:1em;option:0;}
+.slogan{animation:textanimi 4s;-webkit-animation:textanimi 4s;-moz-animation:textanimi 4s;}
+.container h3 b {animation:textanimi 4s;-webkit-animation:textanimi 4s;-moz-animation:textanimi 4s;}
+.quit {color:#319554;text-decoration:none;color:#3EBB6A;}
+
+@keyframes caranimi{from {left:0;} to {left:100%;}}
+@-webkit-keyframes  caranimi{from {left:0;} to {left:100%;}}
+@-moz-keyframes  caranimi{from {left:0;} to {left:100%;}}
+
+@keyframes textanimi{0%{opacity:0;},100%{opacity:1;}}
+@-webkit-keyframes textanimi{0%{opacity:0;},100%{opacity:1;}}
+@-moz-keyframes textanimi{0%{opacity:0;},100%{opacity:1;}}
+
+@media screen and (max-width:530px){.x404{font-size:19px;}}
+@media screen and (min-width:530px) and (max-width:666px){.x404{font-size:24px;}}
+@media screen and (min-width:666px) and (max-width:768px){.x404{font-size:30px;}}
+@media screen and (min-width:768px) and (max-width:980px){.x404{font-size:34px;}}
+@media screen and (min-width:980px){.x404{font-size:40px;}}
+
+
+
