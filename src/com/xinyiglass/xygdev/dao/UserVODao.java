@@ -22,4 +22,6 @@ public interface UserVODao {
 	public UserVO findVOById(Long userId) throws Exception;
 	
 	public SqlResultSet findJSONById(Long userId) throws Exception;
+	
+	public String findAllUsers() throws Exception;
 }

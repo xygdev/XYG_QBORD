@@ -77,27 +77,27 @@ public class LoginController extends BaseController {
 				mv.setViewName("login-us");
 			}
 			this.setSessionAttr("errorMsg", ret.getErrbuf());
-		 }else{
-			 UserVO user=uvos.findForUserVOByName(username.toUpperCase(),null);
-			 this.setSessionAttr("LOGIN_ID",TypeConvert.str2Long(ret.getParam1()));
-			 this.setSessionAttr("USER_ID", user.getUserId());
-			 this.setSessionAttr("USER_NAME", user.getUserName());
-			 this.setSessionAttr("DESC", user.getDescription());
-			 this.setSessionAttr("IMG", user.getImgUrl());
-			 SqlResultSet resp = rvos.getResp(user.getUserId(), loginId);
-			 this.setSessionAttr("RESP_ID",resp.getResultSet().get(0)[0].toString());
-			 this.setSessionAttr("RESP", resp.getResultSet().get(0)[1].toString());
-			 this.setSessionAttr("USER_TYPE", user.getUserType());
-			 if(retCode==1){
-				 mv.setViewName("redirect:/modifyPWD.do");
-				 this.setSessionAttr("errorMsg", ret.getErrbuf());
-			 }else if(retCode==0){				
-				 mv.setViewName("redirect:/index.do"); 
-			 }
-			 //这里全局初始化。例如启用调试等
-			 GlobalInit.init(null);//Boolean.parseBoolean("false")
-			 LogUtil.log("成功登录!-->当前SESS会话"+this.session.getId()+" 匹配的longId:"+ret.getParam1());
-		 }
+		}else{
+			UserVO user=uvos.findForUserVOByName(username.toUpperCase(),null);
+			this.setSessionAttr("LOGIN_ID",TypeConvert.str2Long(ret.getParam1()));
+			this.setSessionAttr("USER_ID", user.getUserId());
+			this.setSessionAttr("USER_NAME", user.getUserName());
+			this.setSessionAttr("DESC", user.getDescription());
+			this.setSessionAttr("IMG", user.getImgUrl());
+			SqlResultSet resp = rvos.getResp(user.getUserId(), loginId);
+			this.setSessionAttr("RESP_ID",resp.getResultSet().get(0)[0].toString());
+			this.setSessionAttr("RESP", resp.getResultSet().get(0)[1].toString());
+			this.setSessionAttr("USER_TYPE", user.getUserType());
+			if(retCode==1){
+				mv.setViewName("redirect:/modifyPWD.do");
+				this.setSessionAttr("errorMsg", ret.getErrbuf());
+			}else if(retCode==0){				
+				mv.setViewName("redirect:/index.do"); 
+			}
+			//这里全局初始化。例如启用调试等
+			GlobalInit.init(null);//Boolean.parseBoolean("false")
+			LogUtil.log("成功登录!-->当前SESS会话"+this.session.getId()+" 匹配的longId:"+ret.getParam1());
+		}
 		return mv;
 	}
 

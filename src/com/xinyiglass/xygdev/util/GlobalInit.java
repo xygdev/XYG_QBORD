@@ -19,11 +19,11 @@ public class GlobalInit {
     	Constant.SERVER_CHARSET = FTP.DEFAULT_CONTROL_ENCODING;
     	Constant.DIR_SEP="/";//ftp和unix用：/    ；本地win系统用：\\\\
     	//报表输出文件夹路径。注意：不包括/结尾的！
-    	Constant.CONC_OUT="/XYGB2B/conc/out";
-    	Constant.FTP_HOST="192.168.88.30";
-    	Constant.FTP_PORT=21;
-    	Constant.FTP_USER="oracle";
-    	Constant.FTP_PASS="oracle";
+    	//Constant.CONC_OUT="/XYGB2B/conc/out";
+    	//Constant.FTP_HOST="192.168.88.30";
+    	//Constant.FTP_PORT=21;
+    	//Constant.FTP_USER="oracle";
+    	//Constant.FTP_PASS="oracle";
     }    
 }  
 

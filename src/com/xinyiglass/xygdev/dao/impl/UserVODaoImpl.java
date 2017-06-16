@@ -187,4 +187,19 @@ public class UserVODaoImpl extends DevJdbcDaoSupport implements UserVODao{
 		paramMap.put("1", userId);
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
+	
+	public String findAllUsers() throws Exception{
+		String userGroup = null;
+		String sql = "SELECT USER_ID FROM XYG_ALD_USER_RESP WHERE RESP_APPL_ID = XYG_ALD_GLOBAL.APPL_ID";
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		SqlResultSet rs = this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+		for(int i=0;i<rs.getResultSet().size();i++){
+			if(i==0){
+				userGroup=(rs.getResultSet().get(i)[0]).toString();
+			}else{
+				userGroup=userGroup+","+(rs.getResultSet().get(i)[0]).toString();
+			}
+		}
+		return userGroup;
+	}
 }

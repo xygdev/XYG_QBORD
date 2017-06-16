@@ -9,7 +9,7 @@
 
 a{text-decoration:none;color:black}
 ol, ul, li {margin:0;padding:0;list-style:none;}
-table{border-collapse:collapse;border-spacing:0;width:100%;border-style:solid;border-width:0 1px 1px 1px;border-color:#e6e6e6}
+table{border-collapse:collapse;border-spacing:0;width:90%;border-style:solid;border-width:0 1px 1px 1px;border-color:#e6e6e6}
 th{border-style:solid;border-width:1px 0 0 1px;border-color:#e6e6e6;background-color:#f2f2f2;height:50px}
 /*
 tr:focus>td{border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#f9f9f9;background-color:#00A65A;text-align:center;height:40px}
@@ -109,7 +109,7 @@ input:required,select:required{background-color:#FFFFCC}
 .pop_frame{visibility:hidden;position:fixed;z-index:101;top:100px;left:50%;margin-left:-340px;width:680px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-color:white;overflow:auto;}
 .pop_frame.row-1{height:160px}
 .pop_frame.row-2{height:200px}
-.pop_frame.row-3{height:225px}
+.pop_frame.row-3{height:230px}
 .pop_frame.row-4{height:280px}
 .pop_frame.row-5{height:310px}
 .pop_frame.row-6{height:340px}
@@ -121,32 +121,34 @@ input:required,select:required{background-color:#FFFFCC}
 .pop_frame>.content{position:relative;width:680px;padding:20px 0}
 .pop_frame>.content.row-1{height:20px}
 .pop_frame>.content.row-2{height:55px}
-.pop_frame>.content.row-3{height:85px}
+.pop_frame>.content.row-3{height:90px}
 .pop_frame>.content.row-4{height:135px}
 .pop_frame>.content.row-5{height:165px}
 .pop_frame>.content.row-6{height:200px}
 .pop_frame>.content.row-9{height:275px}
 .pop_frame>.foot{position:relative;width:680px;height:30px;padding:5px 0}
 .pop_frame>.content form label{font-size:1em;padding:10px 20px 5px 0;text-align:right}
-.pop_frame>.content>form label.sm{width:60px}
+.pop_frame>.content form label.sm{width:60px}
 .pop_frame>.content form label.md{width:80px}
-.pop_frame>.content>form label.lg{width:100px}
-.pop_frame>.content>form label.blank{width:10px;padding:10px 5px 5px 0;}
+.pop_frame>.content form label.lg{width:100px}
+.pop_frame>.content form label.blank{width:10px;padding:10px 5px 5px 0;}
 .pop_frame>.content form input{height:20px;font-size:1em;margin:5px 0}
-.pop_frame>.content>form>input.sm{width:120px}
+.pop_frame>.content form input.noborder{border:0}
+.pop_frame>.content form input.sm{width:120px}
 .pop_frame>.content form input.md{width:170px}
 .pop_frame>.content form input.lg{width:220px}
-.pop_frame>.content>form>input.lglov{width:495px}
-.pop_frame>.content>form>input.lgx2{width:545px}
-.pop_frame>.content>form>input.password{width:195px}
-.pop_frame>.content>form>label.checkbox{font-size:1em;padding:10px 5px 5px 0;width:80px;text-align:right}
-.pop_frame>.content>form>input.checkbox{width:30px;margin:12px 2px}
+.pop_frame>.content form input.lglov{width:495px}
+.pop_frame>.content form input.lgx2{width:545px}
+.pop_frame>.content form input.password{width:195px}
+.pop_frame>.content form input.time{width:262px}
+.pop_frame>.content>form label.checkbox{font-size:1em;padding:10px 5px 5px 0;width:80px;text-align:right}
+.pop_frame>.content>form input.checkbox{width:30px;margin:12px 2px}
 .pop_frame>.content>form i{display:block;margin:8px 5px;}
 .pop_frame>.content>form i.hide{display:none}
 .pop_frame>.content form input.button{background-color:black;color:white;width:50px;height:25px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}
 .pop_frame>.content>form>select{width:206px;height:26px;font-size:1em;margin:5px 0;text-algin:center}
 .pop_frame>.content>form>select.lg{width:226px}
-.pop_frame>.content>form>textarea{width:546px;height:100px;font-size:1em;margin:5px 0}
+.pop_frame>.content form textarea{width:546px;height:100px;font-size:1em;margin:5px 0}
 .pop_frame>.foot>button{background-color:black;display:block;border:1px solid black;color:white;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;margin:0 30px;font-weight:bold}
 /* ==========================================================================
 明细框

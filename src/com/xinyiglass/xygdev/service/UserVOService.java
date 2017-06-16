@@ -54,6 +54,11 @@ public class UserVOService {
 		return userDao.findJSONById(userId).toJsonStr();
 	}
 	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String findAllUsers(Long loginId) throws Exception{
+		return userDao.findAllUsers();
+	}
+	
 	public PlsqlRetValue insert(UserVO u,Long loginId) throws Exception{
 		PlsqlRetValue ret=userDao.insert(u);
 		if(ret.getRetcode()!=0){

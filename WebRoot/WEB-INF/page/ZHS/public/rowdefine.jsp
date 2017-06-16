@@ -66,7 +66,6 @@
     		 $("#main-table").colResizable({
     			 liveDrag:true, 
             	 draggingClass:"dragging", 
-            	 //resizeMode:'flex'
             	 resizeMode:'overflow',
              	 onResize:function(){
              	     //设置滚动条
