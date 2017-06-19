@@ -72,4 +72,18 @@ public class LovService {
 		sqlBuf.append(" ORDER BY GROUP_ID");
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
 	}
+	
+	/***菜单LOV***/
+	public String findMenuForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT MENU_ID,MENU_CODE,MENU_NAME,DESCRIPTION FROM XYG_ALD_MENU_HEADERS");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(SqlStmtPub.getAndStmt("MENU_CODE", conditionMap.get("menuCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("MENU_NAME", conditionMap.get("menuName"),paramMap));
+		sqlBuf.append(" ORDER BY MENU_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}		
+	
 }

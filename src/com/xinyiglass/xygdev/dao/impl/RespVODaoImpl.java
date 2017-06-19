@@ -2,16 +2,16 @@ package com.xinyiglass.xygdev.dao.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import xygdev.commons.entity.PlsqlRetValue;
 import xygdev.commons.entity.SqlResultSet;
 import xygdev.commons.springjdbc.DevJdbcDaoSupport;
 import com.xinyiglass.xygdev.dao.RespVODao;
+import com.xinyiglass.xygdev.entity.RespVO;
+import xygdev.commons.util.TypeConvert;
+
 
 @Repository("RespVODao")
 public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
@@ -59,4 +59,95 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
 		paramMap.put("4", conditionMap.get("enabledFlag"));
 		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
 	}
+   
+    public PlsqlRetValue insert(RespVO vo) throws Exception{
+	    String sql = "  begin "
+	    	    + "  XYG_ALD_RESP_PKG.INSERT_RESP( "
+	    	    + "   :1 "
+	    	    + "  ,:2 "
+	    	    + "  ,:3 "
+	            + "  ,:4 "
+	            + "  ,:5 "
+	            + "  ,:6 "
+	            + "  ,:7 "
+	            + " ,:"+PlsqlRetValue.RETCODE
+	            + " ,:"+PlsqlRetValue.ERRBUF
+	            + " ); "
+	            + "end;";
+       Map<String,Object> paramMap=new HashMap<String,Object>();
+       paramMap.put("1", vo.getRespId());
+       paramMap.put("2", vo.getRespCode());
+       paramMap.put("3", vo.getRespName());
+       paramMap.put("4", vo.getDescription());
+       paramMap.put("5", vo.getMenuId());
+       paramMap.put("6", TypeConvert.u2tDate(vo.getStartDate()));
+       paramMap.put("7", TypeConvert.u2tDate(vo.getEndDate()));
+       return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+    }
+   
+    //Lock
+    public PlsqlRetValue lock(RespVO vo) throws Exception{
+	    String sql = "  begin "
+	            + "  XYG_ALD_RESP_PKG.LOCK_RESP( "
+	            + "   :1 "
+	            + "  ,:2 "
+	            + "  ,:3 "
+	            + "  ,:4 "
+	            + "  ,:5 "
+	            + "  ,:6 "
+	            + "  ,:7 "
+	            + " ,:"+PlsqlRetValue.RETCODE
+	            + " ,:"+PlsqlRetValue.ERRBUF
+	            + " ); "
+	            + "end;";
+        Map<String,Object> paramMap=new HashMap<String,Object>();
+        paramMap.put("1", vo.getRespId());
+        paramMap.put("2", vo.getRespCode());
+        paramMap.put("3", vo.getRespName());
+        paramMap.put("4", vo.getDescription());
+        paramMap.put("5", vo.getMenuId());
+        paramMap.put("6", TypeConvert.u2tDate(vo.getStartDate()));
+        paramMap.put("7", TypeConvert.u2tDate(vo.getEndDate()));
+        return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+    }
+   
+    //Update
+    public PlsqlRetValue update(RespVO vo) throws Exception{
+        String sql =  "  begin "
+	            + "  XYG_ALD_RESP_PKG.UPDATE_RESP( "
+	            + "   :1 "
+	            + "  ,:2 "
+	            + "  ,:3 "
+	            + "  ,:4 "
+	            + "  ,:5 "
+	            + "  ,:6 "
+	            + "  ,:7 "
+	            + " ,:"+PlsqlRetValue.RETCODE
+	            + " ,:"+PlsqlRetValue.ERRBUF
+	            + " ); "
+	            + "end;";								
+        Map<String,Object> paramMap=new HashMap<String,Object>();
+        paramMap.put("1", vo.getRespId());
+        paramMap.put("2", vo.getRespCode());
+        paramMap.put("3", vo.getRespName());
+        paramMap.put("4", vo.getDescription());
+        paramMap.put("5", vo.getMenuId());
+        paramMap.put("6", TypeConvert.u2tDate(vo.getStartDate()));
+        paramMap.put("7", TypeConvert.u2tDate(vo.getEndDate()));
+        return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+    }  
+   
+    public RespVO findById(Long id) throws Exception{
+        Map<String,Object> paramMap=new  HashMap<String,Object>();
+        String sql = "SELECT * FROM XYG_ALD_RESP_V WHERE RESP_ID = :1 AND APPL_ID = XYG_ALD_GLOBAL.APPL_ID";
+	    paramMap.put("1", id);
+	    return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new RespVO());
+    }
+      
+    public SqlResultSet findByIdForJSON(Long id) throws Exception{
+        String sql = "SELECT * FROM XYG_ALD_RESP_V WHERE RESP_ID = :1";
+        Map<String,Object> paramMap=new  HashMap<String,Object>();
+        paramMap.put("1", id);
+        return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+    }
 }

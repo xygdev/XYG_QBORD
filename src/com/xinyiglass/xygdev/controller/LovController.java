@@ -68,4 +68,18 @@ public class LovController extends BaseController{
 		conditionMap.put("groupName", this.getPara("GROUP_NAME"));
 		this.renderStr(lovService.findGroupForPage(conditionMap, loginId));
   	}
+  	
+   //获取MENU值列表
+  	@RequestMapping(value = "/getMenuPage.do", method = RequestMethod.POST)
+  	public void getMenuPage() throws Exception
+  	{   
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("menuName", this.getPara("MENU_NAME"));
+  		conditionMap.put("menuCode", this.getPara("MENU_CODE"));
+  		this.renderStr(lovService.findMenuForPage(conditionMap, loginId));
+  	}	
+  	
+  	
 }
