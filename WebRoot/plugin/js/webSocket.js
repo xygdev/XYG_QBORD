@@ -27,8 +27,16 @@
     ws.onclose = function (event) {
     	 ws.close();
     };
-//提示信息
-function pop(message){
-	$('#mailrefresh').click();
-	layer.alert(message);
-}
+    
+    //提示信息
+    function pop(message){
+    	//layer.alert(message);
+    	
+    	layer.confirm(message,{
+    		time: 5000, //20s后自动关闭
+    		btn: ['查看']
+    	},function(){
+    		$('#broadcast').click();
+    	});
+    	$('#refresh_bc').click(); 	
+    }

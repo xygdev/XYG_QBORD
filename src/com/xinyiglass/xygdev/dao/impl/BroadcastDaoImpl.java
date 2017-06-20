@@ -31,6 +31,18 @@ public class BroadcastDaoImpl extends DevJdbcDaoSupport implements BroadcastDao{
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
 	
+	public SqlResultSet findValidBroadcast() throws Exception{
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		String sql = "SELECT * FROM XYG_ALD_BROADCAST_V WHERE 1 = 1 AND SYSDATE BETWEEN START_DATE AND END_DATE AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID ORDER BY START_DATE DESC";
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
+	
+	public SqlResultSet countValidBroadcast() throws Exception{
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		String sql = "SELECT COUNT(*) COUNT FROM XYG_ALD_BROADCAST_V WHERE 1 = 1 AND SYSDATE BETWEEN START_DATE AND END_DATE AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID ORDER BY START_DATE DESC";
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
+	
 	public PlsqlRetValue insert(Map<String,Object> conditionMap) throws Exception{
 		String sql ="Declare "
 				+ "     l_broadcast_id number; "

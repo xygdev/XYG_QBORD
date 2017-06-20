@@ -45,6 +45,16 @@ public class BroadcastService {
 		return bcDao.findContentById(broadcastId).toJsonStr();
 	}
 	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String findValidBroadcast(Long loginId) throws Exception{
+		return bcDao.findValidBroadcast().toJsonStr();
+	}
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String countValidBroadcast(Long loginId) throws Exception{
+		return bcDao.countValidBroadcast().toArrayStr();
+	}
+	
 	public PlsqlRetValue insert(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		PlsqlRetValue ret=bcDao.insert(conditionMap);
 		if(ret.getRetcode()!=0){

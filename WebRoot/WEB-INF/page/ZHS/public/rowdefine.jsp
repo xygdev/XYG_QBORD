@@ -53,7 +53,12 @@
              resizeMode:'overflow',
              onResize:function(){
                 //设置滚动条
-    		    $(".table").mCustomScrollbar("update");
+    		    //$(".table").mCustomScrollbar("update");
+    		    $(".table").mCustomScrollbar("destroy");
+    		    $(".table").mCustomScrollbar({
+					axis:"x",
+					scrollInertia:0
+				});	
              }
        	 });
        	 
@@ -69,7 +74,12 @@
             	 resizeMode:'overflow',
              	 onResize:function(){
              	     //设置滚动条
-    		    	 $(".table").mCustomScrollbar("update");
+    		    	 //$(".table").mCustomScrollbar("update");
+    		    	 $(".table").mCustomScrollbar("destroy");
+    		    	 $(".table").mCustomScrollbar({
+					     axis:"x",
+						 scrollInertia:0
+				 	 });	
              	}
     		 });
     	  }

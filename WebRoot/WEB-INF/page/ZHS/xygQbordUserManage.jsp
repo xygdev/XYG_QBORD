@@ -151,12 +151,12 @@
             <label for='DESCRIPTION_Q' class='left md'>用户名称:</label> 
             <input type='text' id='DESCRIPTION_Q' name="DESCRIPTION" class="left lg" readonly="readonly"/>  
             <label for='USER_TYPE_Q' class='left md'>用户类型:</label>
-            <select class='left lg' id='USER_TYPE_Q' name='USER_TYPE' data-update="db" required='required' data-notnull="true" data-listurl="list/getUserType.do"></select> 
+            <select class='left lg' id='USER_TYPE_Q' name='USER_TYPE' data-update="db" data-notnull="true" data-listurl="list/getUserType.do"></select> 
             <br style="clear:both"/>
             <label for="START_DATE_F" class="left md">启用日期:</label>
-            <input type="text" id="START_DATE_F" name="START_DATE_F" class="left lg" data-datatype="date" placeholder="起始启用日期"/>
+            <input type="text" id="START_DATE_F" name="START_DATE_F" class="left time" data-datatype="date" placeholder="起始启用日期"/>
             <label class="left blank"></label>
-            <input type="text" id="START_DATE_T" name="START_DATE_T" class="left lg" data-datatype="date" placeholder="截止启用日期"/>
+            <input type="text" id="START_DATE_T" name="START_DATE_T" class="left time" data-datatype="date" placeholder="截止启用日期"/>
           </form> 
         </div>
         <div class='foot'>             
@@ -229,7 +229,7 @@
             <label for="RESP_NAME_R" class="left md">职责</label> 
             <input type="text" id="RESP_NAME_R" name="RESP_NAME" data-update="db" class="left md" data-modify="true" data-pageframe="resp_assign" required="required" data-lovbtn="RESP_LOV" data-param="RESP_NAME"/>
             <input type="hidden" id="RESP_ID_R" name="RESP_ID" data-update="db"/>
-            <input type="button" id="RESP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="resp_assign" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID","RESP_CODE","RESP_NAME","RESP_DESC"] data-selectname=["职责编码","职责名称"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_R","#RESP_NAME_R"] value="···"/>
+            <input type="button" id="RESP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="resp_assign" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["职责编码","职责名称"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_R","#RESP_NAME_R"] value="···"/>
             <label for="ENABLED_FLAG_R" class="left md">是否启用</label> 
 	        <select class="left lg" id="ENABLED_FLAG_R" name="ENABLED_FLAG" data-update="db" data-notnull="true" required="required" data-listurl="list/getEnableFlag.do"></select> 
 	        <br style="clear:both"/>

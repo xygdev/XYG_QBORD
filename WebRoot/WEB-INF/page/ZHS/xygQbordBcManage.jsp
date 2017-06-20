@@ -38,7 +38,7 @@
             <th class="USER_DESC" data-column="db">发布人</th>
      	    <th class="START_DATE" data-column="db">启用时间</th>
      	    <th class="END_DATE" data-column="db">失效时间</th>
-     	    <th class="ACTION" data-column="normal">操作</th> 
+     	    <th class="ACTION" data-column="normal">公告内容</th> 
      	    <th class="BROADCAST_ID" style="display:none" data-column="hidden">&nbsp;</th>
      	  </tr>
      	  <tr>
@@ -47,7 +47,7 @@
      	    <td class="START_DATE" data-column="db"></td>
      	    <td class="END_DATE" data-column="db"></td>
      	    <td class="ACTION" data-column="normal">
-     	      <i class="fa fa-file-archive-o fa-fw detail pointer hidden" data-show="true" title="公告内容" data-reveal-id="detail" data-key="true" data-dismissmodalclass="close-detail-frame" data-crudtype="pre-update" data-preupdateurl="broadcast/getContent.do" data-updateparam=["BROADCAST_ID",".BROADCAST_ID"]></i>   	      
+     	      <i class="fa fa-file-text fa-fw detail pointer hidden" data-show="true" title="公告内容" data-reveal-id="detail" data-key="true" data-dismissmodalclass="close-detail-frame" data-crudtype="pre-update" data-preupdateurl="broadcast/getContent.do" data-updateparam=["BROADCAST_ID",".BROADCAST_ID"]></i>   	      
      	    </td>
      	    <td class="BROADCAST_ID" style="display:none" data-column="hidden">&nbsp;</td>
      	  </tr>
@@ -64,7 +64,7 @@
           <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-user-plus pointer" data-reveal-id="ui" data-key="true" title="新增用户" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
+          <i class="fa fa-plus pointer" data-reveal-id="ui" data-key="true" title="发布公告" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
         </div>
         <div class="setting">
           <i id='refresh' class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
@@ -187,10 +187,8 @@
 	        <input type="text" id="BROADCAST_TITLE_D" class="left" style="border:0;margin:-2px 0;width:570px" data-update="db"/>
             <br style="clear:both"/>
             <br style="clear:both"/>
-            <textarea id="BROADCAST_CONTENT_D" style="width:614px;height:220px" readonly="readonly"></textarea>
+            <textarea id="BROADCAST_CONTENT_D" style="width:614px;height:220px;resize:none" readonly="readonly"></textarea>
             <br style="clear:both"/>
-            <input id="END_DATE_D"type="text" class="right" style="margin:5px 0;border:0px;width:152px" data-update="db"/>
-            <label for="END_DATE_D" class="right" style="margin:6px 0;width:13px">--</label>
             <input id="START_DATE_D"type="text" class="right" style="margin:5px 0;border:0px;width:150px" data-update="db"/>
             <label for="START_DATE_D" class="right" style="margin:6px 0;width:70px">公告时间:</label>
             <br style="clear:both"/>

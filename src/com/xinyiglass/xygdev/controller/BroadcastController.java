@@ -34,12 +34,17 @@ public class BroadcastController extends BaseController {
     }
 	
 	@RequestMapping("/bcManage.do")
-	public String listEmpVO(){
+	public String listBc(){
 		return this.getSessionAttr("LANG")+"/xygQbordBcManage";
 	}
 	
+	@RequestMapping("/bcDisplay.do")
+	public String listBcDisplay(){
+		return this.getSessionAttr("LANG")+"/xygQbordBcDisplay";
+	}
+	
 	@RequestMapping(value = "/getBcPage.do", method = RequestMethod.POST)
-	public void getEmpPage() throws Exception
+	public void getBcPage() throws Exception
 	{   	
 		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
@@ -62,8 +67,20 @@ public class BroadcastController extends BaseController {
 		this.renderStr(BS.findContentById(broadcastId, loginId));
 	}
 	
+	@RequestMapping(value = "/getValidBc.do", method = RequestMethod.POST)
+	public void getValidBroadcast() throws Exception
+	{	
+		this.renderStr(BS.findValidBroadcast(loginId));
+	}
+	
+	@RequestMapping(value = "/countValidBc.do", method = RequestMethod.POST)
+	public void countValidBroadcast() throws Exception
+	{	
+		this.renderStr(BS.countValidBroadcast(loginId));
+	}
+	
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
-	public void insret() throws Exception
+	public void insert() throws Exception
 	{ 
 		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("startDate", this.getParaToDate("START_DATE"));
@@ -80,7 +97,7 @@ public class BroadcastController extends BaseController {
 			String message="有一则新公告:"+conditionMap.get("broadcastTitle");
 			systemWebSocketHandler().sendMessageToUsers(userIdList, new TextMessage(message));
 		}
-		
+
 		this.renderStr(BS.insert(conditionMap, loginId).toJsonStr());
 	}
 }

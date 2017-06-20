@@ -30,120 +30,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .sidebar-toggle:hover{
-            background-color:#006633 !important;
-        }
-        .dark-green{
-            background-color:#006633 !important;
-        }
-        .tab_button_left{
-          	position:absolute;
-          	top:0;
-          	left:0;
-          	height:36px;
-          	border:0;
-          	border-right:1px solid gray;
-          	width:60px;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px
-        }
-        .tab_button_right{
-          	position:absolute;
-          	top:0;
-          	right:120px;
-          	height:36px;
-          	border:0;
-          	border-left:1px solid gray;
-          	width:60px;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px
-        }
-        .tab_button_fullscreen{
-          	position:absolute;
-          	top:0;
-          	right:0;
-          	height:36px;
-          	border:0;
-          	border-left:1px solid gray;
-          	width:60px;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px
-      	}
-      	.tab_selection{
-      	    position:absolute;
-          	top:0;
-          	right:60px;
-          	width:60px;
-      	}
-      	.tab_button_selection{
-          	height:36px;
-          	border:0;
-          	border-left:1px solid gray;
-          	width:60px;
-          	background-color:white;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px;
-      	}
-      	.content_tab_area{
-          	margin-left:60px;
-          	width:10000px;
-          	height:40px;
-          	overflow:hidden;
-      	}
-      	.content_tab_frame{
-          	float:left;
-          	border:0;
-          	margin:0;
-          	padding:0;
-          	height:36px;
-          	width:auto;
-          	overflow:hidden;
-          	white-space:nowrap;
-          	text-overflow:ellipsis;
-      	}
-      	.content_tab_frame>.content_tab{
-          	float:left;
-          	display:block;
-          	height:36px;
-          	border:0;
-          	/*border-right:1px solid gray;*/
-          	padding:0 10px;
-          	min-width:60px;
-          	width:auto;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px;
-          	background-color:white;
-          	color:black;  
-      	}
-      	
-      	.content_tab_frame>.active{
-          	background-color:black;
-          	color:white;  
-      	}
-      	.content_iframe{
-      	  	width:100%;
-      	  	padding:0;
-      	 	border:0;
-      	}
-    </style>
   </head>
   
   <body class="hold-transition skin-green sidebar-mini sidebar-collapse" >  
     <div class="wrapper">    
-       <header class="main-header">
+      <header class="main-header">
         <!-- Logo -->
-        <a href="#" data-iframehref="home.do" class="logo dark-green">
+        <a href="#" class="logo dark-green">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>X</b>YG</span>
           <!-- logo for regular state and mobile devices -->
@@ -160,28 +53,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="nav navbar-nav"> 
               <!-- 公告 -->
               <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a id="broadcast" href="#">
                   <i class="fa fa-bullhorn"></i>
                   <span data-type="tips" class="label label-danger"></span>
                 </a>
-              </li>
-            
-              <!-- 邮箱 -->            
-              <li class="dropdown messages-menu" id="mailbox">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o"></i>
-                  <span data-type="tips" class="label label-danger"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">你有<span data-type="inside"></span>条未读消息</li>
-                  <li>
-                    <!-- 新邮件消息区域 start -->
-                    <ul id="unread_menu" class="menu"></ul>  
-                    <!-- 新邮件消息区域 end -->          
-                  <li class="footer pointer"><a href="#" data-iframehref="mail/RecMail.do" data-title="收件箱">点击查看全部</a></li>
-                </ul>
-              </li>          
-              <!-- User Account: style can be found in dropdown.less -->
+              </li>              
+              <!-- 用户信息 -->
               <li class="dropdown user user-menu">
                 <input type="hidden" id="USER_ID" value="${USER_ID}"/> 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -218,7 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </nav>
       </header>
       
+      <!-- 侧边菜单栏 start -->
       <jsp:include page="Left-SideBar.jsp"/>
+      <!-- 侧边菜单栏 end -->
       
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -229,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
           <div class="dropdown tab_selection" >
           	<button type="button" class="tab_button_selection dropdown-toggle" data-toggle="dropdown">操作&nbsp;<i class="fa fa-caret-down"></i></button>
-            
+            <!-- tab 按钮区域 start -->
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="position:fixed;top:85px;left:auto;right:0">
               <li role="presentation">
                 <a role="menuitem" data-tabtype="refreshTab" tabindex="-1" href="#">刷新当前标签页</a>
@@ -241,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <a role="menuitem" data-tabtype="closeAll" tabindex="-1" href="#">关闭所有标签页</a>
               </li>
             </ul>
-            
+            <!-- tab 按钮区域 end -->
           </div>
 
           <a class="tab_button_right pointer" style="background-color:white;color:black" ><i class="fa fa-forward"></i></a>
@@ -250,29 +129,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <a class="content_tab pointer active" data-tabfunc="0" >首页</a>
             </div>
           </nav>
-        </section>
+    	</section>
 
-        <!-- Main content -->
+        <!-- iframe区域 -->
         <section id="iframe_area" class="content" style="padding:0">
-            <!-- Info boxes -->
             <iframe class="content_iframe" src="home.do" data-tabfunc="0" frameborder="0" scrolling="yes" framespacing="0" ></iframe>
     	</section>
         
         <!-- 用户信息存放区域 start -->
      	<input type="hidden" id="USER_ID" value="${USER_ID}"/>  
      	<input type="hidden" id="USER_NAME" value="${USER_NAME}"/>
-        <button id="mailrefresh" data-mailtype="unread" data-counturl="mail/countUnReadMail.do" data-mailurl="mail/findUnReadMail.do" data-pageframe="mailbox" style="visibility:hidden;position:fixed"></button>
      	<!-- 用户信息存放区域 end -->
      	
+     	<!-- 公告刷新按钮 start -->
+     	<button style="visibility:hidden;position:fixed" id="refresh_bc"></button>
+     	<!-- 公告刷新按钮 end-->
      	
-      <!-- 密码修改弹出框 start -->
-      <div class="pwd-modal-bg"></div>
-      <div id="modifyPWD" class="pwd_frame">
-        <div class='title'>      
-          <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;修改密码</span>
-        </div>
-        <a class="close-pwd-frame" data-type="close">&#215;</a>
-        <div class='line'></div>
+     	
+        <!-- 密码修改弹出框 start -->
+        <div class="pwd-modal-bg"></div>
+    	<div id="modifyPWD" class="pwd_frame">
+          <div class='title'>      
+            <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;修改密码</span>
+          </div>
+          <a class="close-pwd-frame" data-type="close">&#215;</a>
+          <div class='line'></div>
           <div class='content'>
             <form id='updateData'>
               <label for='O_PASSWORD' class='left'>原密码</label>
@@ -288,9 +169,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class='foot'>       
             <button id="confirm" class="right update_confirm pointer">确认修改</button>
           </div>   
-        </div>
-        <!-- 密码修改弹出框 end-->
-      </div><!-- /.content-wrapper -->   
+    	</div>
+        <!-- 密码修改弹出框 end-->          
+      </div>
       
       <!-- 用户头像区域 start -->
       <jsp:include page="public/headImg.jsp">
@@ -299,8 +180,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 用户头像区域 end -->  
     </div>
     
-    
-    
     <!-- jQuery 2.1.4 -->
     <script src="plugin/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -308,8 +187,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- AdminLTE App -->
     <script src="plugin/bootstrap/js/app.min.js"></script>
     <script src="plugin/js/jQuery.automenu.js"></script> 
-    
-    <!-- <script type="text/javascript" src="plugin/js/jQuery.mail.js"></script>   -->
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 
     <script type="text/javascript" src="plugin/js/cropbox.js"></script>
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
@@ -377,33 +254,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		$('.cropped_old img').attr('src',imgurl+'?temp=' + Math.random()); 
     	});    		 
     
-        jQuery.json={
-            getUnreadMail:function(data){
-                $('#unread_menu').html('');
-            	record=data.rows.length;
-				if(record>3){
-				    for(i=0;i<3;i++){
-				        newmail='<li><a class="pointer" data-iframehref="mail/RecMail.do?autoQuery=Y&sendId='+data.rows[i].SEND_ID+'" data-title="收件箱"><div class="pull-left"><img src="/image/login/mail.png" class="img-circle" alt="User Image"></div><h4>'
-                		+(data.rows[i].MAIL_TITLE).substring(0, 15)+'...<small><i class="fa fa-clock-o"></i>'
-                		+data.rows[i].SEND_DATE+'</small></h4><p>From:<span>'
-                		+data.rows[i].SEND_USER_DESC+'</span></p></a></li>';
-				        $('#unread_menu').append(newmail);    	
-				    }	
-				}else{
-				    for(i=0;i<record;i++){
-				        newmail='<li><a class="pointer" data-iframehref="mail/RecMail.do?autoQuery=Y&sendId='+data.rows[i].SEND_ID+'" data-title="收件箱"><div class="pull-left"><img src="/image/login/mail.png" class="img-circle" alt="User Image"></div><h4>'
-                		+(data.rows[i].MAIL_TITLE).substring(0, 15)+'...</h4><p>From:<span>'
-                		+data.rows[i].SEND_USER_DESC+'</span></p><p><small><i class="fa fa-clock-o"></i>'
-                		+data.rows[i].SEND_DATE+'</small></p></a></li>';
-				        $('#unread_menu').append(newmail); 		
-				    }
-				}
-            	
-            }
-        }
+        $('#broadcast').on('click',function(e){
+            e.preventDefault();/****阻止<a>标签默认的点击事件（超链接跳转）****/
+        	layer.open({
+  				type: 2,
+  				area: ['1000px', '700px'],
+  				title:'公告栏',
+  				fixed: false, //不固定
+  				maxmin: true,				
+  				content: 'broadcast/bcDisplay.do'
+			});
+        });
         
-        $('#mailrefresh').click();
-
+        $('#refresh_bc').on('click',function(){
+        	$.ajax({
+        		type:'post', 
+				url:'broadcast/countValidBc.do',
+				dataType:'json',
+				success:function(data){
+				    $('#broadcast').find('span').text(data[0].COUNT);
+				},
+				error:function(){
+					ayer.msg('获取JSON数据失败');
+				}
+        	});
+        });
+		
+		$('#refresh_bc').click();
+		
+		if($('#broadcast').find('span').text()!='0'){
+			$('#broadcast').click();
+		}
 	</script>
   </body>
 </html>

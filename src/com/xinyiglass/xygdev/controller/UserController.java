@@ -43,8 +43,6 @@ public class UserController extends BaseController {
 		conditionMap.put("userType", this.getPara("USER_TYPE"));
 		conditionMap.put("startDate_F", this.getParaToDate("START_DATE_F"));
 		conditionMap.put("startDate_T", this.getParaToDate("START_DATE_T"));
-		conditionMap.put("endDate_F", this.getParaToDate("END_DATE_F"));
-		conditionMap.put("endDate_T", this.getParaToDate("END_DATE_T"));
 		conditionMap.put("orderBy", this.getPara("orderby"));
 		this.renderStr(UVS.findForPage(conditionMap,loginId));
 	}

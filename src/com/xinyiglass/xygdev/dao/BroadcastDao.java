@@ -8,5 +8,9 @@ import xygdev.commons.entity.SqlResultSet;
 public interface BroadcastDao {
 	public SqlResultSet findContentById(Long broadcastId) throws Exception;
 	
+	public SqlResultSet findValidBroadcast() throws Exception;
+	
+	public SqlResultSet countValidBroadcast() throws Exception;
+	
 	public PlsqlRetValue insert(Map<String,Object> conditionMap) throws Exception;
 }
