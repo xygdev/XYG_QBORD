@@ -69,7 +69,7 @@ public class LovController extends BaseController{
 		this.renderStr(lovService.findGroupForPage(conditionMap, loginId));
   	}
   	
-   //获取MENU值列表
+    //获取MENU值列表
   	@RequestMapping(value = "/getMenuPage.do", method = RequestMethod.POST)
   	public void getMenuPage() throws Exception
   	{   
@@ -80,6 +80,42 @@ public class LovController extends BaseController{
   		conditionMap.put("menuCode", this.getPara("MENU_CODE"));
   		this.renderStr(lovService.findMenuForPage(conditionMap, loginId));
   	}	
+  	
+    //获取FUNC值列表
+  	@RequestMapping(value = "/getFuncPage.do", method = RequestMethod.POST)
+  	public void getFuncPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("funcName", this.getPara("FUNC_NAME"));
+  		conditionMap.put("funcCode", this.getPara("FUNC_CODE"));
+  		this.renderStr(lovService.findFuncForPage(conditionMap, loginId));
+  	}
+  	
+    //获取ICON值列表
+  	@RequestMapping(value = "/getIconPage.do", method = RequestMethod.POST)
+  	public void getIconPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("iconDESC", this.getPara("ICON_DESC"));
+  		conditionMap.put("iconCode", this.getPara("ICON_CODE"));
+  		this.renderStr(lovService.findIconForPage(conditionMap, loginId));
+  	}
+  	
+    //获取CUST(ALL QB)值列表
+  	@RequestMapping(value = "/getCustAllPage.do", method = RequestMethod.POST)
+  	public void getCustAllPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("partyName", this.getPara("PARTY_NAME"));
+  		conditionMap.put("accountNumber", this.getPara("ACCOUNT_NUMBER"));
+  		this.renderStr(lovService.findCustAllForPage(conditionMap, loginId));
+  	}
   	
   	
 }

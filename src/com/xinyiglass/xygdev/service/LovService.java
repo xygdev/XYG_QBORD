@@ -84,6 +84,50 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("MENU_NAME", conditionMap.get("menuName"),paramMap));
 		sqlBuf.append(" ORDER BY MENU_ID");
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
-	}		
+	}
 	
+	/***图标LOV***/
+	public String findIconForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT ICON_ID,ICON_CODE,DESCRIPTION,ICON_SOURCE FROM XYG_ALD_ICONS");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(SqlStmtPub.getAndStmt("ICON_CODE",conditionMap.get("iconCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION", conditionMap.get("iconDesc"),paramMap));
+		sqlBuf.append(" ORDER BY ICON_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***功能LOV***/
+	public String findFuncForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT FUNCTION_ID,FUNCTION_CODE,FUNCTION_NAME,DESCRIPTION FROM XYG_ALD_FUNCTIONS");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(SqlStmtPub.getAndStmt("FUNCTION_CODE",conditionMap.get("funcCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("FUNCTION_NAME", conditionMap.get("funcName"),paramMap));
+		sqlBuf.append(" ORDER BY FUNCTION_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***客户（后台分配界面）LOV***/
+	public String findCustAllForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT XACA.*");
+		sqlBuf.append("  FROM (SELECT OPERATING_UNIT");
+		sqlBuf.append("          FROM XYG_ALI_ORGANIZATION_VL");
+		sqlBuf.append("         WHERE GLASS_INDUSTRY = 'QB'");
+		sqlBuf.append("         GROUP BY OPERATING_UNIT) XAO");
+		sqlBuf.append("      ,XYG_ALFR_CUST_ACCOUNT_V XACA");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND STATUS='A'");
+		sqlBuf.append("   AND XACA.ORG_ID=XAO.OPERATING_UNIT");
+		sqlBuf.append(SqlStmtPub.getAndStmt("PARTY_NAME", conditionMap.get("partyName"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
+		sqlBuf.append(" ORDER BY XACA.ORG_ID,XACA.CUST_ACCOUNT_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
 }

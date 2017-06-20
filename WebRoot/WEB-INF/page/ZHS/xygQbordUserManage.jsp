@@ -267,6 +267,98 @@
       </div>
       <!-- 工作组分配区域 end -->
       
+      <!-- 用户客户账号区域 start --> 
+      <div class="detail_frame" id="detail">
+        <div class='title pointer'>      
+          <span><i class="fa fa-handshake-o"></i>&nbsp;客户分配</span>
+        </div>
+        <a class="close-detail-frame" data-type="close">&#215;</a>
+        <div class="detail_header">
+          <input type="hidden" id="USER_ID_D" />
+          <label class="mid" for="USER_NAME_D">用户账号</label>
+          <input type="text" id="USER_NAME_D" class="long" readonly="readonly"/>
+          <label class="mid" for="DESC_D">用户名</label>
+          <input type="text" id="DESC_D" class="long" readonly="readonly"/>
+          <br style="clear:both"/>
+        </div>
+        
+        <div class="detail_table">
+          <table id="sub-table" data-table="custLine">
+            <tr>
+              <th class="ORG_NAME" data-column="db">销售公司</th>
+              <th class="PARTY_NAME" data-column="db">客户名称</th>
+              <th class="ACCOUNT_NUMBER" data-column="db">客户账号</th>
+     	      <th class="ACCOUNT_NAME" data-column="db">账号名称</th>
+     	      <th class="ENABLED_FLAG" data-column="db">是否有效</th>
+     	      <th class="ACTION" data-column="normal">工作组</th>   	      
+     	      <th class="USER_CUST_ID" style="display:none" data-column="hidden">&nbsp;</th>
+     	    </tr>
+     	    <tr>
+     	      <td class="ORG_NAME" data-column="db"></td>
+     	      <td class="PARTY_NAME" data-column="db"></td>
+              <td class="ACCOUNT_NUMBER" data-column="db"></td>
+     	      <td class="ACCOUNT_NAME" data-column="db"></td>
+     	      <td class="ENABLED_FLAG" data-column="db"></td>
+     	      <td class="ACTION" data-column="normal">
+     	        <i class="fa fa-group fa-fw pointer" title="工作组分配" data-show="true" data-reveal-id="detail_ui" data-key="true" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="cust/preUpdate.do" data-type="update" data-updateparam=["USER_CUST_ID",".USER_CUST_ID"] data-func="$().preUpdateUC();"></i>
+     	      </td>
+     	      <td class="USER_CUST_ID" style="display:none" data-column="hidden">&nbsp;</td>     	     
+     	    </tr>
+          </table>
+        </div>
+        
+        <div class="table_button" id="sub_table" data-table="custLine">
+          <div class="setting">
+            <i class="fa fa-plus-circle pointer" data-reveal-id="detail_ui" data-key="true" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().preInsertUC();" ></i>
+          </div>
+          <div class="setting">
+            <i id='sub_refresh' class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="sub_table" data-func="$().setParam();"></i>
+          </div>
+          <div>
+            <jsp:include page="public/pageArrow.jsp" >
+			  <jsp:param name="pageframe" value="sub_table" />
+			  <jsp:param name="func" value="$().setParam();" />
+		    </jsp:include>
+            <input type="hidden" data-type="size" value="5"/>
+            <input type="hidden" data-type="number" value="1"/>
+            <input type="hidden" data-type="orderby" value="USER_CUST_ID ASC"/> 
+            <input type="hidden" data-type="cond"/>
+            <input type="hidden" data-type="url" value="cust/getUserCustPage.do"/>
+            <input type="hidden" data-type="jsontype" value="subtable"/> 
+          </div>
+        </div>
+      </div>
+      <!-- 用户客户账号区域 end -->
+      
+      <!-- 用户客户账号分配区域 start -->
+      <div id='detail_ui' class="pop_frame row-3" style="z-index:104">     
+        <div class="title pointer">      
+          <span data-type="insert"><i class="fa fa-handshake-o fa-1x" aria-hidden="true"></i>&nbsp;客户选择</span>
+        </div>
+        <a class="close-detail-ui-frame" data-type="close">&#215;</a>
+        <div class='line'></div>
+        <div class="content row-3">
+          <form>
+            <label for='PARTY_NAME' class="left md">客户名称</label> 
+            <input type="text" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly" required='required'/>
+            <input type='hidden' id='CUSTOMER_ID' name='CUSTOMER_ID' data-update="db"/>
+            <input type='button' id="PARTY_NAME_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&null","ORG_NAME","CUST_ACCOUNT_ID&null","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
+            <br style="clear:both"/>
+            <label for='ORG_NAME' class="left md">销售公司</label> 
+            <input type="text" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lgx2" readonly="readonly" required='required'/>
+            <input type="hidden" id="ORG_ID" name="ORG_ID" data-update="db" readonly="readonly"/>
+          </form>
+        </div>
+        <div class='foot'>       
+          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="cust/insert.do" data-refresh="sub_refresh" data-func="$().setParam();">分配</button>
+        </div>    
+      </div>
+      <!-- 用户客户账号分配区域 end -->
+      
+      <!-- 用户客户账号工作组分配区域 start -->
+      
+      <!-- 用户客户账号工作组分配区域 end -->
+      
       <!-- 用户头像区域 start -->
       <jsp:include page="public/headImg.jsp">
         <jsp:param name="headImgType" value="admin" />
@@ -286,8 +378,8 @@
             $("#ui").draggable({ handle: ".title"});
             $("#resp_assign").draggable({ handle: ".title"});
             $("#group_assign").draggable({ handle: ".title"});
-    		//$("#detail").draggable({ handle: ".title"});
-    		//$("#detail_ui").draggable({ handle: ".title"});
+    		$("#detail").draggable({ handle: ".title"});
+    		$("#detail_ui").draggable({ handle: ".title"});
     		$("#query").draggable({ handle: ".title"});
     		
     		//设置滚动条
@@ -297,7 +389,6 @@
 				axis:"x",
 				scrollInertia:0
 			});	
-    		//}
     		
     		//初始化CRUD和LOV条件查询
     		$().crudListener();	
@@ -364,7 +455,7 @@
     		}
     		
     		$.fn.setParam = function(){
-    		    userId=$('#USER_ID_LINES').val();
+    		    userId=$('#USER_ID_D').val();
     		    param=param+'&USER_ID='+userId;
     		}
     		
@@ -384,12 +475,46 @@
     		    	userDesc=tr.children('.DESCRIPTION').text();
     		    	$('.detail_header input').val('');
     		    	$('#sub_table input[data-type="number"]').val('1');
-    		    	$('#USER_ID_LINES').val(userId);
-    		    	$('#USER_NAME_LINES').val(userName);
-    		    	$('#DESC_LINES').val(userDesc);
+    		    	$('#USER_ID_D').val(userId);
+    		    	$('#USER_NAME_D').val(userName);
+    		    	$('#DESC_D').val(userDesc);
     		    	$('#sub_refresh').click();
     		    });    		   
     		} 
+    		
+    		$.fn.validateUserCust = function(){
+    		    $('[data-enable]').off('click');
+    		    $('[data-enable]').on('click',function(){
+    		        var action = $(this).attr('data-enable');
+    		        var tr=$(this).parent().parent();
+    		        var userCustId=tr.children('.USER_CUST_ID').text();
+    		        var param = 'USER_CUST_ID='+userCustId+'&ACTION='+action;
+    		        $.ajax({
+    		        	type:'post', 
+						data:param,
+						url:'cust/validate.do',
+						dataType:'json',
+						success:function(data){
+							if(data.retcode=='0'){
+							    if(action == 'OFF'){
+							        layer.msg('失效成功!');
+							    }else if(action == 'ON'){
+							    	layer.msg('启用成功!');
+							    }
+				    			$('#sub_refresh').click();/****点击刷新当前页按钮，刷新数据****/	
+				    		}else{
+				    			layer.alert('更新失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+				    		}
+						},error:function(){
+						    layer.msg('获取JSON数据失败');	
+							if(window.frameElement != null){
+							    //console.log("处于一个iframe中");
+							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+							}	
+						}
+    		        });
+    		    });
+    		}
     		
     		$.fn.preInsertUC = function(){
     		    $('#START_DATE_DETAIL').removeAttr('readonly');
@@ -424,13 +549,11 @@
                     ,['.USER_TYPE','USER_TYPE_M',
                      function(){
                      	if(data.rows[i].USER_TYPE=='CUSTOMER'){
-                    	  //$('.ACTION i[data-reveal-id="detail"]',$('#main-table tr:eq('+(i+1)+')')).css('visibility','visible');
                     	    $('.ACTION i[data-reveal-id="detail"]',$('#main-table tr:eq('+(i+1)+')')).css('display','');
                     	    $('.ACTION i[data-reveal-id="group_assign"]',$('#main-table tr:eq('+(i+1)+')')).css('display','none');
                     	}else{
                     	    $('.ACTION i[data-reveal-id="detail"]',$('#main-table tr:eq('+(i+1)+')')).css('display','none');
                     	    $('.ACTION i[data-reveal-id="group_assign"]',$('#main-table tr:eq('+(i+1)+')')).css('display','');
-                    	  //$('.ACTION i[data-reveal-id="detail"]',$('#main-table tr:eq('+(i+1)+')')).css('visibility','hidden');
                     	}
                      }
                     ]
@@ -448,6 +571,28 @@
                 	$().detailShow();
                 	$().changeIMG(); 
                 	$().revealListener();
+        	    }else if(JSONtype=='subtable'){
+        	        var mapRowArray=[
+                     ['.USER_CUST_ID','USER_CUST_ID']
+                    ,['.ORG_NAME','ORG_NAME']
+                    ,['.PARTY_NAME','PARTY_NAME']
+                    ,['.ENABLED_FLAG','ENABLED_FLAG',
+        	    	  function(){
+        	    	     if(data.rows[i].ENABLED_FLAG=='Y'){ 
+        	    	         $('#sub-table').find('tr:eq('+(i+1)+')').find('.ENABLED_FLAG').html('<i class="pointer fa fa-toggle-on green" data-enable="OFF" data-show="true"></i>');
+        	    	     }else{
+        	    	         $('#sub-table').find('tr:eq('+(i+1)+')').find('.ENABLED_FLAG').html('<i class="pointer fa fa-toggle-off" data-enable="ON" data-show="true"></i>');
+        	    	     }                                              
+        	    	  }]
+                    ,['.ACCOUNT_NUMBER','ACCOUNT_NUMBER']
+                    ,['.ACCOUNT_NAME','ACCOUNT_NAME']
+        	    	];
+        	    	$().mapContentJson(data,'#sub-table',mapRowArray);
+        	    	width='-'+parseInt($('#detail').css('width'))/2+'px';
+			        $('#detail').css('margin-left',width); 
+        	        $().crudListener();
+        	        $().validateUserCust();
+                	$().revealListener(); 
         	    }else if(JSONtype=='user'){
         	    	var mapRowArray=[
         	    	 'USER_ID'
@@ -476,6 +621,15 @@
         	    	,'GROUP_CODE'
         	    	,'GROUP_NAME'
         	    	,'DESCRIPTION'
+        	    	];
+        	    	$().mapContentJson(data,'#lov',mapRowArray);
+        	    }else if(JSONtype=='cust'){
+        	        var mapRowArray=[
+        	    	 'ORG_ID'
+        	    	,'ORG_NAME'
+        	    	,'CUST_ACCOUNT_ID'
+        	    	,'PARTY_NAME'
+        	    	,'ACCOUNT_NUMBER'
         	    	];
         	    	$().mapContentJson(data,'#lov',mapRowArray);
         	    }    
