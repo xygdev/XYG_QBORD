@@ -88,8 +88,8 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
-  		conditionMap.put("funcName", this.getPara("FUNC_NAME"));
-  		conditionMap.put("funcCode", this.getPara("FUNC_CODE"));
+  		conditionMap.put("funcName", this.getPara("FUNCTION_NAME"));
+  		conditionMap.put("funcCode", this.getPara("FUNCTION_CODE"));
   		this.renderStr(lovService.findFuncForPage(conditionMap, loginId));
   	}
   	
@@ -100,7 +100,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
-  		conditionMap.put("iconDESC", this.getPara("ICON_DESC"));
+  		conditionMap.put("iconDESC", this.getPara("DESCRIPTION"));
   		conditionMap.put("iconCode", this.getPara("ICON_CODE"));
   		this.renderStr(lovService.findIconForPage(conditionMap, loginId));
   	}

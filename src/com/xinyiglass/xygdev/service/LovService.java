@@ -92,7 +92,6 @@ public class LovService {
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		sqlBuf.append("SELECT ICON_ID,ICON_CODE,DESCRIPTION,ICON_SOURCE FROM XYG_ALD_ICONS");
 		sqlBuf.append(" WHERE 1 = 1");
-		sqlBuf.append("   AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
 		sqlBuf.append(SqlStmtPub.getAndStmt("ICON_CODE",conditionMap.get("iconCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION", conditionMap.get("iconDesc"),paramMap));
 		sqlBuf.append(" ORDER BY ICON_ID");
