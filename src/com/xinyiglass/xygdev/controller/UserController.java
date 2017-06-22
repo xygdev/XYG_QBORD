@@ -27,12 +27,12 @@ public class UserController extends BaseController {
 	UserVOService UVS;
 	
 	@RequestMapping("/userManage.do")
-	public String listEmpVO(){
+	public String listUser(){
 		return this.getSessionAttr("LANG")+"/xygQbordUserManage";
 	}
 	
 	@RequestMapping(value = "/getUserPage.do", method = RequestMethod.POST)
-	public void getEmpPage() throws Exception
+	public void getUserPage() throws Exception
 	{   	
 		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("pageSize", this.getParaToInt("pageSize"));

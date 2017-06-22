@@ -129,6 +129,9 @@
 				result=confirm(options.delmsg+col+'?');
 				if(result==true){
 					param=options.delparam[0]+'='+tr.children(options.delparam[1]).text();
+					if(options.func!=null||options.func!=''){
+						eval(options.func);
+					}
 					$.ajax({
 						type:'post', 
 						data:param,

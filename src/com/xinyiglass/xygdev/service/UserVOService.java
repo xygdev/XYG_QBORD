@@ -37,7 +37,6 @@ public class UserVOService {
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
-
 	
 	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 	public UserVO findForUserVOByName(String userName,Long loginId) throws Exception{

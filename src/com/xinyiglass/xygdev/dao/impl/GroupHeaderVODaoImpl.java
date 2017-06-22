@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.xinyiglass.xygdev.dao.GroupHeaderVODao;
-
+import com.xinyiglass.xygdev.entity.GroupHeaderVO;
 import xygdev.commons.entity.PlsqlRetValue;
 import xygdev.commons.entity.SqlResultSet;
 import xygdev.commons.springjdbc.DevJdbcDaoSupport;
@@ -52,5 +52,82 @@ public class GroupHeaderVODaoImpl extends DevJdbcDaoSupport implements GroupHead
 		paramMap.put("3", conditionMap.get("groupId"));
 		paramMap.put("4", conditionMap.get("enabledFlag"));
 		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	
+	public PlsqlRetValue insert(GroupHeaderVO ghVO) throws Exception{
+		String sql ="Declare "
+				+ "     l_group_id number; "
+				+ "  begin "
+				+ "  XYG_ALD_GROUP_PKG.INSERT_GROUP_H( "
+				+ "  :1"
+				+ " ,:2"
+				+ " ,:3"
+                + " ,:4"  
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("1", null);
+		paramMap.put("2", ghVO.getGroupCode());
+		paramMap.put("3", ghVO.getGroupName());
+		paramMap.put("4", ghVO.getDescription());
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	
+	public PlsqlRetValue lock(GroupHeaderVO ghVO) throws Exception{
+		String sql ="Declare "
+				+ "     l_group_id number; "
+				+ "  begin "
+				+ "  XYG_ALD_GROUP_PKG.LOCK_GROUP_H( "
+				+ "  :1"
+				+ " ,:2"
+				+ " ,:3"
+                + " ,:4"  
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("1", ghVO.getGroupId());
+		paramMap.put("2", ghVO.getGroupCode());
+		paramMap.put("3", ghVO.getGroupName());
+		paramMap.put("4", ghVO.getDescription());
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	
+	public PlsqlRetValue update(GroupHeaderVO ghVO) throws Exception{
+		String sql ="Declare "
+				+ "     l_group_id number; "
+				+ "  begin "
+				+ "  XYG_ALD_GROUP_PKG.UPDATE_GROUP_H( "
+				+ "  :1"
+				+ " ,:2"
+				+ " ,:3"
+                + " ,:4"  
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("1", ghVO.getGroupId());
+		paramMap.put("2", ghVO.getGroupCode());
+		paramMap.put("3", ghVO.getGroupName());
+		paramMap.put("4", ghVO.getDescription());
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	
+	public GroupHeaderVO findVOById(Long groupId) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		String sql = "SELECT * FROM XYG_ALD_GROUP_HEADERS_V WHERE GROUP_ID = :1";
+		paramMap.put("1", groupId);
+		return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new GroupHeaderVO());
+	}
+	
+	public SqlResultSet findJSONById(Long groupId) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		String sql = "SELECT * FROM XYG_ALD_GROUP_HEADERS_V WHERE GROUP_ID = :1";
+		paramMap.put("1", groupId);
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
 }

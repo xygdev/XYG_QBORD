@@ -229,7 +229,7 @@
             <label for="RESP_NAME_R" class="left md">职责</label> 
             <input type="text" id="RESP_NAME_R" name="RESP_NAME" data-update="db" class="left md" data-modify="true" data-pageframe="resp_assign" required="required" data-lovbtn="RESP_LOV" data-param="RESP_NAME"/>
             <input type="hidden" id="RESP_ID_R" name="RESP_ID" data-update="db"/>
-            <input type="button" id="RESP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="resp_assign" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["职责编码","职责名称"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_R","#RESP_NAME_R"] value="···"/>
+            <input type="button" id="RESP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="resp_assign" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["职责编码","职责名称"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_R","#RESP_NAME_R"] value="···"/>
             <label for="ENABLED_FLAG_R" class="left md">是否启用</label> 
 	        <select class="left lg" id="ENABLED_FLAG_R" name="ENABLED_FLAG" data-update="db" data-notnull="true" required="required" data-listurl="list/getEnableFlag.do"></select> 
 	        <br style="clear:both"/>
@@ -254,7 +254,7 @@
             <label for="GROUP_NAME" class="left md">工作组</label>
             <input type="text" id="GROUP_NAME_G" name="GROUP_NAME" data-update="db" class="left md" data-modify="true" data-pageframe="group_assign" required="required" data-lovbtn="GROUP_LOV"  data-param="groupName"/>
             <input type="hidden" id="GROUP_ID_G" name="GROUP_ID" data-update="db"/>
-            <input type="button" id="GROUP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组编码","工作组名称"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_G","#GROUP_NAME_G"]  value="···"/>
+            <input type="button" id="GROUP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组编码","工作组名称"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_G","#GROUP_NAME_G"]  value="···"/>
             
             <label for="ENABLED_FLAG_G" class="left md">是否启用</label> 
 	        <select class="left lg" id="ENABLED_FLAG_G" name="ENABLED_FLAG" data-update="db" data-notnull="true" required="required" data-listurl="list/getEnableFlag.do"></select> 
@@ -290,7 +290,6 @@
               <th class="ACCOUNT_NUMBER" data-column="db">客户账号</th>
      	      <th class="ACCOUNT_NAME" data-column="db">账号名称</th>
      	      <th class="ENABLED_FLAG" data-column="db">是否有效</th>
-     	      <th class="ACTION" data-column="normal">工作组</th>   	      
      	      <th class="USER_CUST_ID" style="display:none" data-column="hidden">&nbsp;</th>
      	    </tr>
      	    <tr>
@@ -299,9 +298,6 @@
               <td class="ACCOUNT_NUMBER" data-column="db"></td>
      	      <td class="ACCOUNT_NAME" data-column="db"></td>
      	      <td class="ENABLED_FLAG" data-column="db"></td>
-     	      <td class="ACTION" data-column="normal">
-     	        <i class="fa fa-group fa-fw pointer" title="工作组分配" data-show="true" data-reveal-id="detail_ui" data-key="true" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="cust/preUpdate.do" data-type="update" data-updateparam=["USER_CUST_ID",".USER_CUST_ID"] data-func="$().preUpdateUC();"></i>
-     	      </td>
      	      <td class="USER_CUST_ID" style="display:none" data-column="hidden">&nbsp;</td>     	     
      	    </tr>
           </table>
@@ -309,7 +305,7 @@
         
         <div class="table_button" id="sub_table" data-table="custLine">
           <div class="setting">
-            <i class="fa fa-plus-circle pointer" data-reveal-id="detail_ui" data-key="true" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().preInsertUC();" ></i>
+            <i class="fa fa-plus-circle pointer" data-reveal-id="detail_ui" data-key="true" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
           </div>
           <div class="setting">
             <i id='sub_refresh' class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="sub_table" data-func="$().setParam();"></i>
@@ -342,22 +338,18 @@
             <label for='PARTY_NAME' class="left md">客户名称</label> 
             <input type="text" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly" required='required'/>
             <input type='hidden' id='CUSTOMER_ID' name='CUSTOMER_ID' data-update="db"/>
-            <input type='button' id="PARTY_NAME_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&null","ORG_NAME","CUST_ACCOUNT_ID&null","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
+            <input type='button' id="PARTY_NAME_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
             <br style="clear:both"/>
             <label for='ORG_NAME' class="left md">销售公司</label> 
             <input type="text" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lgx2" readonly="readonly" required='required'/>
             <input type="hidden" id="ORG_ID" name="ORG_ID" data-update="db" readonly="readonly"/>
           </form>
         </div>
-        <div class='foot'>       
+        <div class="foot">       
           <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="cust/insert.do" data-refresh="sub_refresh" data-func="$().setParam();">分配</button>
         </div>    
       </div>
-      <!-- 用户客户账号分配区域 end -->
-      
-      <!-- 用户客户账号工作组分配区域 start -->
-      
-      <!-- 用户客户账号工作组分配区域 end -->
+      <!-- 用户客户账号分配区域 end -->   
       
       <!-- 用户头像区域 start -->
       <jsp:include page="public/headImg.jsp">
@@ -514,17 +506,7 @@
 						}
     		        });
     		    });
-    		}
-    		
-    		$.fn.preInsertUC = function(){
-    		    $('#START_DATE_DETAIL').removeAttr('readonly');
-    		    $('#PARTY_NAME_LOV').removeAttr('disabled');
-    		}
-    		
-    		$.fn.preUpdateUC = function(){
-    		    $('#START_DATE_DETAIL').attr('readonly','readonly');
-    		    $('#PARTY_NAME_LOV').attr('disabled','disabled');
-    		}
+    		} 		
     		
     		$('input[data-datatype="date"]').datetimepicker({
 				  lang:"ch",           //语言选择中文

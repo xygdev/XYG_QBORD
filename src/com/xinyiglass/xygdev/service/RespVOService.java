@@ -75,6 +75,7 @@ public class RespVOService {
    	   Map<String,Object> paramMap=new HashMap<String,Object>();
 	   StringBuffer sqlBuff = new StringBuffer();
        sqlBuff.append("select * from XYG_ALD_RESP_V WHERE 1=1");
+       sqlBuff.append(" AND APPL_ID = XYG_ALD_GLOBAL.APPL_ID");
        sqlBuff.append(SqlStmtPub.getAndStmt("MENU_ID",conditionMap.get("menuId"),paramMap));
 	   sqlBuff.append(SqlStmtPub.getAndStmt("RESP_ID",conditionMap.get("respId"),paramMap));
 	   sqlBuff.append(SqlStmtPub.getAndStmt("START_DATE",conditionMap.get("startDate_F"),conditionMap.get("startDate_T"),paramMap));
