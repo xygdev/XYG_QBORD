@@ -100,7 +100,7 @@ public class FunctionVODaoImpl extends DevJdbcDaoSupport implements FunctionVODa
 	@Override
 	public FunctionVO findById(Long id) throws Exception {
 	    Map<String,Object> paramMap=new  HashMap<String,Object>();
-        String sql = "SELECT * FROM XYG_ALD_FUNCTIONS_V WHERE FUNCTION_ID = :1 AND APPL_ID = XYG_ALD_GLOBAL.APPL_ID";
+        String sql = "SELECT * FROM XYG_ALD_FUNCTIONS_V WHERE FUNCTION_ID = :1";
 	    paramMap.put("1", id);
 	    return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new FunctionVO());
 	}

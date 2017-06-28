@@ -94,6 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       <input type="hidden" data-type="cond"/>
 	       <input type="hidden" data-type="url" value="func/getFuncPage.do"/>
 	       <input type="hidden" data-type="jsontype" value="table"/>
+	       <input type="hidden" data-type="autoquery" value="N"/> 
 	     </div>
        </div>
        <!-- 主表格按钮区域 end --> 

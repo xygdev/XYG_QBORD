@@ -139,7 +139,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
    
     public RespVO findById(Long id) throws Exception{
         Map<String,Object> paramMap=new  HashMap<String,Object>();
-        String sql = "SELECT * FROM XYG_ALD_RESP_V WHERE RESP_ID = :1 AND APPL_ID = XYG_ALD_GLOBAL.APPL_ID";
+        String sql = "SELECT * FROM XYG_ALD_RESP_V WHERE RESP_ID = :1";
 	    paramMap.put("1", id);
 	    return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new RespVO());
     }

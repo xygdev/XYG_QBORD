@@ -97,6 +97,7 @@
              <input type="hidden" data-type="cond"/>
              <input type="hidden" data-type="url" value="resp/getRespPage.do"/>
              <input type="hidden" data-type="jsontype" value="table"/> 
+             <input type="hidden" data-type="autoquery" value="N"/> 
            </div>
 	     </div>
 	     <!-- 主表格按钮区域 end -->

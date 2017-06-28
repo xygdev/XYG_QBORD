@@ -13,6 +13,10 @@ import xygdev.commons.springjdbc.DevJdbcDaoSupport;
 
 import com.xinyiglass.xygdev.dao.MenuHeaderVODao;
 
+import com.xinyiglass.xygdev.entity.MenuHeaderVO;
+
+import xygdev.commons.entity.PlsqlRetValue;
+
 @Repository("MenuHeaderVODao")
 public class MenuHeaderVODaoImpl  extends DevJdbcDaoSupport implements MenuHeaderVODao{
 	
@@ -29,4 +33,87 @@ public class MenuHeaderVODaoImpl  extends DevJdbcDaoSupport implements MenuHeade
 		paramMap.put("1", menuId);
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
+	
+	//Insert
+	public PlsqlRetValue insert(MenuHeaderVO vo) throws Exception{
+		String sql =
+				"  begin "
+				+ "  XYG_ALD_MENU_PKG.INSERT_MENU_HEADER( "
+				+ "   :MENU_ID "
+				+ "  ,:MENU_CODE "
+				+ "  ,:MENU_NAME "
+				+ "  ,:DESCRIPTION "
+				+ "  ,:MENU_ICON_ID "
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("MENU_ID", vo.getMenuId());
+		paramMap.put("MENU_CODE", vo.getMenuCode());
+		paramMap.put("MENU_NAME", vo.getMenuName());
+		paramMap.put("DESCRIPTION", vo.getDescription());
+		paramMap.put("MENU_ICON_ID", vo.getIconId());
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	
+	//Lock
+	public PlsqlRetValue lock(MenuHeaderVO vo) throws Exception{
+		String sql =
+				"  begin "
+				+ "  XYG_ALD_MENU_PKG.LOCK_MENU_HEADER( "
+				+ "   :MENU_ID "
+				+ "  ,:MENU_CODE "
+				+ "  ,:MENU_NAME "
+				+ "  ,:DESCRIPTION "
+				+ "  ,:MENU_ICON_ID "
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("MENU_ID", vo.getMenuId());
+		paramMap.put("MENU_CODE", vo.getMenuCode());
+		paramMap.put("MENU_NAME", vo.getMenuName());
+		paramMap.put("DESCRIPTION", vo.getDescription());
+		paramMap.put("MENU_ICON_ID", vo.getIconId());
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	//Update
+	public PlsqlRetValue update(MenuHeaderVO vo) throws Exception{
+		String sql =
+				"  begin "
+				+ "  XYG_ALD_MENU_PKG.UPDATE_MENU_HEADER( "
+				+ "   :MENU_ID "
+				+ "  ,:MENU_CODE "
+				+ "  ,:MENU_NAME "
+				+ "  ,:DESCRIPTION "
+				+ "  ,:MENU_ICON_ID "
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("MENU_ID", vo.getMenuId());
+		paramMap.put("MENU_CODE", vo.getMenuCode());
+		paramMap.put("MENU_NAME", vo.getMenuName());
+		paramMap.put("DESCRIPTION", vo.getDescription());
+		paramMap.put("MENU_ICON_ID", vo.getIconId());
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+		
+	public MenuHeaderVO findById(Long id) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+        String sql = "SELECT * FROM XYG_ALD_MENU_HEADERS_V WHERE MENU_ID = :1";
+	    paramMap.put("1", id);
+	    return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new MenuHeaderVO());
+	}
+	
+	public SqlResultSet findByIdForJSON(Long id) throws Exception{
+		String sql = "SELECT * FROM XYG_ALD_MENU_HEADERS_V WHERE MENU_ID = :1";
+        Map<String,Object> paramMap=new  HashMap<String,Object>();
+        paramMap.put("1", id);
+        return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
+	
 }
