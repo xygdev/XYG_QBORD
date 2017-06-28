@@ -272,6 +272,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url:'broadcast/countValidBc.do',
 				dataType:'json',
 				success:function(data){
+				    if(data[0].COUNT!=0){
+				        $('#broadcast').click();
+				    }
 				    $('#broadcast').find('span').text(data[0].COUNT);
 				},
 				error:function(){
@@ -281,10 +284,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 		
 		$('#refresh_bc').click();
-		
-		if($('#broadcast').find('span').text()!='0'){
-			$('#broadcast').click();
-		}
 	</script>
   </body>
 </html>

@@ -98,6 +98,20 @@ public class LovService {
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
 	}
 	
+	/***库存组织LOV***/
+	public String findOrganizationForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT ORGANIZATION_ID,ORGANIZATION_CODE,ORGANIZATION_NAME FROM XYG_ALI_ORGANIZATION_VL");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND GLASS_INDUSTRY = 'QB'");
+		sqlBuf.append("   AND DISABLE_DATE IS NULL");
+		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_CODE",conditionMap.get("oCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_NAME", conditionMap.get("oName"),paramMap));
+		sqlBuf.append(" ORDER BY ORGANIZATION_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
 	/***功能LOV***/
 	public String findFuncForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();

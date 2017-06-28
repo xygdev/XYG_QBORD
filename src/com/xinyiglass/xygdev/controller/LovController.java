@@ -105,6 +105,18 @@ public class LovController extends BaseController{
   		this.renderStr(lovService.findIconForPage(conditionMap, loginId));
   	}
   	
+    //获取ORGANIZATION值列表
+  	@RequestMapping(value = "/getOrganizationPage.do", method = RequestMethod.POST)
+  	public void getOrganizationPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("oName", this.getPara("ORGANIZATION_NAME"));
+  		conditionMap.put("oCode", this.getPara("ORGANIZATION_CODE"));
+  		this.renderStr(lovService.findOrganizationForPage(conditionMap, loginId));
+  	}
+  	
     //获取CUST(ALL QB)值列表
   	@RequestMapping(value = "/getCustAllPage.do", method = RequestMethod.POST)
   	public void getCustAllPage() throws Exception
