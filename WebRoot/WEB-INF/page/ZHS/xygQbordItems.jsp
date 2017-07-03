@@ -172,12 +172,10 @@
     		$().revealListener(); 
     		
     		//设置滚动条
-    		//if (!/webkit/.test(navigator.userAgent.toLowerCase())) {
-    		//console.log("not webit");
 			$(".table").mCustomScrollbar({
 				axis:"x",
 				scrollInertia:0
-			});	     		 
+			});	   	 
     		
     		//条件查询限制
     		$.fn.validateOrgan = function(){
@@ -185,7 +183,7 @@
     		    if(organizationId==null||organizationId==''){
     		       $('.ajax_loading').hide();
     		       layer.alert('必须选择库存组织才能查询物料！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
-    		       throw new error('必须选择库存组织才能查询物料！');
+    		       throw ('必须选择库存组织才能查询物料！');
     		    }
     		}
     		

@@ -21,6 +21,7 @@
 			    2017.06.06 修改Function的HREF属性名称为URL
 			               修改js文件名称为jQuery.automenu.js
 			    2017.06.14 修改tabSelection方法中，refresh按钮的tab选择器
+			    2017.07.03 修改AutoMenu菜单读取方法的逻辑
 	*******************************************************/
     //监听浏览器尺寸变化,iframe高度随浏览器变化而动态变化
     var isResizing = false;
@@ -270,24 +271,32 @@
 				var count;
 				for(i=0;i<data.length;i++){
 					if(data[i].PREV_CODE==null||data[i].PREV_CODE==''){	
-						if(data[i].FUNC==null||data[i].FUNC==''){
+						if(data[i].CODE==null||data[i].CODE==''){
+							$('ul.sidebar-menu').append("<li class=\"treeview\"><a href=\"#\" data-href=\""+data[i].URL+"\" data-funcid=\""+data[i].FUNC_ID+"\"><i class=\""+data[i].ICON+"\"></i><span>"+data[i].FUNC+"</span></a></li>");   
+						}else if(data[i].CODE!=null||data[i].CODE!=''){
 							$('ul.sidebar-menu').append("<li class=\"treeview "+data[i].CODE+"\"><a href=\"#\"><i class=\""+data[i].ICON+"\"></i><span>"+data[i].NAME+"</span><i class=\"fa fa-angle-left pull-right\"></i></a><ul class=\"treeview-menu\"></ul></li>");
-						}else if(data[i].FUNC!=null||data[i].FUNC!=''){
-							$('ul.sidebar-menu').append("<li><a href=\"#\" data-href=\""+data[i].URL+"\" data-funcid=\""+data[i].FUNC_ID+"\"><i class=\""+data[i].ICON+"\"></i>"+data[i].FUNC+"</a></li>");
+
 						}else{
-							alert("Error");
+							alert("error!")
 						}
-					}else{
+					}else{				
 						if(data[i].FUNC==null||data[i].FUNC==''){
-						
-							$('.'+data[i].PREV_CODE+' ul:eq(0)').append("<li class=\"treeview "+data[i].CODE+"\"><a href=\"#\"><i class=\""+data[i].ICON+"\"></i><span>"+data[i].NAME+"</span><i class=\"fa fa-angle-left pull-right\"></i></a><ul class=\"treeview-menu\"></ul></li>");
+							var j = $('ul.sidebar-menu').find('.'+data[i].CODE).length;
+							if(j){
+								$('li.'+data[i].PREV_CODE+' ul').append($('ul.sidebar-menu').find('.'+data[i].CODE).clone());
+							}else{
+								$('.'+data[i].PREV_CODE+' ul:eq(0)').append("<li class=\"treeview "+data[i].CODE+"\"><a href=\"#\"><i class=\""+data[i].ICON+"\"></i><span>"+data[i].NAME+"</span><i class=\"fa fa-angle-left pull-right\"></i></a><ul class=\"treeview-menu\"></ul></li>");
+							}
+							
 						}else if(data[i].FUNC!=null||data[i].FUNC!=''){
-						
-							$('.'+data[i].PREV_CODE+' ul:eq(0)').append("<li><a href=\"#\" data-href=\""+data[i].URL+"\" data-funcid=\""+data[i].FUNC_ID+"\"><i class=\""+data[i].ICON+"\"></i>"+data[i].FUNC+"</a></li>");
-						}else{
-							alert("Error");
-						}
-					}		
+							var k = $(('a[data-funcid="'+data[i].FUNC_ID+'"]'),$('.'+data[i].PREV_CODE)).length;
+							if(k){
+								console.log('skip');
+							}else{
+								$('.'+data[i].PREV_CODE+' ul:eq(0)').append("<li><a href=\"#\" data-href=\""+data[i].URL+"\" data-funcid=\""+data[i].FUNC_ID+"\"><i class=\""+data[i].ICON+"\"></i>"+data[i].FUNC+"</a></li>");
+							}
+						}					
+					}	
 				}
 				$('a[data-href]').on('click', function(e) {
 					e.preventDefault();//阻止<a>标签默认的点击事件（超链接跳转）
