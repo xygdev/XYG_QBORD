@@ -271,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="tabs-2" class='tab'>            
               <div style="height:40px;">
                 <label for='FUNCTION_CODE' class="left md">功能编码</label> 
-                <input type="text" id="FUNCTION_CODE" name="FUNCTION_CODE" data-update="db" class="left md" data-modify="true" data-pageframe="detail_ui" data-lovbtn="FUNCTION_LOV" data-param="FUNC_CODE"/>
+                <input type="text" id="FUNCTION_CODE" name="FUNCTION_CODE" data-update="db" class="left md" data-modify="true" data-pageframe="detail_ui" data-lovbtn="FUNCTION_LOV_Q" data-param="FUNCTION_CODE"/>
                 <input type='hidden' id='FUNCTION_ID' name='FUNCTION_ID' data-update="db"/>
                 <input type="button" id="FUNCTION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="功能查询" data-queryurl="lov/getFuncPage.do" data-jsontype="func" data-defaultquery="true" data-th=["功能ID","功能编码","功能名称","描述"] data-td=["FUNCTION_ID&none","FUNCTION_CODE","FUNCTION_NAME","DESCRIPTION"] data-selectname=["功能编码","功能名称"] data-selectvalue=["FUNCTION_CODE","FUNCTION_NAME"] data-choose=[".FUNCTION_ID",".FUNCTION_CODE",".FUNCTION_NAME"] data-recid=["#FUNCTION_ID","#FUNCTION_CODE","#FUNCTION_NAME"] value="···"/>                       
                 <label for='FUNCTION_NAME' class="left md">功能名称</label> 

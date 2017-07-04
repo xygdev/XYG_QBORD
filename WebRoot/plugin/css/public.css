@@ -140,7 +140,7 @@ input:required,select:required{background-color:#FFFFCC}
 .pop_frame>.content>form input.checkbox{width:30px;margin:12px 2px}
 .pop_frame>.content>form i{display:block;margin:8px 5px;}
 .pop_frame>.content>form i.hide{display:none}
-.pop_frame>.content form input.button{background-color:black;color:white;width:50px;height:25px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}
+.pop_frame>.content form input.button{background-color:black;color:white;width:50px;height:26px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}
 .pop_frame>.content>form>select{width:206px;height:26px;font-size:1em;margin:5px 0;text-algin:center}
 .pop_frame>.content>form>select.lg{width:226px}
 .pop_frame>.content form textarea{width:546px;height:100px;font-size:1em;margin:5px 0}

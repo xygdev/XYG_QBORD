@@ -13,10 +13,27 @@
 	font-family:"MicrosoftYaHei"
  }
  
+
+ 
+ a:hover{
+    text-decoration:none;
+ }
+ 
  .white{
     color:#FFFFFF
  }
  
+ .pointer{
+    cursor:pointer
+ }
+ 
+ .left{
+    float:left;
+ }
+ 
+ .right{
+    float:right;
+ }
 /**************背景轮播图  start******************/
 
 .bg1{
@@ -59,7 +76,7 @@
 	height: 100%;
 	width: 100%;
 	background: #000;
-	background: rgba(0,0,0,.3);
+	background: rgba(0,0,0,.1);
 	z-index: 100;
 	top: 0;
 	left: 0; 
@@ -80,22 +97,17 @@
 	text-align:center
 }
 
-.center-text>.start-btn{
-	font-size:0.7em;
-	display:block;
-	margin:0 auto;
-	width:150px;
-	height:50px;
-	background-color:transparent;
-	border:2px solid white;
-	font-weight:bold;
+.logo-frame>h1{
+	margin:16px 0 0 5px;
 }
-		
-.start-btn:hover{
-	background-color:#2b9152 !important;
-	border:1px solid #2b9152 !important;	
-	color:white !important;	
-}
+
+.logo-frame>.start-btn{
+	width:35px;
+	height:20px;
+	color:#fff;
+	margin:12px 2px 0 14px;
+	font-size:1.8em;
+}		
 		
 .start-btn:active{
 	color:white !important;	
@@ -145,7 +157,7 @@
 	width:100%;
 	height:100%;
 	z-index:100;
-	opacity:0;
+	display:none; 
 	background-color:#2b9152 !important;
 }
 
@@ -166,12 +178,19 @@
 	border-radius:10px
 }
 
-.login-frame .login-btn{
+.login-frame .btn{
 	display:block;
 	margin:10px auto;
 	width:90%;
-	background-color:#2b9152 !important;
 	color:white
+}
+
+.login-frame .login-btn{
+	background-color:#BB3C31;
+}
+
+.login-frame .forgetPassWord{
+	background-color:#2C4477;
 }
 
 .login-frame .split-line{
@@ -191,7 +210,40 @@
 	color:white;
 }
 
+.login-frame .getMessage{
+	background-color:black;
+	color:white;
+	width:20%;
+	height:34px;
+	line-height:1;
+	border:none;
+	-moz-border-top-right-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	border-top-right-radius:5px;
+	-moz-border-bottom-right-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-right-radius:5px;
+	font-size:12px;
+	text-align:center;
+	vertical-align:middle;
+	margin-top:10px;
+}
+
+#login-page .textMsg{
+	border-radius:0;
+	-moz-border-radius:0;
+	-webkit-border-radius:0;
+    width:80%;
+    margin-top:10px;
+    -moz-border-top-left-radius:5px;
+    -webkit-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -moz-border-bottom-left-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+}
+
 @media screen and (max-width:991px){
+	body{overflow-x:hidden;}
 	#login-page>.login-frame{
 		position:relative;
 		background-color:white;
@@ -199,9 +251,42 @@
 		width:100%;
 		max-width:992px;
 		border-radius:10px
-	}
+	}	
+	#login-page .textMsg{width:85%;}
+	#login-page .getMessage{font-size:16px;max-width:15%;}	
 	#login-page{
 	    background-color:#fff
 	}
+	
 }
+
+/* ==========================================================================
+找回密码框
+========================================================================== */
+.pwd-modal-bg{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,.8);z-index:2000;display:none;top:0;left:0}
+.pwd_frame{visibility:hidden;position:fixed;z-index:2001;top:200px;left:50%;margin-left:-290px;width:580px;height:378px;font-size:16px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-color:white;overflow:auto;}
+.pwd_frame>.title{position:relative;width:100%;height:40px;padding:5px 0;}
+.pwd_frame>.title>span{font-family:Microsoft YaHei;font-size:1.5em;font-weight:700;display:inline-block;:box-sizing:border-box;padding:2px 20px ;margin-bottom:7px; }
+.pwd_frame .close-pwd-frame{font-size:22px;line-height:.5;position:absolute;top:8px;right:11px;color:#aaa;text-shadow:0 -1px 1px rbga(0,0,0,.6);font-weight:bold;cursor:pointer}
+.pwd_frame>.line{position:relative;width:100%;height:3px;background:black;margin-top:6px;}
+.pwd_frame>.content{position:relative;width:580px;height:270px;padding:20px 0}
+.pwd_frame>.foot{position:relative;width:580px;height:40px;padding:5px 0}
+.pwd_frame>.content>form>label{font-size:1.1em;padding:10px 20px 5px 0;width:80px;text-align:right}
+.pwd_frame>.content>form>input{width:200px;height:25px;font-size:1.1em;margin:10px 0}
+.pwd_frame>.content>form>input.password{width:225px}
+.pwd_frame>.content>form i{display:block;margin:12px 5px;}
+.pwd_frame>.content>form i.hide{display:none}
+.pwd_frame>.content>form>input.short{width:150px}
+.pwd_frame>.content>form>input.button{background-color:black;color:white;width:50px;height:25px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}
+.pwd_frame>.content>form>select{width:206px;height:26px;font-size:1em;margin:5px 0;text-algin:center}
+.pwd_frame>.content>form>textarea{width:526px;height:100px;font-size:1em;margin:5px 0}
+.pwd_frame>.foot>button{background-color:black;display:block;border:1px solid black;color:white;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;margin:0 29px;font-weight:bold}
+
+.N_PASSWORD{
+	width:95% ;	
+}
+
 /**************登录页 end******************/
+
+
+
