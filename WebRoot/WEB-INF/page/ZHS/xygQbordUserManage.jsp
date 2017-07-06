@@ -44,6 +44,7 @@
      	    <th class="WECHAT_CODE" data-column="db">微信</th>
      	    <th class="MOBILE_NUMBER" data-column="db">手机号</th>
      	    <th class="EMAIL_ADDR" data-column="db">邮箱地址</th>
+     	    <th class="PRICE_LIMIT" data-colun="db">改价权限</th> 
      	    <th class="USER_IMG" data-column="normal">用户头像</th>
      	    <th class="ACTION" data-column="normal">操作</th> 
      	    <th class="USER_ID" style="display:none" data-column="hidden">&nbsp;</th>
@@ -60,6 +61,7 @@
      	    <td class="WECHAT_CODE" data-column="db"></td>
      	    <td class="MOBILE_NUMBER" data-column="db"></td>
      	    <td class="EMAIL_ADDR" data-column="db"></td>
+     	    <td class="PRICE_LIMIT" data-colun="db"></td> 
      	    <td class="USER_IMG" data-column="normal">
      	      <i class="fa fa-picture-o changeIMG pointer hidden" title="更改头像" data-show="true" data-reveal-id="headimg"></i>
      	    </td>
@@ -506,7 +508,41 @@
 						}
     		        });
     		    });
-    		} 		
+    		} 
+    		
+    		$.fn.updatePriceLimit = function(){
+    		    $('[data-limit]').off('click');
+    		    $('[data-limit]').on('click',function(){
+    		        var action = $(this).attr('data-limit');
+    		        var tr=$(this).parent().parent();
+    		        var userId=tr.children('.USER_ID').text();
+    		        var param = 'USER_ID='+userId+'&ACTION='+action;
+    		        $.ajax({
+    		        	type:'post', 
+						data:param,
+						url:'user/updatePriceLimit.do',
+						dataType:'json',
+						success:function(data){
+							if(data.retcode=='0'){
+							    if(action == 'OFF'){
+							        layer.msg('失效成功!');
+							    }else if(action == 'ON'){
+							    	layer.msg('启用成功!');
+							    }
+				    			$('#refresh').click();/****点击刷新当前页按钮，刷新数据****/	
+				    		}else{
+				    			layer.alert('更新失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+				    		}
+						},error:function(){
+						    layer.msg('获取JSON数据失败');	
+							if(window.frameElement != null){
+							    //console.log("处于一个iframe中");
+							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+							}	
+						}
+    		        });
+    		    });
+    		} 				
     		
     		$('input[data-datatype="date"]').datetimepicker({
 				  lang:"ch",           //语言选择中文
@@ -546,10 +582,20 @@
                     ,['.WECHAT_CODE','WECHAT_CODE']
                     ,['.MOBILE_NUMBER','MOBILE_NUMBER']
                     ,['.EMAIL_ADDR','EMAIL_ADDR']
+                    ,['.PRICE_LIMIT','PRICE_LIMIT',
+                      function(){
+                         if(data.rows[i].PRICE_LIMIT=='Y'){ 
+        	    	         $('#main-table').find('tr:eq('+(i+1)+')').find('.PRICE_LIMIT').html('<i class="pointer fa fa-toggle-on green" data-limit="OFF" data-show="true"></i>');
+        	    	     }else{
+        	    	         $('#main-table').find('tr:eq('+(i+1)+')').find('.PRICE_LIMIT').html('<i class="pointer fa fa-toggle-off" data-limit="ON" data-show="true"></i>');
+        	    	     } 
+                      }
+                     ]
                     ];
                     $().mapContentJson(data,'#main-table',mapRowArray);
                     $().afterRowDefine();
                 	$().crudListener();
+                	$().updatePriceLimit();
                 	$().detailShow();
                 	$().changeIMG(); 
                 	$().revealListener();

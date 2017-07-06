@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE>
+<!DOCTYPE HTML>
 <html>
   <head>
     <base href="<%=basePath%>">    
@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     
     <!-- 欢迎页区域 start -->
-    <div id="welcome-page" style="opacity:1">
+    <div id="welcome-page" style="opacity:1;height:100%">
       <div class="reveal-modal-bg"></div>
       <!-- 右上角区域 start -->
       <div class="dropdown langue-frame">
@@ -52,18 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="logo-frame">
         <img src="/image/login/xyg.png" class="logo-img">
         <h1 class="logo-desc">信义汽车玻璃在线平台</h1>
-        <i class="fa fa-car start-btn pointer"></i>
+        <i class="fa fa-circle green start-btn pointer">
+          <i class="fa fa-user-circle-o"></i>
+        </i>
       </div>
       <!-- 左上角区域 end -->
-      <!-- 正中间区域 start -->
-       <!-- <div class="center-text">
-        <h1 class="welcome-text">欢 迎 来 到 信 义 汽 车 玻 璃 在 线 平 台</h1> 
-        <button type="button" class="btn start-btn">点击进入</button>   
-      </div>  -->
-      <!-- 正中间区域 end -->  
+
       <!-- 背景图轮播区域 start -->
-      <div id="myCarousel" class="carousel slide">   	  
-   	    <div class="carousel-inner">
+      <div id="myCarousel" class="carousel slide" style="height:inherit;">   	  
+   	    <div class="carousel-inner" style="height:inherit;">
       	  <div class="item active bg-img bg1">
       	    <div class="img-desc">
       	    </div>
@@ -99,15 +96,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <form role="form" id="loginFrom" name="loginFrom" method="post" action="login.do">
    		  <div class="form-group" style="padding:0 25px">
      	    <label for="username">用户名</label>
-      	    <input type="text" class="form-control" id="username" name="username" placeholder="请填入用户名" required="required"/>
+      	    <input type="text" class="form-control" id="username" name="username" autocomplete="off" placeholder="请填入用户名" required="required"/>
    		  </div>
    		  <div class="form-group" style="padding:0 25px">
      	    <label for="password">密码</label>
-      	    <input type="password" class="form-control" id="password" name="password" placeholder="请填入密码" required="required"/>
+     	    <input type="text" style="display:none;" />
+      	    <input type="text" class="form-control" id="password" name="password" autocomplete="off" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" placeholder="请填入密码" required="required"/>
+   		    <input type="text" style="display:none;" />
    		  </div>
    		  <div  class="form-group" style="padding:0 25px;overflow:hidden;">
    		    <label for="textMsg" style="width:100%">短信验证码</label>  		   
-   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" placeholder="请输入短信"/>
+   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="请输入短信"/>
    		    <button id="getMessage" class="getMessage pointer left">获取短信</button>
    		  </div>
    		  <input type="hidden" id="lang" name="lang" value="ZHS"/>
@@ -138,7 +137,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
               <div class="form-group" style="padding:0 25px">
                 <label for='N_PASSWORD_F'>新密码</label>
-                <input type='password' id='N_PASSWORD_F' class="form-control left N_PASSWORD" name='N_PASSWORD_F' autocomplete="off" data-update="db" class=' password'/>
+                <input type="text" style="display:none;" />
+                <input type='text' id='N_PASSWORD_F' class="form-control left N_PASSWORD" name='N_PASSWORD_F' onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" data-update="db" class=' password'/>
+                <input type="text" style="display:none;" />
                 <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD_F"></i>
                 <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD_F"></i>
               </div>
@@ -165,37 +166,88 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript" src="plugin/layer/layer.js"></script>
   
   <script>
-    $(document).ready(function(){
-	    layer.tips('点此进入', '.start-btn', {
-            tips: [2, '#2b9152'],
+    $.fn.symbol = function(){
+    	var screen_h = $(window).height();//screen.height;
+		var screen_w = $(window).width();//screen.width;
+		var h_w = (screen_h/screen_w)*16;
+		if(h_w>7.5&&h_w<=8.5){
+	    	//layer.alert('屏幕分辨率为16:9');
+	    	$('.bg1').html('');
+	    	$('.bg1').append('<img src="/image/login/1-symbol.png" style="position:absolute;width:35%;top:27vh;left:35vh"/>');
+	    	$('.bg2').html('');
+	    	$('.bg2').append('<img src="/image/login/2-symbol.png" style="position:absolute;width:35%;top:15vh;left:30vh"/>');
+	    	$('.bg3').html('');
+	    	$('.bg3').append('<img src="/image/login/3-symbol.png" style="position:absolute;width:35%;top:10vh;left:23vh"/>');
+	    	$('.bg4').html('');
+	    	$('.bg4').append('<img src="/image/login/4-symbol.png" style="position:absolute;width:35%;top:18vh;right:15vh"/>');
+		}else if(h_w>8.5&&h_w<=9.5){
+			//layer.alert('屏幕分辨率为16:10');
+			$('.bg1').html('');
+			$('.bg1').append('<img src="/image/login/1-symbol.png" style="position:absolute;width:35%;top:30vh;left:30vh"/>');
+			$('.bg2').html('');
+	    	$('.bg2').append('<img src="/image/login/2-symbol.png" style="position:absolute;width:35%;top:18vh;left:25vh"/>');
+	    	$('.bg3').html('');
+	    	$('.bg3').append('<img src="/image/login/3-symbol.png" style="position:absolute;width:35%;top:14vh;left:20vh"/>');
+	    	$('.bg4').html('');
+	    	$('.bg4').append('<img src="/image/login/4-symbol.png" style="position:absolute;width:35%;top:20vh;right:13vh"/>');
+		}else if(h_w>9.5&&h_w<=11.5){
+			//layer.alert('屏幕分辨率为4:3');
+			$('.bg1').html('');
+			$('.bg1').append('<img src="/image/login/1-symbol.png" style="position:absolute;width:45%;top:30vh;left:10vh"/>');
+			$('.bg2').html('');
+	    	$('.bg2').append('<img src="/image/login/2-symbol.png" style="position:absolute;width:45%;top:16vh;left:10vh"/>');
+	    	$('.bg3').html('');
+	    	$('.bg3').append('<img src="/image/login/3-symbol.png" style="position:absolute;width:45%;top:11vh;left:1.5vh"/>');
+	    	$('.bg4').html('');
+	    	$('.bg4').append('<img src="/image/login/4-symbol.png" style="position:absolute;width:45%;top:21vh;right:-8vh"/>');
+		}else{
+			$('.bg1').html('');
+			$('.bg2').html('');
+			$('.bg3').html('');
+			$('.bg4').html('');
+		}
+	}
+	
+	$.fn.tips = function(){
+		layer.tips('点此登录', '.start-btn', {
+            tips: [2, 'green'],
             time: 0
         });
-	   
+	}
+    
+    $(document).ready(function(){
+        $().symbol();
+	    $().tips();
+	    errorMSG=$('#errorMsg').val();
+		if(errorMSG!=null&&errorMSG!=''){ 
+	    	$('.start-btn').click();
+	        layer.alert(errorMSG,{title:'警告',offset:[150]});
+		}
 	});
+	
+	window.onresize=function(){
+	    $().symbol();
+	}
 	
   	$('#myCarousel').carousel({
   		interval: 5000
 	})
 	
-	errorMSG=$('#errorMsg').val();
-	if(errorMSG!=null&&errorMSG!=''){
-	    $("#welcome-page").css("display","none");
-	    $("#login-page").css("display","block");
-	    $('.start-btn')[0].click();
-	    layer.alert(errorMSG,{title:'警告',offset:[150]});
-	}
 	
-	$('.start-btn').on('click',function(){
-	    $("#layui-layer1").hide();
+	
+	$('.start-btn').on('click',function(){ 
 	    $("#welcome-page").css("display","none");
 	    $("#login-page").css("display","block");
+	    layer.closeAll('tips'); 
 	});
 	
 	$('.go-back').on('click',function(){	 
-        $("#layui-layer1").show();  
-	    $("#welcome-page").css("display","block");
-	    $("#login-page").css("display","none")
+  	    $("#welcome-page").css("display","block");
+	    $("#login-page").css("display","none");
+	    $().tips();
 	});
+	
+	
 	
 	$("#findPWD").draggable({ handle: ".title" });
 	$('i[data-pwd]').on('click',function(){

@@ -130,4 +130,24 @@ public class UserController extends BaseController {
         return mv;
         
     }
+    
+    //Ajax请求
+    @RequestMapping(value = "/updatePassword.do", method = RequestMethod.POST)
+    public void updatePassword() throws Exception
+    {  
+    	Map<String,Object> conditionMap=new HashMap<String,Object>();
+    	conditionMap.put("userId", (Long)this.getSessionAttr("USER_ID"));
+    	conditionMap.put("oldPassword", MD5Util.string2MD5(this.getPara("O_PASSWORD"),Constant.SALT));
+    	conditionMap.put("newPassword", MD5Util.string2MD5(this.getPara("N_PASSWORD"),Constant.SALT));
+    	this.renderStr(UVS.updatePWD(conditionMap, loginId).toJsonStr());
+    }
+    
+    @RequestMapping(value = "/updatePriceLimit.do", method = RequestMethod.POST)
+	public void updatePriceLimit() throws Exception
+	{
+    	Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("userId", this.getParaToLong("USER_ID"));
+		conditionMap.put("action", this.getPara("ACTION"));
+		this.renderStr(UVS.updatePriceLimit(conditionMap, loginId).toJsonStr());
+	}
 }

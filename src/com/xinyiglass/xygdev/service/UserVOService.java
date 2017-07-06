@@ -84,4 +84,12 @@ public class UserVOService {
 		}
 		return ret;
 	}
+	
+	public PlsqlRetValue updatePriceLimit(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		PlsqlRetValue ret = userDao.updatePriceLimit(conditionMap);
+		if(ret.getRetcode()!=0){
+			DevJdbcSubProcess.setRollbackOnly();//该事务必须要回滚！
+		}
+		return ret;
+	}
 }

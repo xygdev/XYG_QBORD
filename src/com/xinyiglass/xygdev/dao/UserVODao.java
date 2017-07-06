@@ -19,6 +19,8 @@ public interface UserVODao {
 	
 	public PlsqlRetValue updatePWD(Map<String,Object> conditionMap) throws Exception;
 	
+	public PlsqlRetValue updatePriceLimit(Map<String,Object> conditionMap) throws Exception;
+	
 	public UserVO findVOById(Long userId) throws Exception;
 	
 	public SqlResultSet findJSONById(Long userId) throws Exception;
