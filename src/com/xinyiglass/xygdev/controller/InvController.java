@@ -25,8 +25,13 @@ public class InvController extends BaseController{
 	InvService ps;
 	
 	@RequestMapping("/invPermission.do")
-    public String resp(){
+    public String invPerm(){
 	    return this.getSessionAttr("LANG")+"/xygQbordInvPermission";
+    }
+	
+	@RequestMapping("/invQuery.do")
+    public String invQuery(){
+	    return this.getSessionAttr("LANG")+"/xygQbordInvQuery";
     }
 	
 	@RequestMapping(value = "/getInvPermission.do", method = RequestMethod.POST)
@@ -70,6 +75,18 @@ public class InvController extends BaseController{
 		conditionMap.put("permissionId", this.getParaToLong("PERMISSION_ID"));
 		conditionMap.put("action", this.getPara("ACTION"));
 		this.renderStr(ps.validate(conditionMap, loginId).toJsonStr());
+	}
+	
+	@RequestMapping(value = "/getInvPage.do", method = RequestMethod.POST)
+	public void getInvPage() throws Exception
+	{
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
+		conditionMap.put("organizationId",this.getParaToLong("ORGANIZATION_ID"));
+		conditionMap.put("orderBy",  this.getPara("orderby"));
+        this.renderStr(ps.findForInvPage(conditionMap,loginId));
 	}
 	
 }

@@ -65,6 +65,16 @@ public class InvService {
 		}
 		return ret;
 	}
-
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String findForInvPage(Map<String,Object> conditionMap,Long loginId) throws Exception{		
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+	    StringBuffer sqlBuff = new StringBuffer();
+	    sqlBuff.append("SELECT * FROM XYG_QBORD_INV_ONHAND_V");
+	    sqlBuff.append(" WHERE 1=1 ");
+		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap)); 	 
+ 	    sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
+	    return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
+	}
 	
 }
