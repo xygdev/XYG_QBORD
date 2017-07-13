@@ -32,12 +32,12 @@
             height=$(window).height();
             if(width>=768){
             	headerheight=$('section.content-header').outerHeight();
-            	ifmheight=height-headerheight-55;
+            	ifmheight=height-headerheight-50;
             	$('iframe').css('height',ifmheight+'px');
             }else{
                 logoheight=$('a.logo').height();
             	headerheight=$('section.content-header').outerHeight();
-            	ifmheight=height-logoheight-headerheight-55;
+            	ifmheight=height-logoheight-headerheight-50;
             	$('iframe').css('height',ifmheight+'px');
            	}
     		setTimeout(function () { 
@@ -53,12 +53,12 @@
         height=$(window).height();
         if(width>=768){
             headerheight=$('section.content-header').outerHeight();
-            ifmheight=height-headerheight-55;
+            ifmheight=height-headerheight-50;
             $('iframe').css('height',ifmheight+'px');
         }else{
             logoheight=$('a.logo').height();
             headerheight=$('section.content-header').outerHeight();
-            ifmheight=height-logoheight-headerheight-55;
+            ifmheight=height-logoheight-headerheight-50;
             $('iframe').css('height',ifmheight+'px');
         }
     }
