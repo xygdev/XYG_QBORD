@@ -153,9 +153,81 @@ public class LovService {
 		sqlBuf.append(" WHERE 1 = 1");
 		sqlBuf.append("   AND STATUS='A'");
 		sqlBuf.append("   AND XACA.ORG_ID=XAO.OPERATING_UNIT");
+		sqlBuf.append("   AND XACA.PRODUCT_LIST_HEADER_ID IS NOT NULL");
 		sqlBuf.append(SqlStmtPub.getAndStmt("PARTY_NAME", conditionMap.get("partyName"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
 		sqlBuf.append(" ORDER BY XACA.ORG_ID,XACA.CUST_ACCOUNT_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***用户客户LOV***/
+	public String findUserCustForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT * ");
+		sqlBuf.append("  FROM XYG_ALFR_CUST_ACCOUNT_V");
+		sqlBuf.append(" WHERE 1=1");
+		sqlBuf.append(SqlStmtPub.getAndStmt("PARTY_NAME", conditionMap.get("partyName"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
+		sqlBuf.append("   AND ACT_ID IN (SELECT CUST_ID");
+		sqlBuf.append("					   FROM XYG_ALD_GROUP_LINES");
+		sqlBuf.append("					  WHERE GROUP_ID IN(SELECT SUB_GROUP_ID");
+		sqlBuf.append("										  FROM XYG_ALD_GROUP_LINES");
+		sqlBuf.append("										 WHERE 1=1");
+		sqlBuf.append("										   AND SUB_GROUP_ID IS NOT NULL");
+		sqlBuf.append("									CONNECT BY NOCYCLE PRIOR SUB_GROUP_ID = GROUP_ID");
+		sqlBuf.append("									START WITH GROUP_ID = (SELECT GROUP_ID");
+		sqlBuf.append("										  					 FROM XYG_ALD_USER_GROUP_V");
+		sqlBuf.append("										 					WHERE USER_ID = :1");
+		sqlBuf.append("															  AND USER_TYPE = 'EMP'");
+		sqlBuf.append("															  AND GROUP_APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
+		sqlBuf.append("					     OR GROUP_ID = (SELECT GROUP_ID");
+		sqlBuf.append("							              FROM XYG_ALD_USER_GROUP_V");
+		sqlBuf.append("										 WHERE USER_ID = :1");
+		sqlBuf.append("										   AND USER_TYPE = 'EMP'");
+		sqlBuf.append("										   AND GROUP_APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
+		sqlBuf.append("    OR ACT_ID IN (SELECT ACT_ID");
+		sqlBuf.append("					   FROM XYG_ALD_USER_CUST_V");
+		sqlBuf.append("					  WHERE USER_ID = :1");
+		sqlBuf.append("					    AND USER_TYPE = 'CUSTOMER'");
+		sqlBuf.append("					    AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID)");
+		sqlBuf.append(" ORDER BY ORG_ID,CUST_ACCOUNT_ID");  
+		paramMap.put("1", conditionMap.get("userId"));
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***物料LOV***/
+	public String findItemForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT A.*");
+		sqlBuf.append("  FROM (SELECT XQPL.ITEM_ID INVENTORY_ITEM_ID,XQPL.ITEM_NUMBER,XQPL.ITEM_DESCRIPTION DESCRIPTION,XQPL.ITEM_CH_DESCRIPTION CARNAME,XQPH.NOT_CONTROL");
+		sqlBuf.append("          FROM XYG_QBO_PRODUCT_LINE_LIST XQPL");
+		sqlBuf.append("              ,XYG_QBO_PRODUCT_HEADER_LIST XQPH");
+		sqlBuf.append("         WHERE EXISTS (SELECT 1");
+		sqlBuf.append("                         FROM XYG_ALFR_CUST_ACCOUNT");
+		sqlBuf.append("                        WHERE XQPL.LIST_HEADER_ID = PRODUCT_LIST_HEADER_ID ");
+		sqlBuf.append("                          AND CUST_ACCOUNT_ID = :1");
+		sqlBuf.append("                          AND ORG_ID = :2)");
+		sqlBuf.append("           AND XQPL.LIST_HEADER_ID = XQPH.LIST_HEADER_ID");
+		sqlBuf.append("           AND XQPH.NOT_CONTROL = 'Y'");
+		sqlBuf.append("         UNION ALL SELECT XQIT.INVENTORY_ITEM_ID,XQIT.ITEM_NUMBER,XQIT.DESCRIPTION,XQIT.CARNAME,'N' NOT_CONTROL");
+		sqlBuf.append("                     FROM XYG_QBI_ITEM_TP_B XQIT");
+		sqlBuf.append("                    WHERE XQIT.ORGANIZATION_ID = :3) A");
+		sqlBuf.append("       ,XYG_QBO_PRODUCT_HEADER_LIST XQPHL");
+		sqlBuf.append("  WHERE A.NOT_CONTROL = XQPHL.NOT_CONTROL");
+		sqlBuf.append("    AND EXISTS (SELECT 1");  
+		sqlBuf.append("                  FROM XYG_ALFR_CUST_ACCOUNT");
+		sqlBuf.append("                 WHERE XQPHL.LIST_HEADER_ID = PRODUCT_LIST_HEADER_ID ");
+		sqlBuf.append("                   AND CUST_ACCOUNT_ID = :1");
+		sqlBuf.append("                   AND ORG_ID = :2) ");                     	                   
+		//sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true));
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("CARNAME",conditionMap.get("carName"),paramMap));
+		sqlBuf.append(" ORDER BY INVENTORY_ITEM_ID");  
+		paramMap.put("1", conditionMap.get("customerId"));
+		paramMap.put("2", conditionMap.get("salesOrgId"));
+		paramMap.put("3", conditionMap.get("organizationId"));
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
 	}
 }

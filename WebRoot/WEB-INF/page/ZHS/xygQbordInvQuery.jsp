@@ -126,14 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#query").draggable({ handle: ".title"});
             //初始化CRUD和LOV条件查询
             $().crudListener();
-            $().revealListener();
-             
-            //设置滚动条           
-            $(".table").mCustomScrollbar({
-                axis:"x",
-                scrollInertia:0
-            });  
-            
+            $().revealListener();             
    
             //条件查询限制
             $.fn.validateOrgan = function(){
@@ -162,6 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    ,['.ONHAND_ID','ONHAND_ID']                      
                     ];
                     $().mapContentJson(data,'#main-table',mapRowArray);
+                    $().afterRowDefine();
                     $().crudListener();
                     $().revealListener();
                 }else if(JSONtype=='organ'){
@@ -182,8 +176,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }
     </script>
-    <!-- Scrollbar -->
-    <script type="text/javascript" src="plugin/mCustomScrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>    
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 

@@ -255,6 +255,7 @@
 		                  ,['.PERMISSION_ID','PERMISSION_ID']                      
 		              ];
 		              $().mapContentJson(data,'#main-table',mapRowArray);
+		              $().afterRowDefine();
 		              $().crudListener();
 		              $().validatePerm();
 		              $().revealListener(); 
@@ -284,8 +285,6 @@
              }
          }
     </script>
-    <!-- Scrollbar -->
-    <script type="text/javascript" src="plugin/mCustomScrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 

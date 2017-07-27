@@ -44,4 +44,13 @@ public class ListService {
 		return pagePub.qSqlForJson(sql, paramMap);
 	}
 	
+	public String findForOrderType(Long loginId,String lang) throws Exception{
+		String sql = "SELECT ORDER_TYPE_NAME DISPLAY,ORDER_TYPE_ID VALUE"
+				+ " FROM XYG_QBORD_ORDER_TYPE_V  "
+				+ " ORDER BY ORDER_TYPE_ID DESC";
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		paramMap.put("1", lang);
+		return pagePub.qSqlForJson(sql, paramMap);
+	}
+	
 }

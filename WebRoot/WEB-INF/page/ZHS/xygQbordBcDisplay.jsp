@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>用户管理</title>
+    <title>公告展示</title>
     <base href="<%=basePath%>"> 
     <meta http-equiv="content-type" content="text/html;charset=gb2312">
 	<link rel="stylesheet" href="plugin/css/font-awesome.min.css">

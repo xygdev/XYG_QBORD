@@ -287,16 +287,7 @@
     		$("#query").draggable({ handle: ".title"});
     		
     		//设置新增更新菜单明细tab分栏        
-            $("#detail_ui_tabs").tabs();
-            
-    		
-    		//设置滚动条
-    		//if (!/webkit/.test(navigator.userAgent.toLowerCase())) {
-    		//console.log("not webit");
-			$(".table").mCustomScrollbar({
-				axis:"x",
-				scrollInertia:0
-			});	
+            $("#detail_ui_tabs").tabs();           
     		
     		//初始化CRUD和LOV条件查询
     		$().crudListener();	
@@ -359,6 +350,7 @@
         	    	$().mapContentJson(data,'#sub-table',mapRowArray);
         	    	width='-'+parseInt($('#detail').css('width'))/2+'px';
 			        $('#detail').css('margin-left',width); 
+			        $().afterRowDefine();
         	        $().crudListener();
                 	$().revealListener(); 
         	    }else if(JSONtype=='group'){
@@ -399,8 +391,6 @@
         }	
         
     </script>
-    <!-- Scrollbar -->
-    <script type="text/javascript" src="plugin/mCustomScrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 

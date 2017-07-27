@@ -93,8 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <jsp:param name="func" value="" />
           </jsp:include>
           <!-- 分页按钮区域 end -->
-          <input type="hidden" data-type="size" value="10"/>
-          <input type="hidden" data-type="number" value="1"/>
+          <input type="hidden" data-type="size" id="page_size" value="10"/>
+          <input type="hidden" data-type="number" id="page_no" value="1"/>
           <input type="hidden" data-type="orderby" id="ORDER_BY" value="MENU_ID"/> 
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="menu/getMenuHeaderPage.do"/>
@@ -382,6 +382,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $().mapContentJson(data,'#mLine',mapRowArray);
                     width='-'+parseInt($('#detail').css('width'))/2+'px';
                     $('#detail').css('margin-left',width); 
+                    $().afterRowDefine();
                     $().crudListener();             
                     $().revealListener();                    
                     
@@ -434,8 +435,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         } 
 
     </script> 
-    <!-- Scrollbar -->
-    <script type="text/javascript" src="plugin/mCustomScrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 

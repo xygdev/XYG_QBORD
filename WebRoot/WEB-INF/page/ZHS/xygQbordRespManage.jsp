@@ -193,15 +193,10 @@
 	          //设置拖拽
 	          $("#ui").draggable({ handle: ".title"});
 	          $("#query").draggable({ handle: ".title"});
+	          
 	          //初始化CRUD和LOV条件查询
 	          $().crudListener();
 	          $().revealListener();
-	         
-	          //设置滚动条           
-              $(".table").mCustomScrollbar({
-                  axis:"x",
-                  scrollInertia:0
-              }); 
               
 	          $.fn.beforeInsert = function(){
 	              RegExpValidate('^\\w+$','RESP_CODE','regExpError("职责编码格式不符合规范!");');
@@ -244,6 +239,7 @@
 			        ,['.MENU_ID','MENU_ID']		   		         
 			         ];
 			         $().mapContentJson(data,'#main-table',mapRowArray);
+			         $().afterRowDefine();
 			         $().crudListener();
 			         $().revealListener();
 			    }else if(JSONtype=='resp'){
@@ -290,8 +286,6 @@
 	          }
          }
       </script>
-      <!-- Scrollbar -->
-	  <script type="text/javascript" src="plugin/mCustomScrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	  <script type="text/javascript" src="plugin/layer/layer.js"></script>
 	  <script type="text/javascript" src="plugin/js/data.validate.js"></script>
 	  <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 

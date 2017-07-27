@@ -29,4 +29,10 @@ public class ListController extends BaseController{
 	{
 		this.renderStr(listService.findForEnableFlag(loginId,this.getSessionAttr("LANG").toString()));
 	}
+	
+	@RequestMapping(value = "/getOrderType.do", method = RequestMethod.POST)
+	public void getOrderType() throws Exception
+	{
+		this.renderStr(listService.findForOrderType(loginId, this.getSessionAttr("LANG").toString()));
+	}
 }

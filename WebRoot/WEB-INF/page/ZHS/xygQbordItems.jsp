@@ -171,12 +171,6 @@
     		$().crudListener();	
     		$().revealListener(); 
     		
-    		//设置滚动条
-			$(".table").mCustomScrollbar({
-				axis:"x",
-				scrollInertia:0
-			});	   	 
-    		
     		//条件查询限制
     		$.fn.validateOrgan = function(){
     		    organizationId = $('#ORGANIZATION_ID_Q').val();
@@ -298,8 +292,6 @@
        	    }
        	}
     </script>
-    <!-- Scrollbar -->
-    <script type="text/javascript" src="plugin/mCustomScrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 

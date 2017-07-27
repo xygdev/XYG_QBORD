@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-
+    <!--  
     <button id="s" style="display:none">Session过期</button>
      
     <div class="header" id="demo">
@@ -62,9 +62,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="v3dTest"></div>
 	</div>
     <div class="bottom"></div>
+    -->
   </body>
   <script type="text/javascript" src="plugin/js/3dControl/3d_control.js"></script>
   <script>
+      /*
   	  var canvas = document.getElementById('stars'),
   	  ctx = canvas.getContext('2d'),
   	  w = canvas.width = window.innerWidth,
@@ -199,6 +201,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	  url:'sessionDestroy.do'
           });
       });
-      
+      */
   </script>
 </html>

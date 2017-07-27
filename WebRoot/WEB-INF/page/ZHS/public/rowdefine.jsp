@@ -49,27 +49,14 @@
          $("#main-table").colResizable({
              liveDrag:true, 
              draggingClass:"dragging", 
-             //resizeMode:'flex'
              resizeMode:'overflow',
              onResize:function(){
-                //设置滚动条
-    		    //$(".table").mCustomScrollbar("update");
-    		    $(".table").mCustomScrollbar("destroy");
-    		    $(".table").mCustomScrollbar({
-					axis:"x",
-					scrollInertia:0
-				});	
+                null;
              }
        	 });
        	 
        	 $.fn.afterRowDefine = function(){
     	 	 console.log("colResizable");
-    		 //$(window).trigger("resize");
-    		 $(".table").mCustomScrollbar("destroy");
-    		 $(".table").mCustomScrollbar({
-			     axis:"x",
-			 	 scrollInertia:0
-			 });
     		 $("#main-table").colResizable({
     			 disable: true	
     		 });
@@ -78,12 +65,7 @@
             	 draggingClass:"dragging", 
             	 resizeMode:'overflow',
              	 onResize:function(){
-             	     //设置滚动条
-    		    	 $(".table").mCustomScrollbar("destroy");
-    		    	 $(".table").mCustomScrollbar({
-					     axis:"x",
-						 scrollInertia:0
-				 	 });	
+             	     null;
              	}
     		 });
     	  }

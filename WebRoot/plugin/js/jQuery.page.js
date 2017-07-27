@@ -102,6 +102,12 @@
 				orderby=$('#'+options.pageframe+' input[data-type="orderby"]').val();
 				cond=$('#'+options.pageframe+' input[data-type="cond"]').val();
 				param=param+'&orderby='+orderby;
+				//add by bird 2017.7.21 start
+				extendParam = $('#'+options.pageframe+' input[data-type="extend_param"]').val();
+				if(extendParam){
+					param = param + extendParam;
+				}
+				//add by bird 2017.7.21 end
 				if(cond!=null&&cond!=''){
 					param=param+'&'+cond;
 				}

@@ -141,5 +141,31 @@ public class LovController extends BaseController{
   		this.renderStr(lovService.findCustAllForPage(conditionMap, loginId));
   	}
   	
+    //获取USER CUST值列表
+  	@RequestMapping(value = "/getUserCustPage.do", method = RequestMethod.POST)
+  	public void getUserCustPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
+  		conditionMap.put("partyName", this.getPara("PARTY_NAME"));
+  		conditionMap.put("accountNumber", this.getPara("ACCOUNT_NUMBER"));
+  		this.renderStr(lovService.findUserCustForPage(conditionMap, loginId));
+  	}
   	
+    //获取ITEM值列表
+  	@RequestMapping(value = "/getItemPage.do", method = RequestMethod.POST)
+  	public void getItemPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("customerId", this.getParaToLong("CUSTOMER_ID"));
+  		conditionMap.put("salesOrgId", this.getParaToLong("SALES_ORG_ID"));
+  		conditionMap.put("organizationId", this.getParaToLong("ORGANIZATION_ID"));
+  		conditionMap.put("description", this.getPara("DESCRIPTION"));
+  		conditionMap.put("carName", this.getPara("CARNAME"));
+  		this.renderStr(lovService.findItemForPage(conditionMap, loginId));
+  	}
 }
