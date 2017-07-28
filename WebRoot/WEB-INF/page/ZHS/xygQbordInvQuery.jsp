@@ -36,12 +36,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="ITEM_NUMBER" data-column="db">物料编码</th>
             <th class="DESCRIPTION" data-column="db">本厂型号</th>
             <th class="CARNAME" data-column="db">中文描述</th>
-            <th class="LOT_NUMBER" data-column="db">批次</th>
             <th class="SUBINVENTORY_CODE" data-column="db">子库存编码</th>
-            <th class="LOCATOR_CODE" data-column="db">货位</th>
             <th class="ONHAND_QTY" data-column="db">现有量</th>
             <th class="AVAILABLE_QTY" data-column="db">可用量</th>
-            <th class="ONHAND_ID" data-column="hidden" style="display:none;"></th>         
+            <th class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></th>         
           </tr>
           <tr>
             <td class="ORGANIZATION_CODE" data-column="db"></td>
@@ -49,12 +47,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="ITEM_NUMBER" data-column="db"></td>
             <td class="DESCRIPTION" data-column="db"></td>
             <td class="CARNAME" data-column="db"></td>
-            <td class="LOT_NUMBER" data-column="db"></td>
             <td class="SUBINVENTORY_CODE" data-column="db"></td>
-            <td class="LOCATOR_CODE" data-column="db"></td>
             <td class="ONHAND_QTY" data-column="db"></td>
             <td class="AVAILABLE_QTY" data-column="db"></td>
-            <td class="ONHAND_ID" data-column="hidden" style="display:none;"></td>          
+            <td class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></td>          
           </tr>
         </table>
       </div>
@@ -82,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </jsp:include>
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ONHAND_ID"/>
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ORGANIZATION_ID"/>
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="perm/getInvPage.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 
@@ -95,21 +91,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <jsp:param name="tableId" value="#main-table" />
       </jsp:include>
       <jsp:include page="public/lov.jsp"></jsp:include>
-      <div id="query" class="pop_frame row-1">
+      <div id="query" class="pop_frame row-2">
         <div class="title pointer">
           <span><i class="fa fa-search"></i>&nbsp;库存查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
-        <div class="content row-1">
+        <div class="content row-2">
           <form>
             <label for="ORGANIZATION_CODE_Q" class="left md">库存编码:</label> 
-            <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md"  data-modify='true' data-pageframe="query"  data-lovbtn='ORGANIZATION_LOV_Q'  data-param="ORGANIZATION_CODE" />
+            <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md" readonly="readonly" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_CODE",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_CODE_Q","#ORGANIZATION_NAME_Q"] value="···"/>    
             <label for='ORGANIZATION_NAME_Q' class='left md'>库存组织</label>
             <input type='text' id='ORGANIZATION_NAME_Q' name='ORGANIZATION_NAME' data-update="db" class='left lg' readonly="readonly"/>           
             <br style="clear:both"/>
+            <label for='DESCRIPTION_Q' class='left md'>本厂型号:</label>
+            <input type='text' id='DESCRIPTION_Q' name='DESCRIPTION' data-update="db" class='left lg'/>    
+            <label for='CARNAME_Q' class='left md'>中文描述:</label>
+            <input type='text' id='CARNAME_Q' name='CARNAME' data-update="db" class='left lg'/>           
           </form>
         </div>
         <div class="foot">
@@ -147,12 +147,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    ,['.ITEM_NUMBER','ITEM_NUMBER']
                    ,['.DESCRIPTION','DESCRIPTION'] 
                    ,['.CARNAME','CARNAME']
-                   ,['.LOT_NUMBER','LOT_NUMBER']
                    ,['.SUBINVENTORY_CODE','SUBINVENTORY_CODE']
-                   ,['.LOCATOR_CODE','LOCATOR_CODE']
                    ,['.ONHAND_QTY','ONHAND_QTY']           
                    ,['.AVAILABLE_QTY','AVAILABLE_QTY']  
-                   ,['.ONHAND_ID','ONHAND_ID']                      
+                   ,['.ORGANIZATION_ID','ORGANIZATION_ID']                      
                     ];
                     $().mapContentJson(data,'#main-table',mapRowArray);
                     $().afterRowDefine();

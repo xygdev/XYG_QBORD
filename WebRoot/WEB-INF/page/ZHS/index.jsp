@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    	<section class="content-header" style="position:relative;height:40px;border-bottom:4px solid black;border-top:0;padding:0;width:auto;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+    	<section class="content-header" style="position:relative;height:40px;border-bottom:4px solid black;border-top:0;padding:0;width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">    <!--  width:auto  改成 width:100%; 2017/7/28  sun226567 -->         
           <a class="tab_button_left pointer" style="background-color:white;color:black" ><i class="fa fa-backward"></i></a>
           <a class="tab_button_fullscreen pointer" fullscreen="false" style="background-color:white;color:black" ><i class="fa fa-toggle-off"></i></a>
           <a class="tab_button_fullscreen pointer" fullscreen="true" style="background-color:white;color:#00a65a;display:none" ><i class="fa fa-toggle-on"></i></a>

@@ -230,4 +230,53 @@ public class LovService {
 		paramMap.put("3", conditionMap.get("organizationId"));
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
 	}
+	
+	/***产品种类 LOV***/
+	public String findProductForPage(Map<String,Object> conditionMap,Long loginId,String lang) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT LOOKUP_CODE,DESCRIPTION FROM XYG_ALD_LOOKUP_VALUES");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND LANGUAGE = :1 ");
+		sqlBuf.append("   AND LOOKUP_TYPE='XYG_TP_PRODUCTTYPE_SET'");
+		sqlBuf.append("   AND ENABLED_FLAG='Y'");
+		sqlBuf.append("   AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1)");
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
+		sqlBuf.append(" ORDER BY LOOKUP_CODE");
+		paramMap.put("1", lang);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***加工类型LOV***/
+	public String findProcessForPage(Map<String,Object> conditionMap,Long loginId,String lang) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT LOOKUP_CODE,DESCRIPTION FROM XYG_ALD_LOOKUP_VALUES");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND LANGUAGE = :1 ");
+		sqlBuf.append("   AND LOOKUP_TYPE='XYG_TP_PROCESSTYPE_SET'");
+		sqlBuf.append("   AND ENABLED_FLAG='Y'");
+		sqlBuf.append("   AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1)");
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
+		sqlBuf.append(" ORDER BY LOOKUP_CODE");
+		paramMap.put("1", lang);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
+	/***装车位置LOV***/
+	public String findLoadForPage(Map<String,Object> conditionMap,Long loginId,String lang) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT LOOKUP_CODE,DESCRIPTION FROM XYG_ALD_LOOKUP_VALUES");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND LANGUAGE = :1 ");
+		sqlBuf.append("   AND LOOKUP_TYPE='XYG_TP_LOCATION_SET'");
+		sqlBuf.append("   AND ENABLED_FLAG='Y'");
+		sqlBuf.append("   AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1)");
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
+		sqlBuf.append(" ORDER BY LOOKUP_CODE");
+		paramMap.put("1", lang);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+	}
+	
 }

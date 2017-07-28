@@ -168,4 +168,38 @@ public class LovController extends BaseController{
   		conditionMap.put("carName", this.getPara("CARNAME"));
   		this.renderStr(lovService.findItemForPage(conditionMap, loginId));
   	}
+  	
+    //获取PRODUCT_TYPE_DESC值列表
+  	@RequestMapping(value = "/getProductPage.do", method = RequestMethod.POST)
+  	public void getProductPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("description", this.getPara("DESCRIPTION"));
+  		this.renderStr(lovService.findProductForPage(conditionMap, loginId,this.getSessionAttr("LANG").toString()));
+  	}
+  	
+    //获取PROCESS_TYPE_DESC值列表
+  	@RequestMapping(value = "/getProcessPage.do", method = RequestMethod.POST)
+  	public void getProcessPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("description", this.getPara("DESCRIPTION"));
+  		this.renderStr(lovService.findProcessForPage(conditionMap, loginId,this.getSessionAttr("LANG").toString()));
+  	}
+  	
+    //获取LOAD_LOCATION_DESC值列表
+  	@RequestMapping(value = "/getLoadPage.do", method = RequestMethod.POST)
+  	public void getLoadPage() throws Exception
+  	{
+  		Map<String,Object> conditionMap=new HashMap<String,Object>();
+  		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+  		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("description", this.getPara("DESCRIPTION"));
+  		this.renderStr(lovService.findLoadForPage(conditionMap, loginId,this.getSessionAttr("LANG").toString()));
+  	}
+  	
 }

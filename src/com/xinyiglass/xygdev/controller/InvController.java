@@ -85,6 +85,8 @@ public class InvController extends BaseController{
 		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
 		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
 		conditionMap.put("organizationId",this.getParaToLong("ORGANIZATION_ID"));
+		conditionMap.put("description",this.getPara("DESCRIPTION"));
+		conditionMap.put("carName",this.getPara("CARNAME"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
         this.renderStr(ps.findForInvPage(conditionMap,loginId));
 	}

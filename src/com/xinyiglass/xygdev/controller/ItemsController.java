@@ -40,6 +40,11 @@ public class ItemsController extends BaseController {
 		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));	
 		conditionMap.put("orgId", this.getPara("ORGANIZATION_ID"));
 		conditionMap.put("itemNumber", this.getPara("ITEM_NUMBER"));
+		conditionMap.put("description", this.getPara("DESCRIPTION"));
+		conditionMap.put("carName", this.getPara("CARNAME"));
+		conditionMap.put("productTypeId", this.getPara("PRODUCT_TYPE_ID"));
+		conditionMap.put("processTypeId", this.getPara("PROCESS_TYPE_ID"));
+		conditionMap.put("loadLocationId", this.getPara("LOAD_LOCATION_ID"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
 		this.renderStr(IS.findForItems(conditionMap, loginId));
 	}

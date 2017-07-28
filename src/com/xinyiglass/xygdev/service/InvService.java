@@ -72,8 +72,10 @@ public class InvService {
 	    StringBuffer sqlBuff = new StringBuffer();
 	    sqlBuff.append("SELECT * FROM XYG_QBORD_INV_ONHAND_V");
 	    sqlBuff.append(" WHERE 1=1 ");
-		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap)); 	 
- 	    sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
+		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true)); 	 
+		sqlBuff.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap)); 	 
+	    sqlBuff.append(SqlStmtPub.getAndStmt("CARNAME",conditionMap.get("carName"),paramMap)); 	 
+		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 	    return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
 	

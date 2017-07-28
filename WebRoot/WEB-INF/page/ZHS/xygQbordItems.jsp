@@ -130,21 +130,39 @@
       <!-- lov区域 end -->
       
       <!-- 条件查询区域start -->
-      <div id="query" class="pop_frame row-3">     
+      <div id="query" class="pop_frame row-4">     
         <div class="title pointer">      
           <span><i class="fa fa-user"></i>&nbsp;物料查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
-        <div class="content row-3">
+        <div class="content row-4">
           <form>
             <label for="ORGANIZATION_NAME_Q" class="left md">库存组织:</label> 
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md" readonly="readonly"/>
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORG_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="orgLov" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>
-            <br style="clear:both"/>
             <label for="ITEM_NUMBER_Q" class="left md">物料编码:</label>
             <input type="text" id="ITEM_NUMBER_Q" name="ITEM_NUMBER" class="left lg"/>
+            <br style="clear:both"/>
+            <label for="DESCRIPTION_Q" class="left md">本厂型号:</label>
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg"/>
+            <label for="CARNAME_Q" class="left md">中文描述:</label>
+            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>
+            <br style="clear:both"/>
+            <label for="PRODUCT_TYPE_DESC_Q" class="left md">产品种类:</label>
+            <input type="text" id="PRODUCT_TYPE_DESC_Q" name="PRODUCT_TYPE_DESC" data-lovbtn="PRODUCT_TYPE_DESC_LOV" data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/>
+            <input type="hidden" id="PRODUCT_TYPE_ID_Q" name="PRODUCT_TYPE_ID"/>
+            <input type="button" id="PRODUCT_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品种类查询" data-queryurl="lov/getProductPage.do" data-jsontype="productLov" data-defaultquery="true" data-th=["LOOKUP_CODE","本厂型号"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["本厂型号"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PRODUCT_TYPE_ID_Q","#PRODUCT_TYPE_DESC_Q"] value="···"/>
+            <label for="PROCESS_TYPE_DESC_Q" class="left md">加工型号:</label>       
+            <input type="text" id="PROCESS_TYPE_DESC_Q" name="PROCESS_TYPE_DESC" data-lovbtn="PROCESS_TYPE_DESC_LOV" data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/>
+            <input type="hidden" id="PROCESS_TYPE_ID_Q" name="PROCESS_TYPE_ID"/>
+            <input type="button" id="PROCESS_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="加工型号查询" data-queryurl="lov/getProcessPage.do" data-jsontype="processLov" data-defaultquery="true" data-th=["LOOKUP_CODE","加工类型"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["加工类型"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PROCESS_TYPE_ID_Q","#PROCESS_TYPE_DESC_Q"] value="···"/>        
+            <br style="clear:both"/>
+            <label for="LOAD_LOCATION_DESC_Q" class="left md">装车位置:</label>
+            <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
+            <input type="hidden" id="LOAD_LOCATION_ID_Q" name="LOAD_LOCATION_ID"/>
+            <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="装车位置查询" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","装车位置"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["装车位置"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>        
           </form> 
         </div>
         <div class="foot">             
@@ -281,7 +299,25 @@
         	    	,'ORGANIZATION_NAME'
         	    	];
         	    	$().mapContentJson(data,'.contentbox',mapRowArray);         	    
-        	    }
+        	    }else if(JSONtype=='productLov'){
+                    var mapRowArray=[
+                     'LOOKUP_CODE'
+                    ,'DESCRIPTION'
+                    ];
+                    $().mapContentJson(data,'.contentbox',mapRowArray);                 
+                }else if(JSONtype=='processLov'){
+                    var mapRowArray=[
+                     'LOOKUP_CODE'
+                    ,'DESCRIPTION'
+                    ];
+                    $().mapContentJson(data,'.contentbox',mapRowArray);                 
+                }else if(JSONtype=='loadLov'){
+                    var mapRowArray=[
+                     'LOOKUP_CODE'
+                    ,'DESCRIPTION'
+                    ];
+                    $().mapContentJson(data,'.contentbox',mapRowArray);                 
+                }
        	    },
        	    getMSG:function(data){
        	        pageMinRow=parseInt(data.pageMinRow);
