@@ -43,6 +43,9 @@ public class ContractController extends BaseController {
 		conditionMap.put("shipFromOrgId", this.getParaToLong("ORGANIZATION_ID"));
 		conditionMap.put("salesOrgId", this.getParaToLong("ORG_ID"));
 		conditionMap.put("customerId", this.getParaToLong("CUSTOMER_ID"));
+		conditionMap.put("creationDate_F", this.getParaToDate("CREATION_DATE_F"));
+		conditionMap.put("creationDate_T", this.getParaToDate("CREATION_DATE_T"));
+		conditionMap.put("lookupCode", this.getPara("LOOKUP_CODE"));
 		conditionMap.put("orderBy", this.getPara("orderby"));
 		this.renderStr(CHS.findForPage(conditionMap, loginId));
 	}

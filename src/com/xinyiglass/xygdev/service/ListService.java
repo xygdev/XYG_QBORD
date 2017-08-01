@@ -53,4 +53,17 @@ public class ListService {
 		return pagePub.qSqlForJson(sql, paramMap);
 	}
 	
+	public String findForContractStatus(Long loginId,String lang) throws Exception{
+		String sql = "SELECT DESCRIPTION,LOOKUP_CODE VALUE"
+				+ "     FROM XYG_ALD_LOOKUP_VALUES  "
+				+ "    WHERE LOOKUP_TYPE = 'XYG_QBORD_CONTRACT_STATUS' "
+				+ "      AND LANGUAGE = :1 "
+				+ "      AND ENABLED_FLAG='Y' "
+				+ "      AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1) "
+				+ " ORDER BY LOOKUP_CODE DESC";
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		paramMap.put("1", lang);
+		return pagePub.qSqlForJson(sql, paramMap);
+	}
+	
 }

@@ -27,7 +27,7 @@ input:required:invalid,input:focus:invalid,select:required:invalid,select:focus:
 /* 有效 */
 input:required,select:required{background-color:#FFFFCC}
 /* Readonly */
-input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0}
+input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;height:22px;border-width:1px;border-right-color:#000;border-bottom-color:#000;}    /* 2017/7/31  新增height    sun */
 .reveal-modal-bg { position: fixed; height: 100%;width:100%;background:#000;background:rgba(0,0,0,.8);z-index:100;display:none;top:0;left:0;}
 /* ==========================================================================
 全局色彩
@@ -124,12 +124,12 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0}
 .pop_frame>.content.row-6{height:200px}
 .pop_frame>.content.row-9{height:275px}
 .pop_frame>.foot{position:relative;width:680px;height:30px;padding:5px 0}
-.pop_frame>.content form label{font-size:1em;padding:10px 20px 5px 0;text-align:right}
+.pop_frame>.content form label{font-size:1em;padding:9px 20px 5px 0;text-align:right}        /* 2017/7/31  padding 改成9px 20px 5px 0   sun*/
 .pop_frame>.content form label.sm{width:60px}
 .pop_frame>.content form label.md{width:80px}
 .pop_frame>.content form label.lg{width:100px}
 .pop_frame>.content form label.blank{width:10px;padding:10px 5px 5px 0;}
-.pop_frame>.content form input{height:20px;font-size:1em;margin:5px 0}
+.pop_frame>.content form input{/* height:22px; */font-size:1em;margin:5px 0}          /* 2017/7/31  height:22px; margin:7px 0   sun*/
 .pop_frame>.content form input.noborder{border:0}
 .pop_frame>.content form input.sm{width:120px}
 .pop_frame>.content form input.md{width:170px}
@@ -142,7 +142,7 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0}
 .pop_frame>.content form input.checkbox{width:30px;margin:12px 2px}
 .pop_frame>.content form i{display:block;margin:8px 5px;}
 .pop_frame>.content form i.hide{display:none}
-.pop_frame>.content form input.button{background-color:black;color:white;width:50px;height:26px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}
+.pop_frame>.content form input.button{background-color:black;color:white;width:50px;height:26px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}  /*2017/7/31  margin:10px 0;   sun*/
 .pop_frame>.content form>select{width:206px;height:26px;font-size:1em;margin:5px 0;text-algin:center}
 .pop_frame>.content form>select.lg{width:226px}
 .pop_frame>.content form>select.lgx2{width:551px}

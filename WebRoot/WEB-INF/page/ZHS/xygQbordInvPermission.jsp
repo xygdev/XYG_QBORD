@@ -127,6 +127,7 @@
             <input type='button' id="USER_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","发件账号","发件人"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["发件账号","发件人"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".USER_NAME",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_NAME_Q","#DESCRIPTION_Q"] value="···"/>
             <label for='DESCRIPTION_Q' class='left md'>用户名称:</label> 
             <input type='text' id='DESCRIPTION_Q' name="DESCRIPTION" class="left lg" readonly="readonly"/>                                   
+            <br style="clear:both"/>
             <label for="ORGANIZATION_CODE_Q" class="left md">库存编码:</label> 
             <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md"  data-modify='true' data-pageframe="query"  data-lovbtn='ORGANIZATION_LOV_Q'  data-param="ORGANIZATION_CODE" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>

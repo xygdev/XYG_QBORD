@@ -193,13 +193,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 更新/新增菜单区域 end -->
      
       <!-- 条件查询区域 start -->
-      <div id="query" class="pop_frame row-4">     
+      <div id="query" class="pop_frame row-5">     
         <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;订单查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
-        <div class="content row-4">
+        <div class="content row-5">
           <form>
             <label for="CONTRACT_NUMBER_Q" class="left md">合同号:</label>
             <input type="text" class="left lgx2" id="CONTRACT_NUMBER_Q" name="CONTRACT_NUMBER"/>  
@@ -216,6 +216,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify='true' data-pageframe="query"  data-lovbtn='ORGANIZATION_LOV_Q'  data-param="ORGANIZATION_CODE" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
+            <br style="clear:both"/>
+            <label for="CREATION_DATE_F" class="left md">创建日期:</label>
+            <input type="text" id="CREATION_DATE_F" name="CREATION_DATE_F" class="left time" data-datatype="date" placeholder="起始创建日期"/>
+            <label class="left blank"></label>
+            <input type="text" id="CREATION_DATE_T" name="CREATION_DATE_T" class="left time" data-datatype="date" placeholder="截止创建日期"/>
+            <br style="clear:both"/>
+            <label for='LOOKUP_CODE_Q' class='left md'>订单类型:</label>
+            <select class='left lg' id='LOOKUP_CODE_Q' name='LOOKUP_CODE' data-update="db" data-notnull="false" data-listurl="list/getContractStatus.do"></select>  
             <br style="clear:both"/>
           </form>
         </div>
@@ -604,6 +612,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		    $('#HEADER_ID_UOT').val($('#HEADER_ID_L').val());
        		    $('#ORDER_TYPE_ID_UOT').val('');
        		});
+       		
+       		//日期选择
+            $('input[data-datatype="date"]').datetimepicker({
+                lang:"ch",           //语言选择中文
+                timepicker:true,    //启用时间选项
+                format:"Y-m-d H:i:s",      //格式化日期
+                step: 30,
+                showOnClick: true
+            });
                 
         });
          

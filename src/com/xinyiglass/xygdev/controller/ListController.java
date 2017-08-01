@@ -35,4 +35,10 @@ public class ListController extends BaseController{
 	{
 		this.renderStr(listService.findForOrderType(loginId, this.getSessionAttr("LANG").toString()));
 	}
+	
+	@RequestMapping(value = "/getContractStatus.do", method = RequestMethod.POST)
+	public void getContractStatus() throws Exception
+	{
+		this.renderStr(listService.findForContractStatus(loginId, this.getSessionAttr("LANG").toString()));
+	}
 }
