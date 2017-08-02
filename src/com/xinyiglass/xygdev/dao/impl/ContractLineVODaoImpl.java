@@ -105,13 +105,15 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 				+ "  XYG_QBORD_CONTRACT_PKG.LOCK_CONTRACT_LINE( "
 				+ "  :1"
 				+ " ,:2"
+				+ " ,:3"
 				+ " ,:"+PlsqlRetValue.RETCODE
 				+ " ,:"+PlsqlRetValue.ERRBUF
 				+ " ); "
 				+ "end;";
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		paramMap.put("1", cl.getLineId());
-		paramMap.put("2", cl.getUnitPrice());
+		paramMap.put("2", cl.getOrderQuantity());
+		paramMap.put("3", cl.getUnitPrice());
 		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
 	}
 	
@@ -122,13 +124,15 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 				+ "  XYG_QBORD_CONTRACT_PKG.UPDATE_CONTRACT_LINE( "
 				+ "  :1"
 				+ " ,:2"
+				+ " ,:3"
 				+ " ,:"+PlsqlRetValue.RETCODE
 				+ " ,:"+PlsqlRetValue.ERRBUF
 				+ " ); "
 				+ "end;";
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		paramMap.put("1", cl.getLineId());
-		paramMap.put("2", cl.getUnitPrice());
+		paramMap.put("2", cl.getOrderQuantity());
+		paramMap.put("3", cl.getUnitPrice());
 		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
 	}
 	

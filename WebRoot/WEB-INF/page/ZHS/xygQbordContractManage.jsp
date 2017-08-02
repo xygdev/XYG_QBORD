@@ -516,13 +516,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('#SHIP_FROM_ORG_ID_D').val($('#SHIP_FROM_ORG_ID_L').val());
                 $('#PRICE_LIST_ID_D').val($('#PRICE_LIST_ID_L').val());
                 //改变readonly状态
-                $('#ORDER_QUANTITY_D').removeAttr('readonly');
+                //$('#ORDER_QUANTITY_D').removeAttr('readonly');
 				$('#REMARKS_D').removeAttr('readonly');
 				$('#UNIT_PRICE_D').attr('readonly','readonly');
 			}
 			
 			$.fn.beforePreUpdateL = function(){
-			    $('#ORDER_QUANTITY_D').attr('readonly','readonly');
+			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
 				$('#REMARKS_D').attr('readonly','readonly');
 				$('#UNIT_PRICE_D').removeAttr('readonly');
 			}

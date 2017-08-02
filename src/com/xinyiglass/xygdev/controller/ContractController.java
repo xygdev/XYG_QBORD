@@ -192,7 +192,8 @@ public class ContractController extends BaseController {
 		ContractLineVO cl = new ContractLineVO();
 		cl = (ContractLineVO)lockClVO.clone();
 		cl.setLineId(lineId);
-		cl.setUnitPrice(this.getParaToLong("UNIT_PRICE"));
+		cl.setOrderQuantity(this.getParaToLong("ORDER_QUANTITY"));
+		cl.setUnitPrice(this.getParaToLong("UNIT_PRICE"));	
 		this.renderStr(CLS.update(lockClVO, cl, loginId).toJsonStr());
 	}
 	

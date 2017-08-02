@@ -37,10 +37,10 @@
         function _initData() {
             dom.css({"position": "relative", "cursor": "move"});
             dom.append("<img id='loadding' src='/image/home/gallery/loadding.gif' style='position:absolute;width:32px;left:50%;top:50%;margin:-16px 0px 0px -16px;z-index:100;zoom:1'/>");
-            console.log("debug1");
+            //console.log("debug1");
             if (canvasapp) {
                 dom.append("<img id='imgStart' src='" + imgPath + 1 + imgType + "' style='display: none;'/>");
-                console.log("debug2");
+                //console.log("debug2");
                 $("#imgStart").load(function () {
                     imgWidth = $("#imgStart").width();
                     imgHeight = $("#imgStart").height();
@@ -54,7 +54,7 @@
                         tImgObj.push(img2)
                     }
                     console.log("tImgObj:"+tImgObj.length);
-                    console.log("debug3");
+                    //console.log("debug3");
                 })
             } else {
                 for (var i = 1; i <= imgLength; i++) {
@@ -62,13 +62,13 @@
                     tImgObj.push(".v3dcover:eq(" + i + ")")
                 }
             }
-            console.log("debug4");
+            //console.log("debug4");
             setTimeout(function () {
-            	console.log("debug5");
+            	//console.log("debug5");
                 _imgLoadEnd(function () {
-                	console.log("debug6");
+                	//console.log("debug6");
                     $("#loadding").fadeOut("fast");
-                    console.log("debug7");
+                    //console.log("debug7");
                     _move();
                     _initHScroll();
                     _autoPlay()
@@ -82,13 +82,13 @@
                     autoTime = setInterval(function () {
                         _jian()
                     }, 80)
-                }, 500)
+                }, 1000)
             }
         }
 
         function _imgLoadEnd(callBack) {
             var l = 0;
-            console.log("debug8");
+            //console.log("debug8");
             console.log("length:"+tImgObj.length);
             for (var i = 0; i < tImgObj.length; i++) {
                 loadImage(tImgObj[i], function () {
@@ -98,24 +98,24 @@
                     }
                 })
             }
-            console.log("debug9");
+            //console.log("debug9");
             function loadImage(img, callback) {
-            	 console.log("debug11");
+            	 //console.log("debug11");
                 if (img.complete) {
                     callback.call(img);
                     return
                 }
-                console.log("debug12");
+                //console.log("debug12");
                 img.onload = function () {
                     callback.call(img)
                 };
-                console.log("debug13");
+                //console.log("debug13");
                 if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE8.0") {
                     callback.call(img)
                 }
-                console.log("debug14");
+                //console.log("debug14");
             }
-            console.log("debug10");
+            //console.log("debug10");
         }
 
         function _add() {

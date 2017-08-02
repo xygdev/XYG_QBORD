@@ -26,6 +26,11 @@ public class ItemsController extends BaseController {
 		return this.getSessionAttr("LANG")+"/xygQbordItems";
 	}
 	
+	@RequestMapping("/itemQuery.do")
+	public String queryItem(){
+		return this.getSessionAttr("LANG")+"/xygQbordItemsQuery";
+	}
+	
 	@RequestMapping("/itemDetail.do")
 	public String itemDetail(){
 		return this.getSessionAttr("LANG")+"/xygQbordItemsDetail";
@@ -47,6 +52,24 @@ public class ItemsController extends BaseController {
 		conditionMap.put("loadLocationId", this.getPara("LOAD_LOCATION_ID"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
 		this.renderStr(IS.findForItems(conditionMap, loginId));
+	}
+	
+	@RequestMapping(value = "/getValidItemsPage.do", method = RequestMethod.POST)
+    public void getValidItemsPage() throws Exception
+	{  
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));	
+		conditionMap.put("orgId", this.getPara("ORGANIZATION_ID"));
+		conditionMap.put("itemNumber", this.getPara("ITEM_NUMBER"));
+		conditionMap.put("description", this.getPara("DESCRIPTION"));
+		conditionMap.put("carName", this.getPara("CARNAME"));
+		conditionMap.put("productTypeId", this.getPara("PRODUCT_TYPE_ID"));
+		conditionMap.put("processTypeId", this.getPara("PROCESS_TYPE_ID"));
+		conditionMap.put("loadLocationId", this.getPara("LOAD_LOCATION_ID"));
+		conditionMap.put("orderBy",  this.getPara("orderby"));
+		this.renderStr(IS.findForValidItems(conditionMap, loginId));
 	}
 	
 	@RequestMapping(value = "/getItemsDetail.do", method = RequestMethod.POST)
