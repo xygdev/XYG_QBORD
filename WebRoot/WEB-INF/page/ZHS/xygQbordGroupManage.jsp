@@ -24,7 +24,7 @@
     <style type="text/css">
         .pop_frame .content .ui-tabs-panel{padding:0;}
         .ui-widget.ui-widget-content{border:0px;}  
-        #detail_ui_tabs{padding:0;margin-bottom:27px;}  
+        #detail_ui_tabs{padding:0;margin-bottom:27px;}     /*2017/8/1 margin-bottom:27px;-->margin-bottom:40px; sun*/
     </style>
   </head>
   <body>
@@ -301,7 +301,9 @@
     		$.fn.detailShow = function(){
     		    $('.show_detail').off('click');
     		    $('.show_detail').on('click',function(){
-    		        $('#detail').css('margin-left','-400px'); 
+    		        //$('#detail').css('margin-left','-400px'); 
+    		        width='-'+parseInt($('#detail').css('width'))/2+'px';
+                    $('#detail').css('margin-left',width);            // 2017/8/1   sun
     		        tr=$(this).parent().parent();
     		        groupId=tr.children('.GROUP_ID').text();
     		    	groupName=tr.children('.GROUP_NAME').text();

@@ -163,6 +163,9 @@
             <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
             <input type="hidden" id="LOAD_LOCATION_ID_Q" name="LOAD_LOCATION_ID"/>
             <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="装车位置查询" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","装车位置"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["装车位置"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>        
+            <label class='left md'>启用状态:</label>
+            <input type="hidden" name="QBORD_ENABLED_FLAG" value="Y"/>
+            <i class="pointer fa fa-toggle-on green left" data-enable="OFF" style="margin:14px 14px 14px 0;"></i>          
           </form> 
         </div>
         <div class="foot">             
@@ -178,8 +181,26 @@
       <!-- 用户信息存放区域 end -->  
     </div>   
     
-    <script>       
-        $(function() {
+    <script>  
+            //  物料查询启用状态      2017/8/2  sun   
+	        $(function() {
+	            $("#query").find('i[data-enable]').click(function(){
+	            var action = $(this).attr('data-enable');
+	            if(action == 'OFF'){
+	                //layer.msg('启用状态为N',{offset:['230px',]});
+	                $(this).removeClass('fa-toggle-on green');
+	                $(this).addClass('fa-toggle-off');
+	                $(this).attr("data-enable","ON");
+	                $(this).siblings('input[name="QBORD_ENABLED_FLAG"]').val("N");
+	            }else if(action == 'ON'){
+	                //layer.msg('启用状态为Y',{offset:['230px',]});
+	                $(this).removeClass('fa-toggle-off');
+	                $(this).addClass('fa-toggle-on green');
+	                $(this).attr("data-enable","OFF");
+	                $(this).siblings('input[name="QBORD_ENABLED_FLAG"]').val("Y");
+	            }
+	        })
+            
             //设置拖拽
             $("#ui").draggable({ handle: ".title"});
     		$("#detail").draggable({ handle: ".title"});
@@ -217,8 +238,8 @@
     		}
     		
     		$.fn.enable = function(){
-    			$('i[data-enable]').off('click');
-    			$('i[data-enable]').on('click',function(){
+    			$("#main-table").find('i[data-enable]').off('click');
+    			$("#main-table").find('i[data-enable]').on('click',function(){
     			    var action = $(this).attr('data-enable');
     			    var tr = $(this).parent().parent();
     		    	var id = tr.children('.ITEM_ID').text();
@@ -232,9 +253,9 @@
 						success:function(data){
 							if(data.result=='success'){
 							    if(action == 'OFF'){
-							        layer.msg('失效成功!');
+							        layer.msg('失效成功!',{offset:['230px',]});
 							    }else if(action == 'ON'){
-							    	layer.msg('启用成功!');
+							    	layer.msg('启用成功!',{offset:['230px',]});
 							    }
 				    			$('#refresh').click();/****点击刷新当前页按钮，刷新数据****/	
 				    		}else{

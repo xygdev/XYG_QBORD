@@ -50,6 +50,7 @@ public class ItemsController extends BaseController {
 		conditionMap.put("productTypeId", this.getPara("PRODUCT_TYPE_ID"));
 		conditionMap.put("processTypeId", this.getPara("PROCESS_TYPE_ID"));
 		conditionMap.put("loadLocationId", this.getPara("LOAD_LOCATION_ID"));
+		conditionMap.put("qbordEnabledFlag", this.getPara("QBORD_ENABLED_FLAG"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
 		this.renderStr(IS.findForItems(conditionMap, loginId));
 	}

@@ -357,6 +357,8 @@
 					success: function (data) {
 						$('table[data-table="'+tablename+'"] td').html('');
 						if(data.rows.length==0){
+							$('.'+options.load).remove();
+							$('.loading-modal').remove();            /**2017/8/2  隐藏load和背景**/
 							layer.msg('提示: 查询无数据！');
 							return false;
 						}

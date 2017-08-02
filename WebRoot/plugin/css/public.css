@@ -27,7 +27,7 @@ input:required:invalid,input:focus:invalid,select:required:invalid,select:focus:
 /* 有效 */
 input:required,select:required{background-color:#FFFFCC}
 /* Readonly */
-input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;height:22px;border-width:1px;border-right-color:#000;border-bottom-color:#000;}    /* 2017/7/31  新增height    sun */
+input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;height:22px;border-width:1px;padding:2px;-moz-border-right-colors:#8f8f8f;-moz-border-bottom-colors:#8f8f8f;-webkit-border-end-color:#999;-webkit-border-after-color:#999;}    /* 2017/7/31  新增height    sun */
 .reveal-modal-bg { position: fixed; height: 100%;width:100%;background:#000;background:rgba(0,0,0,.8);z-index:100;display:none;top:0;left:0;}
 /* ==========================================================================
 全局色彩
@@ -129,7 +129,7 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 .pop_frame>.content form label.md{width:80px}
 .pop_frame>.content form label.lg{width:100px}
 .pop_frame>.content form label.blank{width:10px;padding:10px 5px 5px 0;}
-.pop_frame>.content form input{/* height:22px; */font-size:1em;margin:5px 0}          /* 2017/7/31  height:22px; margin:7px 0   sun*/
+.pop_frame>.content form input{height:20px;font-size:1em;margin:5px 0;}          /* 2017/7/31  height:20px; margin:5px 0   sun*/
 .pop_frame>.content form input.noborder{border:0}
 .pop_frame>.content form input.sm{width:120px}
 .pop_frame>.content form input.md{width:170px}
@@ -155,7 +155,7 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 .detail_frame>.title{position:relative;width:100%;height:40px;padding:5px 0;}
 .detail_frame>.title>span{font-family:Microsoft YaHei;font-size:1.5em;font-weight:700;display:inline-block;box-sizing:border-box;padding:5px 20px}
 .detail_frame .close-detail-frame{font-size:22px;line-height:.5;position:absolute;top:8px;right:11px;color:#aaa;text-shadow:0 -1px 1px rbga(0,0,0,.6);font-weight:bold;cursor:pointer}
-.detail_frame .detail_header{position:relative;width:100%;min-width:794px;height:55px;padding:5px 45px;box-sizing:border-box}
+.detail_frame .detail_header{position:relative;width:100%;min-width:794px;height:55px;padding:5px 17px 5px 45px;box-sizing:border-box}                  /* 2017/8/1  padding:5px 45px; --> padding:5px 17px 5px 45px;  sun*/
 .detail_frame .detail_header>label{font-size:1em;font-weight:bold;padding:10px 10px 5px 0;text-align:right;display:inline-block}
 .detail_frame .detail_header>label.long{width:100px}
 .detail_frame .detail_header>label.mid{width:75px}

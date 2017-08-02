@@ -34,6 +34,7 @@ public class ItemsService {
 		sqlBuff.append(SqlStmtPub.getAndStmt("PRODUCT_TYPE_ID",conditionMap.get("productTypeId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("PROCESS_TYPE_ID",conditionMap.get("processTypeId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("QBORD_ENABLED_FLAG",conditionMap.get("qbordEnabledFlag"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
