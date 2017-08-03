@@ -48,6 +48,29 @@ public class ContractLineVOService {
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
 	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String findProductList(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		StringBuffer sqlBuff = new StringBuffer();
+		sqlBuff.append("SELECT XQPBL.* ");
+		sqlBuff.append("  FROM XYG_QBO_PRODUCT_BATCH_LIST XQPBL");
+		sqlBuff.append("      ,XYG_QBO_PRODUCT_LINE_LIST XQPLL");
+		sqlBuff.append(" WHERE 1=1");
+		sqlBuff.append("   AND XQPLL.LIST_LINE_ID  = XQPBL.LIST_LINE_ID");
+		sqlBuff.append("   AND XQPBL.ITEM_ID = :1");
+		sqlBuff.append("   AND XQPBL.LIST_HEADER_ID = :2");
+		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
+		paramMap.put("1", conditionMap.get("itemId"));
+		paramMap.put("2", conditionMap.get("productListId"));
+		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
+	}
+	
+	//获取成本价与底价
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String getStandardPrice(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		return cld.findStandardPrice(conditionMap).toJsonStr();
+	}
+	
 	//新增订单明细
 	public PlsqlRetValue insert(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		PlsqlRetValue ret=cld.insert(conditionMap);

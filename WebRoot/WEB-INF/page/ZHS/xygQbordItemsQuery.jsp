@@ -173,7 +173,7 @@
      
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
-      <input type="hidden" id="INTERACT_CODE" value="ITEMS"/> 
+      <input type="hidden" id="INTERACT_CODE" value="ITEMS_QUERY"/> 
       <input type="hidden" id="HEADER_ID" value=""/> 
       <!-- 用户信息存放区域 end -->  
     </div>   

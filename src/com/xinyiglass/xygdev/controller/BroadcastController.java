@@ -17,6 +17,7 @@ import com.xinyiglass.xygdev.service.BroadcastService;
 import com.xinyiglass.xygdev.service.UserVOService;
 
 import xygdev.commons.core.BaseController;
+import xygdev.commons.entity.PlsqlRetValue;
 
 @Controller
 @RequestMapping("/broadcast")
@@ -87,17 +88,20 @@ public class BroadcastController extends BaseController {
 		conditionMap.put("endDate", this.getParaToDate("END_DATE"));
 		conditionMap.put("broadcastTitle", this.getPara("BROADCAST_TITLE"));
 		conditionMap.put("broadcastContent", this.getPara("BROADCAST_CONTENT"));
-		if(conditionMap.get("startDate")==null||"".equals(conditionMap.get("startDate"))){
-			String recUser = UVS.findAllUsers(loginId);
-			ArrayList<Long> userIdList=new ArrayList<Long>();
-			for(String userIdStr:recUser.split(",")){
-				userIdList.add(Long.parseLong(userIdStr));
-				//System.out.println("user_id:"+Long.parseLong(userIdStr));
-			}
-			String message="有一则新公告:"+conditionMap.get("broadcastTitle");
-			systemWebSocketHandler().sendMessageToUsers(userIdList, new TextMessage(message));
+		
+        PlsqlRetValue ret = BS.insert(conditionMap, loginId);
+        if(conditionMap.get("startDate")==null||"".equals(conditionMap.get("startDate"))){
+        	if(ret.getRetcode()==0){
+        		String recUser = UVS.findAllUsers(loginId);
+        		ArrayList<Long> userIdList=new ArrayList<Long>();
+        		for(String userIdStr:recUser.split(",")){
+        			userIdList.add(Long.parseLong(userIdStr));
+        			//System.out.println("user_id:"+Long.parseLong(userIdStr));
+        		}
+        		String message="有一则新公告:"+conditionMap.get("broadcastTitle");
+        		systemWebSocketHandler().sendMessageToUsers(userIdList, new TextMessage(message));
+        	}
 		}
-
-		this.renderStr(BS.insert(conditionMap, loginId).toJsonStr());
+		this.renderStr(ret.toJsonStr());
 	}
 }

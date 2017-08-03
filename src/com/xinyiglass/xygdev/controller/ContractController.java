@@ -154,6 +154,28 @@ public class ContractController extends BaseController {
 		this.renderStr(CLS.getUnitPrice(conditionMap, loginId).toJsonStr());
     }
 	
+	@RequestMapping(value = "/getProductList.do", method = RequestMethod.POST)
+    public void getProductList() throws Exception
+    {
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));	
+		conditionMap.put("itemId", this.getParaToLong("ITEM_ID"));
+		conditionMap.put("productListId", this.getParaToLong("PRODUCT_LIST_ID"));
+		conditionMap.put("orderBy", this.getPara("orderby"));
+		this.renderStr(CLS.findProductList(conditionMap, loginId));
+    }
+	
+	@RequestMapping(value = "/getStandardPrice.do", method = RequestMethod.POST)
+	public void getStandardPrice() throws Exception
+	{
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("itemId", this.getParaToLong("ITEM_ID"));
+		conditionMap.put("productListId", this.getParaToLong("PRODUCT_LIST_ID"));
+		this.renderStr(CLS.getStandardPrice(conditionMap, loginId));
+	}
+	
 	@RequestMapping(value = "/insertL", method = RequestMethod.POST)
 	public void insertL() throws Exception
 	{

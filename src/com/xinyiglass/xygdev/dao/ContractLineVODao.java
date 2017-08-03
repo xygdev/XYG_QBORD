@@ -23,4 +23,6 @@ public interface ContractLineVODao {
 	public ContractLineVO findVOById(Long lineId) throws Exception;
 	
 	public SqlResultSet findJSONById(Long lineId) throws Exception;
+	
+	public SqlResultSet findStandardPrice(Map<String,Object> conditionMap) throws Exception;
 }

@@ -11,10 +11,10 @@ public class Constant extends DevJdbcDaoSupport{
 	public static String DIR_SEP="/";//ftp和unix用：/    ；本地win系统用：\\\\ 
 	
 	//FTP参数
-	public static final String FTP_HOST="192.168.139.9";
+	public static final String FTP_HOST="192.168.88.32";
 	public static final int    FTP_PORT= 21;
-	public static final String FTP_USER="applvis";
-	public static final String FTP_PASS="applvis";
+	public static final String FTP_USER="oracle";
+	public static final String FTP_PASS="erp";
 	
 	//系统编码 
 	public static final String APPL_CODE = "XYG_QBORD";

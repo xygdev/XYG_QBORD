@@ -62,7 +62,8 @@ public class FtpImageController {
 		//conditionMap.put("rowNum", req.getParameter("RN"));
 		log(conditionMap.toString());
     	String filePath = is.findPicUrlByItemId(conditionMap);
-    	log(filePath);
+    	filePath = filePath.replace("/appl/prod/apps/apps_st/appl/attchment/12.0.0/", "/oracle/attchment/");
+    	log("filePath:"+filePath);
     	String fileDownload=filePath;
     	String fileName = IterateFtpDir.getFileName(filePath);
     	log(fileName);
@@ -88,7 +89,7 @@ public class FtpImageController {
 				int i=0;
 				ftp=new IterateFtpDir(false);
 				ftp.getFtp().setFileType(FTPClient.BINARY_FILE_TYPE);  
-				ftp.getFtp().enterLocalPassiveMode();  
+				ftp.getFtp().enterLocalPassiveMode(); 
 				System.out.println("fileDownload:"+fileDownload);
 				ips = ftp.getFtp().retrieveFileStream(IterateFtpDir.str2FtpCharset(fileDownload)); 
 				System.out.println("ips:"+ips);

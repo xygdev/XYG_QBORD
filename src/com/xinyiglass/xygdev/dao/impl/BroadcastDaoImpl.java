@@ -1,6 +1,5 @@
 package com.xinyiglass.xygdev.dao.impl;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,11 +58,7 @@ public class BroadcastDaoImpl extends DevJdbcDaoSupport implements BroadcastDao{
 				+ "end;";
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		paramMap.put("1", null);
-		if(conditionMap.get("startDate")==null||"".equals(conditionMap.get("startDate"))){
-			paramMap.put("2", TypeConvert.u2tDate(new Date()));
-		}else{
-			paramMap.put("2", TypeConvert.str2Timestamp(TypeConvert.type2Str(conditionMap.get("startDate"))));
-		}	
+		paramMap.put("2", TypeConvert.str2Timestamp(TypeConvert.type2Str(conditionMap.get("startDate"))));
 		paramMap.put("3", TypeConvert.str2Timestamp(TypeConvert.type2Str(conditionMap.get("endDate"))));
 		paramMap.put("4", conditionMap.get("broadcastTitle").toString());
 		paramMap.put("5", conditionMap.get("broadcastContent").toString());

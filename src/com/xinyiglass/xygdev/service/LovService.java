@@ -209,6 +209,10 @@ public class LovService {
 		sqlBuf.append("                        WHERE XQPL.LIST_HEADER_ID = PRODUCT_LIST_HEADER_ID ");
 		sqlBuf.append("                          AND CUST_ACCOUNT_ID = :1");
 		sqlBuf.append("                          AND ORG_ID = :2)");
+		sqlBuf.append("           AND EXISTS(SELECT 1");
+		sqlBuf.append("                        FROM XYG_QBI_ITEM_TP_B");
+		sqlBuf.append("                       WHERE INVENTORY_ITEM_ID = XQPL.ITEM_ID ");
+		sqlBuf.append("                         AND ORGANIZATION_ID = :3)");
 		sqlBuf.append("           AND XQPL.LIST_HEADER_ID = XQPH.LIST_HEADER_ID");
 		sqlBuf.append("           AND XQPH.NOT_CONTROL = 'Y'");
 		sqlBuf.append("         UNION ALL SELECT XQIT.INVENTORY_ITEM_ID,XQIT.ITEM_NUMBER,XQIT.DESCRIPTION,XQIT.CARNAME,'N' NOT_CONTROL");

@@ -40,6 +40,8 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 		return seq;
 	}	
 	
+	
+	
 	public PlsqlRetValue getUnitPrice(Map<String,Object> conditionMap) throws Exception{
 		String sql ="Declare "
 				+ "     l_header_id number; "
@@ -162,6 +164,14 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
 		String sql = "SELECT * FROM XYG_QBORD_CONTRACT_LINES_V WHERE LINE_ID = :1";
 		paramMap.put("1", lineId);
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
+	
+	public SqlResultSet findStandardPrice(Map<String,Object> conditionMap) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		String sql = "SELECT * FROM XYG_QBO_PRODUCT_LINE_LIST WHERE ITEM_ID = :1 AND LIST_HEADER_ID = :2";
+		paramMap.put("1", conditionMap.get("itemId"));
+		paramMap.put("2", conditionMap.get("productListId"));
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
 }

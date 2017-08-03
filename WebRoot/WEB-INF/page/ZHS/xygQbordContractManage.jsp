@@ -281,10 +281,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="hidden" id="ORG_ID_L"/>
           <label class="long" for="CUSTOMER_PO_L">客订PO</label>
           <input type="text" id="CUSTOMER_PO_L" class="long" readonly="readonly"/>
-          <input type="hidden" id="PRICE_LIST_ID_L"/>
           <br style="clear:both"/>
           <label class="long" for="PRICE_LIST_NAME_L">价目表</label>
           <input type="text" id="PRICE_LIST_NAME_L" class="long" readonly="readonly"/>
+          <input type="hidden" id="PRICE_LIST_ID_L"/>
           <label class="long" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
         </div>     
@@ -346,7 +346,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div>
             <jsp:include page="./public/pageArrow.jsp" >
               <jsp:param name="pageframe" value="sub_table" />
-              <jsp:param name="func" value="$().setParam();" />
+              <jsp:param name="func" value="$().setParam()" />
             </jsp:include>
             <input type="hidden" data-type="size" value="5"/>
             <input type="hidden" data-type="number" value="1"/>
@@ -387,7 +387,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	<label for="ORDER_QUANTITY_D" class="md left">数量</label>
           	<input type="text" id="ORDER_QUANTITY_D" name="ORDER_QUANTITY" class="lg left" data-update="db" required="required"/>
           	<label for="UNIT_PRICE_D" class="md left">单价</label>
-          	<input type="text" id="UNIT_PRICE_D" name="UNIT_PRICE" class="lg left" data-update="db" readonly="readonly" required="required"/>
+          	<input type="text" id="UNIT_PRICE_D" name="UNIT_PRICE" class="md left" data-update="db" readonly="readonly" required="required"/>
+          	<input type="button" id="PRICE_LIST_BTN" class="left button pointer" data-reveal-id="product_list_d" data-bg="lov-modal-bg" data-dismissmodalclass="close-pl-frame" title="价目表明细" value="￥"/>
           	<br style="clear:both"/>
           	<label for="REMARKS_D" class="md left">备注</label>
           	<input type="text" id="REMARKS_D" name="REMARKS" class="left lgx2" data-update="db"/>
@@ -399,6 +400,62 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>    
       </div>          
       <!-- 订单明细新增/更新区域 end --> 
+      
+      <!-- 价目表明细区域 start -->
+      <div id="product_list_d" class="pop_frame" style="z-index:201">
+        <div class="title pointer">      
+          <span><i class="fa fa-file-text"></i>&nbsp;价目表明细</span>
+        </div>
+        <a class="close-pl-frame" data-type="close">&#215;</a>
+        <div class="line"></div>
+        <div class="content" style="padding-bottom:0">
+          <div class="pl_header">
+            <form>
+              <label class="left md" for="REBATE_PRICE">散片价</label>
+              <input type="text" id="REBATE_PRICE" class="lg left" readonly="readonly"/>
+              <label class="left md" for="COST_PRICE">底价</label>
+              <input type="text" id="COST_PRICE" class="lg left" readonly="readonly"/>
+              <br style="clear:both"/>
+              <label class="left md" for="pList">批量价</label>
+            </form>
+          </div>
+          <div class="pl_title" style="padding:2px">
+            <table id="pList" data-table="ProductList" style="width:100%">
+              <tr>
+                <th class="AREA_PRICE" data-column="db">价格</th>
+                <th class="GREATE_PRICE" data-column="db">区间大于</th>
+                <th class="NO_GREAT_PRICE" data-column="db">区间小于</th>
+              </tr>
+              <tr>
+                <td class="AREA_PRICE" data-column="db"></td>
+                <td class="GREATE_PRICE" data-column="db"></td>
+                <td class="NO_GREAT_PRICE" data-column="db"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+ 
+          <div class="table_button" id="3rd_table" data-table="ProductList">
+            <div class="setting">
+            <i id="3rd_refresh" class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="3rd_table" data-func="$().setPlParam();"></i>
+            </div>
+            <div>
+              <jsp:include page="./public/pageArrow.jsp" >
+                <jsp:param name="pageframe" value="3rd_table" />
+                <jsp:param name="func" value="$().setPlParam();" />
+              </jsp:include>
+              <input type="hidden" data-type="size" value="5"/>
+              <input type="hidden" data-type="number" value="1"/>
+              <input type="hidden" data-type="orderby" value="LIST_BATCH_NUMBER"/> 
+              <input type="hidden" data-type="cond"/>
+              <input type="hidden" data-type="url" value="contract/getProductList.do"/>
+              <input type="hidden" data-type="jsontype" value="3rdtable"/> 
+              <input type="hidden" data-type="autoquery" value="N"/> 
+            </div>   
+          </div>
+  
+      </div>
+      <!-- 价目表明细区域 end -->
       
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
@@ -420,11 +477,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $().crudListener(); 
             $().revealListener(); 
             
-            //设置滚动条
-			//$(".table").mCustomScrollbar({
-			//	axis:"x",
-			//	scrollInertia:0
-			//});	  
+            //设置价目表查询参数
+			$.fn.setPlParam = function(){
+                itemId = $('#INVENTORY_ITEM_ID_D').val();
+                productListId = $('#PRICE_LIST_ID_L').val();
+                param=param+'&ITEM_ID='+itemId+'&PRODUCT_LIST_ID='+productListId;
+            }   
+            
+            //设置订单明细查询参数
+            $.fn.setParam = function(){
+                headerId=$('#HEADER_ID_L').val();
+                param=param+'&HEADER_ID='+headerId;
+            }  
 			
 			//条件查询限制
     		$.fn.validateCustomer = function(){
@@ -526,11 +590,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#REMARKS_D').attr('readonly','readonly');
 				$('#UNIT_PRICE_D').removeAttr('readonly');
 			}
-            
-            $.fn.setParam = function(){
-                headerId=$('#HEADER_ID_L').val();
-                param=param+'&HEADER_ID='+headerId;
-            }   
+             
             
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  
@@ -613,6 +673,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		    $('#ORDER_TYPE_ID_UOT').val('');
        		});
        		
+       		//价目表明细
+       		$('[data-reveal-id="product_list_d"]').click('on',function(){
+       		    $('#REBATE_PRICE').val('');
+                $('#COST_PRICE').val('');
+       		    var itemId = $('#INVENTORY_ITEM_ID_D').val(); 
+       		    if(itemId==null||itemId==''){
+       		        layer.msg('需先选择产品，才能查看价目表');
+       		    }
+       		    var productListId = $('#PRICE_LIST_ID_L').val();       
+                param='ITEM_ID='+itemId+'&PRODUCT_LIST_ID='+productListId;
+                $.ajax({
+                    type:'post', 
+                    data:param,
+                    url:'contract/getStandardPrice.do',
+                    dataType:'json',
+                    success: function (data) {
+                        $('#REBATE_PRICE').val(data.rows[0].REBATE_PRICE);
+                        $('#COST_PRICE').val(data.rows[0].COST_PRICE);
+                    },
+                    error: function () {
+                        layer.alert('获取数据失败',{title:'警告',offset:[150]});
+                    }           
+                });
+       		    $('#3rd_refresh').click();
+       		});
+       		
        		//日期选择
             $('input[data-datatype="date"]').datetimepicker({
                 lang:"ch",           //语言选择中文
@@ -672,6 +758,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $().crudListener();             
                     $().revealListener();                    
                     
+                }else if(JSONtype=='3rdtable'){            
+                     var mapRowArray=[
+                     ['.AREA_PRICE','AREA_PRICE']
+                    ,['.GREATE_PRICE','GREATE_PRICE']
+                    ,['.NO_GREAT_PRICE','NO_GREAT_PRICE']
+                     ];
+                    $().mapContentJson(data,'#pList',mapRowArray);
+                   // width='-'+parseInt($('#detail').css('width'))/2+'px';
+                   //$('#detail').css('margin-left',width); 
+                   //$().crudListener();             
+                   //$().revealListener();                         
                 }else if(JSONtype=='organ'){
                     var mapRowArray=[
                        'ORGANIZATION_ID'
