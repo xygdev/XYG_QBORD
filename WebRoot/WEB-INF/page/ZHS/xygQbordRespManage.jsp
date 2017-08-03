@@ -53,7 +53,7 @@
                <td class="START_DATE" data-column="db"></td>
                <td class="END_DATE" data-column="db"></td>
                <td class="ACTION" data-column="normal">
-                 <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" title="更新" data-reveal-id="ui" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="resp/preUpdate.do" data-type="update" data-updateparam=["RESP_ID",".RESP_ID"]></i>
+                 <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" title="更新" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="resp/preUpdate.do" data-type="update" data-updateparam=["RESP_ID",".RESP_ID"]></i>  <!-- 2017/8/2  add data-key="true" -->
                </td>
                <td class="RESP_ID" style="display:none" data-column="hidden" ></td>
                <td class="MENU_ID" style="display:none" data-column="hidden" ></td>

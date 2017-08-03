@@ -22,9 +22,8 @@
 	<!-- Scrollbar -->
 	<link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
     <style type="text/css">
-        .pop_frame .content .ui-tabs-panel{padding:0;}
         .ui-widget.ui-widget-content{border:0px;}  
-        #detail_ui_tabs{padding:0;margin-bottom:27px;}     /*2017/8/1 margin-bottom:27px;-->margin-bottom:40px; sun*/
+        .pop_frame>.content .ui-tabs-panel{padding:0;}
     </style>
   </head>
   <body>
@@ -130,7 +129,7 @@
             <label for="GROUP_NAME_Q" class="left md">工作组</label>
             <input type="text" id="GROUP_NAME_Q" name="GROUP_NAME" data-update="db" class="left md" data-modify="true" data-pageframe="group_assign" data-lovbtn="GROUP_LOV_Q"  data-param="groupName"/>
             <input type="hidden" id="GROUP_ID_Q" name="GROUP_ID" data-update="db"/>
-            <input type="button" id="GROUP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组编码","工作组名称"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_Q","#GROUP_NAME_Q"]  value="···"/>
+            <input type="button" id="GROUP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组编码","工作组名称"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_Q","#GROUP_NAME_Q"]  value="···"/>         <!-- 2017/8/2 data-callback -->
           </form> 
         </div>
         <div class='foot'>             
@@ -237,30 +236,30 @@
         </div>
         <a class="close-detail-ui-frame" data-type="close">&#215;</a>
         <div class='line'></div>
-        <div class="content row-3" id="detail_ui_tabs">
+        <div class="content row-3 detail_ui_tabs" style="padding:0;height:127px;">
           <form>
              <ul>
                <li><a href="#tabs-1">子工作组分配</a></li>
                <li><a href="#tabs-2">客户分配</a></li>
              </ul>
              <div id="tabs-1" class="tab">
-               <div style="height:40px;margin-top:25px;">
-               <label for="GROUP_NAME_D" class="left md">工作组</label>
-	           <input type="text" id="SUB_GROUP_NAME_D" name="GROUP_NAME" data-update="db" class="left lglov" data-modify="true" data-pageframe="group_assign" data-lovbtn="GROUP_LOV_D"  data-param="groupName"/>
-	           <input type="hidden" id="SUB_GROUP_ID_D" name="SUB_GROUP_ID" data-update="db"/>
-	           <input type="button" id="GROUP_LOV_D" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组编码","工作组名称"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#SUB_GROUP_ID_D","#SUB_GROUP_NAME_D"]  value="···"/>
+               <div style="margin-top:28px;">
+                 <label for="GROUP_NAME_D" class="left md">工作组</label>
+	             <input type="text" id="SUB_GROUP_NAME_D" name="GROUP_NAME" data-update="db" class="left lglov" data-modify="true" data-pageframe="group_assign" data-lovbtn="GROUP_LOV_D"  data-param="groupName"/>
+	             <input type="hidden" id="SUB_GROUP_ID_D" name="SUB_GROUP_ID" data-update="db"/>
+	             <input type="button" id="GROUP_LOV_D" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组编码","工作组名称"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#SUB_GROUP_ID_D","#SUB_GROUP_NAME_D"]  value="···"/>      <!-- 2017/8/2 data-callback -->
 	           </div>
              </div>
              <div id="tabs-2" class="tab">
-               <div style="height:40px;margin-top:8px;">
-               <label for='PARTY_NAME' class="left md">客户名称</label> 
-               <input type="text" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" data-modify="true" data-pageframe="detail_ui" data-lovbtn="PARTY_NAME_LOV" data-param="PARTY_NAME"/>
-               <input type="hidden" id="ACT_ID" name="ACT_ID" data-update="db"/>
-               <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","ACT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".ACT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#ACT_ID","#PARTY_NAME"] value="···"/>  
-               <br style="clear:both"/>
-               <label for='ORG_NAME' class="left md">销售公司</label> 
-               <input type="text" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lgx2" readonly="readonly"/>
-               <input type="hidden" id="ORG_ID" name="ORG_ID" data-update="db" readonly="readonly"/>
+               <div style="margin-top:12px;">
+                 <label for='PARTY_NAME' class="left md">客户名称</label> 
+                 <input type="text" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" data-modify="true" data-pageframe="detail_ui" data-lovbtn="PARTY_NAME_LOV" data-param="PARTY_NAME"/>
+                 <input type="hidden" id="ACT_ID" name="ACT_ID" data-update="db"/>
+                 <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","ACT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".ACT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#ACT_ID","#PARTY_NAME"] value="···"/>  
+                 <br style="clear:both"/>
+                 <label for='ORG_NAME' class="left md">销售公司</label> 
+                 <input type="text" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lgx2" readonly="readonly"/>
+                 <input type="hidden" id="ORG_ID" name="ORG_ID" data-update="db" readonly="readonly"/>
                </div>
              </div>
            </form>    
@@ -287,7 +286,7 @@
     		$("#query").draggable({ handle: ".title"});
     		
     		//设置新增更新菜单明细tab分栏        
-            $("#detail_ui_tabs").tabs();           
+            $(".detail_ui_tabs").tabs();           
     		
     		//初始化CRUD和LOV条件查询
     		$().crudListener();	

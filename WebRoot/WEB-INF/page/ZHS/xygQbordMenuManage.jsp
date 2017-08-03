@@ -21,9 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- Scrollbar -->
     <link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
     <style type="text/css">
-        .pop_frame .content .ui-tabs-panel{padding:0;}
-        .ui-widget.ui-widget-content{border:0px;}  
-        #detail_ui_tabs{padding:0;}  
+        .ui-widget.ui-widget-content{border:0px;}
+        .pop_frame>.content .ui-tabs-panel{padding:0;}  
     </style>
   </head>
   <body>
@@ -248,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <a class="close-detail-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>  
-        <div class="content " id="detail_ui_tabs" >   
+        <div class="content detail_ui_tabs" style="padding:0;height:127px;">   
           <form>
             <ul>
               <li><a href="#tabs-1">子菜单操作</a></li>
@@ -259,7 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="MENU_SEQUENCE" name="MENU_SEQUENCE" data-update="db" class="left lg" required="required"  style="margin-top:15px;"/>           
             <br style="clear:both"/>
             <div id="tabs-1" class='tab'>            
-              <div style="height:40px;">
+              <div>
                 <label for="SUB_MENU_CODE" class="left md">子菜单编码</label> 
                 <input type="text" id="SUB_MENU_CODE" name="SUB_MENU_CODE" data-update="db" class="left md" data-modify="true" data-pageframe="detail_ui" data-lovbtn="SUB_MENU_LOV" data-param="MENU_CODE"/>
                 <input type='hidden' id='SUB_MENU_ID' name='SUB_MENU_ID' data-update="db"/>
@@ -269,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>              
             </div>
             <div id="tabs-2" class='tab'>            
-              <div style="height:40px;">
+              <div>
                 <label for='FUNCTION_CODE' class="left md">功能编码</label> 
                 <input type="text" id="FUNCTION_CODE" name="FUNCTION_CODE" data-update="db" class="left md" data-modify="true" data-pageframe="detail_ui" data-lovbtn="FUNCTION_LOV_Q" data-param="FUNCTION_CODE"/>
                 <input type='hidden' id='FUNCTION_ID' name='FUNCTION_ID' data-update="db"/>
@@ -303,7 +302,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#query").draggable({ handle: ".title" });
                      
             //设置新增更新菜单明细tab分栏        
-            $("#detail_ui_tabs").tabs();
+            $(".detail_ui_tabs").tabs();
             
             //初始化CRUD和LOV条件查询
             $().crudListener(); 
