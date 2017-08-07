@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- Scrollbar -->
     <link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
     <style type="text/css">
-        .ui-widget.ui-widget-content{border:0px;}
+        .ui-widget.ui-widget-content{border:0;}
         .pop_frame>.content .ui-tabs-panel{padding:0;}  
     </style>
   </head>
@@ -32,7 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i>
       </div>
       <!-- 数据加载动画 end -->
-    
       <!-- 主表格区域 start -->
       <div id="scrollbar" class="table pointer">
         <table id="main-table" data-table="MenuHeader">
@@ -60,7 +59,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </table>
       </div>
       <!-- 主表格区域 end -->
-      
       <!-- 主表格按钮区域 start -->
       <div class="table_button" id="table" data-table="MenuHeader">
         <div class="setting">
@@ -73,28 +71,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="fa fa-plus-circle pointer" title="新增菜单" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
         </div>
         <div class="setting">
-          <i id='refresh' class="fa fa-refresh pointer" title="刷新数据" data-pagetype='refresh' data-pageframe="table"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
         </div>
-
         <div id="setting">
           <!-- 设置菜单区域 start -->
-          <jsp:include page="./public/setting.jsp" >
-            <jsp:param name="rdtable" value="#main-table" />
-            <jsp:param name="odtable" value="#main-table" />
-            <jsp:param name="pageframe" value="table" />
+          <jsp:include page="./public/setting.jsp">
+            <jsp:param name="rdtable" value="#main-table"/>
+            <jsp:param name="odtable" value="#main-table"/>
+            <jsp:param name="pageframe" value="table"/>
           </jsp:include>
           <!-- 设置菜单区域 end -->  
         </div>
         <div>
           <!-- 分页按钮区域 start -->
-          <jsp:include page="./public/pageArrow.jsp" >
-            <jsp:param name="pageframe" value="table" />
-            <jsp:param name="func" value="" />
+          <jsp:include page="./public/pageArrow.jsp">
+            <jsp:param name="pageframe" value="table"/>
+            <jsp:param name="func" value=""/>
           </jsp:include>
           <!-- 分页按钮区域 end -->
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="MENU_ID"/> 
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="MENU_ID ASC"/> 
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="menu/getMenuHeaderPage.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 
@@ -102,55 +99,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
       <!-- 主表格按钮区域 end --> 
-   
       <!-- 定义列区域 start --> 
       <jsp:include page="./public/rowdefine.jsp"></jsp:include>
       <!-- 定义列区域 end -->
-    
       <!-- 多维排序区域 start -->
       <jsp:include page="./public/orderby.jsp"></jsp:include>
       <!-- 多维排序区域 end -->
-   
       <!-- 个人配置区域 start -->
       <jsp:include page="./public/config.jsp">
-        <jsp:param name="tableId" value="#main-table" />
+        <jsp:param name="tableId" value="#main-table"/>
       </jsp:include>
       <!-- 个人配置区域 end -->
-     
       <!-- lov区域 start -->
       <jsp:include page="./public/lov.jsp"></jsp:include>
       <!-- lov区域 end -->
-     
       <!-- 更新/新增菜单区域 start -->
-      <div id='ui' class='pop_frame row-2'>     
-        <div class='title pointer'>      
+      <div id="ui" class="pop_frame row-2">     
+        <div class="title pointer">      
           <span data-type="update"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;更新菜单</span>
           <span data-type="insert"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;新增菜单</span>
         </div>
         <a class="close-ui-frame" data-type="close">&#215;</a>
-        <div class='line'></div>
-        <div class='content row-2'>
-          <form id='updateData'>
-            <input type='hidden' id='MENU_ID' name="MENU_ID" data-update="db"/>
-            <label for="MENU_CODE" class='left md'>菜单编码</label>
-            <input type='text' id="MENU_CODE" name="MENU_CODE" data-update="db" required="required" class="left lg"/>
+        <div class="line"></div>
+        <div class="content row-2">
+          <form id="updateData">
+            <input type="hidden" id="MENU_ID" name="MENU_ID" data-update="db"/>
+            <label for="MENU_CODE" class="left md">菜单编码</label>
+            <input type="text" id="MENU_CODE" name="MENU_CODE" data-update="db" required="required" class="left lg"/>
             <label for="MENU_NAME" class="left md">菜单名称</label>
             <input type="text" id="MENU_NAME" name="MENU_NAME" data-update="db" required="required" class="left lg"/>
             <label for="DESCRIPTION" class="left md">菜单描述</label>
             <input type="text" id="DESCRIPTION" name="DESCRIPTION" data-update="db" class="left lg"/>
             <label for="ICON_CODE" class="left md">图标编码</label> 
-            <input type="text" id="ICON_CODE" name="ICON_CODE" data-update="db" class="left md" required="required" readonly="readonly"/>
-            <input type='hidden' id='ICON_ID' name='ICON_ID' data-update="db"/>
-            <input type='button' id="ICON_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","来源"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","ICON_SOURCE"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>  
+            <input type="text" id="ICON_CODE" name="ICON_CODE" data-update="db" class="left md"  readonly="readonly" required="required"/>
+            <input type="hidden" id="ICON_ID" name="ICON_ID" data-update="db"/>
+            <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","来源"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","ICON_SOURCE"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>  
           </form>
         </div>
-        <div class='foot'>       
+        <div class="foot">       
           <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="ui" data-updateurl="menu/updateMenuHeader.do" data-func="$().beforeInsert();">提交更新</button>
           <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="ui" data-inserturl="menu/insertMenuHeader.do" data-func="$().beforeInsert();">新增</button>
         </div>    
       </div> 
       <!-- 更新/新增菜单区域 end -->
-     
       <!-- 条件查询区域 start -->
       <div id="query" class="pop_frame row-1">     
         <div class="title pointer">      
@@ -160,16 +151,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="line"></div>
         <div class="content row-1">
           <form>
-            <label for='MENU_CODE_Q' class='left md'>菜单编码:</label> 
-            <input type="text" id="MENU_CODE_Q" name="MENU_CODE" data-update="db" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query" data-lovbtn="MENU_LOV_Q" data-param="MENU_CODE"/>
-            <input type='hidden' id='MENU_ID_Q' name='MENU_ID' data-update="db"/>
-            <input type='button' id="MENU_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单编码","菜单名称"] data-selectvalue=["MENU_CODE","MENU_NAME"] data-choose=[".MENU_ID",".MENU_CODE",".MENU_NAME"] data-recid=["#MENU_ID_Q","#MENU_CODE_Q","#MENU_NAME_Q"] value="···"/>
-            <label for="MENU_NAME_Q" class='left md'>菜单名称:</label>
-            <input type="text" id="MENU_NAME_Q" name="MENU_NAME"  class="left lg"/>
+            <label for="MENU_CODE_Q" class="left md">菜单编码:</label> 
+            <input type="text" id="MENU_CODE_Q" name="MENU_CODE" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query" data-lovbtn="MENU_LOV_Q" data-param="MENU_CODE"/>
+            <input type="hidden" id="MENU_ID_Q" name="MENU_ID"/>
+            <input type="button" id="MENU_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单编码","菜单名称"] data-selectvalue=["MENU_CODE","MENU_NAME"] data-choose=[".MENU_ID",".MENU_CODE",".MENU_NAME"] data-recid=["#MENU_ID_Q","#MENU_CODE_Q","#MENU_NAME_Q"] value="···"/>
+            <label for="MENU_NAME_Q" class="left md">菜单名称:</label>
+            <input type="text" id="MENU_NAME_Q" name="MENU_NAME"  class="left lg" readonly="readonly"/>
           </form>
         </div>
-        <div class='foot'>             
-          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">菜单查询</button>
+        <div class="foot">             
+          <button class="right pointer" data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">菜单查询</button>
         </div> 
       </div>
       <!-- 条件查询区域 end -->
@@ -177,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!----------------------------------------------菜单明细-------------------------------------------------------- -->      
       
       <div class="detail_frame" id="detail">
-        <div class='title pointer'>      
+        <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;菜单明细</span>
         </div>
         <a class="close-detail-frame" data-type="close">&#215;</a>    
@@ -188,10 +179,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="text" id="MENU_CODE_LINES" class="long" readonly="readonly"/>
           <label class="mid" for="MENU_NAME_LINES">菜单名称</label>
           <input type="text" id="MENU_NAME_LINES" class="long" readonly="readonly"/>
-          <br style="clear:both"/>
         </div>     
         <!-- PO明细表格区域 start -->
-        <div class='detail_table'>
+        <div class="detail_table">
           <table id="mLine" data-table="MenuLine">
             <tr>
               <th class="MENU_SEQUENCE" data-column="db">序号</th>
@@ -216,34 +206,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </table>
         </div>
         <!-- 菜单明细表格区域 end --> 
-        
         <div class="table_button" id="sub_table" data-table="MenuLine">
           <div class="setting">
-            <i class="fa fa-plus-circle pointer" data-key="true"  data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().autoAddSeq();"></i>
+            <i class="fa fa-plus-circle pointer" data-key="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().autoAddSeq();"></i>
           </div>
           <div class="setting">
-            <i id='sub_refresh' class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="sub_table" data-func="$().setParam();"></i>
+            <i id="sub_refresh" class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="sub_table" data-func="$().setParam();"></i>
           </div>
           <div>
-            <jsp:include page="./public/pageArrow.jsp" >
-              <jsp:param name="pageframe" value="sub_table" />
-              <jsp:param name="func" value="$().setParam();" />
+            <jsp:include page="./public/pageArrow.jsp">
+              <jsp:param name="pageframe" value="sub_table"/>
+              <jsp:param name="func" value="$().setParam();"/>
             </jsp:include>
             <input type="hidden" data-type="size" value="5"/>
             <input type="hidden" data-type="number" value="1"/>
-            <input type="hidden" data-type="orderby" value="MENU_SEQUENCE"/> 
+            <input type="hidden" data-type="orderby" value="MENU_SEQUENCE ASC"/> 
             <input type="hidden" data-type="cond"/>
             <input type="hidden" data-type="url" value="menu/getMenuLinePage.do"/>
             <input type="hidden" data-type="jsontype" value="subtable"/> 
             <input type="hidden" data-type="autoquery" value="N"/> 
           </div>
         </div>
-      </div>
-              
+      </div>    
       <!-- 菜单明细新增区域 start -->
       <div id="detail_ui" class="pop_frame row-3" style="z-index:104">     
-        <div class='title pointer'>          
-          <span data-type="insert"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;新增菜单明细</span>
+        <div class="title pointer">          
+          <span data-type="insert"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;新增菜单明细</span>
         </div>
         <a class="close-detail-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>  
@@ -257,52 +245,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="MENU_SEQUENCE" class="left md" style="margin-top:10px;">菜单序号</label> 
             <input type="text" id="MENU_SEQUENCE" name="MENU_SEQUENCE" data-update="db" class="left lg" required="required"  style="margin-top:15px;"/>           
             <br style="clear:both"/>
-            <div id="tabs-1" class='tab'>            
+            <div id="tabs-1" class="tab">            
               <div>
                 <label for="SUB_MENU_CODE" class="left md">子菜单编码</label> 
-                <input type="text" id="SUB_MENU_CODE" name="SUB_MENU_CODE" data-update="db" class="left md" data-modify="true" data-pageframe="detail_ui" data-lovbtn="SUB_MENU_LOV" data-param="MENU_CODE"/>
-                <input type='hidden' id='SUB_MENU_ID' name='SUB_MENU_ID' data-update="db"/>
-                <input type='button' id="SUB_MENU_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单编码","菜单名称"] data-selectvalue=["MENU_CODE","MENU_NAME"] data-choose=[".MENU_ID",".MENU_CODE",".MENU_NAME"] data-recid=["#SUB_MENU_ID","#SUB_MENU_CODE","#SUB_MENU_NAME"] value="···"/>  
-                <label for='SUB_MENU_NAME' class="left md">子菜单名称</label> 
+                <input type="text" id="SUB_MENU_CODE" name="SUB_MENU_CODE" data-update="db" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="detail_ui" data-lovbtn="SUB_MENU_LOV" data-param="MENU_CODE"/>
+                <input type="hidden" id="SUB_MENU_ID" name="SUB_MENU_ID" data-update="db"/>
+                <input type="button" id="SUB_MENU_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单编码","菜单名称"] data-selectvalue=["MENU_CODE","MENU_NAME"] data-choose=[".MENU_ID",".MENU_CODE",".MENU_NAME"] data-recid=["#SUB_MENU_ID","#SUB_MENU_CODE","#SUB_MENU_NAME"] value="···"/>  
+                <label for="SUB_MENU_NAME" class="left md">子菜单名称</label> 
                 <input type="text" id="SUB_MENU_NAME" name="SUB_MENU_NAME" data-update="db" class="left lg" readonly="readonly"/>
               </div>              
             </div>
-            <div id="tabs-2" class='tab'>            
+            <div id="tabs-2" class="tab">            
               <div>
-                <label for='FUNCTION_CODE' class="left md">功能编码</label> 
-                <input type="text" id="FUNCTION_CODE" name="FUNCTION_CODE" data-update="db" class="left md" data-modify="true" data-pageframe="detail_ui" data-lovbtn="FUNCTION_LOV_Q" data-param="FUNCTION_CODE"/>
-                <input type='hidden' id='FUNCTION_ID' name='FUNCTION_ID' data-update="db"/>
-                <input type="button" id="FUNCTION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="功能查询" data-queryurl="lov/getFuncPage.do" data-jsontype="func" data-defaultquery="true" data-th=["功能ID","功能编码","功能名称","描述"] data-td=["FUNCTION_ID&none","FUNCTION_CODE","FUNCTION_NAME","DESCRIPTION"] data-selectname=["功能编码","功能名称"] data-selectvalue=["FUNCTION_CODE","FUNCTION_NAME"] data-choose=[".FUNCTION_ID",".FUNCTION_CODE",".FUNCTION_NAME"] data-recid=["#FUNCTION_ID","#FUNCTION_CODE","#FUNCTION_NAME"] value="···"/>                       
-                <label for='FUNCTION_NAME' class="left md">功能名称</label> 
+                <label for="FUNCTION_CODE" class="left md">功能编码</label> 
+                <input type="text" id="FUNCTION_CODE" name="FUNCTION_CODE" data-update="db" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="detail_ui" data-lovbtn="FUNCTION_LOV_Q" data-param="FUNCTION_CODE"/>
+                <input type="hidden" id="FUNCTION_ID" name="FUNCTION_ID" data-update="db"/>
+                <input type="button" id="FUNCTION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="功能查询" data-queryurl="lov/getFuncPage.do" data-jsontype="func" data-defaultquery="true" data-th=["功能ID","功能编码","功能名称","描述"] data-td=["FUNCTION_ID&none","FUNCTION_CODE","FUNCTION_NAME","DESCRIPTION"] data-selectname=["功能编码","功能名称"] data-selectvalue=["FUNCTION_CODE","FUNCTION_NAME"] data-choose=[".FUNCTION_ID",".FUNCTION_CODE",".FUNCTION_NAME"] data-recid=["#FUNCTION_ID","#FUNCTION_CODE","#FUNCTION_NAME"] value="···"/>                       
+                <label for="FUNCTION_NAME" class="left md">功能名称</label> 
                 <input type="text" id="FUNCTION_NAME" name="FUNCTION_NAME" data-update="db" class="left lg"  readonly="readonly"/>
               </div>              
             </div>            
           </form> 
         </div>
-        <div class='foot'>            
-          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="menu/insertMenuLine.do" data-refresh="sub_refresh">新增</button>
-        </div>    
+        <div class="foot">            
+          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="menu/insertMenuLine.do" data-refresh="sub_refresh" data-func="$().setParam();">新增</button>
+        </div>   
       </div>          
       <!-- 菜单明细新增/更新区域 end -->  
-      
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
       <input type="hidden" id="INTERACT_CODE" value="MENU_MANAGE"/> 
       <input type="hidden" id="HEADER_ID" value=""/> 
       <!-- 用户信息存放区域 end -->         
     </div> 
-    
     <script>       
-        $(function() {
-            
+        $(function() {    
             //设置拖拽
-            $("#ui").draggable({ handle: ".title" });
-            $("#detail").draggable({ handle: ".title" });
-            $("#detail_ui").draggable({ handle: ".title" });
-            $("#query").draggable({ handle: ".title" });
+            $('#ui').draggable({ handle: '.title' });
+            $('#detail').draggable({ handle: '.title' });
+            $('#detail_ui').draggable({ handle: '.title' });
+            $('#query').draggable({ handle: '.title' });
                      
             //设置新增更新菜单明细tab分栏        
-            $(".detail_ui_tabs").tabs();
+            $('.detail_ui_tabs').tabs();
             
             //初始化CRUD和LOV条件查询
             $().crudListener(); 
@@ -350,34 +335,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         layer.alert('获取数据失败',{title:'警告',offset:[150]});
                     }           
                 }); 
-            }              
-                
+            }                      
         });
          
         jQuery.json={
             getContent:function(data,JSONtype){    
                 if(JSONtype=='table'){
-                      var mapRowArray=[
-	                  ['.MENU_ID','MENU_ID']    
-	                 ,['.MENU_CODE','MENU_CODE']
-	                 ,['.MENU_NAME','MENU_NAME']   
-	                 ,['.ICON_CODE','ICON_CODE']
-	                 ,['.ICON_DESC','ICON_DESC']
-	                 ,['.DESCRIPTION','DESCRIPTION']
-	                  ];
-	                 $().mapContentJson(data,'#main-table',mapRowArray);
-                     $().crudListener();
-                     $().detailShow();
-                     $().revealListener(); 
+                    var mapRowArray=[
+	                ['.MENU_ID','MENU_ID']    
+	               ,['.MENU_CODE','MENU_CODE']
+	               ,['.MENU_NAME','MENU_NAME']   
+	               ,['.ICON_CODE','ICON_CODE']
+	               ,['.ICON_DESC','ICON_DESC']
+	               ,['.DESCRIPTION','DESCRIPTION']
+	                ];
+	                $().mapContentJson(data,'#main-table',mapRowArray);
+                    $().crudListener();
+                    $().detailShow();
+                    $().revealListener(); 
                 }else if(JSONtype=='subtable'){            
-                     var mapRowArray=[
-                     ['.SUB_MENU_CODE','SUB_MENU_CODE']
-                    ,['.SUB_MENU_NAME','SUB_MENU_NAME']
-                    ,['.FUNCTION_CODE','FUNCTION_CODE']
-                    ,['.FUNCTION_NAME','FUNCTION_NAME']                 
-                    ,['.MENU_ID','MENU_ID']
-                    ,['.MENU_SEQUENCE','MENU_SEQUENCE']
-                     ];
+                    var mapRowArray=[
+                    ['.SUB_MENU_CODE','SUB_MENU_CODE']
+                   ,['.SUB_MENU_NAME','SUB_MENU_NAME']
+                   ,['.FUNCTION_CODE','FUNCTION_CODE']
+                   ,['.FUNCTION_NAME','FUNCTION_NAME']                 
+                   ,['.MENU_ID','MENU_ID']
+                   ,['.MENU_SEQUENCE','MENU_SEQUENCE']
+                    ];
                     $().mapContentJson(data,'#mLine',mapRowArray);
                     width='-'+parseInt($('#detail').css('width'))/2+'px';
                     $('#detail').css('margin-left',width); 
@@ -391,37 +375,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                   ,'ICON_CODE'       
 	                   ,'DESCRIPTION'
 	                   ,'ICON_SOURCE'
-	                   ];
-	                   $().mapContentJson(data,'#lov',mapRowArray);                
-               }else if(JSONtype=='menu'){
+	                ];
+	                $().mapContentJson(data,'#lov',mapRowArray);                
+                }else if(JSONtype=='menu'){
                     var mapRowArray=[
 	                    'MENU_ID'
 	                   ,'MENU_NAME'
 	                   ,'MENU_CODE'
 	                   ,'DESCRIPTION'
-	                   ];
-	                   $().mapContentJson(data,'#lov',mapRowArray);                                                                    
+                    ];
+                    $().mapContentJson(data,'#lov',mapRowArray);                                                                    
                 }else if(JSONtype=='func'){
-	                 var mapRowArray=[
+	                var mapRowArray=[
 	                    'FUNCTION_ID'
 	                   ,'FUNCTION_NAME'
 	                   ,'FUNCTION_CODE'
 	                   ,'DESCRIPTION'
-	                   ];
-	                   $().mapContentJson(data,'#lov',mapRowArray);
+	                ];
+	                $().mapContentJson(data,'#lov',mapRowArray);
                 }                           
             },  
             getUpdateJSON:function(data,pageframe){   
                 if(pageframe=='ui'){         
                     var mapRowArray=[
-                      ['#MENU_ID','MENU_ID']    
-                     ,['#MENU_CODE','MENU_CODE']
-                     ,['#MENU_NAME','MENU_NAME']   
-                     ,['#ICON_ID','ICON_ID']
-                     ,['#ICON_CODE','ICON_CODE']
-                     ,['#DESCRIPTION','DESCRIPTION']
-                     ];
-                   $().mapUpdateJson(data,mapRowArray);
+                    ['#MENU_ID','MENU_ID']    
+                   ,['#MENU_CODE','MENU_CODE']
+                   ,['#MENU_NAME','MENU_NAME']   
+                   ,['#ICON_ID','ICON_ID']
+                   ,['#ICON_CODE','ICON_CODE']
+                   ,['#DESCRIPTION','DESCRIPTION']
+                    ];
+                    $().mapUpdateJson(data,mapRowArray);
                 }       
             },
             getMSG:function(data){
@@ -432,7 +416,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 totalPages=data.totalPages;
             }             
         } 
-
     </script> 
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
