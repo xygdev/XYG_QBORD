@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="fa fa-cog pointer" title="表格设置" data-reveal-id="setting" data-dismissmodalclass="close-setting"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-search pointer" title="条件查询" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"></i>
+          <i class="fa fa-search pointer" title="条件查询" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"  data-revealfunc="$().defaultQueryDate();"></i>
         </div>
         <div class="setting">
           <i class="fa fa-plus-circle pointer" title="创建订单" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().beforePreInsertH();"></i>
@@ -292,22 +292,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="detail_table">
           <table id="oLine" data-table="OrderLine">
             <tr>
-              <th class="LINE_NUM" data-column="db">序号</th>
+              <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
               <th class="DESCRIPTION" data-column="db">本厂型号</th>
               <th class="CARNAME" data-column="db">中文描述</th>
-              <th class="UNIT_PRICE" data-column="db">单价</th>
-              <th class="ORDER_QUANTITY" data-column="db">数量</th>
-              <th class="REMARKS" data-column="db">备注</th>
+              <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
+              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
+              <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
               <th class="ACTION" data-column="normal">操作</th> 
               <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
             </tr>
             <tr>
-              <td class="LINE_NUM" data-column="db"></td>
-              <td class="DESCRIPTION" data-column="db"></td>
-              <td class="CARNAME" data-column="db"></td>
-              <td class="UNIT_PRICE" data-column="db"></td>
-              <td class="ORDER_QUANTITY" data-column="db"></td>
-              <td class="REMARKS" data-column="db"></td>
+              <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
+              <td class="DESCRIPTION text-left" data-column="db"></td>
+              <td class="CARNAME text-left" data-column="db"></td>
+              <td class="UNIT_PRICE" data-column="db" style="min-width:50px"></td>
+              <td class="ORDER_QUANTITY" data-column="db" style="min-width:50px"></td>
+              <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
                 <i class="fa fa-jpy fa-fw update pointer hidden" id="change_price_btn" title="修改单价" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
                 <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="删除" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="是否删除行：" data-delparam=["LINE_ID",".LINE_ID"] ></i>
@@ -490,19 +490,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 param=param+'&HEADER_ID='+headerId;
             }  
 			
-			//条件查询限制
-    		$.fn.validateCustomer = function(){
-    		    var userType = '${USER_TYPE}';
-			    if(userType=='CUSTOMER'){
-    		    	var customerId = $('#CUSTOMER_ID_Q').val();
-    		    	var orgId = $('#ORG_ID_Q').val();
-    		    	if(customerId==null||customerId==''||orgId==null||customerId==''){
-    		       		$('.ajax_loading').hide();
-    		       		layer.alert('必须选择客户才能查询订单！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
-    		       		throw ('必须选择客户才能查询订单！');
-    		    	}
-    		    }
-    		}
+			//默认查询时间
+			$.fn.defaultQueryDate = function(){
+			    var sysDate = new Date();
+			    var firstDay;
+			    firstDay = sysDate.getFullYear()
+			              +'-'+(sysDate.getMonth()+1)
+			              +'-01 00:00:00';
+			    $('#CREATION_DATE_F').val(firstDay);
+			    $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd hh:mm:ss'));
+			}			
 			
 			$('#ORDER_QUANTITY_D').on('change',function(){
 			   var itemId = $('#INVENTORY_ITEM_ID_D').val();
@@ -573,7 +570,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('#LINE_NUM_D').val(data.rows[0].LINE_NUM);
                     },
                     error: function () {
-                        layer.alert('获取数据失败',{title:'警告',offset:[150]});
+                        layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
                     }           
                 }); 
                 $('#CURR_CODE_D').val($('#CURR_CODE_L').val());
@@ -626,12 +626,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 });   
             }   
             
-       		//改变订单状态
-       		$('i[data-status]').on('click',function(){
-       		    var new_status = $(this).data('status');
-       		    var header_id = $('#HEADER_ID_L').val();
-       		    var status_desc = $(this).data('statusdesc');
-       		    param = 'HEADER_ID='+header_id+'&NEW_STATUS='+new_status;
+            //改变订单状态
+            $.fn.changeStatus = function(new_status,header_id,status_desc) {
+                param = 'HEADER_ID='+header_id+'&NEW_STATUS='+new_status;
        		    $.ajax({
                     type:'post', 
                     data:param,
@@ -651,7 +648,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    	                   ,function(){
 				    	                       $('[data-reveal-id="update_ot"]').click();
 				    	                       layer.closeAll('dialog');
-				    	                   });
+				    	                   }
+				    	            );
 				    	        }else{
 				    	            layer.alert(status_desc+"处理失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
 				    	        }	    	        
@@ -661,10 +659,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    	}
                     },
                     error: function () {
-                        layer.alert('获取数据失败',{title:'警告',offset:[150]});
+                        layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
                     }           
                 }); 
-       		    //alert(new_status);
+            }
+            
+       		//改变订单状态按钮事件
+       		$('i[data-status]').on('click',function(){
+       		    var new_status = $(this).data('status');
+       		    var header_id = $('#HEADER_ID_L').val();
+       		    var status_desc = $(this).data('statusdesc');
+       		    if(new_status=='CANCEL'){
+       		        layer.alert('确认要取消当前订单吗？'
+				    	,{title:'警告',offset:[150],btn:['是','否'] }
+				    	,function(){
+				    	    layer.closeAll('dialog');
+				    	    $().changeStatus(new_status,header_id,status_desc);
+				    	}
+				    	,function(){
+				    	    return;
+				    	}
+				    );
+       		    }else{
+       		        $().changeStatus(new_status,header_id,status_desc);
+       		    }
        		});
        		
        		//修改订单类型
@@ -693,7 +714,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('#COST_PRICE').val(data.rows[0].COST_PRICE);
                     },
                     error: function () {
-                        layer.alert('获取数据失败',{title:'警告',offset:[150]});
+                        layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
                     }           
                 });
        		    $('#3rd_refresh').click();
