@@ -207,9 +207,9 @@
              
 	          //日期选择
 	          $('input[data-datatype="date"]').datetimepicker({
-		          lang:"ch",           //语言选择中文
+		          lang:'ch',           //语言选择中文
 		          timepicker:true,    //启用时间选项
-		          format:"Y-m-d H:i:s",      //格式化日期
+		          format:'Y-m-d H:i:s',      //格式化日期
 		          step: 30,
 		          showOnClick: true
 	          });

@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>用户管理</title>
+    <title>公告管理</title>
     <base href="<%=basePath%>"> 
     <meta http-equiv="content-type" content="text/html;charset=gb2312">
 	<link rel="stylesheet" href="plugin/css/font-awesome.min.css">
@@ -29,7 +29,6 @@
         <i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i>
       </div>
       <!-- 数据加载动画 end -->
-      
       <!-- 主表格区域 start -->
       <div class="table pointer">
         <table id="main-table" data-table="Broadcast">
@@ -54,7 +53,6 @@
         </table>
       </div>
       <!-- 主表格区域 end -->
-      
       <!-- 主表格按钮区域 start -->
       <div class="table_button" id="table" data-table="Broadcast">
         <div class="setting">
@@ -64,30 +62,30 @@
           <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-plus pointer" data-reveal-id="ui" data-key="true" title="发布公告" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
+          <i class="fa fa-plus pointer" data-reveal-id="ui" data-key="true" title="发布公告" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-revealfunc=""></i>
         </div>
         <div class="setting">
-          <i id='refresh' class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
         </div>
         <div id="setting">
           <!-- 设置菜单区域 start -->
           <jsp:include page="public/setting.jsp" >
-			<jsp:param name="rdtable" value="#main-table" />
-			<jsp:param name="odtable" value="#main-table" />
-			<jsp:param name="pageframe" value="table" />
+			<jsp:param name="rdtable" value="#main-table"/>
+			<jsp:param name="odtable" value="#main-table"/>
+			<jsp:param name="pageframe" value="table"/>
 		  </jsp:include>
           <!-- 设置菜单区域 end -->    
         </div>
         <div>
           <!-- 分页按钮区域 start -->
-          <jsp:include page="public/pageArrow.jsp" >
-			<jsp:param name="pageframe" value="table" />
-			<jsp:param name="func" value="" />
+          <jsp:include page="public/pageArrow.jsp">
+			<jsp:param name="pageframe" value="table"/>
+			<jsp:param name="func" value=""/>
 		  </jsp:include>
           <!-- 分页按钮区域 end -->
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="BROADCAST_ID"/> 
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="BROADCAST_ID ASC"/> 
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="broadcast/getBcPage.do"/>
           <input type="hidden" data-type="jsontype" value="table"/>
@@ -95,38 +93,33 @@
         </div>
       </div>
       <!-- 主表格按钮区域 end -->
-      
       <!-- 定义列区域 start --> 
       <jsp:include page="public/rowdefine.jsp"></jsp:include>
       <!-- 定义列区域 end -->
-    
       <!-- 多维排序区域 start -->
       <jsp:include page="public/orderby.jsp"></jsp:include>
       <!-- 多维排序区域 end -->
-   
       <!-- 个人配置区域 start -->
       <jsp:include page="public/config.jsp">
         <jsp:param name="tableId" value="#main-table" />
       </jsp:include>
       <!-- 个人配置区域 end -->
-     
       <!-- lov区域 start -->
       <jsp:include page="public/lov.jsp"></jsp:include>
       <!-- lov区域 end -->
-      
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-4">     
         <div class="title pointer">      
           <span><i class="fa fa-user"></i>&nbsp;公告查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
-        <div class='line'></div>
+        <div class="line"></div>
         <div class="content row-4">
           <form>
             <label for="USER_DESC_Q" class="left md">发布人:</label> 
             <input type="text" id="USER_DESC_Q" name="DESCRIPTION" class="left md" data-modify="true" data-pageframe="query"  data-lovbtn='USER_LOV_Q'  data-param="DESCRIPTION" />          
             <input type="hidden" id="USER_ID_Q" name="USER_ID"/>
-            <input type='button' id="USER_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_DESC_Q"] value="···"/>
+            <input type="button" id="USER_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_DESC_Q"] value="···"/>
             <br style="clear:both"/> 
             <label for="BROADCAST_TITLE_Q" class="left md">公告标题:</label> 
             <input type="text" id="BROADCAST_TITLE_Q" name="BROADCAST_TITLE" class="left lgx2"/>
@@ -141,12 +134,11 @@
             <input type="text" id="END_DATE_T" name="END_DATE_T" class="left time" data-datatype="date" placeholder="截止失效时间"/>
           </form> 
         </div>
-        <div class='foot'>             
+        <div class="foot">             
           <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">用户查询</button>
         </div> 
       </div>
       <!-- 条件查询区域end -->
-      
       <!-- 发布公告区域 start -->
       <div id="ui" class="pop_frame row-9">     
         <div class="title pointer">      
@@ -171,8 +163,7 @@
           <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="ui" data-inserturl="broadcast/insert.do">发布</button>
         </div>    
       </div> 
-      <!-- 发布公告区域 end -->
-      
+      <!-- 发布公告区域 end --> 
       <!-- 公告内容区域 start -->
       <div id="detail" class="pop_frame row-9"> 
         <div class="title pointer">      
@@ -197,45 +188,28 @@
           </div>
         </div>
       </div>
-      <!-- 公告内容区域 end -->
-      
+      <!-- 公告内容区域 end --> 
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
-      <input type="hidden" id="INTERACT_CODE" value="BROADCAST_MANAGE"/> 
+      <input type="hidden" id="INTERACT_CODE" value="BC_MANAGE"/> 
       <input type="hidden" id="HEADER_ID" value=""/> 
       <!-- 用户信息存放区域 end --> 
     </div>
-    
     <script>
     	$(function() {
     		//设置拖拽
-            $("#ui").draggable({ handle: ".title"});
-    		$("#detail").draggable({ handle: ".title"});
-    		$("#query").draggable({ handle: ".title"});
+            $('#ui').draggable({ handle: '.title'});
+    		$('#detail').draggable({ handle: '.title'});
+    		$('#query').draggable({ handle: '.title'});
     		
     		//初始化CRUD和LOV条件查询
     		$().crudListener();	
-    		$().revealListener();   
-    				
-    		$.fn.beforeInsert = function(){
-    		    RegExpValidate('^[a-zA-Z]\\w{5,14}$','USER_NAME','regExpError("用户名格式错误，必须是由字母开头的6-15位字符");');
-    		}
-    		
-    		$.fn.afterReveal = function(){
-    		    $('#START_DATE').val(new Date().format('yyyy-MM-dd hh:mm:ss'));
-    		    $('label[for="USER_NAME"]').click();
-    		}   		
-    		
-    		$.fn.setParam = function(){
-    		    userId=$('#USER_ID_LINES').val();
-    		    param=param+'&USER_ID='+userId;
-    		}   		
-  		
+    		$().revealListener();   		
     		
     		$('input[data-datatype="date"]').datetimepicker({
-				  lang:"ch",           //语言选择中文
+				  lang:'ch',           //语言选择中文
 				  timepicker:true,    //启用时间选项
-				  format:"Y-m-d H:i:s",      //格式化日期
+				  format:'Y-m-d H:i:s',      //格式化日期
 				  step: 30,
 				  showOnClick: true
 			});

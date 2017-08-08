@@ -30,7 +30,6 @@
         <i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i>
       </div>
       <!-- 数据加载动画 end -->
-    
       <!-- 主表格区域 start -->
       <div class="table">
         <table id="main-table" data-table="items">
@@ -63,16 +62,14 @@
      	    <td class="PROCESS_TYPE_DESC" data-column="db"></td>
      	    <td class="LOAD_LOCATION_DESC" data-column="db"></td>
      	    <td class="OEMNO" data-column="db"></td>
-     	    <td class="QBORD_ENABLED_FLAG" data-column="normal">
-     	    </td>
+     	    <td class="QBORD_ENABLED_FLAG" data-column="normal"></td>
      	    <td class="ITEM_ID" style="display:none" data-column="hidden">&nbsp;</td> 
      	    <td class="ORGANIZATION_ID" style="display:none" data-column="hidden">&nbsp;</td>   
      	    <td class="QBORD_ENABLED_FLAG_CODE" style="display:none" data-column="hidden">&nbsp;</td>   
      	  </tr>
         </table>
       </div>
-      <!-- 主表格区域 end -->
-   
+      <!-- 主表格区域 end --> 
       <!-- 主表格按钮区域 start -->
       <div class="table_button" id="table" data-table="items">
         <div class="setting">
@@ -82,7 +79,7 @@
           <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i id='refresh' class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table" data-func="$().validateOrgan()"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table" data-func="$().validateOrgan()"></i>
         </div>
         <div id="setting">
           <!-- 设置菜单区域 start -->
@@ -102,7 +99,7 @@
           <!-- 分页按钮区域 end -->
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ITEM_ID"/> 
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ITEM_ID ASC"/> 
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="items/getItemsPage.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 
@@ -110,25 +107,20 @@
         </div>
       </div>
       <!-- 主表格按钮区域 end --> 
-   
       <!-- 定义列区域 start --> 
       <jsp:include page="public/rowdefine.jsp"></jsp:include>
-      <!-- 定义列区域 end -->
-    
+      <!-- 定义列区域 end -->  
       <!-- 多维排序区域 start -->
       <jsp:include page="public/orderby.jsp"></jsp:include>
       <!-- 多维排序区域 end -->
-   
       <!-- 个人配置区域 start -->
       <jsp:include page="public/config.jsp">
         <jsp:param name="tableId" value="#main-table" />
       </jsp:include>
       <!-- 个人配置区域 end -->
-     
       <!-- lov区域 start -->
       <jsp:include page="public/lov.jsp"></jsp:include>
       <!-- lov区域 end -->
-      
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-4">     
         <div class="title pointer">      
@@ -151,21 +143,20 @@
             <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>
             <br style="clear:both"/>
             <label for="PRODUCT_TYPE_DESC_Q" class="left md">产品种类:</label>
-            <input type="text" id="PRODUCT_TYPE_DESC_Q" name="PRODUCT_TYPE_DESC" data-lovbtn="PRODUCT_TYPE_DESC_LOV" data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/>
+            <input type="text" id="PRODUCT_TYPE_DESC_Q" name="PRODUCT_TYPE_DESC" data-lovbtn="PRODUCT_TYPE_DESC_LOV" data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/>
             <input type="hidden" id="PRODUCT_TYPE_ID_Q" name="PRODUCT_TYPE_ID"/>
             <input type="button" id="PRODUCT_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品种类查询" data-queryurl="lov/getProductPage.do" data-jsontype="productLov" data-defaultquery="true" data-th=["LOOKUP_CODE","本厂型号"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["本厂型号"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PRODUCT_TYPE_ID_Q","#PRODUCT_TYPE_DESC_Q"] value="···"/>
             <label for="PROCESS_TYPE_DESC_Q" class="left md">加工型号:</label>       
-            <input type="text" id="PROCESS_TYPE_DESC_Q" name="PROCESS_TYPE_DESC" data-lovbtn="PROCESS_TYPE_DESC_LOV" data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/>
+            <input type="text" id="PROCESS_TYPE_DESC_Q" name="PROCESS_TYPE_DESC" data-lovbtn="PROCESS_TYPE_DESC_LOV" data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/>
             <input type="hidden" id="PROCESS_TYPE_ID_Q" name="PROCESS_TYPE_ID"/>
             <input type="button" id="PROCESS_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="加工型号查询" data-queryurl="lov/getProcessPage.do" data-jsontype="processLov" data-defaultquery="true" data-th=["LOOKUP_CODE","加工类型"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["加工类型"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PROCESS_TYPE_ID_Q","#PROCESS_TYPE_DESC_Q"] value="···"/>        
             <br style="clear:both"/>
             <label for="LOAD_LOCATION_DESC_Q" class="left md">装车位置:</label>
-            <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-update="db" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
+            <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
             <input type="hidden" id="LOAD_LOCATION_ID_Q" name="LOAD_LOCATION_ID"/>
             <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="装车位置查询" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","装车位置"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["装车位置"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>        
-            <label class='left md'>启用状态:</label>
-            <input type="hidden" name="QBORD_ENABLED_FLAG" value="Y"/>
-            <i class="pointer fa fa-toggle-on green left" data-enable="OFF" style="margin:14px 14px 14px 0;"></i>          
+            <label for="QBORD_ENABLED_FLAG_Q" class="left md">启用状态:</label>
+            <select class="left lg" id="QBORD_ENABLED_FLAG_Q" name="QBORD_ENABLED_FLAG" data-notnull="false" data-listurl="list/getEnableFlag.do"></select> 
           </form> 
         </div>
         <div class="foot">             
@@ -173,38 +164,16 @@
         </div> 
       </div>
       <!-- 条件查询区域end -->
-     
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
       <input type="hidden" id="INTERACT_CODE" value="ITEMS"/> 
       <input type="hidden" id="HEADER_ID" value=""/> 
       <!-- 用户信息存放区域 end -->  
     </div>   
-    
-    <script>  
-            //  物料查询启用状态      2017/8/2  sun   
-	        $(function() {
-	            $("#query").find('i[data-enable]').click(function(){
-	            var action = $(this).attr('data-enable');
-	            if(action == 'OFF'){
-	                //layer.msg('启用状态为N',{offset:['230px',]});
-	                $(this).removeClass('fa-toggle-on green');
-	                $(this).addClass('fa-toggle-off');
-	                $(this).attr("data-enable","ON");
-	                $(this).siblings('input[name="QBORD_ENABLED_FLAG"]').val("N");
-	            }else if(action == 'ON'){
-	                //layer.msg('启用状态为Y',{offset:['230px',]});
-	                $(this).removeClass('fa-toggle-off');
-	                $(this).addClass('fa-toggle-on green');
-	                $(this).attr("data-enable","OFF");
-	                $(this).siblings('input[name="QBORD_ENABLED_FLAG"]').val("Y");
-	            }
-	        })
-            
+    <script>    
+	    $(function() {  
             //设置拖拽
-            $("#ui").draggable({ handle: ".title"});
-    		$("#detail").draggable({ handle: ".title"});
-    		$("#query").draggable({ handle: ".title"});
+    		$('#query').draggable({ handle: '.title'});
     		
     		//初始化CRUD和LOV条件查询
     		$().crudListener();	
@@ -219,7 +188,7 @@
     		       throw ('必须选择库存组织才能查询物料！');
     		    }
     		}
-    		
+
     		$.fn.detail = function(){
     		    $('.ACTION i').off('click');
     		    $('.ACTION i').on('click',function(){
@@ -238,8 +207,8 @@
     		}
     		
     		$.fn.enable = function(){
-    			$("#main-table").find('i[data-enable]').off('click');
-    			$("#main-table").find('i[data-enable]').on('click',function(){
+    			$('#main-table').find('i[data-enable]').off('click');
+    			$('#main-table').find('i[data-enable]').on('click',function(){
     			    var action = $(this).attr('data-enable');
     			    var tr = $(this).parent().parent();
     		    	var id = tr.children('.ITEM_ID').text();
@@ -270,42 +239,33 @@
 						}
     		        });
     			});
-    		}
-    		
-    		//日期选择2016.12.8 by sam.t
-    		$('input[data-datatype="date"]').datetimepicker({
-				  lang:"ch",           //语言选择中文
-				  timepicker:true,    //启用时间选项
-				  format:"Y-m-d H:i:s",      //格式化日期
-				  step: 30,
-				  showOnClick: true
-			});
+    		}   	
         });
         
         jQuery.json={
         	getContent:function(data,JSONtype){  
         	    if(JSONtype=='table'){
         	    	var mapRowArray=[
-        	    	 ['.ITEM_ID','ITEM_ID']
-        	    	,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
-        	    	,['.ITEM_NUMBER','ITEM_NUMBER']
-        	    	,['.DESCRIPTION','DESCRIPTION']
-        	    	,['.CARNAME','CARNAME']
-        	    	,['.EN_DESC','EN_DESC']
-        	    	,['.OEMNO','OEMNO']
-        	    	,['.PRODUCT_TYPE_DESC','PRODUCT_TYPE_DESC']
-        	    	,['.PROCESS_TYPE_DESC','PROCESS_TYPE_DESC']
-        	    	,['.LOAD_LOCATION_DESC','LOAD_LOCATION_DESC']
-        	    	,['.QBORD_ENABLED_FLAG','QBORD_ENABLED_FLAG',
-        	    	  function(){
-        	    	     if(data.rows[i].QBORD_ENABLED_FLAG=='Y'){ 
-        	    	         $('#main-table').find('tr:eq('+(i+1)+')').find('.QBORD_ENABLED_FLAG').html('<i class="pointer fa fa-toggle-on green" data-enable="OFF" data-show="true"></i>');
-        	    	     }else{
-        	    	         $('#main-table').find('tr:eq('+(i+1)+')').find('.QBORD_ENABLED_FLAG').html('<i class="pointer fa fa-toggle-off" data-enable="ON" data-show="true"></i>');
-        	    	     }                                              
-        	    	  }]
-        	    	  ,['.QBORD_ENABLED_FLAG_CODE','QBORD_ENABLED_FLAG']
-        	    	  ,['.ORGANIZATION_ID','ORGANIZATION_ID']
+        	      	['.ITEM_ID','ITEM_ID']
+        	       ,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
+        	       ,['.ITEM_NUMBER','ITEM_NUMBER']
+        	       ,['.DESCRIPTION','DESCRIPTION']
+        	       ,['.CARNAME','CARNAME']
+        	       ,['.EN_DESC','EN_DESC']
+        	       ,['.OEMNO','OEMNO']
+        	       ,['.PRODUCT_TYPE_DESC','PRODUCT_TYPE_DESC']
+        	       ,['.PROCESS_TYPE_DESC','PROCESS_TYPE_DESC']
+        	       ,['.LOAD_LOCATION_DESC','LOAD_LOCATION_DESC']
+        	       ,['.QBORD_ENABLED_FLAG','QBORD_ENABLED_FLAG',
+        	    	    function(){
+        	    	        if(data.rows[i].QBORD_ENABLED_FLAG=='Y'){ 
+        	    	            $('#main-table').find('tr:eq('+(i+1)+')').find('.QBORD_ENABLED_FLAG').html('<i class="pointer fa fa-toggle-on green" data-enable="OFF" data-show="true"></i>');
+        	    	        }else{
+        	    	            $('#main-table').find('tr:eq('+(i+1)+')').find('.QBORD_ENABLED_FLAG').html('<i class="pointer fa fa-toggle-off" data-enable="ON" data-show="true"></i>');
+        	    	        }                                              
+        	    	    }]
+        	       ,['.QBORD_ENABLED_FLAG_CODE','QBORD_ENABLED_FLAG']
+        	       ,['.ORGANIZATION_ID','ORGANIZATION_ID']
         	    	];
         	    	$().mapContentJson(data,'#main-table',mapRowArray);
         	    	$().afterRowDefine();
@@ -315,30 +275,18 @@
                 	$().revealListener(); 
         	    }else if(JSONtype=='orgLov'){
         	    	var mapRowArray=[
-        	    	 'ORGANIZATION_ID'
-        	    	,'ORGANIZATION_CODE'
-        	    	,'ORGANIZATION_NAME'
+        	    	    'ORGANIZATION_ID'
+        	    	   ,'ORGANIZATION_CODE'
+        	    	   ,'ORGANIZATION_NAME'
         	    	];
         	    	$().mapContentJson(data,'.contentbox',mapRowArray);         	    
-        	    }else if(JSONtype=='productLov'){
+        	    }else if(JSONtype=='productLov'||JSONtype=='processLov'||JSONtype=='loadLov'){
                     var mapRowArray=[
-                     'LOOKUP_CODE'
-                    ,'DESCRIPTION'
+                       'LOOKUP_CODE'
+                      ,'DESCRIPTION'
                     ];
-                    $().mapContentJson(data,'.contentbox',mapRowArray);                 
-                }else if(JSONtype=='processLov'){
-                    var mapRowArray=[
-                     'LOOKUP_CODE'
-                    ,'DESCRIPTION'
-                    ];
-                    $().mapContentJson(data,'.contentbox',mapRowArray);                 
-                }else if(JSONtype=='loadLov'){
-                    var mapRowArray=[
-                     'LOOKUP_CODE'
-                    ,'DESCRIPTION'
-                    ];
-                    $().mapContentJson(data,'.contentbox',mapRowArray);                 
-                }
+                    $().mapContentJson(data,'.contentbox',mapRowArray); 
+                } 
        	    },
        	    getMSG:function(data){
        	        pageMinRow=parseInt(data.pageMinRow);
