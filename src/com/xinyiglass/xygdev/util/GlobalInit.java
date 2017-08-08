@@ -3,18 +3,18 @@ package com.xinyiglass.xygdev.util;
 import org.apache.commons.net.ftp.FTP;
 
 /** 
- * ALB2B浮法大板B2B系统全局初始化。登录的时候使用！
- * @author Sam.T  2016-12-21
+ * QBORD汽玻在线下单系统全局初始化。登录的时候使用！
+ * @author Bird  2017-7-1
  */  
 public class GlobalInit {  
     public static void init(Boolean debug){  
     	//注意！当切换环境的时候，要日志信息，必须要修改log4j.properties的file路径！
     	if(debug!=null){//实现一个效果：当登录的时候，不自动切换现有的调试状态。
     		xygdev.commons.util.Constant.DEBUG_MODE=debug;//common包的调试模式
-        	Constant.DEBUG_MODE = debug;//b2b系统的调试模式
+        	Constant.DEBUG_MODE = debug;//调试模式
         	//System.out.println("debugMode:"+debug);
     	}
-    	Constant.IMAGE_USER_PATH = "/ebs/data/image/user/";//"/ebs/data/image/user/" E:\\image\\user\\
+    	Constant.IMAGE_USER_PATH = "E:\\image\\user\\";//"/home/web/image/user/"; 
     	Constant.LOCAL_CHARSET = "GBK";
     	Constant.SERVER_CHARSET = FTP.DEFAULT_CONTROL_ENCODING;
     	Constant.DIR_SEP="/";//ftp和unix用：/    ；本地win系统用：\\\\

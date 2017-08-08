@@ -137,7 +137,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</section>
         
         <!-- 用户信息存放区域 start -->
-     	<input type="hidden" id="USER_ID" value="${USER_ID}"/>  
      	<input type="hidden" id="USER_NAME" value="${USER_NAME}"/>
      	<!-- 用户信息存放区域 end -->
      	
@@ -278,7 +277,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    $('#broadcast').find('span').text(data[0].COUNT);
 				},
 				error:function(){
-					ayer.msg('获取JSON数据失败');
+					layer.msg('获取JSON数据失败');
 				}
         	});
         });

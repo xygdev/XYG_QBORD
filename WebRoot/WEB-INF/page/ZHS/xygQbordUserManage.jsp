@@ -45,7 +45,7 @@
      	    <th class="MOBILE_NUMBER" data-column="db">手机号</th>
      	    <th class="EMAIL_ADDR" data-column="db">邮箱地址</th>
      	    <th class="PRICE_LIMIT" data-colun="db">改价权限</th> 
-     	    <th class="USER_IMG" data-column="normal">用户头像</th>
+     	    <!-- <th class="USER_IMG" data-column="normal">用户头像</th>  -->
      	    <th class="ACTION" data-column="normal">操作</th> 
      	    <th class="USER_ID" style="display:none" data-column="hidden">&nbsp;</th>
      	    <th class="IMG_URL" style="display:none" data-column="hidden">&nbsp;</th>
@@ -62,9 +62,11 @@
      	    <td class="MOBILE_NUMBER" data-column="db"></td>
      	    <td class="EMAIL_ADDR" data-column="db"></td>
      	    <td class="PRICE_LIMIT" data-colun="db"></td> 
+     	    <!--
      	    <td class="USER_IMG" data-column="normal">
      	      <i class="fa fa-picture-o changeIMG pointer hidden" title="更改头像" data-show="true" data-reveal-id="headimg"></i>
      	    </td>
+     	    -->
      	    <td class="ACTION" data-column="normal">
      	      <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" title="更新用户" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="user/preUpdate.do" data-type="update" data-updateparam=["USER_ID",".USER_ID"]  data-func="$().setUpdatePWD();"></i>
      	      <i class="fa fa-briefcase fa-fw pointer hidden resp_assign" data-show="true" title="职责分配" data-reveal-id="resp_assign" data-key="true" data-dismissmodalclass="close-resp-frame" data-crudtype="pre-update" data-preupdateurl="resp/getUserResp.do" data-updateparam=["USER_ID",".USER_ID"] data-func="$().getUserForAssign(tr,pageframe);"></i>
@@ -392,6 +394,7 @@
     		    }
     		});
     		
+    		/*2017.8.8      暂时去掉用户管理界面的头像修改功能，认为此功能无需在此处出现
     		$.fn.changeIMG = function(){
     		    $('.changeIMG').off('click');
     		    $('.changeIMG').on('click',function(){
@@ -405,6 +408,7 @@
     		    	$('.cropped_old img').attr('src',imgurl+'?temp=' + Math.random()); 
     			});
     		}
+    		*/
     		
     		$.fn.beforePreInsert = function(){	    
     		    $('#PASSWORD').attr('required','required');
@@ -589,7 +593,7 @@
                 	$().crudListener();
                 	$().updatePriceLimit();
                 	$().detailShow();
-                	$().changeIMG(); 
+                	//$().changeIMG(); 
                 	$().revealListener();
         	    }else if(JSONtype=='subtable'){
         	        var mapRowArray=[

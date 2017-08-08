@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xinyiglass.xygdev.entity.UserVO;
+import com.xinyiglass.xygdev.util.Base64Convert;
 import com.xinyiglass.xygdev.util.Constant;
 import com.xinyiglass.xygdev.util.MD5Util;
 import com.xinyiglass.xygdev.service.UserVOService;
@@ -108,6 +109,20 @@ public class UserController extends BaseController {
     	u.setMobileNumber(this.getParaToLong("MOBILE_NUMBER"));
     	this.renderStr(UVS.update(lockUserVO, u, userId).toJsonStr());
 	}
+	
+	@RequestMapping(value = "/setUserImg.do", method = RequestMethod.POST)
+    public void setUserImg() throws Exception
+    {
+    	Map<String,Object> conditionMap=new HashMap<String,Object>();
+    	conditionMap.put("userId", this.getParaToLong("userId"));
+    	String fileName = this.getPara("fileName");
+    	conditionMap.put("imgUrl", fileName);
+    	String strBase64 = this.getPara("img");
+    	strBase64 = strBase64.substring(22);
+    	String path = Constant.IMAGE_USER_PATH;
+    	Base64Convert.base64ToIo(strBase64, path, fileName);
+    	this.renderStr(UVS.updateImgUrl(conditionMap, userId).toJsonStr());
+    }
 	
 	//非Ajax请求
     @RequestMapping(value = "/updatePWD.do", method = RequestMethod.POST)

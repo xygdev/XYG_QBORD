@@ -79,7 +79,7 @@
             				$(options.recid[k]).click();
             			}   			
             		}
-            		if(options.clickfunc!=null||options.clickfunc!=''){
+            		if(options.clickfunc!=null&&options.clickfunc!=''){
         				eval(options.clickfunc);
         			}
             		$('#'+options.pageframe+' .'+options.dismissmodalclass).click();	
@@ -111,7 +111,7 @@
         	$('#'+options.pageframe+' select[data-type="select"]').html('');
         	$('#'+options.pageframe+' input[data-type="query_val"]').val('');
         	$('#'+options.pageframe+' input[data-type="extend_param"]').val('');
-        	if(options.func!=null||options.func!=''){
+        	if(options.func!=null&&options.func!=''){
 				eval(options.func);
 			}
         	for(j=0;j!=-1;j++){

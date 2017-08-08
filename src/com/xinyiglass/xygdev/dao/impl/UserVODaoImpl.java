@@ -174,6 +174,25 @@ public class UserVODaoImpl extends DevJdbcDaoSupport implements UserVODao{
 		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
 	}
 	
+	public PlsqlRetValue updateImg(Map<String,Object> conditionMap) throws Exception{
+		String sql= "Declare "
+				+	"   l_user_id number; "
+				+	"begin "
+				+ "  XYG_ALD_USER_PKG.UPDATE_USER_IMGURL( "
+				+ "  :1"
+				+ " ,:2"
+				+ ",:"+PlsqlRetValue.RETCODE
+				+ ",:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		LogUtil.log("UPDATE User ID:" + conditionMap.get("userId"));
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		System.out.println(conditionMap);
+		paramMap.put("1", conditionMap.get("userId"));
+		paramMap.put("2", conditionMap.get("imgUrl"));
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
+	}
+	
 	public PlsqlRetValue updatePriceLimit(Map<String,Object> conditionMap) throws Exception{
 		String sql ="Declare "
 				+ "     l_user_id number; "

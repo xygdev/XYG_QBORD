@@ -34,12 +34,15 @@
                         dh = parseInt(size[1]),
                         sh = parseInt(this.image.height),
                         sw = parseInt(this.image.width);
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    var context = canvas.getContext("2d");
-                    context.drawImage(this.image, 0, 0, sw, sh, dx, dy, dw, dh);
-                    var imageData = canvas.toDataURL('image/png');
+                    if(this.image.width!=0){
+                        canvas.width = width;
+                        canvas.height = height;
+                        var context = canvas.getContext("2d");
+                        context.drawImage(this.image, 0, 0, sw, sh, dx, dy, dw, dh);
+                        var imageData = canvas.toDataURL('image/png');
+                    }else{
+                    	var imageData = '';
+                    }
                     return imageData;
                 },
                 getBlob: function()
@@ -57,11 +60,17 @@
                 {
                     this.ratio*=1.1;
                     setBackground();
+                    if(options.func!=null&&options.func!=''){
+                    	eval(options.func);
+                    }
                 },
                 zoomOut: function ()
                 {
                     this.ratio*=0.9;
                     setBackground();
+                    if(options.func!=null&&options.func!=''){
+                    	eval(options.func);
+                    }
                 }
             },
             setBackground = function()
@@ -113,11 +122,17 @@
             {
                 e.stopImmediatePropagation();
                 obj.state.dragable = false;
+                if(options.func!=null&&options.func!=''){
+                	eval(options.func);
+                }
             },
             zoomImage = function(e)
             {
                 e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0 ? obj.ratio*=1.1 : obj.ratio*=0.9;
                 setBackground();
+                if(options.func!=null&&options.func!=''){
+                	eval(options.func);
+                }
             }
 
         obj.spinner.show();
@@ -129,6 +144,9 @@
             el.bind('mousemove', imgMouseMove);
             $(window).bind('mouseup', imgMouseUp);
             el.bind('mousewheel DOMMouseScroll', zoomImage);
+            if(options.func!=null&&options.func!=''){
+            	eval(options.func);
+            }
         };
         obj.image.src = options.imgSrc;
         el.on('remove', function(){$(window).unbind('mouseup', imgMouseUp)});

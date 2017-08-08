@@ -111,7 +111,7 @@
 				if(cond!=null&&cond!=''){
 					param=param+'&'+cond;
 				}
-				if(options.func!=null||options.func!=''){
+				if(options.func!=null&&options.func!=''){
 					eval(options.func);
 				}
 				$.ajax({

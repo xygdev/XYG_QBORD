@@ -300,7 +300,7 @@
              	    }
              	}
             }
-        	if(options.func!=null||options.func!=''){
+        	if(options.func!=null&&options.func!=''){
 				eval(options.func);
 			}
         });     

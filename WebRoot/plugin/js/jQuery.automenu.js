@@ -288,7 +288,7 @@
 								$('.'+data[i].PREV_CODE+' ul:eq(0)').append("<li class=\"treeview "+data[i].CODE+"\"><a href=\"#\"><i class=\""+data[i].ICON+"\"></i><span>"+data[i].NAME+"</span><i class=\"fa fa-angle-left pull-right\"></i></a><ul class=\"treeview-menu\"></ul></li>");
 							}
 							
-						}else if(data[i].FUNC!=null||data[i].FUNC!=''){
+						}else if(data[i].FUNC!=null&&data[i].FUNC!=''){
 							var k = $(('a[data-funcid="'+data[i].FUNC_ID+'"]'),$('.'+data[i].PREV_CODE)).length;
 							if(k){
 								console.log('skip');

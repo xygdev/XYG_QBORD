@@ -32,6 +32,7 @@
  					   对应的crudtype方法：pre-update/update/insert/lovquery
  		   2017.6.14   在ajax的error：function中新增刷新当前iframe逻辑
  		               检查是否session过期导致error	
+ 		   2017.8.8    检查出Bug,修改"非"条件的OR为AND
 ***************************************************************************************/
 (function($) {
 	/******************listener start***********************
@@ -129,7 +130,7 @@
 				result=confirm(options.delmsg+col+'?');
 				if(result==true){
 					param=options.delparam[0]+'='+tr.children(options.delparam[1]).text();
-					if(options.func!=null||options.func!=''){
+					if(options.func!=null&&options.func!=''){
 						eval(options.func);
 					}
 					$.ajax({
@@ -165,7 +166,7 @@
 				pageframe=$(this).attr('data-reveal-id');
 				param = '';
 				tr=$(this).parent().parent();
-				if(options.func!=null||options.func!=''){
+				if(options.func!=null&&options.func!=''){
 					eval(options.func);
 				}
 				//console.log(param);
@@ -186,7 +187,7 @@
 					dataType:'json',
 					success: function (data) {
 						jQuery.json.getUpdateJSON(data,pageframe);/****获取目标更新行数据****/
-						if(options.afterdatafunc!=null||options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
+						if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
 							eval(options.afterdatafunc);
 						}
 					},
@@ -207,7 +208,7 @@
 				if(validate_flag==true){
 				/****************************/
 					param=$('#'+options.pageframe+' form').serialize();
-	       	        if(options.func!=null||options.func!=''){
+	       	        if(options.func!=null&&options.func!=''){
 						eval(options.func);
 					}
 	       	        //console.log(param);
@@ -226,7 +227,7 @@
 				    		}else{
 				    			layer.alert("更新处理失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
 				    		}		
-							if(options.afterdatafunc!=null||options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
+							if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
 								eval(options.afterdatafunc);
 							}				  
 				    	},
@@ -249,7 +250,7 @@
 			else if(options.crudtype=='pre-insert'){
 				$(options.load).show();/****显示加载动画****/
 				pageframe=$(this).attr('data-reveal-id');
-				if(options.func!=null||options.func!=''){
+				if(options.func!=null&&options.func!=''){
 					eval(options.func);
 				}
                 $('#'+pageframe+' span[data-type]').hide();
@@ -268,7 +269,7 @@
 				if(validate_flag==true){
 				/****************************/
 					param=$('#'+options.pageframe+' form').serialize();
-	       	        if(options.func!=null||options.func!=''){
+	       	        if(options.func!=null&&options.func!=''){
 						eval(options.func);
 					}
 	       	        //console.log(param);
@@ -285,7 +286,7 @@
 				    		}else{
 				    			layer.alert("新增处理失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
 				    		}		
-							if(options.afterdatafunc!=null||options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
+							if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
 								eval(options.afterdatafunc);
 							}				  
 				    	},
@@ -307,7 +308,7 @@
 			/******条件查询方法******/
 			else if(options.crudtype=='query'){
 				cond=$('#'+options.pageframe+' form').serialize();
-				if(options.func!=null||options.func!=''){
+				if(options.func!=null&&options.func!=''){
 					eval(options.func);
 				}
        	        //console.log(cond);
@@ -345,7 +346,7 @@
 				$('#'+options.pageframe+' input[data-type="number"]').val(pageNo);
 				param=param+'&pageSize='+pageSize+'&pageNo='+pageNo;
 				extendParam = $('#'+options.pageframe+' input[data-type="extend_param"]').val();
-				if(extendParam!=null||extendParam!=''){
+				if(extendParam!=null&&extendParam!=''){
 					param = param + extendParam;
 				}
 				queryurl=$('#'+options.pageframe+' input[data-type="url"]').val();
@@ -375,7 +376,7 @@
 						}
 						width='-'+parseInt($('#'+options.pageframe).css('width'))/2+'px';
 			        	$('#'+options.pageframe).css('margin-left',width);
-						if(options.afterdatafunc!=null||options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
+						if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
 							eval(options.afterdatafunc);
 						}
 						$('.'+options.load).remove();
