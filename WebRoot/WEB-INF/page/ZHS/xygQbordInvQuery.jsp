@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div id="container">
       <div class="ajax_loading">
-        <i class="fa fa-spinner fa-fulse fa-4x" style="color:white;"></i>
+        <i class="fa fa-spinner fa-fulse fa-4x" style="color:white"></i>
       </div>
       <div id="scrollbar" class="table pointer">
         <table id="main-table" data-table="Inv">
@@ -35,8 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="ORGANIZATION_NAME" data-column="db">库存组织</th>
             <th class="ITEM_NUMBER" data-column="db">物料编码</th>
             <th class="DESCRIPTION" data-column="db">本厂型号</th>
-            <th class="CARNAME" data-column="db">中文描述</th>
-            <th class="SUBINVENTORY_CODE" data-column="db">子库存编码</th>
+            <th class="CARNAME" data-column="db">中文描述</th>     
             <th class="ONHAND_QTY" data-column="db">现有量</th>
             <th class="AVAILABLE_QTY" data-column="db">可用量</th>
             <th class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></th>         
@@ -47,7 +46,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="ITEM_NUMBER" data-column="db"></td>
             <td class="DESCRIPTION" data-column="db"></td>
             <td class="CARNAME" data-column="db"></td>
-            <td class="SUBINVENTORY_CODE" data-column="db"></td>
             <td class="ONHAND_QTY" data-column="db"></td>
             <td class="AVAILABLE_QTY" data-column="db"></td>
             <td class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></td>          
@@ -78,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </jsp:include>
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ORGANIZATION_ID"/>
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ORGANIZATION_ID ASC"/>
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="perm/getInvPage.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 
@@ -88,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <jsp:include page="public/rowdefine.jsp"></jsp:include>
       <jsp:include page="public/orderby.jsp"></jsp:include>
       <jsp:include page="public/config.jsp">
-        <jsp:param name="tableId" value="#main-table" />
+        <jsp:param name="tableId" value="#main-table"/>
       </jsp:include>
       <jsp:include page="public/lov.jsp"></jsp:include>
       <div id="query" class="pop_frame row-2">
@@ -103,13 +101,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md" readonly="readonly" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_CODE",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_CODE_Q","#ORGANIZATION_NAME_Q"] value="···"/>    
-            <label for='ORGANIZATION_NAME_Q' class='left md'>库存组织</label>
-            <input type='text' id='ORGANIZATION_NAME_Q' name='ORGANIZATION_NAME' data-update="db" class='left lg' readonly="readonly"/>           
+            <label for="ORGANIZATION_NAME_Q" class="left md">库存组织:</label>
+            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left lg" readonly="readonly"/>           
             <br style="clear:both"/>
-            <label for='DESCRIPTION_Q' class='left md'>本厂型号:</label>
-            <input type='text' id='DESCRIPTION_Q' name='DESCRIPTION' data-update="db" class='left lg'/>    
-            <label for='CARNAME_Q' class='left md'>中文描述:</label>
-            <input type='text' id='CARNAME_Q' name='CARNAME' data-update="db" class='left lg'/>           
+            <label for="DESCRIPTION_Q" class="left md">本厂型号:</label>
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg"/>    
+            <label for="CARNAME_Q" class="left md">中文描述:</label>
+            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>           
           </form>
         </div>
         <div class="foot">
@@ -118,12 +116,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>
       <input type="hidden" id="INTERACT_CODE" value="INV_QUERY"/>
-      
+      <input type="hidden" id="HEADER_ID" value=""/> 
     </div>
     <script>
         $(function() {
             //设置拖拽
-            $("#query").draggable({ handle: ".title"});
+            $('#query').draggable({ handle: '.title'});
+           
             //初始化CRUD和LOV条件查询
             $().crudListener();
             $().revealListener();             
@@ -132,12 +131,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.validateOrgan = function(){
                 organizationId = $('#ORGANIZATION_ID_Q').val();
                 if(organizationId==null||organizationId==''){
-                   $('.ajax_loading').hide();
-                   layer.alert('必须选择库存组织才能查询库存信息！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
-                   throw ('必须选择库存组织才能查询库存信息！');
+                    $('.ajax_loading').hide();
+                    layer.alert('必须选择库存组织才能查询库存信息！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
+                    throw ('必须选择库存组织才能查询库存信息！');
                 }
-            } 
-        });
+            }   
+        }); 
         jQuery.json={
             getContent:function(data,JSONtype){
                 if(JSONtype=='table'){
@@ -146,8 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    ,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
                    ,['.ITEM_NUMBER','ITEM_NUMBER']
                    ,['.DESCRIPTION','DESCRIPTION'] 
-                   ,['.CARNAME','CARNAME']
-                   ,['.SUBINVENTORY_CODE','SUBINVENTORY_CODE']
+                   ,['.CARNAME','CARNAME']          
                    ,['.ONHAND_QTY','ONHAND_QTY']           
                    ,['.AVAILABLE_QTY','AVAILABLE_QTY']  
                    ,['.ORGANIZATION_ID','ORGANIZATION_ID']                      
@@ -158,9 +156,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $().revealListener();
                 }else if(JSONtype=='organ'){
                     var mapRowArray=[
-                       'ORGANIZATION_ID'
-                      ,'ORGANIZATION_CODE'
-                      ,'ORGANIZATION_NAME'
+                        'ORGANIZATION_ID'
+                       ,'ORGANIZATION_CODE'
+                       ,'ORGANIZATION_NAME'
                     ];
                     $().mapContentJson(data,'.contentbox',mapRowArray);                     
                 } 

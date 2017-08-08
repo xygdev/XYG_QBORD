@@ -89,7 +89,7 @@
           <!-- 分页按钮区域 end -->
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="PERMISSION_ID"/>
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="PERMISSION_ID ASC"/>
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="perm/getInvPermission.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 
@@ -110,8 +110,7 @@
       <!-- 个人配置区域 end -->
       <!-- lov区域 start -->
       <jsp:include page="public/lov.jsp"></jsp:include>
-      <!-- lov区域 end -->
-         
+      <!-- lov区域 end -->  
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-3">
         <div class="title pointer">
@@ -121,19 +120,19 @@
         <div class="line"></div>
         <div class="content row-3">
           <form>
-            <label for='USER_NAME_Q' class='left md'>用户账号:</label> 
-            <input type='text' id='USER_NAME_Q' name='USER_NAME' class='left md' data-modify='true' data-pageframe="query"  data-lovbtn='USER_LOV_Q'  data-param="USER_NAME" />          
-            <input type='hidden' id='USER_ID_Q' name='USER_ID'/>
-            <input type='button' id="USER_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","发件账号","发件人"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["发件账号","发件人"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".USER_NAME",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_NAME_Q","#DESCRIPTION_Q"] value="···"/>
-            <label for='DESCRIPTION_Q' class='left md'>用户名称:</label> 
-            <input type='text' id='DESCRIPTION_Q' name="DESCRIPTION" class="left lg" readonly="readonly"/>                                   
+            <label for="USER_NAME_Q" class="left md">用户账号:</label> 
+            <input type="text" id="USER_NAME_Q" name="USER_NAME" class="left md" data-modify="true" data-pageframe="query"  data-lovbtn="USER_LOV_Q"  data-param="USER_NAME" />          
+            <input type="hidden" id="USER_ID_Q" name="USER_ID"/>
+            <input type="button" id="USER_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名称"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名称"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".USER_NAME",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_NAME_Q","#DESCRIPTION_Q"] value="···"/>
+            <label for="DESCRIPTION_Q" class="left md">用户名称:</label> 
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg" readonly="readonly"/>                                   
             <br style="clear:both"/>
             <label for="ORGANIZATION_CODE_Q" class="left md">库存编码:</label> 
-            <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md"  data-modify='true' data-pageframe="query"  data-lovbtn='ORGANIZATION_LOV_Q'  data-param="ORGANIZATION_CODE" />
+            <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_CODE" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getOrganizationPage.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_CODE",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_CODE_Q","#ORGANIZATION_NAME_Q"] value="···"/>    
-            <label for='ORGANIZATION_NAME_Q' class='left md'>库存组织</label>
-            <input type='text' id='ORGANIZATION_NAME_Q' name='ORGANIZATION_NAME' data-update="db" class='left lg' readonly="readonly"/>           
+            <label for="ORGANIZATION_NAME_Q" class="left md">库存组织:</label>
+            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" data-update="db" class="left lg" readonly="readonly"/>           
             <br style="clear:both"/>
             <label for="START_DATE_ACTIVE_F" class="left md">启用日期:</label>
             <input type="text" id="START_DATE_ACTIVE_F" name="START_DATE_ACTIVE_F" class="left lg" data-datatype="date" placeholder="起始启用日期"/>
@@ -146,7 +145,6 @@
         </div>
       </div>
       <!-- 条件查询区域end -->
-         
       <!-- 更新/新增区域 start -->
       <div id="ui" class="pop_frame row-2" >
         <div class="title pointer">
@@ -158,17 +156,17 @@
           <form id="updateData">  
             <input type="hidden" id="PERMISSION_ID" name="PERMISSION_ID" data-update="db"/>
             <label for="USER_NAME" class="left md">用户账号:</label> 
-            <input type="text" id="USER_NAME" name="USER_NAME" class="left md" data-update="db" data-modify='true' data-pageframe="query"  data-lovbtn="USER_LOV"  data-param="USER_NAME" required="required"/>          
+            <input type="text" id="USER_NAME" name="USER_NAME" class="left md" data-update="db" data-modify="true" data-pageframe="query"  data-lovbtn="USER_LOV"  data-param="USER_NAME" required="required"/>          
             <input type="hidden" id="U_ID" name="USER_ID" data-update="db"/>
-            <input type="button" id="USER_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","发件账号","发件人"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["发件账号","发件人"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".USER_NAME",".DESCRIPTION"] data-recid=["#U_ID","#USER_NAME","#DESCRIPTION"] value="···"/>
-            <label for='DESCRIPTION' class='left md'>用户名称:</label> 
-            <input type='text' id='DESCRIPTION' name="DESCRIPTION" data-update="db" class="left lg" readonly="readonly" required="required"/>         
-            <label for='ORGANIZATION_CODE' class='left md'>库存编码</label> 
-            <input type='text' id='ORGANIZATION_CODE' name='ORGANIZATION_CODE' class='left md' data-update="db" required="required" data-modify="true" data-pageframe="query" data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE"/>          
-            <input type='hidden' id='ORGANIZATION_ID' name='ORGANIZATION_ID'/>
-            <input type='button' id="ORGANIZATION_LOV" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="库存组织查询" data-queryurl="lov/getOrganizationPage.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存id","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存编码","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_CODE",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_CODE","#ORGANIZATION_NAME"] value="···"/>           
-            <label for='ORGANIZATION_NAME' class='left md'>库存组织</label>
-            <input type='text' id='ORGANIZATION_NAME' name='ORGANIZATION_NAME' data-update="db" required='required' class='left lg' readonly="readonly"/>             
+            <input type="button" id="USER_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名称"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名称"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".USER_NAME",".DESCRIPTION"] data-recid=["#U_ID","#USER_NAME","#DESCRIPTION"] value="···"/>
+            <label for="DESCRIPTION" class="left md">用户名称:</label> 
+            <input type="text" id="DESCRIPTION" name="DESCRIPTION" data-update="db" class="left lg" readonly="readonly" required="required"/>         
+            <label for="ORGANIZATION_CODE" class="left md">库存编码</label> 
+            <input type="text" id="ORGANIZATION_CODE" name="ORGANIZATION_CODE" class="left md" data-update="db" required="required" data-modify="true" data-pageframe="query" data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE"/>          
+            <input type="hidden" id="ORGANIZATION_ID" name="ORGANIZATION_ID"/>
+            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getOrganizationPage.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存id","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存编码","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_CODE",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_CODE","#ORGANIZATION_NAME"] value="···"/>           
+            <label for="ORGANIZATION_NAME" class="left md">库存组织</label>
+            <input type="text" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" data-update="db" required="required" class="left lg" readonly="readonly"/>             
           </form>    
         </div>
         <div class="foot">
@@ -176,105 +174,105 @@
         </div>
       </div>
       <!-- 更新/新增用户区域 end -->
-
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
-      <input type="hidden" id="INTERACT_CODE" value="PERMISSION"/> 
+      <input type="hidden" id="INTERACT_CODE" value="INV_PERMISSION"/> 
       <input type="hidden" id="HEADER_ID" value=""/> 
       <!-- 用户信息存放区域 end -->      
-      <script>       
-          $(function() {
-	          //设置拖拽
-	          $("#ui").draggable({handle: ".title"});
-	          $("#query").draggable({handle: ".title"});
+    </div>
+    <script>       
+        $(function() {
+	        //设置拖拽
+	        $('#ui').draggable({handle: '.title'});
+	        $('#query').draggable({handle: '.title'});
 	                  
-	          //初始化CRUD和LOV条件查询
-	          $().crudListener(); 
-	          $().revealListener(); 
-	                 
-	          $('input[data-datatype="date"]').datetimepicker({
-	              lang:"ch",           //语言选择中文
-	              timepicker:true,    //启用时间选项
-	              format:"Y-m-d H:i:s",      //格式化日期
-	              step: 30,
-	              showOnClick: true
-	          });  
+	        //初始化CRUD和LOV条件查询
+	        $().crudListener(); 
+	        $().revealListener(); 
+	               
+	        $('input[data-datatype="date"]').datetimepicker({
+	            lang:'ch',           //语言选择中文
+	            timepicker:true,    //启用时间选项
+	            format:'Y-m-d H:i:s',      //格式化日期
+	            step: 30,
+	            showOnClick: true
+	        });  
              
-	          $.fn.validatePerm = function(){
-	              $('[data-enable]').off('click');
-	              $('[data-enable]').on('click',function(){
-	                  var action = $(this).attr('data-enable');
-		              var tr=$(this).parent().parent();
-		              var permissionId=tr.children('.PERMISSION_ID').text();
-		              var param = 'PERMISSION_ID='+permissionId+'&ACTION='+action;
-	                  $.ajax({
-		                  type:'post', 
-		                  data:param,
-		                  url:'perm/validate.do',
-		                  dataType:'json',
-		                  success:function(data){
-			                  if(data.retcode=='0'){
-			                      if(action == 'OFF'){
-			                          layer.msg('失效成功!');
-			                      }else if(action == 'ON'){
-			                          layer.msg('启用成功!');
-			                      }
-			                      $('#refresh').click();/****点击刷新当前页按钮，刷新数据****/  
-			                  }else{
-			                      layer.alert('更新失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
-			                  }
-	                      },error:function(){
-	                          layer.msg('获取JSON数据失败');    
-			                  if(window.frameElement != null){
-				                  //console.log("处于一个iframe中");
-				                  $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-			                  }   
-	                      }
-	                  });
-	              });
-              }       
-          }); 
+	        $.fn.validatePerm = function(){
+	            $('[data-enable]').off('click');
+	            $('[data-enable]').on('click',function(){
+	                var action = $(this).attr('data-enable');
+		            var tr=$(this).parent().parent();
+		            var permissionId=tr.children('.PERMISSION_ID').text();
+		            var param = 'PERMISSION_ID='+permissionId+'&ACTION='+action;
+	                $.ajax({
+		                type:'post', 
+		                data:param,
+		                url:'perm/validate.do',
+		                dataType:'json',
+		                success:function(data){
+			                if(data.retcode=='0'){
+			                    if(action == 'OFF'){
+			                        layer.msg('失效成功!');
+			                    }else if(action == 'ON'){
+			                        layer.msg('启用成功!');
+			                    }
+			                    $('#refresh').click();/****点击刷新当前页按钮，刷新数据****/  
+			                }else{
+			                    layer.alert('更新失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+			                }
+	                    },error:function(){
+	                        layer.msg('获取JSON数据失败');    
+			                if(window.frameElement != null){
+				                //console.log("处于一个iframe中");
+				                $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+			                }   
+	                    }
+	                });
+	            });
+            }       
+         }); 
        
-          jQuery.json={
-              getContent:function(data,JSONtype){  
-	              if(JSONtype=='table'){   
-	                  var mapRowArray=[
-	                      ['.USER_NAME','USER_NAME']
-	                     ,['.USER_DESC','USER_DESC']
-		                 ,['.ORGANIZATION_CODE','ORGANIZATION_CODE']
-		                 ,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
-		                 ,['.START_DATE_ACTIVE','START_DATE_ACTIVE']
-		                 ,['.ENABLED_FLAG','ENABLED_FLAG',
-		                  function(){
-		                      if(data.rows[i].ENABLED_FLAG=='Y'){ 
-		                          $('#main-table').find('tr:eq('+(i+1)+')').find('.ENABLED_FLAG').html('<i class="pointer fa fa-toggle-on green" data-enable="OFF" data-show="true"></i>');
-		                      }else{
-		                          $('#main-table').find('tr:eq('+(i+1)+')').find('.ENABLED_FLAG').html('<i class="pointer fa fa-toggle-off" data-enable="ON" data-show="true"></i>');
-		                      } 
-		                  }
-		                  ]                  
-		                  ,['.PERMISSION_ID','PERMISSION_ID']                      
-		              ];
-		              $().mapContentJson(data,'#main-table',mapRowArray);
-		              $().afterRowDefine();
-		              $().crudListener();
-		              $().validatePerm();
-		              $().revealListener(); 
-	              }else if(JSONtype=='user'){
-		              var mapRowArray=[
-		                 'USER_ID'
-		                ,'USER_NAME'
-		                ,'DESCRIPTION'
-		              ];
-		              $().mapContentJson(data,'#lov',mapRowArray);                          
-	              }else if(JSONtype=='organ'){
-	                  var mapRowArray=[
-		                  'ORGANIZATION_ID'
-		                 ,'ORGANIZATION_CODE'
-		                 ,'ORGANIZATION_NAME'
-		              ];
-		              $().mapContentJson(data,'.contentbox',mapRowArray);                     
-	              }                       
+         jQuery.json={
+             getContent:function(data,JSONtype){  
+	             if(JSONtype=='table'){   
+	                 var mapRowArray=[
+	                     ['.USER_NAME','USER_NAME']
+	                    ,['.USER_DESC','USER_DESC']
+		                ,['.ORGANIZATION_CODE','ORGANIZATION_CODE']
+		                ,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
+		                ,['.START_DATE_ACTIVE','START_DATE_ACTIVE']
+		                ,['.ENABLED_FLAG','ENABLED_FLAG',
+			                function(){
+			                    if(data.rows[i].ENABLED_FLAG=='Y'){ 
+			                        $('#main-table').find('tr:eq('+(i+1)+')').find('.ENABLED_FLAG').html('<i class="pointer fa fa-toggle-on green" data-enable="OFF" data-show="true"></i>');
+			                    }else{
+			                        $('#main-table').find('tr:eq('+(i+1)+')').find('.ENABLED_FLAG').html('<i class="pointer fa fa-toggle-off" data-enable="ON" data-show="true"></i>');
+			                    } 
+			                }
+		                 ]                  
+		                ,['.PERMISSION_ID','PERMISSION_ID']                      
+		             ];
+		             $().mapContentJson(data,'#main-table',mapRowArray);
+		             $().afterRowDefine();
+		             $().crudListener();
+		             $().validatePerm();
+		             $().revealListener(); 
+	             }else if(JSONtype=='user'){
+		             var mapRowArray=[
+		                'USER_ID'
+		               ,'USER_NAME'
+		               ,'DESCRIPTION'
+		             ];
+		             $().mapContentJson(data,'#lov',mapRowArray);                          
+	             }else if(JSONtype=='organ'){
+	                 var mapRowArray=[
+		                 'ORGANIZATION_ID'
+		                ,'ORGANIZATION_CODE'
+		                ,'ORGANIZATION_NAME'
+		             ];
+		             $().mapContentJson(data,'.contentbox',mapRowArray);                     
+	             }                       
              },  
 
              getMSG:function(data){
