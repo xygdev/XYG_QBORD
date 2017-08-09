@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="ICON_CODE" class="left md">图标编码</label> 
             <input type="text" id="ICON_CODE" name="ICON_CODE" data-update="db" class="left md"  readonly="readonly" required="required"/>
             <input type="hidden" id="ICON_ID" name="ICON_ID" data-update="db"/>
-            <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","来源"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","ICON_SOURCE"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>  
+            <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","预览"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","PREVIEW"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>  
           </form>
         </div>
         <div class="foot">       
@@ -372,7 +372,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    'ICON_ID'          
 	                   ,'ICON_CODE'       
 	                   ,'DESCRIPTION'
-	                   ,'ICON_SOURCE'
+	                   ,['.PREVIEW','ICON_CODE',
+                           function(){
+                               $('#lov').find('tr:eq('+(i+1)+')').find('.PREVIEW').html('<i class="'+data.rows[i].ICON_CODE+'" style="color:black"></i>');
+                           }
+                       ]
 	                ];
 	                $().mapContentJson(data,'#lov',mapRowArray);                
                 }else if(JSONtype=='menu'){
