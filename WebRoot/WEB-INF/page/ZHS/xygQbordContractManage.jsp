@@ -263,30 +263,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="line"></div>             
         <div class="detail_header" style="height:167px">
           <input type="hidden" id="HEADER_ID_L" />
-          <label class="long" for="CONTRACT_NUMBER_L">合同号</label>
+          <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
-          <label class="long" for="CURR_CODE_L">币别</label>
+          <label class="mid" for="CURR_CODE_L">币别</label>
           <input type="text" id="CURR_CODE_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
-          <label class="long" for="SALES_ORG_NAME_L">销售公司</label>
+          <label class="mid" for="SALES_ORG_NAME_L">销售公司</label>
           <input type="text" id="SALES_ORG_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="SALES_ORG_ID_L"/>
-          <label class="long" for="PARTY_NAME_L">客户名称</label>
+          <label class="mid" for="PARTY_NAME_L">客户名称</label>
           <input type="text" id="PARTY_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="CUSTOMER_ID_L"/>
           <br style="clear:both"/>
-          <label class="long" for="SHIP_FROM_ORG_NAME_L">发货组织</label>
+          <label class="mid" for="SHIP_FROM_ORG_NAME_L">发货组织</label>
           <input type="text" id="SHIP_FROM_ORG_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="SHIP_FROM_ORG_ID_L"/>
           <input type="hidden" id="ORG_ID_L"/>
-          <label class="long" for="CUSTOMER_PO_L">客订PO</label>
+          <label class="mid" for="CUSTOMER_PO_L">客订PO</label>
           <input type="text" id="CUSTOMER_PO_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
-          <label class="long" for="PRICE_LIST_NAME_L">价目表</label>
+          <label class="mid" for="PRICE_LIST_NAME_L">价目表</label>
           <input type="text" id="PRICE_LIST_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="PRICE_LIST_ID_L"/>
-          <label class="long" for="STATUS_DESC_L">状态</label>
+          <label class="mid" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
+          <br style="clear:both"/>
         </div>     
         <!-- 订单明细表格区域 start -->
         <div class="detail_table">

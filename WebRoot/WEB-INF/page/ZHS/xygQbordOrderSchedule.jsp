@@ -201,6 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="hidden" id="PRICE_LIST_ID_L"/>
           <label class="mid" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
+          <br style="clear:both"/>
         </div>     
         <!-- 订单明细表格区域 start -->
         <div class="detail_table">
