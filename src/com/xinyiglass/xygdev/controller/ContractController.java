@@ -31,6 +31,41 @@ public class ContractController extends BaseController {
 		return this.getSessionAttr("LANG")+"/xygQbordContractManage";
 	}
 	
+	@RequestMapping("/orderSchedule.do")
+	public String orderSchedule(){
+		return this.getSessionAttr("LANG")+"/xygQbordOrderSchedule";
+	}
+	
+	@RequestMapping(value = "/getTransferContractH.do", method = RequestMethod.POST)
+	public void getTransferContractPage() throws Exception
+	{   	
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));		
+		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
+		conditionMap.put("contractNumber", this.getPara("CONTRACT_NUMBER"));
+		conditionMap.put("shipFromOrgId", this.getParaToLong("ORGANIZATION_ID"));
+		conditionMap.put("salesOrgId", this.getParaToLong("ORG_ID"));
+		conditionMap.put("customerId", this.getParaToLong("CUSTOMER_ID"));
+		conditionMap.put("creationDate_F", this.getParaToDate("CREATION_DATE_F"));
+		conditionMap.put("creationDate_T", this.getParaToDate("CREATION_DATE_T"));
+		conditionMap.put("orderBy", this.getPara("orderby"));
+		this.renderStr(CHS.findForTransferPage(conditionMap, loginId));
+	}
+	
+	@RequestMapping(value = "/getTransferContractL.do", method = RequestMethod.POST)
+	public void getTransferContractLine() throws Exception
+	{   	
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));		
+		conditionMap.put("cusBatch", this.getPara("CUS_BATCH"));
+		conditionMap.put("orderBy", this.getPara("orderby"));
+		this.renderStr(CHS.findForTransferPageL(conditionMap, loginId));
+	}
+	
 	@RequestMapping(value = "/getContractH.do", method = RequestMethod.POST)
 	public void getContractPage() throws Exception
 	{   	
@@ -49,9 +84,7 @@ public class ContractController extends BaseController {
 		conditionMap.put("orderBy", this.getPara("orderby"));
 		this.renderStr(CHS.findForPage(conditionMap, loginId));
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/insertH", method = RequestMethod.POST)
 	public void insertH() throws Exception
 	{
