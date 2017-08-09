@@ -15,11 +15,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="plugin/jQuery/jQuery-2.1.4.min.js"></script> 
     <style>
         html,body{height:100%}
+        /*
 		#v3dTest {width: 100%;height: 100%;z-index:97}
 		body {margin:0 auto;overflow:hidden;}  
 		.bg{background-repeat: no-repeat;background-image: url(/image/home/bg1.png);background-position: top center;background-attachment: fixed;background-size: cover;}
 		.box{position:absolute;/*top:65%;*/width:600px;height: 268px;margin:0 auto; padding:30px;z-index:103}
         .car{position:absolute;/*top:65%;*/width:600px;height: 268px;margin:0 auto; padding:30px;z-index:102} 
+        */
 		/*
 		@media screen and (min-width:1441px){
 		   .box{top:450px;}
@@ -44,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         */
     </style>
   </head>
-  
+  <!--  
   <body class="bg">
     <div class="box"></div>		
     <div class="car">		
@@ -57,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
   <script type="text/javascript" src="plugin/js/3dControl/3d_control.js"></script>
   <script>
-     
+      /*
       function initCar(){
           var left = (document.body.clientWidth/2-($('.car').outerWidth()/2));
           var screen_code = window.screen.height/window.screen.width*16;
@@ -88,5 +90,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       window.onresize=function(){
           initCar();
       }
+      */
   </script>
 </html>

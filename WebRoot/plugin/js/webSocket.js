@@ -38,5 +38,7 @@
     	},function(){
     		$('#broadcast').click();
     	});
-    	$('#refresh_bc').click(); 	
+    	var count = parseInt($('#broadcast span').text())+1;
+    	$('#broadcast span').text(count);
+    	//$('#refresh_bc').click(); 	
     }

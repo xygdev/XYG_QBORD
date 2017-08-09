@@ -19,8 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
-    <!-- Scrollbar -->
-    <link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
   </head>
   <body>
     <div id="container">
@@ -113,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-1">
         <div class="title pointer">
-          <span><i class="fa fa-user"></i>&nbsp;查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
@@ -135,8 +133,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 更新/新增区域 start -->
 	  <div id="ui" class="pop_frame row-3" >
         <div class="title pointer">
-          <span data-type="update"><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;更新</span>
-	      <span data-type="insert"><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;新增</span>
+          <span data-type="update"><i class="fa fa-puzzle-piece fa-1x" aria-hidden="true"></i>&nbsp;更新</span>
+	      <span data-type="insert"><i class="fa fa-puzzle-piece fa-1x" aria-hidden="true"></i>&nbsp;新增</span>
         </div>
         <a class="close-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>

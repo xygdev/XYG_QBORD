@@ -18,8 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
-    <!-- Scrollbar -->
-    <link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
   </head>
   <body>
     <div id="container">
@@ -55,7 +53,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="SALES_ORG_ID" style="display:none" data-column="hidden">&nbsp;</th> 
             <th class="SHIP_FROM_ORG_ID" style="display:none" data-column="hidden">&nbsp;</th> 
             <th class="ORG_ID" style="display:none" data-column="hidden">&nbsp;</th>    
-            <th class="PRICE_LIST_ID" style="display:none" data-column="hidden">&nbsp;</th>      
+            <th class="PRICE_LIST_ID" style="display:none" data-column="hidden">&nbsp;</th>   
+            <th class="STATUS" style="display:none" data-column="hidden">&nbsp;</th>   
           </tr>
           <tr>
             <td class="CONTRACT_NUMBER" data-column="db"></td>
@@ -84,7 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="SALES_ORG_ID" style="display:none" data-column="hidden">&nbsp;</td> 
             <td class="SHIP_FROM_ORG_ID" style="display:none" data-column="hidden">&nbsp;</td> 
             <td class="ORG_ID" style="display:none" data-column="hidden">&nbsp;</td> 
-            <td class="PRICE_LIST_ID" style="display:none" data-column="hidden">&nbsp;</td>      
+            <td class="PRICE_LIST_ID" style="display:none" data-column="hidden">&nbsp;</td>
+            <td class="STATUS" style="display:none" data-column="hidden">&nbsp;</td>       
           </tr>
         </table>
       </div>
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 条件查询区域 start -->
       <div id="query" class="pop_frame row-5">     
         <div class="title pointer">      
-          <span><i class="fa fa-th-list"></i>&nbsp;订单查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;订单查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
@@ -333,7 +333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <i class="fa fa-download pointer" title="接收订单" data-status="RECEIVE" data-statusdesc="接收"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-filter pointer" title="审核订单" data-status="CHECK" data-statusdesc="审核"></i>
+            <i class="fa fa-book pointer" title="审核订单" data-status="CHECK" data-statusdesc="审核"></i>
           </div>
           <div class="setting">
             <i class="fa fa-check-square pointer" title="确认订单" data-status="CONFIRM" data-statusdesc="确认"></i>
@@ -597,16 +597,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('.show_detail').off('click');  
                 $('.show_detail').on('click',function(){
                     var userType = '${USER_TYPE}';
+                    var tr=$(this).parent().parent();
+                    var status = tr.children('.STATUS').text();
 			    	if(userType=='EMP'){
-			    	    //null;
+			    	    $('i[data-status="RECEIVE"]').parent().css("display","");
+			    	    $('i[data-status="CHECK"]').parent().css("display","");
+			    	    if(status=='BOOK'){
+			    	        $('i[data-status="CHECK"]').parent().css("display","none");
+			    	    }else if(status=='RECEIVE'){
+			    	        $('i[data-status="RECEIVE"]').parent().css("display","none");
+			    	    }else{
+			    	        $('i[data-status="RECEIVE"]').parent().css("display","none");
+			    	        $('i[data-status="CHECK"]').parent().css("display","none");
+			    	    }
 			    		$('i[data-status="BOOK"]').parent().css("display","none");
 			    		$('i[data-status="CONFIRM"]').parent().css("display","none");
 			    	}else if(userType='CUSTOMER'){
+			    	    $('i[data-status="BOOK"]').parent().css("display","");
+			    		$('i[data-status="CONFIRM"]').parent().css("display","");
+			    	    if(status=='INPUT'){
+			    	        $('i[data-status="CONFIRM"]').parent().css("display","none");
+			    	    }else if(status=='CHECK'){
+			    	        $('i[data-status="BOOK"]').parent().css("display","none");
+			    	    }else{
+			    	        $('i[data-status="BOOK"]').parent().css("display","none");
+			    		    $('i[data-status="CONFIRM"]').parent().css("display","none");
+			    	    }
 			    	    $('i[data-status="RECEIVE"]').parent().css("display","none");
 			    	    $('i[data-status="CHECK"]').parent().css("display","none");
 			    	    $('#change_price_btn').css("display","none");
 			    	}
-                    tr=$(this).parent().parent();
                     $('.detail_header input').val('');
                     $('#sub_table input[data-type="number"]').val('1');
                     $('#CONTRACT_NUMBER_L').val(tr.children('.CONTRACT_NUMBER').text());
@@ -753,6 +773,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                 ,['.PRICE_LIST_ID','PRICE_LIST_ID']
 	                 ,['.PRICE_LIST_NAME','PRICE_LIST_NAME']
 	                 ,['.ORDER_TYPE_NAME','ORDER_TYPE_NAME']
+	                 ,['.STATUS','STATUS']
 	                 ,['.STATUS_DESC','STATUS_DESC']
 	                 ,['.CREATION_DATE','CREATION_DATE']
 	                 ,['.STATUS_BOOK_DATE','STATUS_BOOK_DATE']

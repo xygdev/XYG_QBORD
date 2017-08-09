@@ -19,8 +19,6 @@
 	<link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
 	<script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>	
 	<script src="plugin/js/xygdev.commons.js"></script>	
-	<!-- Scrollbar -->
-	<link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
   </head>
   <body>
     <div id="container">
@@ -92,7 +90,7 @@
           <i class="fa fa-user-plus pointer" data-reveal-id="ui" data-key="true" title="新增用户" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().beforePreInsert();" data-revealfunc="$().afterReveal(); " ></i>
         </div>
         <div class="setting">
-          <i id='refresh' class="fa fa-refresh pointer" title="刷新数据" data-pagetype='refresh' data-pageframe="table"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
         </div>
         <div id="setting">
           <!-- 设置菜单区域 start -->
@@ -142,7 +140,7 @@
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-3">     
         <div class="title pointer">      
-          <span><i class="fa fa-user"></i>&nbsp;用户查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;用户查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class='line'></div>
@@ -172,8 +170,8 @@
       <!-- 更新/新增用户区域 start -->
       <div id="ui" class="pop_frame row-5">     
         <div class="title pointer">      
-          <span data-type="update"><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;更新用户</span>
-          <span data-type="insert"><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;新增用户</span>
+          <span data-type="update"><i class="fa fa-user-circle-o fa-1x" aria-hidden="true"></i>&nbsp;更新用户</span>
+          <span data-type="insert"><i class="fa fa-user-plus fa-1x" aria-hidden="true"></i>&nbsp;新增用户</span>
         </div>
         <a class="close-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>

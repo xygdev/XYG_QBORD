@@ -32,7 +32,7 @@ public class BroadcastDaoImpl extends DevJdbcDaoSupport implements BroadcastDao{
 	
 	public SqlResultSet findValidBroadcast() throws Exception{
 		Map<String,Object> paramMap = new HashMap<String,Object>();
-		String sql = "SELECT * FROM XYG_ALD_BROADCAST_V WHERE 1 = 1 AND SYSDATE BETWEEN START_DATE AND END_DATE AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID ORDER BY START_DATE DESC";
+		String sql = "SELECT * FROM XYG_ALD_BROADCAST_V WHERE 1 = 1 AND SYSDATE BETWEEN START_DATE AND END_DATE AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID ORDER BY START_DATE ASC";
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
 	

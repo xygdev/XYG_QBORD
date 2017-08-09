@@ -19,8 +19,6 @@
 	<link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
 	<script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>	
 	<script src="plugin/js/xygdev.commons.js"></script>	
-	<!-- Scrollbar -->
-	<link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
     <style type="text/css">
         .ui-widget.ui-widget-content{border:0px;}  
         .pop_frame>.content .ui-tabs-panel{padding:0;}
@@ -65,7 +63,7 @@
           <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-user-plus pointer" data-reveal-id="ui" data-key="true" title="新增工作组" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
+          <i class="fa fa-plus-circle pointer" data-reveal-id="ui" data-key="true" title="新增工作组" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
         </div>
         <div class="setting">
           <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
@@ -113,7 +111,7 @@
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-1">     
         <div class="title pointer">      
-          <span><i class="fa fa-group"></i>&nbsp;工作组查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;工作组查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
@@ -220,7 +218,7 @@
       <!-- 工作组明细新增区域 start -->
       <div id="detail_ui" class="pop_frame row-3" style="z-index:104">     
         <div class="title pointer">      
-          <span data-type="insert"><i class="fa fa-handshake-o fa-1x" aria-hidden="true"></i>&nbsp;新增明细</span>
+          <span data-type="insert"><i class="fa fa-group fa-1x" aria-hidden="true"></i>&nbsp;新增明细</span>
         </div>
         <a class="close-detail-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>

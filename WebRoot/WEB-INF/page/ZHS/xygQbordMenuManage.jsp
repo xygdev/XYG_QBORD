@@ -18,8 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
-    <!-- Scrollbar -->
-    <link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
     <style type="text/css">
         .ui-widget.ui-widget-content{border:0;}
         .pop_frame>.content .ui-tabs-panel{padding:0;}  
@@ -145,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 条件查询区域 start -->
       <div id="query" class="pop_frame row-1">     
         <div class="title pointer">      
-          <span><i class="fa fa-th-list"></i>&nbsp;菜单查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;菜单查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>

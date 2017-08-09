@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <!-- iframe区域 -->
         <section id="iframe_area" class="content" style="padding:0">
-            <iframe class="content_iframe" name="homepage" src="home.do" data-tabfunc="0" frameborder="0" scrolling="yes" framespacing="0" ></iframe>
+            <iframe class="content_iframe" id="homepage" name="homepage" src="http://www.xinyiglass.com/jituangaishu/" data-tabfunc="0" frameborder="0" scrolling="yes" framespacing="0" ></iframe>
     	</section>
         
         <!-- 用户信息存放区域 start -->
@@ -191,6 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript">
+    
         $('i[data-pwd]').on('click',function(){
     		if($(this).data('pwd')=='show'){
     			$('.fa-eye[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');

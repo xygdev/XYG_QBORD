@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
-    <!-- Scrollbar -->
-    <link rel="stylesheet" href="plugin/mCustomScrollbar/css/jquery.mCustomScrollbar.css" type="text/css"/>
   </head>
   <body>
     <div id="container">
@@ -66,7 +64,7 @@
           <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-user-plus pointer" data-reveal-id="ui" data-key="true" title="新增" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
+          <i class="fa fa-plus-circle pointer" data-reveal-id="ui" data-key="true" title="新增" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert"></i>
         </div>
         <div class="setting">
           <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
@@ -114,7 +112,7 @@
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-3">
         <div class="title pointer">
-          <span><i class="fa fa-user"></i>&nbsp;库存权限查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;库存权限查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
@@ -148,7 +146,7 @@
       <!-- 更新/新增区域 start -->
       <div id="ui" class="pop_frame row-2" >
         <div class="title pointer">
-          <span data-type="insert"><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;新增</span>
+          <span data-type="insert"><i class="fa fa-unlock-alt fa-1x" aria-hidden="true"></i>&nbsp;新增库存权限</span>
         </div>
         <a class="close-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>
