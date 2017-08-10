@@ -32,7 +32,7 @@
         <li><a href="#tabs-6" data-tab="#tabs-6" data-filetype="GLUETPFILE" style="font-size:1.8em">胶条图</a></li>
         <li><a href="#tabs-7" data-tab="#tabs-7" data-filetype="WTPFILE" style="font-size:1.8em">五金件图</a></li>
       </ul>
-      <div id="tabs-1" class='tab'>
+      <div id="tabs-1" class="tab">
         <div class="container">
           <div class="row">
         	<div class="col-md-6 col">
@@ -198,37 +198,37 @@
           </div>
         </div>
       </div>
-      <div id="tabs-2" class='tab'>
+      <div id="tabs-2" class="tab">
         <input type="hidden" class="file_type_code" value="VEHICLETPFILE"/>
         <input type="hidden" class="file_type_code_zhs" value="整车图"/>
         <div class="img_area">
         </div>
       </div>
-      <div id="tabs-3" class='tab'>
+      <div id="tabs-3" class="tab">
         <input type="hidden" class="file_type_code" value="GLASSTPFILE"/>
         <input type="hidden" class="file_type_code_zhs" value="玻璃图"/>
         <div class="img_area">
         </div>
       </div>
-      <div id="tabs-4" class='tab'>
+      <div id="tabs-4" class="tab">
         <input type="hidden" class="file_type_code" value="PTPFILE"/>
         <input type="hidden" class="file_type_code_zhs" value="镜座图"/>
         <div class="img_area">
         </div>
       </div>
-      <div id="tabs-5" class='tab'>
+      <div id="tabs-5" class="tab">
         <input type="hidden" class="file_type_code" value="STPFILE"/>
         <input type="hidden" class="file_type_code_zhs" value="感应座图"/>
         <div class="img_area">
         </div>
       </div>
-      <div id="tabs-6" class='tab'>
+      <div id="tabs-6" class="tab">
         <input type="hidden" class="file_type_code" value="GLUETPFILE"/>
         <input type="hidden" class="file_type_code_zhs" value="胶条图"/>
         <div class="img_area">
         </div>
       </div>
-      <div id="tabs-7" class='tab'>
+      <div id="tabs-7" class="tab">
         <input type="hidden" class="file_type_code" value="WTPFILE"/>
         <input type="hidden" class="file_type_code_zhs" value="五金件图"/>
         <div class="img_area">

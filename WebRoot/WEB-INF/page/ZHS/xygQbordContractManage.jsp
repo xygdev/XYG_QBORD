@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- 分页按钮区域 end -->
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="HEADER_ID"/> 
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="HEADER_ID ASC"/> 
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="contract/getContractH.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 
@@ -164,15 +164,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" data-update="db" class="left lgx2" id="CONTRACT_NUMBER" name="CONTRACT_NUMBER" readonly="readonly" placeholder="合同号由系统自动生成"/>
             <br style="clear:both"/> 
             <label for="PARTY_NAME" class="left md">客户账号:</label> 
-            <input type="text" required="required" data-update="db" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly"/>
-            <input type="hidden" data-update="db" id="CUSTOMER_ID" name="CUSTOMER_ID" data-update="db"/>
-            <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="客户查询" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
+            <input type="text" required="required" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly"/>
+            <input type="hidden" id="CUSTOMER_ID" name="CUSTOMER_ID" data-update="db"/>
+            <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
             <br style="clear:both"/>
             <label for="ORG_NAME" class="left md">销售公司:</label> 
             <input type="text" required="required" data-update="db" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lg" readonly="readonly" />
-            <input type="hidden" data-update="db" id="ORG_ID" name="SALES_ORG_ID" data-update="db" readonly="readonly"/>
+            <input type="hidden" id="ORG_ID" name="SALES_ORG_ID" data-update="db" readonly="readonly"/>
             <label for="ORGANIZATION_NAME" class="left md">发货组织:</label> 
-            <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify='true' data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE" />
+            <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE" />
             <input type="hidden" data-update="db" id="ORGANIZATION_ID" name="SHIP_FROM_ORG_ID"/>
             <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
             <br style="clear:both"/>
@@ -205,15 +205,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" class="left lgx2" id="CONTRACT_NUMBER_Q" name="CONTRACT_NUMBER"/>  
             <br style="clear:both"/>
             <label for="PARTY_NAME_Q" class="left md">客户名称:</label> 
-            <input type="text" id="PARTY_NAME_Q" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly"/>
-            <input type="hidden" id="CUSTOMER_ID_Q" name='CUSTOMER_ID' data-update="db"/>
-            <input type="button" id="PARTY_NAME_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="客户查询" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID_Q","#ORG_NAME_Q","#CUSTOMER_ID_Q","#PARTY_NAME_Q"] value="···"/>  
+            <input type="text" id="PARTY_NAME_Q" name="PARTY_NAME" class="left lglov" readonly="readonly"/>
+            <input type="hidden" id="CUSTOMER_ID_Q" name="CUSTOMER_ID" />
+            <input type="button" id="PARTY_NAME_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID_Q","#ORG_NAME_Q","#CUSTOMER_ID_Q","#PARTY_NAME_Q"] value="···"/>  
             <br style="clear:both"/>
             <label for="ORG_NAME_Q" class="left md">销售公司:</label> 
-            <input type="text" id="ORG_NAME_Q" name="ORG_NAME" data-update="db" class="left lg" readonly="readonly" />
-            <input type="hidden" id="ORG_ID_Q" name="ORG_ID" data-update="db" readonly="readonly"/>
+            <input type="text" id="ORG_NAME_Q" name="ORG_NAME" class="left lg" readonly="readonly" />
+            <input type="hidden" id="ORG_ID_Q" name="ORG_ID" readonly="readonly"/>
             <label for="ORGANIZATION_NAME_Q" class="left md">发货组织:</label> 
-            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify='true' data-pageframe="query"  data-lovbtn='ORGANIZATION_LOV_Q'  data-param="ORGANIZATION_CODE" />
+            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_CODE" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
             <br style="clear:both"/>
@@ -222,13 +222,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label class="left blank"></label>
             <input type="text" id="CREATION_DATE_T" name="CREATION_DATE_T" class="left time" data-datatype="date" placeholder="截止创建日期"/>
             <br style="clear:both"/>
-            <label for='LOOKUP_CODE_Q' class='left md'>订单类型:</label>
-            <select class='left lg' id='LOOKUP_CODE_Q' name='LOOKUP_CODE' data-update="db" data-notnull="false" data-listurl="list/getContractStatus.do"></select>  
+            <label for="LOOKUP_CODE_Q" class="left md">订单类型:</label>
+            <select class="left lg" id="LOOKUP_CODE_Q" name="LOOKUP_CODE" data-notnull="false" data-listurl="list/getContractStatus.do"></select>  
             <br style="clear:both"/>
           </form>
         </div>
         <div class="foot">             
-          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">订单查询</button>
+          <button class="right pointer" data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">订单查询</button>
         </div> 
       </div>
       <!-- 条件查询区域 end -->
@@ -256,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!----------------------------------------------订单明细-------------------------------------------------------- -->      
       
       <div class="detail_frame" id="detail" style="height:470px">
-        <div class='title pointer'>      
+        <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;订单明细</span>
         </div>
         <a class="close-detail-frame" data-type="close">&#215;</a>    
@@ -362,7 +362,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <!-- 订单明细新增区域 start -->
       <div id="detail_ui" class="pop_frame row-5" style="z-index:104">     
-        <div class='title pointer'>          
+        <div class="title pointer">          
           <span data-type="insert"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;创建订单明细行</span>
           <span data-type="update"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;修改价格</span>
         </div>
@@ -436,31 +436,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
         </div>
  
-          <div class="table_button" id="3rd_table" data-table="ProductList">
-            <div class="setting">
+        <div class="table_button" id="3rd_table" data-table="ProductList">
+          <div class="setting">
             <i id="3rd_refresh" class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="3rd_table" data-func="$().setPlParam();"></i>
-            </div>
-            <div>
-              <jsp:include page="./public/pageArrow.jsp" >
-                <jsp:param name="pageframe" value="3rd_table" />
-                <jsp:param name="func" value="$().setPlParam();" />
-              </jsp:include>
-              <input type="hidden" data-type="size" value="5"/>
-              <input type="hidden" data-type="number" value="1"/>
-              <input type="hidden" data-type="orderby" value="LIST_BATCH_NUMBER"/> 
-              <input type="hidden" data-type="cond"/>
-              <input type="hidden" data-type="url" value="contract/getProductList.do"/>
-              <input type="hidden" data-type="jsontype" value="3rdtable"/> 
-              <input type="hidden" data-type="autoquery" value="N"/> 
-            </div>   
           </div>
+          <div>
+            <jsp:include page="./public/pageArrow.jsp" >
+              <jsp:param name="pageframe" value="3rd_table" />
+              <jsp:param name="func" value="$().setPlParam();" />
+            </jsp:include>
+            <input type="hidden" data-type="size" value="5"/>
+            <input type="hidden" data-type="number" value="1"/>
+            <input type="hidden" data-type="orderby" value="LIST_BATCH_NUMBER"/> 
+            <input type="hidden" data-type="cond"/>
+            <input type="hidden" data-type="url" value="contract/getProductList.do"/>
+            <input type="hidden" data-type="jsontype" value="3rdtable"/> 
+            <input type="hidden" data-type="autoquery" value="N"/> 
+          </div>   
+        </div>
   
       </div>
       <!-- 价目表明细区域 end -->
       
       <!-- 用户信息存放区域 start -->
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>  
-      <input type="hidden" id="INTERACT_CODE" value="ORDER_MANAGE"/> 
+      <input type="hidden" id="INTERACT_CODE" value="CONTRACT_MANAGE"/> 
       <input type="hidden" id="HEADER_ID" value=""/> 
       <!-- 用户信息存放区域 end -->         
     </div> 
@@ -469,10 +469,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $(function() {
             
             //设置拖拽
-            $("#ui").draggable({ handle: ".title" });
-            $("#detail").draggable({ handle: ".title" });
-            $("#detail_ui").draggable({ handle: ".title" });
-            $("#query").draggable({ handle: ".title" }); 
+            $('#ui').draggable({ handle: '.title' });
+            $('#detail').draggable({ handle: '.title' });
+            $('#detail_ui').draggable({ handle: '.title' });
+            $('#query').draggable({ handle: '.title' }); 
+            $('#update_ot').draggable({ handle: '.title' }); 
+            $('#product_list_d').draggable({ handle: '.title' }); 
             
             //初始化CRUD和LOV条件查询
             $().crudListener(); 
@@ -506,7 +508,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   var itemId = $('#INVENTORY_ITEM_ID_D').val();
 			   if(itemId == null||itemId == ''){
 			       $('#ORDER_QUANTITY_D').val('');
-			       layer.alert("请先选择本厂型号再填写数量！",{title:'警告',offset:[150]});
+			       layer.alert('请先选择本厂型号再填写数量！',{title:'警告',offset:[150]});
 			       return;
 			   }
 			   var qty = $('#ORDER_QUANTITY_D').val();
@@ -523,10 +525,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    url:'contract/getUnitPrice.do',
 					    dataType:'json',
 					    success: function (data) {
-					        if(data.retcode=="0"){
+					        if(data.retcode=='0'){
 					            $('#UNIT_PRICE_D').val(data.param2);
 					        }else{
-					            layer.alert("获取单价错误！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
+					            layer.alert('获取单价错误！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
 					        }
 					    },
 						error: function () {
@@ -598,34 +600,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('.show_detail').on('click',function(){
                     var userType = '${USER_TYPE}';
                     var tr=$(this).parent().parent();
-                    var status = tr.children('.STATUS').text();
+                    var status = tr.children('.STATUS').text(); 
 			    	if(userType=='EMP'){
-			    	    $('i[data-status="RECEIVE"]').parent().css("display","");
-			    	    $('i[data-status="CHECK"]').parent().css("display","");
+			    	    $('i[data-status="RECEIVE"]').parent().css('display','');
+			    	    $('i[data-status="CHECK"]').parent().css('display','');
 			    	    if(status=='BOOK'){
-			    	        $('i[data-status="CHECK"]').parent().css("display","none");
+			    	        $('i[data-status="CHECK"]').parent().css('display','none');
 			    	    }else if(status=='RECEIVE'){
-			    	        $('i[data-status="RECEIVE"]').parent().css("display","none");
+			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
 			    	    }else{
-			    	        $('i[data-status="RECEIVE"]').parent().css("display","none");
-			    	        $('i[data-status="CHECK"]').parent().css("display","none");
+			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
+			    	        $('i[data-status="CHECK"]').parent().css('display','none');
 			    	    }
-			    		$('i[data-status="BOOK"]').parent().css("display","none");
-			    		$('i[data-status="CONFIRM"]').parent().css("display","none");
+			    		$('i[data-status="BOOK"]').parent().css('display','none');
+			    		$('i[data-status="CONFIRM"]').parent().css('display','none');
 			    	}else if(userType='CUSTOMER'){
-			    	    $('i[data-status="BOOK"]').parent().css("display","");
-			    		$('i[data-status="CONFIRM"]').parent().css("display","");
+			    	    $('i[data-status="BOOK"]').parent().css('display','');
+			    		$('i[data-status="CONFIRM"]').parent().css('display','');
 			    	    if(status=='INPUT'){
-			    	        $('i[data-status="CONFIRM"]').parent().css("display","none");
+			    	        $('i[data-status="CONFIRM"]').parent().css('display','none');
 			    	    }else if(status=='CHECK'){
-			    	        $('i[data-status="BOOK"]').parent().css("display","none");
+			    	        $('i[data-status="BOOK"]').parent().css('display','none');
 			    	    }else{
-			    	        $('i[data-status="BOOK"]').parent().css("display","none");
-			    		    $('i[data-status="CONFIRM"]').parent().css("display","none");
+			    	        $('i[data-status="BOOK"]').parent().css('display','none');
+			    		    $('i[data-status="CONFIRM"]').parent().css('display','none');
 			    	    }
-			    	    $('i[data-status="RECEIVE"]').parent().css("display","none");
-			    	    $('i[data-status="CHECK"]').parent().css("display","none");
-			    	    $('#change_price_btn').css("display","none");
+			    	    $('i[data-status="RECEIVE"]').parent().css('display','none');
+			    	    $('i[data-status="CHECK"]').parent().css('display','none');
+			    	    $('#change_price_btn').css('display','none');
 			    	}
                     $('.detail_header input').val('');
                     $('#sub_table input[data-type="number"]').val('1');
@@ -656,15 +658,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     url:'contract/changeStatus.do',
                     dataType:'json',
                     success: function (data) {
-                        if(data.retcode=="0"){
-				    		layer.msg(status_desc+"成功!");
+                        if(data.retcode=='0'){
+				    		layer.msg(status_desc+'成功!');
 				    		$('#STATUS_DESC_L').val(status_desc);
 				    		//$('#'+options.pageframe+' a[data-type="close"]').click();/****点击关闭更新框按钮****/
 				    		$('#refresh').click();/****点击刷新当前页按钮，刷新数据****/
 				    	}else{
-				    	    if(new_status=="RECEIVE"){
+				    	    if(new_status=='RECEIVE'){
 				    	        if(data.errbuf == '请先维护好订单类型，再审核'){
-				    	            layer.alert(status_desc+"处理失败！错误信息:"+data.errbuf
+				    	            layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf
 				    	                   ,{title:'警告',offset:[150],btn:['维护订单类型','取消'] }
 				    	                   ,function(){
 				    	                       $('[data-reveal-id="update_ot"]').click();
@@ -672,10 +674,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    	                   }
 				    	            );
 				    	        }else{
-				    	            layer.alert(status_desc+"处理失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
+				    	            layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
 				    	        }	    	        
 				    	    }else{
-				    	        layer.alert(status_desc+"处理失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
+				    	        layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
 				    	    }	
 				    	}
                     },
@@ -746,9 +748,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		
        		//日期选择
             $('input[data-datatype="date"]').datetimepicker({
-                lang:"ch",           //语言选择中文
+                lang:'ch',           //语言选择中文
                 timepicker:true,    //启用时间选项
-                format:"Y-m-d H:i:s",      //格式化日期
+                format:'Y-m-d H:i:s',      //格式化日期
                 step: 30,
                 showOnClick: true
             });

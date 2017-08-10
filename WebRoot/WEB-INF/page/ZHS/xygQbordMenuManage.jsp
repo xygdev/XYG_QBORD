@@ -37,8 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="MENU_CODE" data-column="db">菜单编码</th>
             <th class="MENU_NAME" data-column="db">菜单名称</th>
             <th class="DESCRIPTION" data-column="db">菜单描述</th>
-            <th class="ICON_CODE" data-column="db">图标编码</th>
-            <th class="ICON_DESC" data-column="db">图标描述</th> 
+            <th class="ICON_PREVIEW" data-column="db">图标预览</th>
             <th class="ACTION" data-column="normal">操作</th> 
             <th class="MENU_ID" style="display:none" data-column="hidden">&nbsp;</th>     
           </tr>
@@ -46,8 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="MENU_CODE" data-column="db"></td>
             <td class="MENU_NAME" data-column="db"></td>
             <td class="DESCRIPTION" data-column="db"></td>
-            <td class="ICON_CODE" data-column="db"></td>
-            <td class="ICON_DESC" data-column="db"></td>
+            <td class="ICON_PREVIEW" data-column="db"></td>
             <td class="ACTION" data-column="normal">
               <i class="fa fa-pencil fa-fw update pointer hidden" title="更新菜单" data-show="true" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="menu/preUpdateMenuHeader.do" data-type="update" data-updateparam=["MENU_ID",".MENU_ID"]></i>            
               <i class="fa fa fa-eye view pointer show_detail hidden" title="菜单明细" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" ></i>
@@ -131,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="ICON_CODE" class="left md">图标编码</label> 
             <input type="text" id="ICON_CODE" name="ICON_CODE" data-update="db" class="left md"  readonly="readonly" required="required"/>
             <input type="hidden" id="ICON_ID" name="ICON_ID" data-update="db"/>
-            <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass='close-lov' data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","预览"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","PREVIEW"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>  
+            <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","预览"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","PREVIEW"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>  
           </form>
         </div>
         <div class="foot">       
@@ -343,8 +341,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                ['.MENU_ID','MENU_ID']    
 	               ,['.MENU_CODE','MENU_CODE']
 	               ,['.MENU_NAME','MENU_NAME']   
-	               ,['.ICON_CODE','ICON_CODE']
-	               ,['.ICON_DESC','ICON_DESC']
+	               ,['.ICON_PREVIEW','ICON_CODE',
+                       function(){
+                           $('#main-table').find('tr:eq('+(i+1)+')').find('.ICON_PREVIEW').html('<i class="'+data.rows[i].ICON_CODE+'" style="color:black"></i>');
+                       }
+                    ]
 	               ,['.DESCRIPTION','DESCRIPTION']
 	                ];
 	                $().mapContentJson(data,'#main-table',mapRowArray);

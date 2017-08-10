@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <title>功能管理</title>
     <base href="<%=basePath%>">
-    <meta http-equiv="content-type" content="text/html;charset=gb2312">
+    <meta http-equiv="content-typFe" content="text/html;charset=gb2312">
     <link rel="stylesheet" href="plugin/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugin/css/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="plugin/css/public.css">
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <th class="FUNCTION_NAME" data-column="db">功能名称</th>
 	        <th class="FUNCTION_URL" data-column="db">功能链接</th>
 	        <th class="DESCRIPTION" data-column="db">功能描述</th>
-	        <th class="ICON_CODE" data-column="db">图标编码</th>
+	        <th class="ICON_PREVIEW" data-column="db">图标预览</th>
 	        <th class="ACTION" data-column="normal">操作</th>
 	        <th class="FUNCTION_ID" style="display:none" data-column="hidden">&nbsp;</th> 
           </tr>
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="FUNCTION_NAME" data-column="db"></td>
             <td class="FUNCTION_URL" data-column="db"></td>
             <td class="DESCRIPTION" data-column="db"></td>
-            <td class="ICON_CODE" data-column="db"></td>
+            <td class="ICON_PREVIEW" data-column="db"></td>
             <td class="ACTION" data-column="normal">
               <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="func/preUpdate.do" data-type="update" data-updateparam=["FUNCTION_ID",".FUNCTION_ID"]></i>
             </td>
@@ -155,7 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="图标查询" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["图标ID","图标编码","图标描述","预览"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","PREVIEW"] data-selectname=["图标编码","图标描述"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>              
 	      </form>
 	    </div>
-	    <div class='foot'>       
+	    <div class="foot">       
 	      <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="ui" data-updateurl="func/update.do" data-func="$().beforeInsert();">提交更新</button>
 	      <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="ui" data-inserturl="func/insert.do" data-func="$().beforeInsert();">新增</button>
 	    </div>    
@@ -192,7 +192,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   	   ,['.FUNCTION_CODE','FUNCTION_CODE']
 				   ,['.FUNCTION_NAME','FUNCTION_NAME']
 				   ,['.FUNCTION_URL','FUNCTION_URL']
-				   ,['.ICON_CODE','ICON_CODE']
+				   ,['.ICON_PREVIEW','ICON_CODE',
+					   function(){
+	                       $('#main-table').find('tr:eq('+(i+1)+')').find('.ICON_PREVIEW').html('<i class="'+data.rows[i].ICON_CODE+'" style="color:black"></i>');
+                       }
+				    ]
 				   ,['.DESCRIPTION','DESCRIPTION']
 				    ];
 				    $().mapContentJson(data,'#main-table',mapRowArray);
@@ -208,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            function(){
                                $('#lov').find('tr:eq('+(i+1)+')').find('.PREVIEW').html('<i class="'+data.rows[i].ICON_CODE+'" style="color:black"></i>');
                            }
-                       ]
+                        ]
                     ];
 	                $().mapContentJson(data,'#lov',mapRowArray);                
 	            }else if(JSONtype=='func'){
