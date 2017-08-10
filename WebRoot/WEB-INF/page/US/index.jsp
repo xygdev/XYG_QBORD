@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base id="base_id" href="<%=basePath%>">    
-    <title>XYG AUTOMOBILE GLASS ONLINE PLATFORM</title>
+    <title>信义汽车玻璃在线平台</title>
 	<meta http-equiv="content-type" content="text/html;charset=gb2312">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -30,120 +30,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .sidebar-toggle:hover{
-            background-color:#006633 !important;
-        }
-        .dark-green{
-            background-color:#006633 !important;
-        }
-        .tab_button_left{
-          	position:absolute;
-          	top:0;
-          	left:0;
-          	height:36px;
-          	border:0;
-          	border-right:1px solid gray;
-          	width:60px;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px
-        }
-        .tab_button_right{
-          	position:absolute;
-          	top:0;
-          	right:120px;
-          	height:36px;
-          	border:0;
-          	border-left:1px solid gray;
-          	width:60px;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px
-        }
-        .tab_button_fullscreen{
-          	position:absolute;
-          	top:0;
-          	right:0;
-          	height:36px;
-          	border:0;
-          	border-left:1px solid gray;
-          	width:60px;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px
-      	}
-      	.tab_selection{
-      	    position:absolute;
-          	top:0;
-          	right:60px;
-          	width:60px;
-      	}
-      	.tab_button_selection{
-          	height:36px;
-          	border:0;
-          	border-left:1px solid gray;
-          	width:60px;
-          	background-color:white;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px;
-      	}
-      	.content_tab_area{
-          	margin-left:60px;
-          	width:10000px;
-          	height:40px;
-          	overflow:hidden;
-      	}
-      	.content_tab_frame{
-          	float:left;
-          	border:0;
-          	margin:0;
-          	padding:0;
-          	height:36px;
-          	width:auto;
-          	overflow:hidden;
-          	white-space:nowrap;
-          	text-overflow:ellipsis;
-      	}
-      	.content_tab_frame>.content_tab{
-          	float:left;
-          	display:block;
-          	height:36px;
-          	border:0;
-          	/*border-right:1px solid gray;*/
-          	padding:0 10px;
-          	min-width:60px;
-          	width:auto;
-          	color:black;
-          	display:block;
-          	text-align:center;
-          	line-height:36px;
-          	background-color:white;
-          	color:black;  
-      	}
-      	
-      	.content_tab_frame>.active{
-          	background-color:black;
-          	color:white;  
-      	}
-      	.content_iframe{
-      	  	width:100%;
-      	  	padding:0;
-      	 	border:0;
-      	}
-    </style>
   </head>
   
-  <body class="hold-transition skin-green sidebar-mini sidebar-collapse" >  
+  <body class="hold-transition skin-green sidebar-mini sidebar-collapse" style="overflow:hidden">  
     <div class="wrapper">    
-       <header class="main-header">
+      <header class="main-header">
         <!-- Logo -->
-        <a href="#" data-iframehref="home.do" class="logo dark-green">
+        <a href="#" class="logo dark-green">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>X</b>YG</span>
           <!-- logo for regular state and mobile devices -->
@@ -158,21 +51,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav"> 
-              <li class="dropdown messages-menu" id="mailbox">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o"></i>
+              <!-- 公告 -->
+              <li>
+                <a id="broadcast" href="#">
+                  <i class="fa fa-bullhorn"></i>
                   <span data-type="tips" class="label label-danger"></span>
                 </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have<span data-type="inside"></span>unread message</li>
-                  <li>
-                    <!-- 新邮件消息区域 start -->
-                    <ul id="unread_menu" class="menu"></ul>  
-                    <!-- 新邮件消息区域 end -->          
-                  <li class="footer pointer"><a href="#" data-iframehref="mail/RecMail.do" data-title="收件箱">SHOW ALL</a></li>
-                </ul>
-              </li>          
-              <!-- User Account: style can be found in dropdown.less -->
+              </li>              
+              <!-- 用户信息 -->
               <li class="dropdown user user-menu">
                 <input type="hidden" id="USER_ID" value="${USER_ID}"/> 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -191,14 +77,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat" data-reveal-id="modifyPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">Password</a>
+                      <a href="#" class="btn btn-default btn-flat" data-reveal-id="modifyPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">修改密码</a>
                     </div>
                     <div class="pull-left">
-                      <a href="#" id="changeIMG" class="btn btn-default btn-flat" style="margin-left:6px" data-reveal-id="headimg" data-bg="pwd-modal-bg">Image</a>
+                      <a href="#" id="changeIMG" class="btn btn-default btn-flat" style="margin-left:6px" data-reveal-id="headimg" data-bg="pwd-modal-bg">更换头像</a>
                     </div>
                     <div class="pull-right">
                       <form id="logoutFrom" name="logoutFrom" method="post" action="logout.do">
-                        <button id="signout" type="submit" class="btn btn-default btn-flat">Logout</button>
+                        <button id="signout" type="submit" class="btn btn-default btn-flat">退出登录</button>
                       </form>
                     </div>
                   </li>
@@ -209,79 +95,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </nav>
       </header>
       
+      <!-- 侧边菜单栏 start -->
       <jsp:include page="Left-SideBar.jsp"/>
+      <!-- 侧边菜单栏 end -->
       
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    	<section class="content-header" style="position:relative;height:40px;border-bottom:4px solid black;border-top:0;padding:0;width:auto;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+    	<section class="content-header" style="position:relative;height:40px;border-bottom:4px solid black;border-top:0;padding:0;width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">    <!--  width:auto  改成 width:100%; 2017/7/28  sun226567 -->         
           <a class="tab_button_left pointer" style="background-color:white;color:black" ><i class="fa fa-backward"></i></a>
           <a class="tab_button_fullscreen pointer" fullscreen="false" style="background-color:white;color:black" ><i class="fa fa-toggle-off"></i></a>
           <a class="tab_button_fullscreen pointer" fullscreen="true" style="background-color:white;color:#00a65a;display:none" ><i class="fa fa-toggle-on"></i></a>
 
           <div class="dropdown tab_selection" >
-          	<button type="button" class="tab_button_selection dropdown-toggle" data-toggle="dropdown">OP&nbsp;<i class="fa fa-caret-down"></i></button>
-            
+          	<button type="button" class="tab_button_selection dropdown-toggle" data-toggle="dropdown">操作&nbsp;<i class="fa fa-caret-down"></i></button>
+            <!-- tab 按钮区域 start -->
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="position:fixed;top:85px;left:auto;right:0">
               <li role="presentation">
-                <a role="menuitem" data-tabtype="refreshTab" tabindex="-1" href="#">Refresh Current Tab</a>
+                <a role="menuitem" data-tabtype="refreshTab" tabindex="-1" href="#">刷新当前标签页</a>
               </li>
               <li role="presentation">
-                 <a role="menuitem" data-tabtype="closeOthers" tabindex="-1" href="#">Close Other Tabs</a>
+                 <a role="menuitem" data-tabtype="closeOthers" tabindex="-1" href="#">关闭其他标签页</a>
               </li>
               <li role="presentation">
-                <a role="menuitem" data-tabtype="closeAll" tabindex="-1" href="#">Close All Tabs</a>
+                <a role="menuitem" data-tabtype="closeAll" tabindex="-1" href="#">关闭所有标签页</a>
               </li>
             </ul>
-            
+            <!-- tab 按钮区域 end -->
           </div>
 
           <a class="tab_button_right pointer" style="background-color:white;color:black" ><i class="fa fa-forward"></i></a>
           <nav class="content_tab_area">
             <div class="content_tab_frame" style="margin-left:0px">
-              <a class="content_tab pointer active" data-tabfunc="0" >Home Page</a>
+              <a class="content_tab pointer active" data-tabfunc="0" >首页</a>
             </div>
           </nav>
-        </section>
+    	</section>
 
-        <!-- Main content -->
+        <!-- iframe区域 -->
         <section id="iframe_area" class="content" style="padding:0">
-            <!-- Info boxes -->
-            <iframe class="content_iframe" src="home.do" data-tabfunc="0" frameborder="0" scrolling="yes" framespacing="0" ></iframe>
+            <iframe class="content_iframe" name="homepage" src="home.do" data-tabfunc="0" frameborder="0" scrolling="yes" framespacing="0" ></iframe>
     	</section>
         
         <!-- 用户信息存放区域 start -->
-     	<input type="hidden" id="USER_ID" value="${USER_ID}"/>  
      	<input type="hidden" id="USER_NAME" value="${USER_NAME}"/>
-        <button id="mailrefresh" data-mailtype="unread" data-counturl="mail/countUnReadMail.do" data-mailurl="mail/findUnReadMail.do" data-pageframe="mailbox" style="visibility:hidden;position:fixed"></button>
      	<!-- 用户信息存放区域 end -->
      	
+     	<!-- 公告刷新按钮 start -->
+     	<button style="visibility:hidden;position:fixed" id="refresh_bc"></button>
+     	<!-- 公告刷新按钮 end-->
      	
-      <!-- 密码修改弹出框 start -->
-      <div class="pwd-modal-bg"></div>
-      <div id="modifyPWD" class="pwd_frame">
-        <div class='title'>      
-          <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;Modify Password</span>
-        </div>
-        <a class="close-pwd-frame" data-type="close">&#215;</a>
-        <div class='line'></div>
+     	
+        <!-- 密码修改弹出框 start -->
+        <div class="pwd-modal-bg"></div>
+    	<div id="modifyPWD" class="pwd_frame">
+          <div class='title'>      
+            <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;修改密码</span>
+          </div>
+          <a class="close-pwd-frame" data-type="close">&#215;</a>
+          <div class='line'></div>
           <div class='content'>
             <form id='updateData'>
-              <label for='O_PASSWORD' class='left'>Old PWD</label>
+              <label for='O_PASSWORD' class='left'>原密码</label>
               <input type='password' id='O_PASSWORD' name='O_PASSWORD' data-update="db" class='left password'/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="O_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="O_PASSWORD"></i>
-              <label for='N_PASSWORD' class='left'>New PWD</label>
+              <label for='N_PASSWORD' class='left'>新密码</label>
               <input type='password' id='N_PASSWORD' name='N_PASSWORD' data-update="db" class='left password'/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD"></i>
             </form>
           </div>
           <div class='foot'>       
-            <button id="confirm" class="right update_confirm pointer">Modify</button>
+            <button id="confirm" class="right update_confirm pointer">确认修改</button>
           </div>   
-        </div>
-        <!-- 密码修改弹出框 end-->
-      </div><!-- /.content-wrapper -->   
+    	</div>
+        <!-- 密码修改弹出框 end-->          
+      </div>
       
       <!-- 用户头像区域 start -->
       <jsp:include page="public/headImg.jsp">
@@ -290,8 +179,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 用户头像区域 end -->  
     </div>
     
-    
-    
     <!-- jQuery 2.1.4 -->
     <script src="plugin/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -299,13 +186,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- AdminLTE App -->
     <script src="plugin/bootstrap/js/app.min.js"></script>
     <script src="plugin/js/jQuery.automenu.js"></script> 
-    
-    <!-- <script type="text/javascript" src="plugin/js/jQuery.mail.js"></script>   -->
     <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 
     <script type="text/javascript" src="plugin/js/cropbox.js"></script>
     <script type="text/javascript" src="plugin/layer/layer.js"></script>
     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
     <script type="text/javascript">
+    
         $('i[data-pwd]').on('click',function(){
     		if($(this).data('pwd')=='show'){
     			$('.fa-eye[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');
@@ -368,33 +254,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		$('.cropped_old img').attr('src',imgurl+'?temp=' + Math.random()); 
     	});    		 
     
-        jQuery.json={
-            getUnreadMail:function(data){
-                $('#unread_menu').html('');
-            	record=data.rows.length;
-				if(record>3){
-				    for(i=0;i<3;i++){
-				        newmail='<li><a class="pointer" data-iframehref="mail/RecMail.do?autoQuery=Y&sendId='+data.rows[i].SEND_ID+'" data-title="收件箱"><div class="pull-left"><img src="/image/login/mail.png" class="img-circle" alt="User Image"></div><h4>'
-                		+(data.rows[i].MAIL_TITLE).substring(0, 15)+'...<small><i class="fa fa-clock-o"></i>'
-                		+data.rows[i].SEND_DATE+'</small></h4><p>From:<span>'
-                		+data.rows[i].SEND_USER_DESC+'</span></p></a></li>';
-				        $('#unread_menu').append(newmail);    	
-				    }	
-				}else{
-				    for(i=0;i<record;i++){
-				        newmail='<li><a class="pointer" data-iframehref="mail/RecMail.do?autoQuery=Y&sendId='+data.rows[i].SEND_ID+'" data-title="收件箱"><div class="pull-left"><img src="/image/login/mail.png" class="img-circle" alt="User Image"></div><h4>'
-                		+(data.rows[i].MAIL_TITLE).substring(0, 15)+'...</h4><p>From:<span>'
-                		+data.rows[i].SEND_USER_DESC+'</span></p><p><small><i class="fa fa-clock-o"></i>'
-                		+data.rows[i].SEND_DATE+'</small></p></a></li>';
-				        $('#unread_menu').append(newmail); 		
-				    }
-				}
-            	
-            }
-        }
+        $('#broadcast').on('click',function(e){
+            e.preventDefault();/****阻止<a>标签默认的点击事件（超链接跳转）****/
+        	layer.open({
+  				type: 2,
+  				area: ['1000px', '700px'],
+  				title:'公告栏',
+  				fixed: false, //不固定
+  				maxmin: true,				
+  				content: 'broadcast/bcDisplay.do'
+			});
+        });
         
-        $('#mailrefresh').click();
-
+        $('#refresh_bc').on('click',function(){
+        	$.ajax({
+        		type:'post', 
+				url:'broadcast/countValidBc.do',
+				dataType:'json',
+				success:function(data){
+				    if(data[0].COUNT!=0){
+				        $('#broadcast').click();
+				    }
+				    $('#broadcast').find('span').text(data[0].COUNT);
+				},
+				error:function(){
+					layer.msg('获取JSON数据失败');
+				}
+        	});
+        });
+		
+		$('#refresh_bc').click();
 	</script>
   </body>
 </html>
