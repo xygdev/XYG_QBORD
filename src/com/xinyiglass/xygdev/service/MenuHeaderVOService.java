@@ -54,7 +54,7 @@ public class MenuHeaderVOService {
 	public String findForMenuHPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 	    StringBuffer sqlBuff = new StringBuffer();
-        sqlBuff.append("select * from XYG_ALD_MENU_HEADERS_V WHERE 1=1");
+        sqlBuff.append("select * from XYG_ALD_MENU_HEADERS_VL WHERE 1=1");
         sqlBuff.append("   AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
         sqlBuff.append(SqlStmtPub.getAndStmt("MENU_ID",conditionMap.get("menuId"),paramMap));
 	    sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));

@@ -104,13 +104,13 @@ public class MenuHeaderVODaoImpl  extends DevJdbcDaoSupport implements MenuHeade
 		
 	public MenuHeaderVO findById(Long id) throws Exception{
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
-        String sql = "SELECT * FROM XYG_ALD_MENU_HEADERS_V WHERE MENU_ID = :1";
+        String sql = "SELECT * FROM XYG_ALD_MENU_HEADERS_VL WHERE MENU_ID = :1";
 	    paramMap.put("1", id);
 	    return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new MenuHeaderVO());
 	}
 	
 	public SqlResultSet findByIdForJSON(Long id) throws Exception{
-		String sql = "SELECT * FROM XYG_ALD_MENU_HEADERS_V WHERE MENU_ID = :1";
+		String sql = "SELECT * FROM XYG_ALD_MENU_HEADERS_VL WHERE MENU_ID = :1";
         Map<String,Object> paramMap=new  HashMap<String,Object>();
         paramMap.put("1", id);
         return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);

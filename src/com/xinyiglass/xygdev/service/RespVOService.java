@@ -74,7 +74,7 @@ public class RespVOService {
    public String findForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
    	   Map<String,Object> paramMap=new HashMap<String,Object>();
 	   StringBuffer sqlBuff = new StringBuffer();
-       sqlBuff.append("select * from XYG_ALD_RESP_V WHERE 1=1");
+       sqlBuff.append("select * from XYG_ALD_RESP_VL WHERE 1=1");
        sqlBuff.append(" AND APPL_ID = XYG_ALD_GLOBAL.APPL_ID");
        sqlBuff.append(SqlStmtPub.getAndStmt("MENU_ID",conditionMap.get("menuId"),paramMap));
 	   sqlBuff.append(SqlStmtPub.getAndStmt("RESP_ID",conditionMap.get("respId"),paramMap));

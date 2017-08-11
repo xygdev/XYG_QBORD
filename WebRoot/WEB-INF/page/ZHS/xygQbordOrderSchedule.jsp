@@ -271,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           +'-'+(sysDate.getMonth()+1)
                           +'-01 00:00:00';
                 $('#CREATION_DATE_F').val(firstDay);
-                $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd hh:mm:ss'));
+                $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
             }                        
             
             $.fn.detailShow = function(){

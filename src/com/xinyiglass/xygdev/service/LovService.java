@@ -38,7 +38,7 @@ public class LovService {
 	public String findRespForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		sqlBuf.append("SELECT RESP_ID,RESP_CODE,RESP_NAME,DESCRIPTION FROM XYG_ALD_RESP");
+		sqlBuf.append("SELECT RESP_ID,RESP_CODE,RESP_NAME,DESCRIPTION FROM XYG_ALD_RESP_VL");
 		sqlBuf.append(" WHERE (END_DATE IS NULL OR END_DATE > SYSDATE)");
 		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
 		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_CODE", conditionMap.get("respCode"),paramMap));
@@ -77,7 +77,7 @@ public class LovService {
 	public String findMenuForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		sqlBuf.append("SELECT MENU_ID,MENU_CODE,MENU_NAME,DESCRIPTION FROM XYG_ALD_MENU_HEADERS");
+		sqlBuf.append("SELECT MENU_ID,MENU_CODE,MENU_NAME,DESCRIPTION FROM XYG_ALD_MENU_HEADERS_VL");
 		sqlBuf.append(" WHERE 1 = 1");
 		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
 		sqlBuf.append(SqlStmtPub.getAndStmt("MENU_CODE", conditionMap.get("menuCode"),paramMap));
@@ -131,7 +131,7 @@ public class LovService {
 	public String findFuncForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		sqlBuf.append("SELECT FUNCTION_ID,FUNCTION_CODE,FUNCTION_NAME,DESCRIPTION FROM XYG_ALD_FUNCTIONS");
+		sqlBuf.append("SELECT FUNCTION_ID,FUNCTION_CODE,FUNCTION_NAME,DESCRIPTION FROM XYG_ALD_FUNCTIONS_VL");
 		sqlBuf.append(" WHERE 1 = 1");
 		sqlBuf.append("   AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
 		sqlBuf.append(SqlStmtPub.getAndStmt("FUNCTION_CODE",conditionMap.get("funcCode"),paramMap));

@@ -139,13 +139,13 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
    
     public RespVO findById(Long id) throws Exception{
         Map<String,Object> paramMap=new  HashMap<String,Object>();
-        String sql = "SELECT * FROM XYG_ALD_RESP_V WHERE RESP_ID = :1";
+        String sql = "SELECT * FROM XYG_ALD_RESP_VL WHERE RESP_ID = :1";
 	    paramMap.put("1", id);
 	    return this.getDevJdbcTemplate().queryForObject(sql, paramMap, new RespVO());
     }
       
     public SqlResultSet findByIdForJSON(Long id) throws Exception{
-        String sql = "SELECT * FROM XYG_ALD_RESP_V WHERE RESP_ID = :1";
+        String sql = "SELECT * FROM XYG_ALD_RESP_VL WHERE RESP_ID = :1";
         Map<String,Object> paramMap=new  HashMap<String,Object>();
         paramMap.put("1", id);
         return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
