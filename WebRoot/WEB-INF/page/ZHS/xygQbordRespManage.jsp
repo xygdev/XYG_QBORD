@@ -195,7 +195,7 @@
               
 	          $.fn.beforeInsert = function(){
 	              RegExpValidate('^\\w+$','RESP_CODE','regExpError("职责编码格式不符合规范!");');
-	              RegExpValidate('^[\u4e00-\u9fa5]{0,}$','RESP_NAME','regExpError("职责名称必须为汉字!");');
+	              RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','RESP_NAME','regExpError("职责名称必须为汉字和数字!");');
 	          }
 	           
 	          $.fn.afterReveal = function(){

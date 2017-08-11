@@ -291,7 +291,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              
             $.fn.beforeInsert = function(){
                 RegExpValidate('^\\w+$','MENU_CODE','regExpError("菜单编码格式不符合规范!");');
-                RegExpValidate('^[\u4e00-\u9fa5]{0,}$','MENU_NAME','regExpError("菜单名称必须为汉字!");');
+                RegExpValidate('^[\u4e00-\u9fa5\d0-9]{0,}$','MENU_NAME','regExpError("菜单名称必须为汉字和数字!");');
             }          
             
             $.fn.setParam = function(){
