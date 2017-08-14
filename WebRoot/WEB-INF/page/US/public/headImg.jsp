@@ -18,7 +18,7 @@
       <!-- <input type="file" id="file" style=" width: 200px">-->
         <div class="new-contentarea tc"> 
           <a href="javascript:void(0)" class="upload-img">
-            <label for="upload-file">选择图片</label>
+            <label for="upload-file">Select</label>
           </a>
           <input type="file" class="" name="upload-file" id="upload-file" />
         </div>
@@ -29,11 +29,11 @@
       <div class="cropped">
         <div class="cropped_old">
           <img src="" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;">
-          <p>原头像</p>
+          <p>Old</p>
         </div>
         <div class="cropped_new">
           <img src="/image/user/system_blank.png" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;">
-          <p>新头像</p>
+          <p>New</p>
         </div>
       </div>
     </div>
@@ -43,8 +43,18 @@
 		{
 			thumbBox: '.thumbBox',
 			spinner: '.spinner',
+			func: '$().getImg();',
 			imgSrc: ''
 		}
+		
+		$.fn.getImg = function(){
+			img = cropper.getDataURL();
+			if(img!=''){
+				$('.cropped_new').html('');
+				$('.cropped_new').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>新头像</p>');
+		    }
+		}
+		
 		var cropper = $('.imageBox').cropbox(options);
 		var img="";
 		
@@ -53,11 +63,9 @@
 			reader.onload = function(e) {
 				options.imgSrc = e.target.result;
 				cropper = $('.imageBox').cropbox(options);
-				//getImg();
 			}
 			reader.readAsDataURL(this.files[0]);
 			this.files = [];
-			//getImg();
 		})
 	
 		$('#btnCrop').on('click', function(){
@@ -91,26 +99,21 @@
 				    		    $('#user-img-md').attr('src',image);
 				    		}else if(headImgType=='admin'){
 				    		    $('#refresh').click();
-				    		}		
+				    		}	
 				    	}else{
-				    		alert("更新处理失败！错误信息:"+data.errbuf);
+				    		alert("Update Failed！Error Message:"+data.errbuf);
 				    	}			
 					},
 					error: function () {
-						alert("获取Json数据失败");
+						alert("Get JSON Data Failed");
 					}
 				});
 			}
 		});
-	
-		function getImg(){
-			img = cropper.getDataURL();
-			$('.cropped_new').html('');
-			$('.cropped_new').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>新头像</p>');
-		}
+		
 		
 		$(".imageBox").on("mouseup",function(){
- 			getImg();
+ 			$().getImg();
   		});
 		
 		

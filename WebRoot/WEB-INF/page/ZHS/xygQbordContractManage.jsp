@@ -255,13 +255,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
 <!----------------------------------------------订单明细-------------------------------------------------------- -->      
       
-      <div class="detail_frame" id="detail" style="height:470px">
+      <div class="detail_frame" id="detail" style="height:505px">
         <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;订单明细</span>
         </div>
         <a class="close-detail-frame" data-type="close">&#215;</a>    
         <div class="line"></div>             
-        <div class="detail_header" style="height:167px">
+        <div class="detail_header" style="height:203px">
           <input type="hidden" id="HEADER_ID_L" />
           <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
@@ -288,6 +288,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <label class="mid" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
+          <label class="mid" for="TOTAL_QUANTITY_L">总数量</label>
+          <input type="text" id="TOTAL_QUANTITY_L" class="long" readonly="readonly"/>
+          <label class="mid" for="TOTAL_PRICE_L">总金额</label>
+          <input type="text" id="TOTAL_PRICE_L" class="long" readonly="readonly"/>
+          <br style="clear:both"/>
         </div>     
         <!-- 订单明细表格区域 start -->
         <div class="detail_table">
@@ -298,6 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <th class="CARNAME" data-column="db">中文描述</th>
               <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
               <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
+              <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
               <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
               <th class="ACTION" data-column="normal">操作</th> 
               <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
@@ -308,6 +314,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td class="CARNAME text-left" data-column="db"></td>
               <td class="UNIT_PRICE" data-column="db" style="min-width:50px"></td>
               <td class="ORDER_QUANTITY" data-column="db" style="min-width:50px"></td>
+              <td class="LINE_PRICE" data-column="db" style="min-width:50px">总价</td>
               <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
                 <i class="fa fa-jpy fa-fw update pointer hidden" id="change_price_btn" title="修改单价" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
@@ -396,7 +403,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </form> 
         </div>
         <div class="foot">            
-          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-refresh="sub_refresh">创建</button>
+          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">新增</button>
           <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-refresh="sub_refresh">确定</button>
         </div>    
       </div>          
@@ -503,7 +510,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    
 			    $('#CREATION_DATE_F').val(firstDay);
 			    $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
-			}			
+			}		
+			
+			//汇总订单明细 总数量&总金额
+			$.fn.sumLines = function(){
+			    var contractNumber = $('#CONTRACT_NUMBER_L').val();
+			    param = 'CONTRACT_NUMBER=' + contractNumber;
+			    $.ajax({
+					type:'post', 
+					data:param,
+					url:'contract/sumQuantityAndPrice.do',
+					dataType:'json',
+					success: function (data) {
+					    console.log('sum');
+					    $('#TOTAL_QUANTITY_L').val(data.rows[0].TOTAL_QUANTITY);
+					    $('#TOTAL_PRICE_L').val(data.rows[0].TOTAL_PRICE);
+					},
+					error: function () {
+						layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+							//console.log("处于一个iframe中");
+							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}
+					}
+			    });
+			}	
 			
 			$('#ORDER_QUANTITY_D').on('change',function(){
 			   var itemId = $('#INVENTORY_ITEM_ID_D').val();
@@ -646,6 +677,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#PRICE_LIST_ID_L').val(tr.children('.PRICE_LIST_ID').text());
                     $('#PRICE_LIST_NAME_L').val(tr.children('.PRICE_LIST_NAME').text());
                     $('#STATUS_DESC_L').val(tr.children('.STATUS_DESC').text());
+                    $().sumLines();
                     $('#sub_refresh').click();
                 });   
             }   
@@ -798,6 +830,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ,['.CARNAME','CARNAME']
                     ,['.UNIT_PRICE','UNIT_PRICE']                 
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
+                    ,['.LINE_PRICE','LINE_PRICE']
                     ,['.REMARKS','REMARKS']
                     ,['.LINE_ID','LINE_ID']
                      ];

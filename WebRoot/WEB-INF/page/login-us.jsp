@@ -146,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </form>
           </div>
           <div class='foot'>       
-            <button id="confirm" class="right update_confirm pointer">修改</button>
+            <button id="confirm" class="right update_confirm pointer">Confirm</button>
           </div>   
         </div>
         <!-- 找回密码弹出框 end-->   

@@ -19,16 +19,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="pwd-modal-bg"></div>
     <div id="modifyPWD" class="pwd_frame">
       <div class='title'>      
-          <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;重置密码</span>
+          <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;Retrieve Password</span>
       </div>
       <div class='line'></div>
       <div class='content'>
         <form id='updateData' name="updateData" method="post" action="user/updatePWD.do">
-          <label for='O_PASSWORD' class='left'>原密码</label>
+          <label for='O_PASSWORD' class='left'>Old Password</label>
           <input type='password' id='O_PASSWORD' name='O_PASSWORD' data-update="db" class='left password'/>
           <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="O_PASSWORD"></i>
           <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="O_PASSWORD"></i>
-          <label for='N_PASSWORD' class='left'>新密码</label>
+          <label for='N_PASSWORD' class='left'>New Password</label>
           <input type='password' id='N_PASSWORD' name='N_PASSWORD' data-update="db" class='left password'/>
           <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD"></i>
           <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD"></i>
@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
       <div class='foot'>     
         <form id="logoutFrom" name="logoutFrom" method="post" action="logout.do">
-          <button id="confirm" class="right update_confirm pointer">确认修改</button>
+          <button id="confirm" class="right update_confirm pointer">Confirm</button>
           <button type="submit" class="right update_confirm pointer">取消返回</button> 
         </form>
       </div>   
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 $(function() {
 	 	errorMSG=$('#errorMsg').val();
 	 	if(errorMSG!=null&&errorMSG!=''){
-			layer.alert(errorMSG,{title:'警告',offset:[150]});
+			layer.alert(errorMSG,{title:'Warning',offset:[150]});
 	 	}
 	 	
 	 	$('i[data-pwd]').on('click',function(){
@@ -69,15 +69,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	    newPwd=$('#N_PASSWORD').val();
      	    oldPwd=$('#O_PASSWORD').val();
      	    if(oldPwd==null||oldPwd==''){
-				layer.alert('原密码不能为空！',{title:'警告',offset:[150]});
+				layer.alert('The Old Password Is Null!',{title:'Warning',offset:[150]});
 				return;
      	    }else if(newPwd==null||newPwd==''){
-     	        layer.alert('新密码不能为空！',{title:'警告',offset:[150]});
+     	        layer.alert('The New Password Is Null!',{title:'Warning',offset:[150]});
      	        return;
      	    }
-     	    RegExpValidate('^[a-zA-Z]\\w{5,14}$','N_PASSWORD','regExpError("密码格式错误，必须是由字母开头的6-15位字符");');
+     	    RegExpValidate('^[a-zA-Z]\\w{5,14}$','N_PASSWORD','regExpError("Incorrect Password Format!The New Password Should Be 6-15 Characters Consisting Of Letter and Number");');
      	    if(newPwd==oldPwd){
-				layer.alert('新密码不能与原密码相同,请重新输入!',{title:'警告',offset:[150]});
+				layer.alert('The New Password Can Not Be The Same As The Old!',{title:'Warning',offset:[150]});
      	        return;
      	    }    
      	    $('#updateData').submit();

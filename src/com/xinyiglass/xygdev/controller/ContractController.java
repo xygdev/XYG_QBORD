@@ -209,6 +209,20 @@ public class ContractController extends BaseController {
 		this.renderStr(CLS.getStandardPrice(conditionMap, loginId));
 	}
 	
+	@RequestMapping(value = "/sumQuantityAndPrice.do", method = RequestMethod.POST)
+	public void sumQuantityAndPrice() throws Exception
+	{
+		String contractNumber = this.getPara("CONTRACT_NUMBER");
+		this.renderStr(CLS.sumQuantityAndPrice(contractNumber, loginId));
+	}
+	
+	@RequestMapping(value = "/sumQuantity.do", method = RequestMethod.POST)
+	public void sumQuantity() throws Exception
+	{
+		String contractNumber = this.getPara("CONTRACT_NUMBER");
+		this.renderStr(CLS.sumQuantity(contractNumber, loginId));
+	}
+	
 	@RequestMapping(value = "/insertL", method = RequestMethod.POST)
 	public void insertL() throws Exception
 	{

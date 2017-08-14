@@ -4,7 +4,7 @@
     <!-- 定义列区域 start --> 
     <div id="row-def">
        <div class="title pointer">
-         <span class="title_name">定义列</span>
+         <span class="title_name">Row Define</span>
        </div>
 	   <a class="close-reveal-modal">&#215;</a>
        <div class="line"></div>
@@ -49,21 +49,24 @@
          $("#main-table").colResizable({
              liveDrag:true, 
              draggingClass:"dragging", 
-             //resizeMode:'flex'
-             resizeMode:'overflow'
+             resizeMode:'overflow',
+             onResize:function(){
+                null;
+             }
        	 });
        	 
        	 $.fn.afterRowDefine = function(){
     	 	 console.log("colResizable");
-    		 //$(window).trigger("resize");
     		 $("#main-table").colResizable({
     			 disable: true	
     		 });
     		 $("#main-table").colResizable({
     			 liveDrag:true, 
             	 draggingClass:"dragging", 
-            	 //resizeMode:'flex'
-            	 resizeMode:'overflow'
+            	 resizeMode:'overflow',
+             	 onResize:function(){
+             	     null;
+             	}
     		 });
     	  }
      </script>

@@ -167,13 +167,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
 <!----------------------------------------------订单明细-------------------------------------------------------- -->      
       
-      <div class="detail_frame" id="detail" style="height:470px">
+      <div class="detail_frame" id="detail" style="height:545px">
         <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;订单明细</span>
         </div>
         <a class="close-detail-frame" data-type="close">&#215;</a>    
         <div class="line"></div>             
-        <div class="detail_header" style="height:167px">
+        <div class="detail_header" style="height:242px">
           <input type="hidden" id="CUS_BATCH_L" />
           <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
@@ -200,6 +200,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <label class="mid" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
+          <label class="mid" for="REQUIRED_QTY_L">总需求量</label>
+          <input type="text" id="REQUIRED_QTY_L" class="long" readonly="readonly"/>
+          <label class="mid" for="ORDER_QTY_L">总订单量</label>
+          <input type="text" id="ORDER_QTY_L" class="long" readonly="readonly"/>
+          <br style="clear:both"/>
+          <label class="mid" for="BH_QTY_L">总备货量</label>
+          <input type="text" id="BH_QTY_L" class="long" readonly="readonly"/>
+          <label class="mid" for="FH_QTY_L">总发货量</label>
+          <input type="text" id="FH_QTY_L" class="long" readonly="readonly"/>
         </div>     
         <!-- 订单明细表格区域 start -->
         <div class="detail_table">
@@ -207,16 +216,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <tr>
               <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
               <th class="DESCRIPTION" data-column="db">本厂型号</th>
-              <th class="ORDER_QUANTITY" data-column="db">现有量</th>
+              <th class="REQUIRED_QUANTITY" data-column="db" style="min-width:50px">需求量</th>
+              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">订单量</th>
               <th class="BH_QTY" data-column="db" style="min-width:50px">备货量</th>
               <th class="FH_QTY" data-column="db" style="min-width:50px">发货量</th>  
             </tr>
             <tr>
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
-              <td class="ORDER_QUANTITY" data-column="db"></td>        
+              <td class="REQUIRED_QUANTITY" data-column="db" style="min-width:50px"></td>
+              <td class="ORDER_QUANTITY" data-column="db" style="min-width:50px"></td>        
               <td class="BH_QTY" data-column="db" style="min-width:50px"></td>
-              <td class="FH_QTY" data-column="db" style="min-width:30px"></td>
+              <td class="FH_QTY" data-column="db" style="min-width:50px"></td>
             </tr>
           </table>
         </div>
@@ -232,7 +243,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </jsp:include>
             <input type="hidden" data-type="size" value="5"/>
             <input type="hidden" data-type="number" value="1"/>
-            <input type="hidden" data-type="orderby" value="LINE_NUM"/> 
+            <input type="hidden" data-type="orderby" value="XQCQ.LINE_NUM"/> 
             <input type="hidden" data-type="cond"/>
             <input type="hidden" data-type="url" value="contract/getTransferContractL.do"/>
             <input type="hidden" data-type="jsontype" value="subtable"/> 
@@ -262,6 +273,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 cusBatch=$('#CUS_BATCH_L').val();
                 param=param+'&CUS_BATCH='+cusBatch;
             }  
+            
+            //汇总需求量，订单量，备货量，发货量
+			$.fn.sumLines = function(){
+			    var contractNumber = $('#CONTRACT_NUMBER_L').val();
+			    param = 'CONTRACT_NUMBER=' + contractNumber;
+			    $.ajax({
+					type:'post', 
+					data:param,
+					url:'contract/sumQuantity.do',
+					dataType:'json',
+					success: function (data) {
+					    console.log('sum');
+					    $('#REQUIRED_QTY_L').val(data.rows[0].REQUIRED_QTY);
+					    $('#ORDER_QTY_L').val(data.rows[0].ORDER_QTY);
+					    $('#BH_QTY_L').val(data.rows[0].BH_QTY);
+					    $('#FH_QTY_L').val(data.rows[0].FH_QTY);
+					},
+					error: function () {
+						layer.msg('获取JSON数据失败');	
+						if(window.frameElement != null){
+							//console.log("处于一个iframe中");
+							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}
+					}
+			    });
+			}
             
             //默认查询时间
             $.fn.defaultQueryDate = function(){
@@ -304,6 +341,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#PRICE_LIST_ID_L').val(tr.children('.PRICE_LIST_ID').text());
                     $('#PRICE_LIST_NAME_L').val(tr.children('.PRICE_LIST_NAME').text());
                     $('#STATUS_DESC_L').val(tr.children('.STATUS_DESC').text());
+                    $().sumLines();
                     $('#sub_refresh').click();
                 });   
             }    
@@ -350,6 +388,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      var mapRowArray=[
                      ['.LINE_NUM','LINE_NUM']
                     ,['.DESCRIPTION','DESCRIPTION']
+                    ,['.REQUIRED_QUANTITY','REQUIRED_QUANTITY']
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.BH_QTY','BH_QTY']
                     ,['.FH_QTY','FH_QTY']

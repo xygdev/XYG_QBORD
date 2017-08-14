@@ -167,11 +167,39 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
 	
+	
 	public SqlResultSet findStandardPrice(Map<String,Object> conditionMap) throws Exception{
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
 		String sql = "SELECT * FROM XYG_QBO_PRODUCT_LINE_LIST WHERE ITEM_ID = :1 AND LIST_HEADER_ID = :2";
 		paramMap.put("1", conditionMap.get("itemId"));
 		paramMap.put("2", conditionMap.get("productListId"));
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
+	
+	//汇总订单数量与金额
+	public SqlResultSet sumQuantityAndPrice(String contractNumber) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		String sql = "SELECT SUM(ORDER_QUANTITY) TOTAL_QUANTITY,SUM(ORDER_QUANTITY*UNIT_PRICE) TOTAL_PRICE FROM XYG_QBORD_CONTRACT_LINES XQCL,XYG_QBORD_CONTRACT_HEADERS XQCH WHERE XQCL.HEADER_ID = XQCH.HEADER_ID AND XQCH.CONTRACT_NUMBER = :1";
+		paramMap.put("1", contractNumber);
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	
+	}
+	
+	//汇总需求量，订单量，备货量，需求量
+	public SqlResultSet sumQuantity(String contractNumber) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		StringBuffer sqlBuff = new StringBuffer();
+		sqlBuff.append("SELECT SUM(REQUIRED_QUANTITY) REQUIRED_QTY,SUM(ORDER_QUANTITY) ORDER_QTY,SUM(BH_QTY) BH_QTY,SUM(FH_QTY) FH_QTY");
+		sqlBuff.append("  FROM (SELECT XQCQ.*,XQCL.ORDER_QUANTITY REQUIRED_QUANTITY ");
+		sqlBuff.append("          FROM XYG_QBORD_CONTRACT_QUERY_V XQCQ");
+		sqlBuff.append("              ,XYG_QBORD_CONTRACT_HEADERS XQCH");
+		sqlBuff.append("              ,XYG_QBORD_CONTRACT_LINES XQCL");
+		sqlBuff.append("         WHERE 1=1");
+		sqlBuff.append("           AND XQCQ.CUS_BATCH = :1");
+		sqlBuff.append("           AND XQCH.CONTRACT_NUMBER = XQCQ.CUS_BATCH");
+		sqlBuff.append("           AND XQCL.HEADER_ID = XQCH.HEADER_ID");
+		sqlBuff.append("           AND XQCQ.LINE_NUM = XQCL.LINE_NUM)");
+		paramMap.put("1", contractNumber);
+		return this.getDevJdbcTemplate().queryForResultSet(sqlBuff.toString(), paramMap);
 	}
 }

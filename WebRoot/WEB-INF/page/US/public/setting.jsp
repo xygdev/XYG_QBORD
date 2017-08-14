@@ -7,14 +7,14 @@
         String pageframe=request.getParameter("pageframe");
     %>    
     <div class="title">
-      <span>设置</span>
+      <span>Setting</span>
       <a class="close-setting">&#215;</a>
     </div>  
     <div class="line"></div>
     <div class="content">
       <ul>
-        <li><a class="pointer" data-rowdefine="init" data-reveal-id="row-def" data-pageframe="row-def" data-table=<%=rdTable %>>定义列</a></li>
-        <li><a class="pointer">显示行数</a>
+        <li><a class="pointer" data-rowdefine="init" data-reveal-id="row-def" data-pageframe="row-def" data-table=<%=rdTable %>>Row</a></li>
+        <li><a class="pointer">Line</a>
           <ul>
             <li>
               <a class="set_page_size pointer" data-pagetype="setpagesize" data-pageframe=<%=pageframe %>>
@@ -43,8 +43,8 @@
             </li> 
           </ul>
         </li>
-        <li><a class="pointer" data-ordertable=<%=odTable %> data-reveal-id="orderby">多维排序</a></li>
-        <li><a class="pointer" data-config="init" data-reveal-id="config">个人配置</a></li>
+        <li><a class="pointer" data-ordertable=<%=odTable %> data-reveal-id="orderby">Sorting</a></li>
+        <li><a class="pointer" data-config="init" data-reveal-id="config">Config</a></li>
        </ul>
      </div>      
   </body>

@@ -71,9 +71,15 @@ public class ContractHeaderVOService {
 	public String findForTransferPageL(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		StringBuffer sqlBuff = new StringBuffer();
-		sqlBuff.append("SELECT * ");
-		sqlBuff.append("  FROM XYG_QBORD_CONTRACT_QUERY_V");
-		sqlBuff.append(" WHERE CUS_BATCH = :1");
+		sqlBuff.append("SELECT XQCQ.*,XQCL.ORDER_QUANTITY REQUIRED_QUANTITY ");
+		sqlBuff.append("  FROM XYG_QBORD_CONTRACT_QUERY_V XQCQ");
+		sqlBuff.append("      ,XYG_QBORD_CONTRACT_HEADERS XQCH");
+		sqlBuff.append("      ,XYG_QBORD_CONTRACT_LINES XQCL");
+		sqlBuff.append(" WHERE 1=1");
+		sqlBuff.append("   AND XQCQ.CUS_BATCH = :1");
+		sqlBuff.append("   AND XQCH.CONTRACT_NUMBER = XQCQ.CUS_BATCH");
+		sqlBuff.append("   AND XQCL.HEADER_ID = XQCH.HEADER_ID");
+		sqlBuff.append("   AND XQCQ.LINE_NUM = XQCL.LINE_NUM");
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		paramMap.put("1", conditionMap.get("cusBatch"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));

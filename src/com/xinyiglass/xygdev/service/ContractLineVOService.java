@@ -40,8 +40,8 @@ public class ContractLineVOService {
 	public String findForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		StringBuffer sqlBuff = new StringBuffer();
-		sqlBuff.append("SELECT * ");
-		sqlBuff.append("  FROM XYG_QBORD_CONTRACT_LINES_V");
+		sqlBuff.append("SELECT A.*,(A.ORDER_QUANTITY*A.UNIT_PRICE) LINE_PRICE ");
+		sqlBuff.append("  FROM XYG_QBORD_CONTRACT_LINES_V A");
 		sqlBuff.append(" WHERE HEADER_ID = :1");
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		paramMap.put("1", conditionMap.get("headerId"));
@@ -108,5 +108,15 @@ public class ContractLineVOService {
 	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 	public String findJSONById(Long lineId,Long loginId) throws Exception{
 		return cld.findJSONById(lineId).toJsonStr();
+	}
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String sumQuantityAndPrice(String contractNumber,Long loginId) throws Exception{
+		return cld.sumQuantityAndPrice(contractNumber).toJsonStr();
+	}
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String sumQuantity(String contractNumber,Long loginId) throws Exception{
+		return cld.sumQuantity(contractNumber).toJsonStr();
 	}
 }
