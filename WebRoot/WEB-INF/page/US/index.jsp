@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="wrapper">    
       <header class="main-header">
         <!-- Logo -->
-        <a href="#" class="logo dark-green">
+        <a href="javascript:void(0)" class="logo dark-green">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>X</b>YG</span>
           <!-- logo for regular state and mobile devices -->
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <!-- 公告 -->
               <li>
                 <a id="broadcast" href="#">
-                  <i class="fa fa-bullhorn"></i>
+                  <i class="fa fa-volume-up" style="font-size:20px"></i>
                   <span data-type="tips" class="label label-danger"></span>
                 </a>
               </li>              
@@ -70,21 +70,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <li class="user-header green">
                     <img id="user-img-md" src="/image/user/${IMG}" class="img-circle" alt="User Image">
                     <p>
-                      ${DESC} - ${RESP}
-                      <small>Member since Nov. 2012</small>
+                      ${DESC}
+                      <small>${USER_NAME}</small>
+                      <small>${RESP}</small>
+                      <!-- <small>Member since Nov. 2012</small> -->
                     </p>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat" data-reveal-id="modifyPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">修改密码</a>
+                      <a href="#" class="btn btn-default btn-flat" data-reveal-id="modifyPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">Modify PWD</a>
                     </div>
+                    <!--  
                     <div class="pull-left">
-                      <a href="#" id="changeIMG" class="btn btn-default btn-flat" style="margin-left:6px" data-reveal-id="headimg" data-bg="pwd-modal-bg">更换头像</a>
+                      <a href="#" id="changeIMG" class="btn btn-default btn-flat" style="margin-left:6px" data-reveal-id="headimg" data-bg="pwd-modal-bg"></a>
                     </div>
+                    -->
                     <div class="pull-right">
                       <form id="logoutFrom" name="logoutFrom" method="post" action="logout.do">
-                        <button id="signout" type="submit" class="btn btn-default btn-flat">退出登录</button>
+                        <button id="signout" type="submit" class="btn btn-default btn-flat">Sign out</button>
                       </form>
                     </div>
                   </li>
@@ -107,17 +111,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <a class="tab_button_fullscreen pointer" fullscreen="true" style="background-color:white;color:#00a65a;display:none" ><i class="fa fa-toggle-on"></i></a>
 
           <div class="dropdown tab_selection" >
-          	<button type="button" class="tab_button_selection dropdown-toggle" data-toggle="dropdown">操作&nbsp;<i class="fa fa-caret-down"></i></button>
+          	<button type="button" class="tab_button_selection dropdown-toggle" data-toggle="dropdown">Tab&nbsp;<i class="fa fa-caret-down"></i></button>
             <!-- tab 按钮区域 start -->
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="position:fixed;top:85px;left:auto;right:0">
               <li role="presentation">
-                <a role="menuitem" data-tabtype="refreshTab" tabindex="-1" href="#">刷新当前标签页</a>
+                <a role="menuitem" data-tabtype="refreshTab" tabindex="-1" href="#">Refresh</a>
               </li>
               <li role="presentation">
-                 <a role="menuitem" data-tabtype="closeOthers" tabindex="-1" href="#">关闭其他标签页</a>
+                 <a role="menuitem" data-tabtype="closeOthers" tabindex="-1" href="#">Close Others</a>
               </li>
               <li role="presentation">
-                <a role="menuitem" data-tabtype="closeAll" tabindex="-1" href="#">关闭所有标签页</a>
+                <a role="menuitem" data-tabtype="closeAll" tabindex="-1" href="#">Close All</a>
               </li>
             </ul>
             <!-- tab 按钮区域 end -->
@@ -126,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <a class="tab_button_right pointer" style="background-color:white;color:black" ><i class="fa fa-forward"></i></a>
           <nav class="content_tab_area">
             <div class="content_tab_frame" style="margin-left:0px">
-              <a class="content_tab pointer active" data-tabfunc="0" >首页</a>
+              <a class="content_tab pointer active" data-tabfunc="0" >Home</a>
             </div>
           </nav>
     	</section>
@@ -149,24 +153,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="pwd-modal-bg"></div>
     	<div id="modifyPWD" class="pwd_frame">
           <div class='title'>      
-            <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;修改密码</span>
+            <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;Modify Password</span>
           </div>
           <a class="close-pwd-frame" data-type="close">&#215;</a>
           <div class='line'></div>
           <div class='content'>
             <form id='updateData'>
-              <label for='O_PASSWORD' class='left'>原密码</label>
+              <label for='O_PASSWORD' class='left'>Old</label>
               <input type='password' id='O_PASSWORD' name='O_PASSWORD' data-update="db" class='left password'/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="O_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="O_PASSWORD"></i>
-              <label for='N_PASSWORD' class='left'>新密码</label>
+              <label for='N_PASSWORD' class='left'>New</label>
               <input type='password' id='N_PASSWORD' name='N_PASSWORD' data-update="db" class='left password'/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD"></i>
             </form>
           </div>
           <div class='foot'>       
-            <button id="confirm" class="right update_confirm pointer">确认修改</button>
+            <button id="confirm" class="right update_confirm pointer">Confirm</button>
           </div>   
     	</div>
         <!-- 密码修改弹出框 end-->          
@@ -244,7 +248,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });              
      	});
      	
-        $('#changeIMG').on('click',function(){
+        $('#user-img-md').on('click',function(){
     		$('.cropped_old img').removeAttr('src');
     		$('.imageBox').css('background-image','');
     		$('.cropped_new img').attr('src','/image/user/system_blank.png');
@@ -259,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	layer.open({
   				type: 2,
   				area: ['1000px', '700px'],
-  				title:'公告栏',
+  				title:'Bulletin Board',
   				fixed: false, //不固定
   				maxmin: true,				
   				content: 'broadcast/bcDisplay.do'

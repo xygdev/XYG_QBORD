@@ -2,7 +2,7 @@
                     jQuery 页面弹出框功能
                     Create Date:2015.1.20
                     Create By:bird
-                    Last Update Date:2016.8.16
+                    Last Update Date:2017.8.15
                     Last Update By:bird
                           修改日志
            2015.1.20   创建文件
@@ -16,8 +16,9 @@
            2016.8.22   代码重构，减少配置参数
            2016.8.31   修改fn.modify,设置情况lov框后,同时清空隐藏id框
            2016.10.31  修改list方法，新增notnull参数，判断是否加入空<option>
-           2017.1.5 修改Lov的逻辑以及添加联动List的逻辑。 samt
-           2017.1.6 修改Lov的多级联动的逻辑以及修正联动List的问题。 samt
+           2017.1.5    修改Lov的逻辑以及添加联动List的逻辑。 samt
+           2017.1.6    修改Lov的多级联动的逻辑以及修正联动List的问题。 samt
+           2017.8.15   新增功能 Lov抓取值时 可配置清空其他栏位
 *********************************************************/
 (function($) {	
 	/******************listener start***********************
@@ -70,14 +71,25 @@
         	$.fn.choose = function(){
             	$('table[data-table="'+tablename+'"] td').on('click', function() {
             		for(k=0;k<options.choose.length;k++){
-            			text=$(this).parent().children(options.choose[k]).text();
-            			if(!text){
-            				alert('不能选择空值');	
-            				return;
-            			}else{
+            			/***
+            			 * 在LOV选择后 需要清空的栏位的choose值设为NONE
+            			 * 在选择后将会自动附上空值 实现清空栏位的效果
+            			 * Modify By Bird 
+            			 */
+            			if(options.choose[k]=='NONE'){
+            				text='';
             				$(options.recid[k]).val(text);
             				$(options.recid[k]).click();
-            			}   			
+            			}else{
+            			    text=$(this).parent().children(options.choose[k]).text();
+            			    if(!text){
+                				alert('不能选择空值');	
+                				return;
+                			}else{
+                				$(options.recid[k]).val(text);
+                				$(options.recid[k]).click();
+                			}   
+            			}			
             		}
             		if(options.clickfunc!=null&&options.clickfunc!=''){
         				eval(options.clickfunc);

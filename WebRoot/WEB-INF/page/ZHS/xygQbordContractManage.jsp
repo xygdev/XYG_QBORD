@@ -388,7 +388,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="DESCRIPTION_D" class="md left">本厂型号</label> 
             <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" required="required" data-modify="false" readonly="readonly"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
-            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D"] value="···"/> 
+            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] value="···"/> 
             <label for="CARNAME" class="md left">中文描述</label> 
             <input type="text" id="CARNAME_D" name="CARNAME" data-update="db" class="left lgx2" data-update="db" required="required" readonly="readonly"/> 
           	<br style="clear:both"/>
@@ -633,7 +633,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var userType = '${USER_TYPE}';
                     var tr=$(this).parent().parent();
                     var status = tr.children('.STATUS').text(); 
-			    	if(userType=='EMP'){
+			    	if(userType=='EMP'){    
 			    	    $('i[data-status="RECEIVE"]').parent().css('display','');
 			    	    $('i[data-status="CHECK"]').parent().css('display','');
 			    	    if(status=='BOOK'){
@@ -646,11 +646,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	    }
 			    		$('i[data-status="BOOK"]').parent().css('display','none');
 			    		$('i[data-status="CONFIRM"]').parent().css('display','none');
+			    		$('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
+			    		$('#ITEM_LOV').attr('disabled',true); 
 			    	}else if(userType='CUSTOMER'){
+			    	    $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
 			    	    $('i[data-status="BOOK"]').parent().css('display','');
 			    		$('i[data-status="CONFIRM"]').parent().css('display','');
+			    		$('#ITEM_LOV').attr('disabled',true);
 			    	    if(status=='INPUT'){
 			    	        $('i[data-status="CONFIRM"]').parent().css('display','none');
+			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
+			    	        $('#ITEM_LOV').attr('disabled',false);
 			    	    }else if(status=='CHECK'){
 			    	        $('i[data-status="BOOK"]').parent().css('display','none');
 			    	    }else{
@@ -694,6 +700,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         if(data.retcode=='0'){
 				    		layer.msg(status_desc+'成功!');
 				    		$('#STATUS_DESC_L').val(status_desc);
+				    		$('i[data-status]:not(i[data-status="CANCEL"])').parent().css('display','none');
+				    		if(new_status=='RECEIVE'){
+				    		    $('i[data-status="CHECK"]').parent().css('display','');
+				    		}
 				    		//$('#'+options.pageframe+' a[data-type="close"]').click();/****点击关闭更新框按钮****/
 				    		$('#refresh').click();/****点击刷新当前页按钮，刷新数据****/
 				    	}else{

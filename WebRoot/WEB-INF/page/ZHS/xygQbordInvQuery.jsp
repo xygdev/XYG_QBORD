@@ -42,8 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="ORGANIZATION_CODE" data-column="db"></td>
             <td class="ORGANIZATION_NAME" data-column="db"></td>
             <td class="ITEM_NUMBER" data-column="db"></td>
-            <td class="DESCRIPTION" data-column="db"></td>
-            <td class="CARNAME" data-column="db"></td>
+            <td class="DESCRIPTION text-left" data-column="db"></td>
+            <td class="CARNAME text-left" data-column="db"></td>
             <td class="ONHAND_QTY" data-column="db"></td>
             <td class="AVAILABLE_QTY" data-column="db"></td>
             <td class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></td>          

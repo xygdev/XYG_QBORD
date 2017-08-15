@@ -53,9 +53,9 @@
      	    </td>
             <td class="ORGANIZATION_NAME" data-column="db"></td>
      	    <td class="ITEM_NUMBER" data-column="db"></td>
-     	    <td class="DESCRIPTION" data-column="db"></td>
-     	    <td class="CARNAME" data-column="db"></td>
-     	    <td class="EN_DESC" data-column="db"></td>   	    
+     	    <td class="DESCRIPTION text-left" data-column="db"></td>
+     	    <td class="CARNAME text-left" data-column="db"></td>
+     	    <td class="EN_DESC text-left" data-column="db"></td>   	    
      	    <td class="PRODUCT_TYPE_DESC" data-column="db"></td>
      	    <td class="PROCESS_TYPE_DESC" data-column="db"></td>
      	    <td class="LOAD_LOCATION_DESC" data-column="db"></td>

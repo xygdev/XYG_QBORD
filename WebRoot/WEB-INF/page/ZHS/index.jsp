@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="wrapper">    
       <header class="main-header">
         <!-- Logo -->
-        <a href="#" class="logo dark-green">
+        <a href="javascript:void(0)" class="logo dark-green">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>X</b>YG</span>
           <!-- logo for regular state and mobile devices -->
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <!-- 公告 -->
               <li>
                 <a id="broadcast" href="#">
-                  <i class="fa fa-bullhorn"></i>
+                  <i class="fa fa-volume-up" style="font-size:20px"></i>
                   <span data-type="tips" class="label label-danger"></span>
                 </a>
               </li>              
@@ -68,10 +68,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header green">
-                    <img id="user-img-md" src="/image/user/${IMG}" class="img-circle" alt="User Image">
+                    <img id="user-img-md" src="/image/user/${IMG}" class="img-circle pointer" alt="User Image" data-reveal-id="headimg" data-bg="pwd-modal-bg">
                     <p>
-                      ${DESC} - ${RESP}
-                      <small>Member since Nov. 2012</small>
+                      ${DESC}
+                      <small>${USER_NAME}</small>
+                      <small>${RESP}</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -79,9 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat" data-reveal-id="modifyPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">修改密码</a>
                     </div>
+                    <!-- 
                     <div class="pull-left">
                       <a href="#" id="changeIMG" class="btn btn-default btn-flat" style="margin-left:6px" data-reveal-id="headimg" data-bg="pwd-modal-bg">更换头像</a>
                     </div>
+                     -->
                     <div class="pull-right">
                       <form id="logoutFrom" name="logoutFrom" method="post" action="logout.do">
                         <button id="signout" type="submit" class="btn btn-default btn-flat">退出登录</button>
@@ -244,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });              
      	});
      	
-        $('#changeIMG').on('click',function(){
+        $('#user-img-md').on('click',function(){
     		$('.cropped_old img').removeAttr('src');
     		$('.imageBox').css('background-image','');
     		$('.cropped_new img').attr('src','/image/user/system_blank.png');

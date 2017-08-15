@@ -2,7 +2,7 @@
                     jQuery 页面弹出框功能
                     Create Date:2015.11.7
                     Create By:bird
-                    Last Update Date:2016.7.11
+                    Last Update Date:2017.8.14
                     Last Update By:bird
                           修改日志
            2015.11.7   创建文件
@@ -37,6 +37,11 @@
 		});	
 		/****绑定<i>标签****/
 		$('i[data-reveal-id]').on('click', function(e) {
+			var modalLocation = $(this).attr('data-reveal-id');
+			$('#'+modalLocation).reveal($(this).data());
+		});
+		/****绑定<i>标签****/
+		$('img[data-reveal-id]').on('click', function(e) {
 			var modalLocation = $(this).attr('data-reveal-id');
 			$('#'+modalLocation).reveal($(this).data());
 		});

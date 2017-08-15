@@ -27,15 +27,15 @@
   <body >
     <div>
       <div id="accordion">
-  		<h3>集团简介</h3>
+  		<h3>Group Introduction</h3>
   		<div>
   		  <p>
   		    <textarea class="content" readonly="readonly">
-  		             信义玻璃控股有限公司创建于1988年，2005年2月在香港联交所主板上市（股票代码00868HK），是全球领先的综合玻璃制造商。产品涵盖优质浮法玻璃、汽车玻璃、建筑节能玻璃及超薄电子玻璃产品等领域。国内七大生产基地分别位于中国经济发 展最活跃的珠三角、长三角、京津冀、西部成渝经济带，在深圳、东莞、江门、芜湖、天津、营口、德阳建有大型生产基地。为开拓海外市场，信义玻璃于2015年在马来西亚投资建设大规模生产基地。公司目前总资产233亿元，年收入超过100亿港元，总占地面积超过530万平方米，员工约1.2万人。集团股份现为恒生环球综合指数、恒生综合指数、恒生综合中型股指数及恒生综合行业指数-工业及MSCI香港小型股指数的成分股。
+  		    Xinyi Glass Holdings Limited, a major supplier in the global supply chain, was founded in 1988 and listed on the main board of the Hong Kong Stock Exchange in February 2005.（Stock Code：00868.HK）Xinyi is the world's leading integrated glass manufacturer which cover a wide range of product including high-quality float glass,  automobile glass ,  engineering glass and electronic Glass etc. Xinyi Seven industrial bases,Shenzhen, Dongguan, Jiangmen, Wuhu, Tianjin, Yingkou, Deyang are located inthe eastern Yangtze River delta area, the southern Pearl River delta area, the northern Beijing-Tianjin region and the western Chengdu-Chongqing region which are the most active domestic economy zones in China.In 2015, Xinyi Glass invested in the construction of large-scale production base in Malaysia in order to develop overseas markets.Currently , Xinyi Glass has been a listed company with total market capital of HK $ 23.3 billion and more than HK $ 10 billion annual revenue. Meanwhile,Xinyi glass has a total area of over 5.3 millionsquare metersand around 12,000 employees.  The Group is a constituent of Hang Seng Global Composite Index, Hang Seng Composite Index, Hang Seng Composite MidCap Index, Hang Seng Composite Industry Index-Industrials, as well as MSCI Hong Kong Small Cap Index.
   		    </textarea>
   		    <br/>
   		    <br/>
-  		    <span class="right">管理员</span>
+  		    <span class="right">Admin</span>
   		    <span class="right">2017-08-08 08:08:08&nbsp;&nbsp;&nbsp;</span>
   		  </p>
   		</div>
