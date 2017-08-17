@@ -304,3 +304,10 @@
 
 
 
+/************浏览器下载页面 start***********/
+.cover{position: fixed;z-index:990;height: 100%;width:100%;background-attachment: fixed;background-size: cover;background-position: center center;background-repeat:no repeat;background-image:url(/image/login/XYG-BG.jpg);top:0;left:0;}
+.browers{position: absolute;height: 290px;width:450px;background:#c9e7df;border:10px solid #208E5D;bottom:50px;left:50%;margin-left:-235px;}
+.browers>.title{width:430px;height:100px;text-align:center;}
+.browers>.title>span{font-size:25px;color:#208E5D;font-weight:bold;}
+
+/************浏览器下载页面 end***********/

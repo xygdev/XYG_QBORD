@@ -26,6 +26,7 @@ import com.xinyiglass.xygdev.service.LoginService;
 import com.xinyiglass.xygdev.service.RespVOService;
 import com.xinyiglass.xygdev.service.UserVOService;
 import com.xinyiglass.xygdev.util.Constant;
+import com.xinyiglass.xygdev.util.CookieUtil;
 import com.xinyiglass.xygdev.util.GlobalInit;
 import com.xinyiglass.xygdev.util.LogUtil;
 
@@ -38,10 +39,17 @@ public class LoginController extends BaseController {
 	@Autowired
 	LoginService ls;
 	@Autowired
-	RespVOService rvos;
-		
+	RespVOService rvos;	
+	
 	@RequestMapping("/")
 	public String login(){
+		String userName = null;
+		try{
+			userName = CookieUtil.getCookieByName(this.getRequest(), "USER_NAME").getValue();
+		}catch(NullPointerException e){
+			userName = null;
+		}
+		this.setSessionAttr("COOKIE_USER", userName);
 		return "login-zhs";
 	}
 	

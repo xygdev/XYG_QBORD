@@ -26,6 +26,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        padding:4px 15px !important;
 	    }
 	</style>
+	<script>
+	    var IE = function (version){
+	        document.write('<div class="cover"><div class="browers"><div class="title"><br/><span>Choose A Browers</span><br/><span>Go To The Download Page.</span></div><a href="http://www.firefox.com.cn/"><img width="150" src="/image/login/ff.png"/></a><a href="https://www.google.cn/chrome/browser/desktop/index.html"><img width="150" src="/image/login/chrome.png"/></a><a href="https://www.microsoft.com/zh-cn/download/internet-explorer-11-for-windows-7-details.aspx"><img width="120" src="/image/login/ie.png"/></a></div></div>');
+	    	alert('The Browers '+version+' Could Not Support Visiting Our Website.Please Download Another Browers And Try Again.');
+	    }	    
+	    
+	    if (document.all && document.compatMode && !window.XMLHttpRequest) {
+			IE('IE6');
+		}else if (document.all && window.XMLHttpRequest && !document.querySelector) {
+			IE('IE7');
+		}else if (document.all && document.querySelector && !document.addEventListener) {
+			IE('IE8');
+		}else if (document.all && document.addEventListener && !window.atob) {
+			IE('IE9');
+		}else if (document.all && document.addEventListener && window.atob) {
+			IE('IE10');
+		}else{
+		    null;
+		}
+		
+	</script>
   </head>
   
   <body>
@@ -166,6 +187,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript" src="plugin/layer/layer.js"></script>
   
   <script>
+    function getCookie(cname) {
+    	var arr = document.cookie.split(';');
+    	var name = cname + '=';
+    	for (var i = 0; i < arr.length; i++) {
+        	var c = arr[i].trim();
+        	if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    	}
+    	return "";
+	}
+    
     $.fn.symbol = function(){
     	var screen_h = $(window).height();//screen.height;
 		var screen_w = $(window).width();//screen.width;
@@ -218,6 +249,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $(document).ready(function(){
         $().symbol();
 	    $().tips();
+	    var userName = getCookie('USER_NAME');
+	    $('#username').val(userName);
 	    errorMSG=$('#errorMsg').val();
 		if(errorMSG!=null&&errorMSG!=''){ 
 	    	$('.start-btn').click();

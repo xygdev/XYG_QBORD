@@ -51,6 +51,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav"> 
+              <!-- 销毁Session 正式上线时应去除-->
+              <li>
+                <a id="sessionD" href="#">
+                  <i class="fa fa-bolt" style="font-size:20px"></i>
+                  <span data-type="tips" class="label label-danger"></span>
+                </a>
+              </li> 
+
               <!-- 公告 -->
               <li>
                 <a id="broadcast" href="#">
@@ -287,6 +295,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 		
 		$('#refresh_bc').click();
+		
+		//添加cookie
+		function addCookie(name, value, exdays) {
+		    var d = new Date();
+    		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    		var expires = 'expires='+d.toUTCString();
+    		document.cookie = name + '=' + value+ ';' + expires;
+		}
+		
+		var userName = '${USER_NAME}';
+		addCookie('USER_NAME',userName,1);
+		
+		/***session销毁 cookie销毁 测试用,上线前需去除****/
+        $('#sessionD').on('click',function(e){
+        	e.preventDefault();//阻止<a>标签默认的点击事件（超链接跳转）
+        	$.ajax({
+        		type:'post', 
+				url:'sessionDestroy.do',
+				dataType:'json',
+				success:function(data){
+				    layer.msg('销毁session成功');
+				},
+				error:function(){
+					null;
+				}
+        	});
+        });
 	</script>
   </body>
 </html>
