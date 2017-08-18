@@ -31,7 +31,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("USER_NAME", conditionMap.get("userName"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION", conditionMap.get("userDesc"),paramMap));
 		sqlBuf.append(" ORDER BY USER_ID ");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***职责LOV***/
@@ -44,7 +44,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_CODE", conditionMap.get("respCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_NAME", conditionMap.get("respName"),paramMap));
 		sqlBuf.append(" ORDER BY RESP_ID ");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	
@@ -57,7 +57,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("FULL_NAME",conditionMap.get("ename"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("EMPLOYEE_NUMBER", conditionMap.get("eno"),paramMap));
 		sqlBuf.append(" ORDER BY EMP_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***工作组LOV***/
@@ -70,7 +70,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("GROUP_CODE",conditionMap.get("groupCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("GROUP_NAME", conditionMap.get("groupName"),paramMap));
 		sqlBuf.append(" ORDER BY GROUP_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***菜单LOV***/
@@ -83,7 +83,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("MENU_CODE", conditionMap.get("menuCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("MENU_NAME", conditionMap.get("menuName"),paramMap));
 		sqlBuf.append(" ORDER BY MENU_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***图标LOV***/
@@ -95,7 +95,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("ICON_CODE",conditionMap.get("iconCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION", conditionMap.get("iconDesc"),paramMap));
 		sqlBuf.append(" ORDER BY ICON_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***库存组织LOV***/
@@ -109,7 +109,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_CODE",conditionMap.get("oCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_NAME", conditionMap.get("oName"),paramMap));
 		sqlBuf.append(" ORDER BY ORGANIZATION_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***用户库存权限LOV***/
@@ -124,7 +124,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_CODE",conditionMap.get("oCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_NAME", conditionMap.get("oName"),paramMap));
 		sqlBuf.append(" ORDER BY ORGANIZATION_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***功能LOV***/
@@ -137,7 +137,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("FUNCTION_CODE",conditionMap.get("funcCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("FUNCTION_NAME", conditionMap.get("funcName"),paramMap));
 		sqlBuf.append(" ORDER BY FUNCTION_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***客户（后台分配界面）LOV***/
@@ -157,7 +157,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("PARTY_NAME", conditionMap.get("partyName"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
 		sqlBuf.append(" ORDER BY XACA.ORG_ID,XACA.CUST_ACCOUNT_ID");
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***用户客户LOV***/
@@ -193,7 +193,7 @@ public class LovService {
 		sqlBuf.append("					    AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID)");
 		sqlBuf.append(" ORDER BY ORG_ID,CUST_ACCOUNT_ID");  
 		paramMap.put("1", conditionMap.get("userId"));
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***物料LOV***/
@@ -232,7 +232,7 @@ public class LovService {
 		paramMap.put("1", conditionMap.get("customerId"));
 		paramMap.put("2", conditionMap.get("salesOrgId"));
 		paramMap.put("3", conditionMap.get("organizationId"));
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***产品种类 LOV***/
@@ -248,7 +248,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
 		sqlBuf.append(" ORDER BY LOOKUP_CODE");
 		paramMap.put("1", lang);
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***加工类型LOV***/
@@ -264,7 +264,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
 		sqlBuf.append(" ORDER BY LOOKUP_CODE");
 		paramMap.put("1", lang);
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 	/***装车位置LOV***/
@@ -280,7 +280,7 @@ public class LovService {
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
 		sqlBuf.append(" ORDER BY LOOKUP_CODE");
 		paramMap.put("1", lang);
-		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),false);
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
 }

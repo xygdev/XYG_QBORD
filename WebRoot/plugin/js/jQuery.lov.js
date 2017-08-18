@@ -101,6 +101,8 @@
         	$('#'+options.pageframe+' input[data-type="number"]').val('1');
         	$('#'+options.pageframe+' i[data-pagetype="prevpage"]').css('display','none');
         	$('#'+options.pageframe+' i[data-pagetype="nextpage"]').css('display','none');
+        	$('#'+options.pageframe+' i[data-pagetype="firstpage"]').css('display','none');
+			$('#'+options.pageframe+' i[data-pagetype="lastpage"]').css('display','none');  /*2017/8/18  add first、last  display:none;  sun*/
         	$('#'+options.pageframe+' input[data-type="jsontype"]').val(options.jsontype);
         	$('#'+options.pageframe+' input[data-type="url"]').val(options.queryurl);
         	$('table[data-table="'+tablename+'"]').html('');  

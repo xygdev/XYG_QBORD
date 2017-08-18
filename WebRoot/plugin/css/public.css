@@ -188,15 +188,15 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 /* ==========================================================================
 lov框
 ========================================================================== */
-.loading-modal{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,0);z-index:201;top:0;left:0}
-.lov_loading{position:absolute;left:50%;top:200px;margin-left:-30px;z-index: 202;padding:10px;width:60px;height:60px;background:#000;background:rgba(0,0,0,.8);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
-.lov_frame{visibility:hidden;position:fixed;z-index:200;top:150px;left:50%;margin-left:-250px;min-width:500px;min-height:450px;display:inline-block;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;background-color:white;overflow:auto}
+.loading-modal{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,0);z-index:201;top:0;left:0;}
+.lov_loading{position:absolute;left:50%;top:200px;margin-left:-30px;z-index: 202;padding:10px;width:60px;height:60px;background:#000;background:rgba(0,0,0,.8);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;display:none;}
+.lov_frame{visibility:hidden;position:fixed;z-index:200;top:150px;left:50%;margin-left:-250px;min-width:560px;min-height:450px;display:inline-block;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;background-color:white;overflow:auto}            /*2017/8/17  max-width:560px; sun*/
 .lov_frame .close-lov{font-size:22px;line-height:.5;position:absolute;top:8px;right:11px;color:#aaa;text-shadow:0 -1px 1px rbga(0,0,0,.6);font-weight:bold;cursor:pointer}
 .lov_frame>.lov_title{width:100%;height:50px}
 .lov_frame>.lov_title>h1{display:block;height:50px;margin:0 20px;font-size:20px;line-height:50px}
 .lov_frame>.blackline{width:100%;height:3px;background-color:black}
-.lov_frame>.querybox{width:450px;height:30px;margin:10px auto;padding:10px 10px;border:2px solid black;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
-.lov_frame>.querybox>select{min-width:100px;margin:0 5px}
+.lov_frame>.querybox{width:502px;height:30px;margin:10px auto;padding:10px 10px;border:2px solid black;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}         /*2017/8/17 width:492px;*/
+.lov_frame>.querybox>select{min-width:100px;margin:0 5px;height:26px;}  /*2017/8/17 add  height:26px; sun*/
 .lov_frame>.querybox>.lov_button{width:15px;height:26px;padding:3px 5px}
 .lov_frame>.contentbox{min-width:460px;min-height:280px;padding:0 20px}
 .lov_frame>.footer{width:100%;height:50px}
@@ -206,5 +206,5 @@ lov框
 .lov_frame>.contentbox>table>tbody>tr:hover{background-color:#7a7a7a;color:#f9f9f9}
 .lov_frame>.contentbox>table>tbody>tr:hover>td{background-color:transparent;color:#f9f9f9}
 .lov_frame>.contentbox>table>tbody>tr:hover>th{color:black }
-#lov_page_no{width:20px;text-align:center}
+#lov_page_no{max-width:36px;text-align:center;height:20px;}      /*2017/8/17  max-width:36px;add height:20px;*/
 .lov-modal-bg{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,.8);z-index:199;display:none;top:0;left:0}

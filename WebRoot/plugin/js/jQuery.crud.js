@@ -319,15 +319,7 @@
 			}
 			/******lov条件查询方法******/
 			else if(options.crudtype=='lovquery'){
-				//$(options.load).show();/****显示加载动画****/
-				if($('.'+options.load).length>0){
-					//alert("1")
-					null;
-					//return;
-				}else{
-					$('#'+options.pageframe).parent().prepend('<div class="loading-modal"></div>');
-					$('#'+options.pageframe).prepend('<div class="'+options.load+'"><i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i></div>');
-				}
+				$(options.load).show();/****显示加载动画****/
 				param=$('option:selected',$('#'+options.pageframe+' select[data-type="select"]')).val();
 				value=$('#'+options.pageframe+' input[data-type="query_val"]').val();		
 				if(!value){
@@ -344,7 +336,13 @@
 				pageSize=parseInt($('#'+options.pageframe+' input[data-type="size"]').val());				
 				pageNo=parseInt(1);
 				$('#'+options.pageframe+' input[data-type="number"]').val(pageNo);
-				param=param+'&pageSize='+pageSize+'&pageNo='+pageNo;
+				//param=param+'&pageSize='+pageSize+'&pageNo='+pageNo;
+				/****如果为最后一页按钮，设置goLastPage参数为true,其余则为false****/
+		    	if(options.pagetype=='lastpage'){
+		    		param=param+'&pageSize='+pageSize+'&pageNo='+pageNo+'&goLastPage=true';
+		    	}else{
+		    		param=param+'&pageSize='+pageSize+'&pageNo='+pageNo+'&goLastPage=false';
+		    	}	
 				extendParam = $('#'+options.pageframe+' input[data-type="extend_param"]').val();
 				if(extendParam!=null&&extendParam!=''){
 					param = param + extendParam;
@@ -357,9 +355,8 @@
 					dataType:'json',
 					success: function (data) {
 						$('table[data-table="'+tablename+'"] td').html('');
-						if(data.rows.length==0){
-							$('.'+options.load).remove();
-							$('.loading-modal').remove();            /**2017/8/2  隐藏load和背景**/
+						if(data.rows.length==0){ 
+							$(options.load).hide();   /**2017/8/2  隐藏load和背景**/
 							layer.msg('提示: 查询无数据！');
 							return false;
 						}
@@ -379,9 +376,7 @@
 						if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
 							eval(options.afterdatafunc);
 						}
-						$('.'+options.load).remove();
-						$('.loading-modal').remove();
-						//$(options.load).hide();/****隐藏加载动画****/
+						$(options.load).hide();/****隐藏加载动画****/
 					},
 					error: function () {
 						/***ADD BY BIRD 2017.06.14 START***/

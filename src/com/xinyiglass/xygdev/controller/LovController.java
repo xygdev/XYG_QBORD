@@ -28,6 +28,7 @@ public class LovController extends BaseController{
 		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
 		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
 		conditionMap.put("userName", this.getPara("USER_NAME"));
 		conditionMap.put("userDesc", this.getPara("DESCRIPTION"));
 		this.renderStr(lovService.findUserForPage(conditionMap, loginId));
@@ -40,6 +41,7 @@ public class LovController extends BaseController{
 		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
 		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
 		conditionMap.put("respName", this.getPara("RESP_NAME"));
 		conditionMap.put("respCode", this.getPara("RESP_CODE"));
 		this.renderStr(lovService.findRespForPage(conditionMap, loginId));
@@ -52,6 +54,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
 		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
 		conditionMap.put("ename", this.getPara("ENAME"));
 		conditionMap.put("eno", this.getPara("ENO"));
   		this.renderStr(lovService.findEmpForPage(conditionMap, loginId));
@@ -64,6 +67,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
 		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
 		conditionMap.put("groupCode", this.getPara("GROUP_CODE"));
 		conditionMap.put("groupName", this.getPara("GROUP_NAME"));
 		this.renderStr(lovService.findGroupForPage(conditionMap, loginId));
@@ -76,6 +80,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("menuName", this.getPara("MENU_NAME"));
   		conditionMap.put("menuCode", this.getPara("MENU_CODE"));
   		this.renderStr(lovService.findMenuForPage(conditionMap, loginId));
@@ -88,6 +93,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("funcName", this.getPara("FUNCTION_NAME"));
   		conditionMap.put("funcCode", this.getPara("FUNCTION_CODE"));
   		this.renderStr(lovService.findFuncForPage(conditionMap, loginId));
@@ -100,6 +106,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("iconDESC", this.getPara("DESCRIPTION"));
   		conditionMap.put("iconCode", this.getPara("ICON_CODE"));
   		this.renderStr(lovService.findIconForPage(conditionMap, loginId));
@@ -112,6 +119,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("oName", this.getPara("ORGANIZATION_NAME"));
   		conditionMap.put("oCode", this.getPara("ORGANIZATION_CODE"));
   		this.renderStr(lovService.findOrganizationForPage(conditionMap, loginId));
@@ -124,6 +132,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("oName", this.getPara("ORGANIZATION_NAME"));
   		conditionMap.put("oCode", this.getPara("ORGANIZATION_CODE"));
   		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
@@ -136,6 +145,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("partyName", this.getPara("PARTY_NAME"));
   		conditionMap.put("accountNumber", this.getPara("ACCOUNT_NUMBER"));
   		this.renderStr(lovService.findCustAllForPage(conditionMap, loginId));
@@ -148,6 +158,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
   		conditionMap.put("partyName", this.getPara("PARTY_NAME"));
   		conditionMap.put("accountNumber", this.getPara("ACCOUNT_NUMBER"));
@@ -161,6 +172,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("customerId", this.getParaToLong("CUSTOMER_ID"));
   		conditionMap.put("salesOrgId", this.getParaToLong("SALES_ORG_ID"));
   		conditionMap.put("organizationId", this.getParaToLong("ORGANIZATION_ID"));
@@ -176,6 +188,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("description", this.getPara("DESCRIPTION"));
   		this.renderStr(lovService.findProductForPage(conditionMap, loginId,this.getSessionAttr("LANG").toString()));
   	}
@@ -187,6 +200,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("description", this.getPara("DESCRIPTION"));
   		this.renderStr(lovService.findProcessForPage(conditionMap, loginId,this.getSessionAttr("LANG").toString()));
   	}
@@ -198,6 +212,7 @@ public class LovController extends BaseController{
   		Map<String,Object> conditionMap=new HashMap<String,Object>();
   		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
   		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+  		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
   		conditionMap.put("description", this.getPara("DESCRIPTION"));
   		this.renderStr(lovService.findLoadForPage(conditionMap, loginId,this.getSessionAttr("LANG").toString()));
   	}

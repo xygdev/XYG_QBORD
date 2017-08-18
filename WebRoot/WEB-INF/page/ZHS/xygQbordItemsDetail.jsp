@@ -160,20 +160,6 @@
       	  </div>
       	  <div class="row">
             <div class="col-md-4 col">
-          	  <span class="left">欧洲编码:</span>
-          	  <p class="left" id="EURCODE"></p>
-            </div>
-            <div class="col-md-4">
-          	  <span class="left col">美洲编码:</span>
-          	  <p class="left" id="USACODE"></p>
-            </div>
-            <div class="col-md-4 col">
-          	  <span class="left">澳洲编码:</span>
-          	  <p class="left" id="AUCODE"></p>
-            </div>
-      	  </div>
-      	  <div class="row">
-            <div class="col-md-4 col">
           	  <span class="left">有无附件备注:</span>
           	  <p class="left" id="HASFJ"></p>
             </div>
@@ -190,10 +176,6 @@
             <div class="col-md-4 col">
           	  <span class="left">通用型号:</span>
           	  <p class="left" id="CCARSTYLE"></p>
-            </div>
-            <div class="col col-md-4 col">
-          	  <span class="left">设备名称:</span>
-          	  <p class="left" id="EQUIPMENT"></p>
             </div>
           </div>
         </div>
@@ -315,14 +297,10 @@
                 $('#SPHERE').text(data.rows[0].SPHERE);
                 $('#ZXSL').text(data.rows[0].ZXSL);
                 $('#ZXSL1').text(data.rows[0].ZXSL1);
-                $('#EURCODE').text(data.rows[0].EURCODE);
-                $('#USACODE').text(data.rows[0].USACODE);
-                $('#AUCODE').text(data.rows[0].AUCODE);
                 $('#HASFJ').text(data.rows[0].HASFJ);
                 $('#FJDETAIL').text(data.rows[0].FJDETAIL);
                 $('#MEMO').text(data.rows[0].MEMO);  
                 $('#CCARSTYLE').text(data.rows[0].CCARSTYLE);
-                $('#EQUIPMENT').text(data.rows[0].EQUIPMENT)
 			},
 			error: function () {
 				alert('json格式错误');
