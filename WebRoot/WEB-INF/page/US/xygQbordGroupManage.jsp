@@ -137,12 +137,12 @@
         <a class="close-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>
         <div class="content row-3">
-          <form id='updateData'>
+          <form id="updateData">
             <input type="hidden" id="GROUP_ID" name="GROUP_ID" data-update="db"/>
             <label for="GROUP_CODE" class="left md">Code</label>
             <input type="text" id="GROUP_CODE" name="GROUP_CODE" data-update="db" required="required" class="left lg" />   
             <br style="clear:both"/> 
-            <label for='GROUP_NAME' class="left md">Group</label>
+            <label for="GROUP_NAME" class="left md">Group</label>
             <input type="text" id="GROUP_NAME" name="GROUP_NAME" data-update="db" required="required" class="left lg" /> 
             <br style="clear:both"/>
             <label for="DESC" class="left md">Desc</label>
@@ -238,7 +238,7 @@
              </div>
              <div id="tabs-2" class="tab">
                <div style="margin-top:12px;">
-                 <label for='PARTY_NAME' class="left md">Customer</label> 
+                 <label for="PARTY_NAME" class="left md">Customer</label> 
                  <input type="text" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" data-modify="true" data-suffixflag="true" data-pageframe="detail_ui" data-lovbtn="PARTY_NAME_LOV" data-param="PARTY_NAME"/>
                  <input type="hidden" id="ACT_ID" name="ACT_ID" data-update="db"/>
                  <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","ACT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".ACT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#ACT_ID","#PARTY_NAME"] value="···"/>  

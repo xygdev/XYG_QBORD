@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div id="container">
       <div class="ajax_loading">
-        <i class="fa fa-spinner fa-fulse fa-4x" style="color:white"></i>
+        <i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i>
       </div>
       <div id="scrollbar" class="table pointer">
         <table id="main-table" data-table="Inv">

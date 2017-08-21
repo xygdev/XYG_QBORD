@@ -29,11 +29,11 @@
          </div> 
        </div>
        <div class="footer">
-         <button class='right pointer' data-order=true >排序</button>
+         <button class="right pointer" data-order=true >排序</button>
        </div>
      </div>
      <script>
-         $("#orderby").draggable({ handle: ".title" });
+         $('#orderby').draggable({ handle: '.title' });
      </script>
      <!-- 多维排序区域 end -->
   </body>

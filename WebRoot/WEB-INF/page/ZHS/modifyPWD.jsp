@@ -18,23 +18,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div class="pwd-modal-bg"></div>
     <div id="modifyPWD" class="pwd_frame">
-      <div class='title'>      
+      <div class="title">      
           <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;重置密码</span>
       </div>
-      <div class='line'></div>
-      <div class='content'>
-        <form id='updateData' name="updateData" method="post" action="user/updatePWD.do">
-          <label for='O_PASSWORD' class='left'>原密码</label>
-          <input type='password' id='O_PASSWORD' name='O_PASSWORD' data-update="db" class='left password'/>
+      <div class="line"></div>
+      <div class="content">
+        <form id="updateData" name="updateData" method="post" action="user/updatePWD.do">
+          <label for="O_PASSWORD" class="left">原密码</label>
+          <input type="password" id="O_PASSWORD" name="O_PASSWORD" data-update="db" class="left password"/>
           <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="O_PASSWORD"></i>
           <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="O_PASSWORD"></i>
-          <label for='N_PASSWORD' class='left'>新密码</label>
-          <input type='password' id='N_PASSWORD' name='N_PASSWORD' data-update="db" class='left password'/>
+          <label for="N_PASSWORD" class="left">新密码</label>
+          <input type="password" id="N_PASSWORD" name="N_PASSWORD" data-update="db" class="left password"/>
           <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD"></i>
           <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD"></i>
         </form>
       </div>
-      <div class='foot'>     
+      <div class="foot">     
         <form id="logoutFrom" name="logoutFrom" method="post" action="logout.do">
           <button id="confirm" class="right update_confirm pointer">确认修改</button>
           <button type="submit" class="right update_confirm pointer">取消返回</button> 
@@ -44,9 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="hidden" id="errorMsg" value=${errorMsg} >
 	<%
 	   session.setAttribute("errorMsg",null); 
-	 %>
-	 <script>
-	 $(function() {
+	%>
+	<script>
+    $(function() {
 	 	errorMSG=$('#errorMsg').val();
 	 	if(errorMSG!=null&&errorMSG!=''){
 			layer.alert(errorMSG,{title:'警告',offset:[150]});
@@ -83,16 +83,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	    $('#updateData').submit();
      	});
      	
-     	
      	$('body').off().keyup();
 		$('body').keyup(function(e) {
 		    if(e.which===13){
                 $('#confirm').trigger('click');
 		    }
-		 });	
-     });
-	 </script>
-	 <script type="text/javascript" src="plugin/layer/layer.js"></script>
-     <script type="text/javascript" src="plugin/js/data.validate.js"></script>
+		});	
+    });
+	</script>
+	<script type="text/javascript" src="plugin/layer/layer.js"></script>
+    <script type="text/javascript" src="plugin/js/data.validate.js"></script>
   </body>
 </html>

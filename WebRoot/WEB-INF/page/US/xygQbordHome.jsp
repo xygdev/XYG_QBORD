@@ -148,7 +148,7 @@ $(function() {
     
 })
 
-var myVideo=document.getElementById("example_video_1");
+var myVideo=document.getElementById('example_video_1');
 function pauseVid(){myVideo.pause();}
 </script>
 

@@ -16,7 +16,7 @@
           <li><a href="#tabs-1">Save Config</a></li>
           <li><a href="#tabs-2">Load Config</a></li>
         </ul>
-        <div id="tabs-1" class='tab'>
+        <div id="tabs-1" class="tab">
           <div class="item" style="text-indent:3rem;padding-left:85px;">
             <label class="pointer" for="USER_INTERACT_NAME">Name:</label>
             <input type="text" name="USER_INTERACT_NAME" id="USER_INTERACT_NAME">
@@ -34,16 +34,16 @@
             <input type="checkbox" name="AUTOQUERY_FLAG" id="AUTOQUERY_FLAG"> 
           </div>
           <div class="item">
-            <button class='pointer' data-config="save" data-tableid=<%=tableId %>>Save</button>
+            <button class="pointer" data-config="save" data-tableid=<%=tableId %>>Save</button>
           </div>
         </div>
-        <div id="tabs-2" class='tab'>
+        <div id="tabs-2" class="tab">
           <div class="item" style="text-indent:6rem;margin:50px auto 60px">
             <label class="pointer" for="loding_format">Select Config:</label>
             <select id="loding_format"></select>
           </div>
           <div class="item">
-            <button class='pointer' data-config="load" data-tableid=<%=tableId %>>Load</button>
+            <button class="pointer" data-config="load" data-tableid=<%=tableId %>>Load</button>
           </div>
         </div>
       </div>

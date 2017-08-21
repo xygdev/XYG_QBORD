@@ -121,7 +121,7 @@
          <div class="content row-3">
            <form>
              <label for="RESP_NAME_Q" class="left md">职责:</label> 
-             <input type="text" id="RESP_NAME_Q" name="RESP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query"  data-lovbtn='RESP_LOV_Q'  data-param="RESP_NAME"/>
+             <input type="text" id="RESP_NAME_Q" name="RESP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query"  data-lovbtn="RESP_LOV_Q"  data-param="RESP_NAME"/>
              <input type="hidden" id="RESP_ID_Q" name="RESP_ID"/>
              <input type="button" id="RESP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["职责编码","职责名称"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_Q","#RESP_NAME_Q"] value="···"/>
              <br style="clear:both"/>

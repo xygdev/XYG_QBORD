@@ -16,7 +16,7 @@
           <li><a href="#tabs-1">保存配置</a></li>
           <li><a href="#tabs-2">加载配置</a></li>
         </ul>
-        <div id="tabs-1" class='tab'>
+        <div id="tabs-1" class="tab">
           <div class="item" style="text-indent:3rem">
             <label class="pointer" for="USER_INTERACT_NAME">自定义名称：</label>
             <input type="text" name="USER_INTERACT_NAME" id="USER_INTERACT_NAME">
@@ -34,22 +34,22 @@
             <input type="checkbox" name="AUTOQUERY_FLAG" id="AUTOQUERY_FLAG"> 
           </div>
           <div class="item">
-            <button class='pointer' data-config="save" data-tableid=<%=tableId %>>保存</button>
+            <button class="pointer" data-config="save" data-tableid=<%=tableId %>>保存</button>
           </div>
         </div>
-        <div id="tabs-2" class='tab'>
+        <div id="tabs-2" class="tab">
           <div class="item" style="text-indent:6rem;margin:50px auto 60px">
             <label class="pointer" for="loding_format">选择配置:</label>
             <select id="loding_format"></select>
           </div>
           <div class="item">
-            <button class='pointer' data-config="load" data-tableid=<%=tableId %>>加载</button>
+            <button class="pointer" data-config="load" data-tableid=<%=tableId %>>加载</button>
           </div>
         </div>
       </div>
     </div>
     <script>
-         $("#config").draggable({ handle: ".title" });
+         $('#config').draggable({ handle: '.title' });
          //设置tab分栏
     	 /**屏蔽<base>标签对JQuery UI tabs()的影响**/
          $.fn.__tabs = $.fn.tabs;
@@ -61,7 +61,7 @@
 				});
 				$(this).__tabs(a, b, c, d, e, f);
 			};
-    		$("#configtabs").tabs();
+    		$('#configtabs').tabs();
      </script>
     <!-- 个人配置区域 end -->
   </body>

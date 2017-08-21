@@ -115,9 +115,9 @@
         <div class="content row-4">
           <form>
             <label for="USER_DESC_Q" class="left md">发布人:</label> 
-            <input type="text" id="USER_DESC_Q" name="DESCRIPTION" class="left md" data-modify="true" data-pageframe="query"  data-lovbtn='USER_LOV_Q'  data-param="DESCRIPTION" />          
+            <input type="text" id="USER_DESC_Q" name="DESCRIPTION" class="left md" data-modify="true" data-pageframe="query"  data-lovbtn="USER_LOV_Q"  data-param="DESCRIPTION" />          
             <input type="hidden" id="USER_ID_Q" name="USER_ID"/>
-            <input type="button" id="USER_LOV_Q" class='left button pointer' data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_DESC_Q"] value="···"/>
+            <input type="button" id="USER_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".DESCRIPTION"] data-recid=["#USER_ID_Q","#USER_DESC_Q"] value="···"/>
             <br style="clear:both"/> 
             <label for="BROADCAST_TITLE_Q" class="left md">公告标题:</label> 
             <input type="text" id="BROADCAST_TITLE_Q" name="BROADCAST_TITLE" class="left lgx2"/>

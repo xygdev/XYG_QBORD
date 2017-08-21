@@ -152,24 +152,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- 密码修改弹出框 start -->
         <div class="pwd-modal-bg"></div>
     	<div id="modifyPWD" class="pwd_frame">
-          <div class='title'>      
+          <div class="title">      
             <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;Modify Password</span>
           </div>
           <a class="close-pwd-frame" data-type="close">&#215;</a>
-          <div class='line'></div>
-          <div class='content'>
-            <form id='updateData'>
-              <label for='O_PASSWORD' class='left'>Old</label>
-              <input type='password' id='O_PASSWORD' name='O_PASSWORD' data-update="db" class='left password'/>
+          <div class="line"></div>
+          <div class="content">
+            <form id="updateData">
+              <label for="O_PASSWORD" class="left">Old</label>
+              <input type="password" id="O_PASSWORD" name="O_PASSWORD" data-update="db" class="left password"/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="O_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="O_PASSWORD"></i>
-              <label for='N_PASSWORD' class='left'>New</label>
-              <input type='password' id='N_PASSWORD' name='N_PASSWORD' data-update="db" class='left password'/>
+              <label for="N_PASSWORD" class="left">New</label>
+              <input type="password" id="N_PASSWORD" name="N_PASSWORD" data-update="db" class="left password"/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD"></i>
             </form>
           </div>
-          <div class='foot'>       
+          <div class="foot">       
             <button id="confirm" class="right update_confirm pointer">Confirm</button>
           </div>   
     	</div>

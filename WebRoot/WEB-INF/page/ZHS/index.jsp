@@ -159,24 +159,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- 密码修改弹出框 start -->
         <div class="pwd-modal-bg"></div>
     	<div id="modifyPWD" class="pwd_frame">
-          <div class='title'>      
+          <div class="title">      
             <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;修改密码</span>
           </div>
           <a class="close-pwd-frame" data-type="close">&#215;</a>
-          <div class='line'></div>
-          <div class='content'>
-            <form id='updateData'>
-              <label for='O_PASSWORD' class='left'>原密码</label>
-              <input type='password' id='O_PASSWORD' name='O_PASSWORD' data-update="db" class='left password'/>
+          <div class="line"></div>
+          <div class="content">
+            <form id="updateData">
+              <label for="O_PASSWORD" class="left">原密码</label>
+              <input type="password" id="O_PASSWORD" name="O_PASSWORD" data-update="db" class="left password"/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="O_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="O_PASSWORD"></i>
-              <label for='N_PASSWORD' class='left'>新密码</label>
-              <input type='password' id='N_PASSWORD' name='N_PASSWORD' data-update="db" class='left password'/>
+              <label for="N_PASSWORD" class="left">新密码</label>
+              <input type="password" id="N_PASSWORD" name="N_PASSWORD" data-update="db" class="left password"/>
               <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD"></i>
               <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD"></i>
             </form>
           </div>
-          <div class='foot'>       
+          <div class="foot">       
             <button id="confirm" class="right update_confirm pointer">确认修改</button>
           </div>   
     	</div>
@@ -242,15 +242,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url:'user/updatePassword.do',
 				dataType:'json',
 				success: function (data) {
-				    if(data.retcode=="0"){
-				    	alert("密码修改成功!");
+				    if(data.retcode=='0'){
+				    	alert('密码修改成功!');
 				    	$('#modifyPWD a[data-type="close"]').click();
 				    }else{
 				    	alert(data.errbuf);
 				    }						  
 				},
 				error: function () {
-				    alert("获取数据失败");
+				    alert('获取数据失败');
 				}	
             });              
      	});
