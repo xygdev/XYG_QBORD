@@ -317,7 +317,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td class="LINE_PRICE" data-column="db" style="min-width:50px">总价</td>
               <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
-                <i class="fa fa-jpy fa-fw update pointer hidden" id="change_price_btn" title="修改单价" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
+                <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="修改行明细" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
                 <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="删除" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="是否删除行：" data-delparam=["LINE_ID",".LINE_ID"] ></i>
               </td>
               <td class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</td>                          
@@ -404,7 +404,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div class="foot">            
           <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">新增</button>
-          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-refresh="sub_refresh">确定</button>
+          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">确定</button>
         </div>    
       </div>          
       <!-- 订单明细新增/更新区域 end --> 
@@ -617,13 +617,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 //改变readonly状态
                 //$('#ORDER_QUANTITY_D').removeAttr('readonly');
 				$('#REMARKS_D').removeAttr('readonly');
-				$('#UNIT_PRICE_D').attr('readonly','readonly');
+				var userType = '${USER_TYPE}';
+			    $('#UNIT_PRICE_D').attr('readonly','readonly');
 			}
 			
 			$.fn.beforePreUpdateL = function(){
 			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
 				$('#REMARKS_D').attr('readonly','readonly');
-				$('#UNIT_PRICE_D').removeAttr('readonly');
+				var userType = '${USER_TYPE}';
+			    if(userType=='EMP'){
+					$('#UNIT_PRICE_D').removeAttr('readonly');
+				}
 			}
              
             
@@ -665,7 +669,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	    }
 			    	    $('i[data-status="RECEIVE"]').parent().css('display','none');
 			    	    $('i[data-status="CHECK"]').parent().css('display','none');
-			    	    $('#change_price_btn').css('display','none');
+			    	    //$('#change_price_btn').css('display','none');
 			    	}
                     $('.detail_header input').val('');
                     $('#sub_table input[data-type="number"]').val('1');
@@ -738,20 +742,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		    var new_status = $(this).data('status');
        		    var header_id = $('#HEADER_ID_L').val();
        		    var status_desc = $(this).data('statusdesc');
-       		    if(new_status=='CANCEL'){
-       		        layer.alert('确认要取消当前订单吗？'
-				    	,{title:'警告',offset:[150],btn:['是','否'] }
-				    	,function(){
-				    	    layer.closeAll('dialog');
-				    	    $().changeStatus(new_status,header_id,status_desc);
-				    	}
-				    	,function(){
-				    	    return;
-				    	}
-				    );
-       		    }else{
-       		        $().changeStatus(new_status,header_id,status_desc);
-       		    }
+       		    layer.alert('是否要'+status_desc+'当前订单吗？'
+				    ,{title:'警告',offset:[150],btn:['是','否'] }
+				    ,function(){
+				    	layer.closeAll('dialog');
+				    	$().changeStatus(new_status,header_id,status_desc);
+				    }
+				    ,function(){
+				    	return;
+				    }
+				);   		    
        		});
        		
        		//修改订单类型

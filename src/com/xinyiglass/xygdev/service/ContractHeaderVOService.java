@@ -34,7 +34,8 @@ public class ContractHeaderVOService {
 		sqlBuff.append("      ,XYG_ALFR_CUST_ACCOUNT_V XACA");
 		sqlBuff.append(" WHERE XQCH.CUSTOMER_ID = XACA.CUST_ACCOUNT_ID");	
 		sqlBuff.append("   AND XQCH.STATUS = 'TRANSFER' ");
-		sqlBuff.append(SqlStmtPub.getAndStmt("CONTRACT_NUMBER",conditionMap.get("contractNumber").toString().trim(),paramMap));
+		//sqlBuff.append(SqlStmtPub.getAndStmt("CONTRACT_NUMBER",conditionMap.get("contractNumber").toString().trim(),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("CONTRACT_NUMBER",conditionMap.get("contractNumber")==null?null:conditionMap.get("contractNumber").toString().trim(),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("SHIP_FROM_ORG_ID",conditionMap.get("shipFromOrgId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("SALES_ORG_ID",conditionMap.get("salesOrgId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("CUSTOMER_ID",conditionMap.get("customerId"),paramMap));
@@ -93,7 +94,8 @@ public class ContractHeaderVOService {
 		sqlBuff.append("  FROM XYG_QBORD_CONTRACT_HEADERS_V XQCH");
 		sqlBuff.append("      ,XYG_ALFR_CUST_ACCOUNT_V XACA");
 		sqlBuff.append(" WHERE XQCH.CUSTOMER_ID = XACA.CUST_ACCOUNT_ID");	
-		sqlBuff.append(SqlStmtPub.getAndStmt("CONTRACT_NUMBER",conditionMap.get("contractNumber").toString().trim(),paramMap));
+		//新增三目运算 判断合同号是否为空    2017.8.17 MODIFY BY Bird
+		sqlBuff.append(SqlStmtPub.getAndStmt("CONTRACT_NUMBER",conditionMap.get("contractNumber")==null?null:conditionMap.get("contractNumber").toString().trim(),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("SHIP_FROM_ORG_ID",conditionMap.get("shipFromOrgId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("SALES_ORG_ID",conditionMap.get("salesOrgId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("CUSTOMER_ID",conditionMap.get("customerId"),paramMap));

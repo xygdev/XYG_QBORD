@@ -70,6 +70,15 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 	}
 	
 	public PlsqlRetValue insert(Map<String,Object> conditionMap) throws Exception{
+		SqlResultSet srs = countLineItem(conditionMap);
+		String count = srs.getResultSet().get(0)[0].toString();
+		System.out.println(count);
+		if(!count.equals("0")){
+			PlsqlRetValue ret = new PlsqlRetValue();
+			ret.setRetcode(2);
+			ret.setErrbuf("此型号产品再订单明细中已存在,请勿重复新增同型号产品");
+			return ret;
+		}
 		String sql ="Declare "
 				+ "     l_line_id number; "
 				+ "  begin "
@@ -167,6 +176,13 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
 	}
 	
+	public SqlResultSet countLineItem(Map<String,Object> conditionMap) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		String sql = "SELECT COUNT(*) FROM XYG_QBORD_CONTRACT_LINES WHERE HEADER_ID = :1 AND INVENTORY_ITEM_ID = :2";
+		paramMap.put("1", conditionMap.get("headerId"));
+		paramMap.put("2", conditionMap.get("inventoryItemId"));
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
 	
 	public SqlResultSet findStandardPrice(Map<String,Object> conditionMap) throws Exception{
 		Map<String,Object> paramMap=new  HashMap<String,Object>();

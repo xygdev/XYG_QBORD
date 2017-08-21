@@ -24,6 +24,8 @@ public interface ContractLineVODao {
 	
 	public SqlResultSet findJSONById(Long lineId) throws Exception;
 	
+	public SqlResultSet countLineItem(Map<String,Object> conditionMap) throws Exception;
+	
 	public SqlResultSet findStandardPrice(Map<String,Object> conditionMap) throws Exception;
 	
 	public SqlResultSet sumQuantityAndPrice(String contractNumber) throws Exception;
