@@ -154,16 +154,16 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 /* ==========================================================================
 明细框
 ========================================================================== */
-.detail_frame{visibility:hidden;position:fixed;z-index:101;top:30px;left:50%;margin-left:-400px;height:358px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-color:white;overflow:auto;}
+.detail_frame{visibility:hidden;position:fixed;z-index:101;top:30px;left:50%;margin-left:-400px;height:344px;/*modify by bird 2017.8.23*/-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-color:white;overflow:auto;}
 .detail_frame>.title{position:relative;width:100%;height:40px;padding:5px 0;}
 .detail_frame>.title>span{font-family:Microsoft YaHei;font-size:1.5em;font-weight:700;display:inline-block;box-sizing:border-box;padding:5px 20px}
 .detail_frame .close-detail-frame{font-size:22px;line-height:.5;position:absolute;top:8px;right:11px;color:#aaa;text-shadow:0 -1px 1px rbga(0,0,0,.6);font-weight:bold;cursor:pointer}
-.detail_frame .detail_header{position:relative;width:100%;min-width:794px;height:55px;box-sizing:border-box;text-align:center;}                  /* 2017/8/1  padding:5px 45px; --> padding:5px 17px 5px 45px;  sun*/
+.detail_frame .detail_header{position:relative;width:100%;min-width:794px;height:41px;/*modify by bird 2017.8.23*/box-sizing:border-box;text-align:center;}                  /* 2017/8/1  padding:5px 45px; --> padding:5px 17px 5px 45px;  sun*/
 .detail_frame .detail_header>label{font-size:1em;font-weight:bold;padding:10px 10px 5px 0;text-align:right;display:inline-block}
 .detail_frame .detail_header>label.long{width:100px}
 .detail_frame .detail_header>label.mid{width:75px}
 .detail_frame .detail_header>label.short{width:50px}
-.detail_frame .detail_header>input{height:20px;font-size:1em;margin:7px 10px}
+.detail_frame .detail_header>input{height:20px;font-size:1em;margin:0 10px}/*2017.8.23 modify by Bird*/
 .detail_frame .detail_header>input.long{width:250px}
 .detail_frame .detail_header>input.mid{width:225px}
 .detail_frame .detail_header>input.short{width:200px}

@@ -302,6 +302,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  
                 $('.show_detail').on('click',function(){
+                    var width='-'+parseInt($('#detail').css('width'))/2+'px';
+                    $('#detail').css('margin-left',width); //add by Bird   2017.08.21
                     tr=$(this).parent().parent();
                     menuId=tr.children('.MENU_ID').text();
                     menuCode=tr.children('.MENU_CODE').text();

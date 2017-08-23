@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div id="container">
       <!-- 数据加载动画 start -->
-      <div class="ajax_loading">
+      <div class="ajax_loading" style="z-index:102">
         <i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i>
       </div>
       <!-- 数据加载动画 end -->
@@ -167,38 +167,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
 <!----------------------------------------------订单明细-------------------------------------------------------- -->      
       
-      <div class="detail_frame" id="detail" style="height:545px">
+      <div class="detail_frame" id="detail" style="height:577px">
         <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;订单明细</span>
         </div>
         <a class="close-detail-frame" data-type="close">&#215;</a>    
         <div class="line"></div>             
-        <div class="detail_header" style="height:242px">
+        <div class="detail_header" style="height:182px">
           <input type="hidden" id="CUS_BATCH_L" />
           <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
           <label class="mid" for="CURR_CODE_L">币别</label>
           <input type="text" id="CURR_CODE_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
-          <label class="mid" for="SALES_ORG_NAME_L">销售公司</label>
-          <input type="text" id="SALES_ORG_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="SALES_ORG_ID_L"/>
           <label class="mid" for="PARTY_NAME_L">客户名称</label>
           <input type="text" id="PARTY_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="CUSTOMER_ID_L"/>
-          <br style="clear:both"/>
-          <label class="mid" for="SHIP_FROM_ORG_NAME_L">发货组织</label>
-          <input type="text" id="SHIP_FROM_ORG_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="SHIP_FROM_ORG_ID_L"/>
           <input type="hidden" id="ORG_ID_L"/>
           <label class="mid" for="CUSTOMER_PO_L">客订PO</label>
           <input type="text" id="CUSTOMER_PO_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
-          <label class="mid" for="PRICE_LIST_NAME_L">价目表</label>
-          <input type="text" id="PRICE_LIST_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="PRICE_LIST_ID_L"/>
           <label class="mid" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
+          <label class="mid" for="ERP_STATUS_L">ERP状态</label>
+          <input type="text" id="ERP_STATUS_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
           <label class="mid" for="REQUIRED_QTY_L">总需求量</label>
           <input type="text" id="REQUIRED_QTY_L" class="long" readonly="readonly"/>
@@ -211,7 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="text" id="FH_QTY_L" class="long" readonly="readonly"/>
         </div>     
         <!-- 订单明细表格区域 start -->
-        <div class="detail_table">
+        <div class="detail_table" style="min-height:293px">
           <table id="oLine" data-table="OrderLine">
             <tr>
               <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
@@ -241,7 +236,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <jsp:param name="pageframe" value="sub_table" />
               <jsp:param name="func" value="$().setParam()" />
             </jsp:include>
-            <input type="hidden" data-type="size" value="5"/>
+            <input type="hidden" data-type="size" value="8"/>
             <input type="hidden" data-type="number" value="1"/>
             <input type="hidden" data-type="orderby" value="XQCQ.LINE_NUM"/> 
             <input type="hidden" data-type="cond"/>
@@ -332,14 +327,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#CUS_BATCH_L').val(tr.children('.CONTRACT_NUMBER').text());
                     $('#CUSTOMER_ID_L').val(tr.children('.CUSTOMER_ID').text());
                     $('#SALES_ORG_ID_L').val(tr.children('.SALES_ORG_ID').text());
-                    $('#SALES_ORG_NAME_L').val(tr.children('.SALES_ORG_NAME').text());
                     $('#CURR_CODE_L').val(tr.children('.CURR_CODE').text());
                     $('#SHIP_FROM_ORG_ID_L').val(tr.children('.SHIP_FROM_ORG_ID').text());
                     $('#ORG_ID_L').val(tr.children('.ORG_ID').text());
-                    $('#SHIP_FROM_ORG_NAME_L').val(tr.children('.SHIP_FROM_ORG_NAME').text());
                     $('#CUSTOMER_PO_L').val(tr.children('.CUSTOMER_PO').text());
                     $('#PRICE_LIST_ID_L').val(tr.children('.PRICE_LIST_ID').text());
-                    $('#PRICE_LIST_NAME_L').val(tr.children('.PRICE_LIST_NAME').text());
                     $('#STATUS_DESC_L').val(tr.children('.STATUS_DESC').text());
                     $().sumLines();
                     $('#sub_refresh').click();
@@ -392,6 +384,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.BH_QTY','BH_QTY']
                     ,['.FH_QTY','FH_QTY']
+                    ,['.STATUS_DESC','STATUS_DESC',
+                        function(){
+                        	if(i==0){
+                        	    $('#ERP_STATUS_L').val(data.rows[i].STATUS_DESC);
+                        	} 	
+                        }
+                     ]
                      ];
                     $().mapContentJson(data,'#oLine',mapRowArray);
                     width='-'+parseInt($('#detail').css('width'))/2+'px';
