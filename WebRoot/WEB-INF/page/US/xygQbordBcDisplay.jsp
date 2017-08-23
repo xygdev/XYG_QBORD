@@ -17,7 +17,7 @@
     <script type="text/javascript" src="plugin/jQuery/jQuery-2.1.4.min.js"></script>
 	<script src="plugin/jQuery/jquery-ui.min.js"></script>
     <style>
-      #accordion{width:100%;height:635px;overflow-y:auto}
+      #accordion{width:100%;height:435px;overflow-y:auto}
       .content{width:100%;border:0;resize:none;}
       .right{float:right}
       .ui-state-active{background:#00a65a;border:1px solid #00a65a}
@@ -63,6 +63,12 @@
 					}
 					
 					$('textarea').each(function () {
+					    var uA = navigator.userAgent.toLowerCase();
+                        if(uA.indexOf('msie') > -1 || uA.indexOf('rv:11') > -1){  
+                           this.style.fontSize = '16.3px'; 
+                        }else{
+                           this.style.fontSize = '18px';
+                        }
   						this.setAttribute('style', 'height:' + (this.scrollHeight+30) + 'px;overflow-y:hidden;');
 					}).on('input', function () {
   						this.style.height = 'auto';

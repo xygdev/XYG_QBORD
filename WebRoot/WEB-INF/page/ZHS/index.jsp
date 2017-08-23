@@ -269,7 +269,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             e.preventDefault();/****阻止<a>标签默认的点击事件（超链接跳转）****/
         	layer.open({
   				type: 2,
-  				area: ['1000px', '700px'],
+  				area: ['700px', '500px'],
   				title:'公告栏',
   				fixed: false, //不固定
   				maxmin: true,				
