@@ -195,7 +195,7 @@
     			if(value){
     				if(options.suffixflag) value+='%';
     				//2017.1.4新逻辑：自动根据LOV的属性来找值。如果找到多个，则需要提示用户自己挑选
-    				param=options.param+'='+value.replace(/%/g,'%25')+'&pageSize=2&pageNo=1';
+    				param=options.param+'='+value.replace(/%/g,'%25')+'&pageSize=2&pageNo=1&goLastPage=false';  //2017/8/23 add &goLastPage=false   sun
     				if(extpArray){
     					for(var e in extpArray){
     						//console.log('extpidArray[e]:'+extpidArray[e]);
@@ -205,7 +205,7 @@
     				}
     				//$('#'+options.pageframe).draggable('disable');
     				var _validurl=$('#'+options.lovbtn).attr('data-queryurl');//console.log('_validurl:'+_validurl+',param:'+param);
-        			$.ajax({
+    				$.ajax({
     					type:'post', 
     					data:param,
     					url:_validurl,

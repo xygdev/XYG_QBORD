@@ -15,7 +15,7 @@ input, a, select, textarea{ border:none; outline:none; list-style:none; padding:
 .pic{ width:100%;}
 .pic img{ width:100%;}
 .warp{ width:94%; max-width:1200px; position:relative; margin:0 auto; height:100%;}
-.wrapper { position:relative; overflow-x: hidden;}
+.wrapper { position:relative; overflow-x: hidden;-ms-overflow-y:hidden}   /*2017/8/23 add -ms-overflow-y  sun*/
 
 /*首页banner*/
 .banner { position:relative; top:0; z-index:99; width:100%;}

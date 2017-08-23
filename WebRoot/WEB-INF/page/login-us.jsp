@@ -245,18 +245,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             time: 0
         });
 	}
-    
-    $(document).ready(function(){
-        $().symbol();
-	    $().tips();
-	    var userName = getCookie('USER_NAME');
-	    $('#username').val(userName);
-	    errorMSG=$('#errorMsg').val();
-		if(errorMSG!=null&&errorMSG!=''){ 
-	    	$('.start-btn').click();
-	        layer.alert(errorMSG,{title:'Warning',offset:[150]});
-		}
-	});
+	
+	// $(document).ready  改成   window.onload  2017/8/23 sun
+	window.onload = function(){
+	    $().symbol();
+        $().tips();
+        var userName = getCookie('USER_NAME');
+        $('#username').val(userName);
+        errorMSG=$('#errorMsg').val();
+        if(errorMSG!=null&&errorMSG!=''){ 
+            $('.start-btn').click();
+            layer.alert(errorMSG,{title:'Warning',offset:[150]});
+        }
+	}
 	
 	window.onresize=function(){
 	    $().symbol();

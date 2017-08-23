@@ -48,8 +48,8 @@
     </div>
     <div class="lov-modal-bg"></div>
     <script>
-         $('#lov').draggable({ handle: '.lov_title' });
-     </script>
+        $('#lov').draggable({ handle: '.lov_title' });
+    </script>
     <!-- lov区域 end -->
   </body>
 </html>
