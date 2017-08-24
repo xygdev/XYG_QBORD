@@ -12,20 +12,20 @@
          <div class="item" id="col1">
            <span>排序一：</span>
            <select class="select"></select>
-		   <input type="radio" name="col1" class="col1" checked="checked" value="ASC" />ASC 
-           <input type="radio" name="col1" class="col1" value="DESC" />DESC 
+		   <input type="radio" name="col1" class="col1" checked="checked" value="ASC" />升序 
+           <input type="radio" name="col1" class="col1" value="DESC" />降序 
          </div>  
          <div class="item" id="col2">
            <span>排序二：</span>
            <select class="select"></select>
-		   <input type="radio" name="col2" class="col2" checked="checked" value="ASC" />ASC 
-           <input type="radio" name="col2" class="col2" value="DESC" />DESC 
+		   <input type="radio" name="col2" class="col2" checked="checked" value="ASC" />升序  
+           <input type="radio" name="col2" class="col2" value="DESC" />降序 
          </div> 
          <div class="item" id="col3">
            <span>排序三：</span>
            <select class="select"></select>
-		   <input type="radio" name="col3" class="col3" checked="checked" value="ASC" />ASC 
-           <input type="radio" name="col3" class="col3" value="DESC" />DESC 
+		   <input type="radio" name="col3" class="col3" checked="checked" value="ASC" />升序  
+           <input type="radio" name="col3" class="col3" value="DESC" />降序 
          </div> 
        </div>
        <div class="footer">

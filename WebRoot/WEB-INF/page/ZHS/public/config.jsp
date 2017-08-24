@@ -26,12 +26,16 @@
             <input type="text" name="DESCRIPTION" id="CONFIG_DESCRIPTION">
           </div>
           <div class="item" style="text-indent:6rem">
+            <!--  
             <label class="pointer" for="PUBLIC_FLAG">共享</label>
             <input type="checkbox" name="PUBLIC_FLAG" id="PUBLIC_FLAG">
+            -->
             <label class="pointer" for="DEFAULT_FLAG">默认</label>
             <input type="checkbox" name="DEFAULT_FLAG" id="DEFAULT_FLAG">
+            <!--  
             <label class="pointer" for="AUTOQUERY_FLAG">自动查询</label>
             <input type="checkbox" name="AUTOQUERY_FLAG" id="AUTOQUERY_FLAG"> 
+            -->
           </div>
           <div class="item">
             <button class="pointer" data-config="save" data-tableid=<%=tableId %>>保存</button>

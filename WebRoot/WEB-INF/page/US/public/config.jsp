@@ -26,12 +26,16 @@
             <input type="text" name="DESCRIPTION" id="CONFIG_DESCRIPTION">
           </div>
           <div class="item" style="text-indent:6rem">
+          	<!-- 
             <label class="pointer" for="PUBLIC_FLAG">Public</label>
             <input type="checkbox" name="PUBLIC_FLAG" id="PUBLIC_FLAG">
+            -->
             <label class="pointer" for="DEFAULT_FLAG">Default</label>
             <input type="checkbox" name="DEFAULT_FLAG" id="DEFAULT_FLAG">
+            <!-- 
             <label class="pointer" for="AUTOQUERY_FLAG">Auto Query</label>
             <input type="checkbox" name="AUTOQUERY_FLAG" id="AUTOQUERY_FLAG"> 
+            -->
           </div>
           <div class="item">
             <button class="pointer" data-config="save" data-tableid=<%=tableId %>>Save</button>

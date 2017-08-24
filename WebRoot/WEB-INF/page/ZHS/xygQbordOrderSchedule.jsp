@@ -204,6 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="text" id="BH_QTY_L" class="long" readonly="readonly"/>
           <label class="mid" for="FH_QTY_L">总发货量</label>
           <input type="text" id="FH_QTY_L" class="long" readonly="readonly"/>
+          <br style="clear:both"/> 
         </div>     
         <!-- 订单明细表格区域 start -->
         <div class="detail_table" style="min-height:293px">

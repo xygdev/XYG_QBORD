@@ -133,7 +133,7 @@
           </form> 
         </div>
         <div class="foot">             
-          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">用户查询</button>
+          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">查询</button>
         </div> 
       </div>
       <!-- 条件查询区域end -->

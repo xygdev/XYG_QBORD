@@ -33,9 +33,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="ORGANIZATION_NAME" data-column="db">库存组织</th>
             <th class="ITEM_NUMBER" data-column="db">物料编码</th>
             <th class="DESCRIPTION" data-column="db">本厂型号</th>
-            <th class="CARNAME" data-column="db">中文描述</th>     
-            <th class="ONHAND_QTY" data-column="db">现有量</th>
-            <th class="AVAILABLE_QTY" data-column="db">可用量</th>
+            <th class="CARNAME" data-column="db">中文描述</th>  
+            <th class="SPEC" data-column="db">规格</th>    
+            <th class="LOAD_LOCATION_DESC" data-column="db">装车位置</th>       
+            <th class="ONHAND_QTY_NC" data-column="db">内仓现有量</th>
+            <th class="AVAILABLE_QTY_NC" data-column="db">内仓可用量</th>
+            <th class="ONHAND_QTY_WC" data-column="db">外仓现有量</th>
+            <th class="AVAILABLE_QTY_WC" data-column="db">外仓可用量</th>
             <th class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></th>         
           </tr>
           <tr>
@@ -44,8 +48,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="ITEM_NUMBER" data-column="db"></td>
             <td class="DESCRIPTION text-left" data-column="db"></td>
             <td class="CARNAME text-left" data-column="db"></td>
-            <td class="ONHAND_QTY" data-column="db"></td>
-            <td class="AVAILABLE_QTY" data-column="db"></td>
+            <td class="SPEC" data-column="db"></td>    
+            <td class="LOAD_LOCATION_DESC" data-column="db"></td> 
+            <td class="ONHAND_QTY_NC" data-column="db"></td>
+            <td class="AVAILABLE_QTY_NC" data-column="db"></td>
+            <td class="ONHAND_QTY_WC" data-column="db"></td>
+            <td class="AVAILABLE_QTY_WC" data-column="db"></td>
             <td class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></td>          
           </tr>
         </table>
@@ -87,13 +95,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <jsp:param name="tableId" value="#main-table"/>
       </jsp:include>
       <jsp:include page="public/lov.jsp"></jsp:include>
-      <div id="query" class="pop_frame row-2">
+      <div id="query" class="pop_frame row-4">
         <div class="title pointer">
           <span><i class="fa fa-search"></i>&nbsp;库存查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
-        <div class="content row-2">
+        <div class="content row-4">
           <form>
             <label for="ORGANIZATION_CODE_Q" class="left md">库存编码:</label> 
             <input type="text" id="ORGANIZATION_CODE_Q" name="ORGANIZATION_CODE" class="left md" readonly="readonly" />
@@ -105,7 +113,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="DESCRIPTION_Q" class="left md">本厂型号:</label>
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg"/>    
             <label for="CARNAME_Q" class="left md">中文描述:</label>
-            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>           
+            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>   
+            <br style="clear:both"/>
+            <label for="WIDTH_F" class="left md">宽度:</label>
+            <input type="text" id="WIDTH_F" name="WIDTH_F" class="left xs" style="width:99px"/>
+            <label class="left blank" style="width:11px;padding-top:8px">-</label>
+            <input type="text" id="WIDTH_T" name="WIDTH_T" class="left xs" style="width:99px"/>
+            <label for="HEIGHT_F" class="left md">高度:</label>
+            <input type="text" id="HEIGHT_F" name="HEIGHT_F" class="left xs" style="width:99px"/>
+            <label class="left blank" style="width:11px;padding-top:8px">-</label>
+            <input type="text" id="HEIGHT_T" name="HEIGHT_T" class="left xs" style="width:99px"/>    
+            <br style="clear:both"/>
+            <label for="LOAD_LOCATION_DESC_Q" class="left md">装车位置:</label>
+            <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
+            <input type="hidden" id="LOAD_LOCATION_ID_Q" name="LOAD_LOCATION_ID"/>
+            <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="装车位置查询" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","装车位置"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["装车位置"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>    
           </form>
         </div>
         <div class="foot">
@@ -143,9 +165,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    ,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
                    ,['.ITEM_NUMBER','ITEM_NUMBER']
                    ,['.DESCRIPTION','DESCRIPTION'] 
-                   ,['.CARNAME','CARNAME']          
-                   ,['.ONHAND_QTY','ONHAND_QTY']           
-                   ,['.AVAILABLE_QTY','AVAILABLE_QTY']  
+                   ,['.CARNAME','CARNAME'] 
+                   ,['.SPEC','SPEC']  
+                   ,['.LOAD_LOCATION_DESC','LOAD_LOCATION_DESC']           
+                   ,['.ONHAND_QTY_NC','ONHAND_QTY_NC']           
+                   ,['.AVAILABLE_QTY_NC','AVAILABLE_QTY_NC']  
+                   ,['.ONHAND_QTY_WC','ONHAND_QTY_WC']           
+                   ,['.AVAILABLE_QTY_WC','AVAILABLE_QTY_WC'] 
                    ,['.ORGANIZATION_ID','ORGANIZATION_ID']                      
                     ];
                     $().mapContentJson(data,'#main-table',mapRowArray);
@@ -159,6 +185,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        ,'ORGANIZATION_NAME'
                     ];
                     $().mapContentJson(data,'.contentbox',mapRowArray);                     
+                }else if(JSONtype=='loadLov'){
+                    var mapRowArray=[
+                       'LOOKUP_CODE'
+                      ,'DESCRIPTION'
+                    ];
+                    $().mapContentJson(data,'.contentbox',mapRowArray); 
                 } 
             },
             getMSG:function(data){

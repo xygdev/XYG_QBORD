@@ -75,6 +75,9 @@ public class InvService {
 		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true)); 	 
 		sqlBuff.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap)); 	 
 	    sqlBuff.append(SqlStmtPub.getAndStmt("CARNAME",conditionMap.get("carName"),paramMap)); 	 
+	    sqlBuff.append(SqlStmtPub.getAndStmt("LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap)); 
+	    sqlBuff.append(SqlStmtPub.getAndStmt("WIDTH",conditionMap.get("width_F"),conditionMap.get("width_T"),paramMap));
+	    sqlBuff.append(SqlStmtPub.getAndStmt("HEIGHT",conditionMap.get("height_F"),conditionMap.get("height_T"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 	    return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
