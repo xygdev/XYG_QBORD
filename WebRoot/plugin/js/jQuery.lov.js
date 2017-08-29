@@ -147,6 +147,12 @@
 			//console.log('extParam:'+extParam);
         	$().choose();
         	/****默认查询参数如果为true，则默认打开Lov时点击一次查询按钮****/
+        	//修正默认查询的bug：因为lov验证的时候会动态修改这个属性，而这个属性的对象options永远只会在第一次的时候生成，不会再改变。
+        	if($(this).attr('data-defaultquery')=='true'){
+        		options.defaultquery=true;
+        	}else{
+        		options.defaultquery=false;
+        	}
         	if(options.defaultquery==true){
         		$('#'+options.pageframe+' i[data-crudtype="lovquery"]').click();
         	}
