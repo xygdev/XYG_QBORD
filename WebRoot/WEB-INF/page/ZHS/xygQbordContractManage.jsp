@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="ORDER_TYPE_NAME" data-column="db">订单类型</th>
             <th class="STATUS_DESC" data-column="db">状态</th>
             <th class="CREATION_DATE" data-column="db">创建日期</th>
+            <th class="CREATED_USER_DESC" data-column="db">创建人</th>
             <th class="STATUS_BOOK_DATE" data-column="db">登记日期</th>
             <th class="STATUS_RECEIVE_DATE" data-column="db">接收日期</th>
             <th class="STATUS_CHECK_DATE" data-column="db">审核日期</th>
@@ -67,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="ORDER_TYPE_NAME" data-column="db"></td>
             <td class="STATUS_DESC" data-column="db"></td>
             <td class="CREATION_DATE" data-column="db"></td>
+            <td class="CREATED_USER_DESC" data-column="db"></td>
             <td class="STATUS_BOOK_DATE" data-column="db"></td>
             <td class="STATUS_RECEIVE_DATE" data-column="db"></td>
             <td class="STATUS_CHECK_DATE" data-column="db"></td>
@@ -816,6 +818,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                 ,['.STATUS','STATUS']
 	                 ,['.STATUS_DESC','STATUS_DESC']
 	                 ,['.CREATION_DATE','CREATION_DATE']
+	                 ,['.CREATED_USER_DESC','CREATED_USER_DESC']
 	                 ,['.STATUS_BOOK_DATE','STATUS_BOOK_DATE']
 	                 ,['.STATUS_RECEIVE_DATE','STATUS_RECEIVE_DATE']
 	                 ,['.STATUS_CHECK_DATE','STATUS_CHECK_DATE']

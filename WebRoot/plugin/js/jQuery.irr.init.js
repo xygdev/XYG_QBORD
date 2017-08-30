@@ -26,7 +26,7 @@
 		headerid:'HEADER_ID',      	/****报表格式头id值存放标签id****/
 		pageframe:'table',             
 		pagesize:'#page_size',          /****每页显示行数值存放标签id****/
-		setframe:'setting',			/****设置框id****/
+		setframe:'#setting',			/****设置框id****/
 		refresh:'#refresh',				/****刷新按钮id****/
 		url:'irr/getDefaultIrr.do'	   /****ajax get地址****/
 	}; 
@@ -49,11 +49,10 @@
 		success: function (data) {
 			if(data.EXISTS=='Y'){
 				$('#'+options.pageframe+' input[data-type="orderby"]').val(data.rows.HEADER[0].ORDER_BY);
-				$(options.headerid).val(data.rows.HEADER[0].HEADER_ID);
-				$('#'+options.pageframe+' input[data-type="pagesize"]').val(data.rows.HEADER[0].PAGE_SIZE);
+				$('#'+options.pageframe+' input[data-type="size"]').val(data.rows.HEADER[0].PAGE_SIZE);
 				/****ADD BY BIRD  2017.06.12 START****/
-				$('#'+options.pageframe+' input[data-type="autoquery"]').val(data.rows.HEADER[0].AUTOQUERY_FLAG);
-				autoquery = data.rows.HEADER[0].AUTOQUERY_FLAG;
+				//$('#'+options.pageframe+' input[data-type="autoquery"]').val(data.rows.HEADER[0].AUTOQUERY_FLAG);
+				//autoquery = data.rows.HEADER[0].AUTOQUERY_FLAG;
 				/****ADD BY BIRD  2017.06.12 END****/
 				$(options.setframe+' i[data-value]').css('visibility','hidden');
 		        $(options.setframe+' i[data-value="'+data.rows.HEADER[0].PAGE_SIZE+'"]').css('visibility','visible');

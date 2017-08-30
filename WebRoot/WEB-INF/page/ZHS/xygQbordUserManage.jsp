@@ -66,7 +66,7 @@
      	    </td>
      	    -->
      	    <td class="ACTION" data-column="normal">
-     	      <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" title="更新用户" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="user/preUpdate.do" data-type="update" data-updateparam=["USER_ID",".USER_ID"]  data-func="$().setUpdatePWD();"></i>
+     	      <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" title="更新用户" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="user/preUpdate.do" data-type="update" data-updateparam=["USER_ID",".USER_ID"]  data-func="$().beforePreUpdate();"></i>
      	      <i class="fa fa-briefcase fa-fw pointer hidden resp_assign" data-show="true" title="职责分配" data-reveal-id="resp_assign" data-key="true" data-dismissmodalclass="close-resp-frame" data-crudtype="pre-update" data-preupdateurl="resp/getUserResp.do" data-updateparam=["USER_ID",".USER_ID"] data-func="$().getUserForAssign(tr,pageframe);"></i>
      	      <i class="fa fa-users fa-fw pointer hidden group_assign" data-show="true" title="工作组分配" data-reveal-id="group_assign" data-key="true" data-dismissmodalclass="close-group-frame" data-crudtype="pre-update" data-preupdateurl="group/getUserGroup.do" data-updateparam=["USER_ID",".USER_ID"] data-func="$().getUserForAssign(tr,pageframe);"></i>
      	      <i class="fa fa-user-circle fa-fw pointer hidden show_detail" data-show="true" title="客户分配" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame"></i>     	      
@@ -410,6 +410,8 @@
     		$.fn.beforePreInsert = function(){	    
     		    $('#PASSWORD').attr('required','required');
     		    $('#USER_NAME').removeAttr('readonly');
+    		    $('#USER_TYPE').removeAttr('readonly');
+    		    $('#USER_TYPE').removeAttr('disabled');
     		}
     		
     		$.fn.beforeInsert = function(){
@@ -420,11 +422,13 @@
     		$.fn.afterReveal = function(){
     		    $('#START_DATE').val(new Date().format('yyyy-MM-dd hh:mm:ss'));
     		    $('label[for="USER_NAME"]').click();
-    		}
+    		}    	
     		
-    		$.fn.setUpdatePWD = function(){
-    		    $('#PASSWORD').removeAttr('required');
+    		$.fn.beforePreUpdate = function(){
+    			$('#PASSWORD').removeAttr('required');
     		    $('#USER_NAME').attr('readonly','readonly');
+    			$('#USER_TYPE').attr('readonly','readonly');
+    			$('#USER_TYPE').attr('disabled','disabled');
     		}
     		
     		$.fn.validateUserType = function(){
