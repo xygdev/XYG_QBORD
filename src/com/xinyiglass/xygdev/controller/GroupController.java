@@ -29,7 +29,7 @@ public class GroupController extends BaseController{
 	public void getUserGroup() throws Exception
 	{
 		Long userId = this.getParaToLong("USER_ID");
-		this.renderStr(GHVS.getGroup(userId, userId).toJsonStr());
+		this.renderStr(GHVS.getGroup(userId, loginId).toJsonStr());
 	}
 	
 	@RequestMapping("/groupManage.do")

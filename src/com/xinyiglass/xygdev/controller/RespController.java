@@ -29,7 +29,7 @@ public class RespController extends BaseController{
 	public void getUserResp() throws Exception
 	{
 		Long userId = this.getParaToLong("USER_ID");
-		this.renderStr(RVS.getResp(userId, userId).toJsonStr());
+		this.renderStr(RVS.getResp(userId,loginId).toJsonStr());
 	}
 	
 	@RequestMapping(value = "/assignUserResp.do", method = RequestMethod.POST)

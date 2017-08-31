@@ -1504,7 +1504,9 @@ var DateFormatter;
 						}, 100);
 					});
 			};
-
+		
+		$.datetimepicker.setLocale(options.lang);//add by Bird   2017.8.31 	
+		
 		createDateTimePicker = function (input) {
 			var datetimepicker = $('<div class="xdsoft_datetimepicker xdsoft_noselect"></div>'),
 				xdsoft_copyright = $('<div class="xdsoft_copyright"><a target="_blank" href="http://xdsoft.net/jqplugins/datetimepicker/">xdsoft.net</a></div>'),

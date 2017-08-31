@@ -44,7 +44,8 @@ public class GroupHeaderVOService {
 		StringBuffer sqlBuff = new StringBuffer();
 		sqlBuff.append("select * from XYG_ALD_GROUP_HEADERS_V WHERE 1=1");
 		sqlBuff.append(" AND APPL_ID = XYG_ALD_GLOBAL.APPL_ID");
-		if(conditionMap.get("onlyCust").equals("Y")){
+		String onlyCust = conditionMap.get("onlyCust")==null?"":conditionMap.get("onlyCust").toString();
+		if(onlyCust.equals("Y")){
 			sqlBuff.append(" AND GROUP_ID IN (SELECT GROUP_ID");
 			sqlBuff.append(" 					FROM XYG_ALD_GROUP_LINES_V");
 			sqlBuff.append(" 				   WHERE APPL_ID = XYG_ALD_GLOBAL.APPL_ID");

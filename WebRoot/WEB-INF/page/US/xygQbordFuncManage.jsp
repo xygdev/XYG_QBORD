@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <label for="ICON_CODE" class="left md">Icon</label> 
 	        <input type="text" id="ICON_CODE" name="ICON_CODE" data-update="db" class="left md" required="required" readonly="readonly"/>
 	        <input type="hidden" id="ICON_ID" name="ICON_ID" data-update="db"/>
-	        <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Icon Query" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["ID","Code","Desc","Icon"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","PREVIEW"] data-selectname=["Code","Desc"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>              
+	        <input type="button" id="ICON_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Icon Query" data-queryurl="lov/getIconPage.do" data-jsontype="icon" data-defaultquery="true" data-th=["ID","Code","Desc","Preview"] data-td=["ICON_ID&none","ICON_CODE","DESCRIPTION","PREVIEW"] data-selectname=["Code","Desc"] data-selectvalue=["ICON_CODE","ICON_DESC"] data-choose=[".ICON_ID",".ICON_CODE"] data-recid=["#ICON_ID","#ICON_CODE"] value="···"/>              
 	      </form>
 	    </div>
 	    <div class="foot">       
