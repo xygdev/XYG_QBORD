@@ -14,7 +14,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="plugin/css/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="plugin/css/public.css">
     <link rel="stylesheet" href="plugin/css/cutpic.css" type="text/css" />
-    <script src="plugin/js/webSocket.js"></script>
     <script type="text/javascript" src="plugin/jQuery/jQuery-2.1.4.min.js"></script>
     <script src="plugin/jQuery/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
