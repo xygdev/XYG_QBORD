@@ -2,7 +2,7 @@
                     jQuery 页面弹出框功能
                     Create Date:2015.1.20
                     Create By:bird
-                    Last Update Date:2017.8.15
+                    Last Update Date:2017.9.1
                     Last Update By:bird
                           修改日志
            2015.1.20   创建文件
@@ -19,6 +19,7 @@
            2017.1.5    修改Lov的逻辑以及添加联动List的逻辑。 samt
            2017.1.6    修改Lov的多级联动的逻辑以及修正联动List的问题。 samt
            2017.8.15   新增功能 Lov抓取值时 可配置清空其他栏位
+           2017.9.1    新增data-default参数，设置list default值
 *********************************************************/
 (function($) {	
 	/******************listener start***********************
@@ -293,6 +294,11 @@
 			}
 			listParam=listParam.substr(1);
     	}
+    	//新增data-default参数，设置list default值    2017.9.1  add by Bird
+    	var default_val = '';
+    	if($(listObj).attr('data-default')){
+    		default_val = $(listObj).attr('data-default');
+    	}
     	$.ajax({
 			type:'post', 
 			data:listParam,
@@ -310,6 +316,10 @@
 								text=document.createTextNode(data.rows[n][key]);
 							}else if(count==1){
 								option.value=data.rows[n][key];
+								//新增data-default参数，设置list default值    2017.9.1  add by Bird
+								if(data.rows[n][key]==default_val){
+								    option.selected = 'selected';
+								}
 								break;
 							}
 							count++;

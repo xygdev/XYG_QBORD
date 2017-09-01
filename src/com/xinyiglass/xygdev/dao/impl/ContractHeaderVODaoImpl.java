@@ -112,6 +112,7 @@ public class ContractHeaderVODaoImpl extends DevJdbcDaoSupport implements Contra
                 + " ,:5"
                 + " ,:6"
                 + " ,:7"
+                + " ,:8"
 				+ " ,:"+PlsqlRetValue.RETCODE
 				+ " ,:"+PlsqlRetValue.ERRBUF
 				+ " ); "
@@ -122,8 +123,9 @@ public class ContractHeaderVODaoImpl extends DevJdbcDaoSupport implements Contra
 		paramMap.put("3", ch.getSalesOrgId());
 		paramMap.put("4", ch.getShipFromOrgId());
 		paramMap.put("5", ch.getOrderTypeId());
-		paramMap.put("6", ch.getCustomerPo());
-		paramMap.put("7", ch.getRemarks());
+		paramMap.put("6", ch.getCurrCode());
+		paramMap.put("7", ch.getCustomerPo());
+		paramMap.put("8", ch.getRemarks());
 		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
 	}
 	

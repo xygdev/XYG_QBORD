@@ -44,10 +44,25 @@ public class ListService {
 		return pagePub.qSqlForJson(sql, paramMap);
 	}
 	
-	public String findForOrderType(Long loginId,String lang) throws Exception{
+	public String findForOrderType(Long loginId,String lang,String currCode) throws Exception{
 		String sql = "SELECT ORDER_TYPE_NAME DISPLAY,ORDER_TYPE_ID VALUE"
 				+ " FROM XYG_QBORD_ORDER_TYPE_V  "
+				+ "WHERE CURR_CODE = :2 "
 				+ " ORDER BY ORDER_TYPE_ID DESC";
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		paramMap.put("1", lang);
+		paramMap.put("2", currCode);
+		return pagePub.qSqlForJson(sql, paramMap);
+	}
+	
+	public String findForCurrency(Long loginId,String lang) throws Exception{
+		String sql = "SELECT DESCRIPTION,LOOKUP_CODE VALUE"
+				+ "     FROM XYG_ALD_LOOKUP_VALUES  "
+				+ "    WHERE LOOKUP_TYPE = 'XYG_QBORD_CURRENCY' "
+				+ "      AND LANGUAGE = :1 "
+				+ "      AND ENABLED_FLAG='Y' "
+				+ "      AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1) "
+				+ " ORDER BY LOOKUP_CODE DESC";
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
 		paramMap.put("1", lang);
 		return pagePub.qSqlForJson(sql, paramMap);

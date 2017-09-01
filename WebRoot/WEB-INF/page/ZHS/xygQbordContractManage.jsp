@@ -179,9 +179,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
             <br style="clear:both"/>
             <label for="ORDER_TYPE_ID" class="left md none">订单类型:</label>
-            <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do"></select> 
+            <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE"]></select> 
             <label for="CUSTOMER_PO" class="left md">客订PO:</label>
-            <input type="text" data-update="db" class="left lgx2" id="CUSTOMER_PO" name="CUSTOMER_PO"/>
+            <input type="text" data-update="db" class="left lg" id="CUSTOMER_PO" name="CUSTOMER_PO"/>
+            <label for="CURR_CODE" class="left md">币别:</label>
+            <select class="left lg" id="CURR_CODE" name="CURR_CODE" data-notnull="true" data-default="CNY" data-listurl="list/getCurrency.do"></select>
             <br style="clear:both"/>
             <label for="REMARKS" class="left md">备注:</label>
             <input type="text" data-update="db" class="left lgx2" id="REMARKS" name="REMARKS"/>
@@ -245,8 +247,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="content row-2">
           <form>
             <input type="hidden" id="HEADER_ID_UOT" name="HEADER_ID"/>
+            <input type="hidden" id="CURR_CODE_UOT" name="CURR_CODE"/>
             <label for="ORDER_TYPE_ID_UOT" class="left md">订单类型:</label>
-            <select class="left lgx2" id="ORDER_TYPE_ID_UOT" name="ORDER_TYPE_ID" data-notnull="true" data-listurl="list/getOrderType.do"></select> 
+            <select class="left lgx2" id="ORDER_TYPE_ID_UOT" name="ORDER_TYPE_ID" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE_UOT"]></select> 
           </form>
         </div>
         <div class="foot">             
@@ -585,6 +588,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    if(userType=='EMP'){
 			    	$('#ORDER_TYPE_ID').removeClass('none');
 			    	$('label[for="ORDER_TYPE_ID"]').removeClass('none');
+			    	$('#CURR_CODE').attr('disabled','disabled');
 			    }
 			} 
 			
@@ -754,7 +758,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		//修改订单类型
        		$('[data-reveal-id="update_ot"]').click('on',function(){
        		    $('#HEADER_ID_UOT').val($('#HEADER_ID_L').val());
+       		    $('#CURR_CODE_UOT').val($('#CURR_CODE_L').val());
        		    $('#ORDER_TYPE_ID_UOT').val('');
+       		    $().listRef();
        		});
        		
        		//价目表明细
@@ -898,9 +904,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      ,['#ORGANIZATION_NAME','SHIP_FROM_ORG_NAME']
                      ,['#ORDER_TYPE_ID','ORDER_TYPE_ID']
                      ,['#CUSTOMER_PO','CUSTOMER_PO']
+                     ,['#CURR_CODE','CURR_CODE']
                      ,['#REMARKS','REMARKS']
                      ];
                     $().mapUpdateJson(data,mapRowArray);
+                    $().listRef();
                 }else if(pageframe=='detail_ui'){
                     var mapRowArray=[
                       ['#LINE_ID_D','LINE_ID']    

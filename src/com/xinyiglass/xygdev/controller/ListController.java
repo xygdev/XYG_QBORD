@@ -33,7 +33,13 @@ public class ListController extends BaseController{
 	@RequestMapping(value = "/getOrderType.do", method = RequestMethod.POST)
 	public void getOrderType() throws Exception
 	{
-		this.renderStr(listService.findForOrderType(loginId, this.getSessionAttr("LANG").toString()));
+		this.renderStr(listService.findForOrderType(loginId, this.getSessionAttr("LANG").toString(),this.getPara("CURR_CODE")));
+	}
+	
+	@RequestMapping(value = "/getCurrency.do", method = RequestMethod.POST)
+	public void getCurrency() throws Exception
+	{
+		this.renderStr(listService.findForCurrency(loginId, this.getSessionAttr("LANG").toString()));
 	}
 	
 	@RequestMapping(value = "/getContractStatus.do", method = RequestMethod.POST)

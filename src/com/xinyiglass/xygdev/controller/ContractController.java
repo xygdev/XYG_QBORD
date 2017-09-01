@@ -93,7 +93,7 @@ public class ContractController extends BaseController {
 		ch.setSalesOrgId(this.getParaToLong("SALES_ORG_ID"));
 		ch.setShipFromOrgId(this.getParaToLong("SHIP_FROM_ORG_ID"));
 		ch.setStatus("INPUT");
-		ch.setCurrCode("CNY");
+		ch.setCurrCode(this.getPara("CURR_CODE"));
 		ch.setCustomerPo(this.getPara("CUSTOMER_PO"));
 		ch.setRemarks(this.getPara("REMARKS"));
 		this.renderStr(CHS.insert(ch, loginId).toJsonStr());
@@ -126,6 +126,7 @@ public class ContractController extends BaseController {
 		ch.setSalesOrgId(this.getParaToLong("SALES_ORG_ID"));
 		ch.setShipFromOrgId(this.getParaToLong("SHIP_FROM_ORG_ID"));
 		ch.setOrderTypeId(this.getParaToLong("ORDER_TYPE_ID"));
+		ch.setCurrCode(this.getPara("CURR_CODE"));
 		ch.setCustomerPo(this.getPara("CUSTOMER_PO"));
 		ch.setRemarks(this.getPara("REMARKS"));
 		this.renderStr(CHS.update(lockChVO, ch, loginId).toJsonStr());
