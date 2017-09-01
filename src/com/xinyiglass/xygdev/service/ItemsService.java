@@ -43,7 +43,7 @@ public class ItemsService {
 	public String findForValidItems(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		StringBuffer sqlBuff = new StringBuffer();
-		sqlBuff.append("SELECT ITEM_ID,ORGANIZATION_ID,ORGANIZATION_NAME,ITEM_NUMBER,DESCRIPTION,CARNAME,EN_DESC,SPEC,PRODUCT_TYPE_DESC,PROCESS_TYPE_DESC,LOAD_LOCATION_DESC,OEMNO,QBORD_ENABLED_FLAG FROM XYG_QBI_ITEM_TP_B_V ");
+		sqlBuff.append("SELECT ITEM_ID,ORGANIZATION_ID,ORGANIZATION_NAME,ITEM_NUMBER,DESCRIPTION,CARNAME,EN_DESC,SPEC,PRODUCT_TYPE_DESC,PROCESS_TYPE_DESC,LOAD_LOCATION_DESC,OEMNO,QBORD_ENABLED_FLAG,CHANG,GAO FROM XYG_QBI_ITEM_TP_B_V ");
 		sqlBuff.append(" WHERE 1=1");
 		sqlBuff.append("   AND QBORD_ENABLED_FLAG = 'Y'");
 		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("orgId"),paramMap));
@@ -53,6 +53,10 @@ public class ItemsService {
 		sqlBuff.append(SqlStmtPub.getAndStmt("PRODUCT_TYPE_ID",conditionMap.get("productTypeId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("PROCESS_TYPE_ID",conditionMap.get("processTypeId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("OEMNO",conditionMap.get("oemno")==null?null:conditionMap.get("oemno").toString().trim(),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("EN_DESC",conditionMap.get("enDesc"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("CHANG",conditionMap.get("chang_F"),conditionMap.get("chang_T"),paramMap));
+	    sqlBuff.append(SqlStmtPub.getAndStmt("GAO",conditionMap.get("gao_F"),conditionMap.get("gao_T"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}

@@ -87,6 +87,8 @@ public class InvController extends BaseController{
 		conditionMap.put("organizationId",this.getParaToLong("ORGANIZATION_ID"));
 		conditionMap.put("description",this.getPara("DESCRIPTION"));
 		conditionMap.put("carName",this.getPara("CARNAME"));
+		conditionMap.put("productTypeId", this.getPara("PRODUCT_TYPE_ID"));
+		conditionMap.put("processTypeId", this.getPara("PROCESS_TYPE_ID"));
 		conditionMap.put("loadLocationId",this.getPara("LOAD_LOCATION_ID"));
 		conditionMap.put("width_F",this.getPara("WIDTH_F"));
 		conditionMap.put("width_T",this.getPara("WIDTH_T"));

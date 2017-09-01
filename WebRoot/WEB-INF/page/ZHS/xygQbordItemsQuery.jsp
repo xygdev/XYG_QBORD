@@ -37,10 +37,11 @@
      	    <th class="DESCRIPTION" data-column="db">本厂型号</th>
      	    <th class="CARNAME" data-column="db">中文描述</th>
      	    <th class="EN_DESC" data-column="db">英文描述</th>
+     	    <th class="SPEC" data-column="db">规格</th>
+     	    <th class="OEMNO" data-column="db">OEM编码</th> 
      	    <th class="PRODUCT_TYPE_DESC" data-column="db">产品种类</th>
      	    <th class="PROCESS_TYPE_DESC" data-column="db">加工类型</th>
      	    <th class="LOAD_LOCATION_DESC" data-column="db">装车位置</th>
-     	    <th class="OEMNO" data-column="db">OEM编码</th>
      	    <th class="ITEM_ID" style="display:none" data-column="hidden">&nbsp;</th> 
      	    <th class="ORGANIZATION_ID" style="display:none" data-column="hidden">&nbsp;</th>  	    
      	  </tr>
@@ -52,11 +53,12 @@
      	    <td class="ITEM_NUMBER" data-column="db"></td>
      	    <td class="DESCRIPTION text-left" data-column="db"></td>
      	    <td class="CARNAME text-left" data-column="db"></td>
-     	    <td class="EN_DESC text-left" data-column="db"></td>   	    
+     	    <td class="EN_DESC text-left" data-column="db"></td>  
+     	    <td class="SPEC" data-column="db"></td> 	
+     	    <td class="OEMNO" data-column="db"></td>    
      	    <td class="PRODUCT_TYPE_DESC" data-column="db"></td>
      	    <td class="PROCESS_TYPE_DESC" data-column="db"></td>
      	    <td class="LOAD_LOCATION_DESC" data-column="db"></td>
-     	    <td class="OEMNO" data-column="db"></td>
      	    <td class="ITEM_ID" style="display:none" data-column="hidden">&nbsp;</td> 
      	    <td class="ORGANIZATION_ID" style="display:none" data-column="hidden">&nbsp;</td>   
      	  </tr>
@@ -115,13 +117,13 @@
       <jsp:include page="public/lov.jsp"></jsp:include>
       <!-- lov区域 end -->
       <!-- 条件查询区域start -->
-      <div id="query" class="pop_frame row-4">     
+      <div id="query" class="pop_frame row-6">     
         <div class="title pointer">      
           <span><i class="fa fa-search"></i>&nbsp;物料查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
-        <div class="content row-4">
+        <div class="content row-6">
           <form>
             <label for="ORGANIZATION_NAME_Q" class="left md">库存组织:</label> 
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md" readonly="readonly"/>
@@ -148,6 +150,21 @@
             <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
             <input type="hidden" id="LOAD_LOCATION_ID_Q" name="LOAD_LOCATION_ID"/>
             <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="装车位置查询" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","装车位置"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["装车位置"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>        
+            <label for="EN_DESC_Q" class="left md">英文描述:</label>
+            <input type="text" id="EN_DESC_Q" name="EN_DESC" class="left lg"/>
+            <br style="clear:both"/>
+            <label for="CHANG_F" class="left md">长度:</label>
+            <input type="text" id="CHANG_F" name="CHANG_F" class="left xs" style="width:99px"/>
+            <label class="left blank" style="width:11px;padding-top:8px">-</label>
+            <input type="text" id="CHANG_T" name="CHANG_T" class="left xs" style="width:99px"/>
+            <label for="GAO_F" class="left md">高度:</label>
+            <input type="text" id="GAO_F" name="GAO_F" class="left xs" style="width:99px"/>
+            <label class="left blank" style="width:11px;padding-top:8px">-</label>
+            <input type="text" id="GAO_T" name="GAO_T" class="left xs" style="width:99px"/>    
+            <br style="clear:both"/>
+            <label for="OEMNO_Q" class="left md">OEM编码:</label>
+            <input type="text" id="OEMNO_Q" name="OEMNO" class="left lg"/>
+            <br style="clear:both"/>
           </form> 
         </div>
         <div class="foot">             
@@ -207,6 +224,7 @@
         	       ,['.ORGANIZATION_NAME','ORGANIZATION_NAME']
         	       ,['.ITEM_NUMBER','ITEM_NUMBER']
         	   	   ,['.DESCRIPTION','DESCRIPTION']
+        	   	   ,['.SPEC','SPEC']
         	       ,['.CARNAME','CARNAME']
         	   	   ,['.EN_DESC','EN_DESC']
         	   	   ,['.OEMNO','OEMNO']

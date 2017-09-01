@@ -69,6 +69,12 @@ public class ItemsController extends BaseController {
 		conditionMap.put("productTypeId", this.getPara("PRODUCT_TYPE_ID"));
 		conditionMap.put("processTypeId", this.getPara("PROCESS_TYPE_ID"));
 		conditionMap.put("loadLocationId", this.getPara("LOAD_LOCATION_ID"));
+		conditionMap.put("oemno",this.getPara("OEMNO"));
+		conditionMap.put("enDesc",this.getPara("EN_DESC"));
+		conditionMap.put("chang_F",this.getPara("CHANG_F"));
+		conditionMap.put("chang_T",this.getPara("CAHNG_T"));
+		conditionMap.put("gao_F",this.getPara("GAO_F"));
+		conditionMap.put("gao_T",this.getPara("GAO_T"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
 		this.renderStr(IS.findForValidItems(conditionMap, loginId));
 	}

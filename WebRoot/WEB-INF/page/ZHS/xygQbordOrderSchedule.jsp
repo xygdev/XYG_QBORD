@@ -212,6 +212,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <tr>
               <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
               <th class="DESCRIPTION" data-column="db">本厂型号</th>
+              <th class="CARNAME" data-column="db">中文描述</th>
+              <th class="SPEC" data-column="db">规格</th>
               <th class="REQUIRED_QUANTITY" data-column="db" style="min-width:50px">需求量</th>
               <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">订单量</th>
               <th class="BH_QTY" data-column="db" style="min-width:50px">备货量</th>
@@ -220,6 +222,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <tr>
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
+              <td class="CARNAME" data-column="db"></td>
+              <td class="SPEC" data-column="db"></td>
               <td class="REQUIRED_QUANTITY" data-column="db" style="min-width:50px"></td>
               <td class="ORDER_QUANTITY" data-column="db" style="min-width:50px"></td>        
               <td class="BH_QTY" data-column="db" style="min-width:50px"></td>
@@ -381,6 +385,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      var mapRowArray=[
                      ['.LINE_NUM','LINE_NUM']
                     ,['.DESCRIPTION','DESCRIPTION']
+                    ,['.CARNAME','CARNAME']
+                    ,['.SPEC','SPEC']
                     ,['.REQUIRED_QUANTITY','REQUIRED_QUANTITY']
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.BH_QTY','BH_QTY']
