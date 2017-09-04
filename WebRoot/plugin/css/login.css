@@ -170,17 +170,28 @@
 	top:0;
 	width:100%;
 	height:100%;
-	z-index:100;
+	z-index:101;
 	display:none; 
-	background-color:#2b9152 !important;
+   /*  background-color:#2b9152 !important;  */
 }
 
 #login-page>.go-back{
 	position:absolute;
 	top:2vh;
-	right:3vh;
+	right:4.3vw;
 	background-color:transparent;
 	border:none
+}
+
+#login-page>.login-modal-bg{
+	position:fixed;
+	height:100%;
+	width:100%;
+	background:#000;
+	z-index:100;
+	top:0;
+	left:0;
+	opacity:0.3;
 }
 
 #login-page>.login-frame{
@@ -189,7 +200,8 @@
 	margin:15vh auto;
 	max-width:400px;
 	width:100%;
-	border-radius:10px
+	border-radius:10px;
+	z-index:101;
 }
 
 .login-frame .btn{
@@ -269,7 +281,7 @@
 	#login-page .textMsg{width:85%;}
 	#login-page .getMessage{font-size:16px;max-width:15%;}	
 	#login-page{
-	    background-color:#fff
+	    /* background-color:#fff */ 
 	}
 	
 }

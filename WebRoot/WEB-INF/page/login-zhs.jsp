@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<button type="button" class="btn dropdown-toggle langue-btn" id="dropdownMenu1" data-toggle="dropdown">
                             语言<span class="caret"></span>
    		</button>
-   		<ul class="dropdown-menu" role="menu" style="min-width:100px" aria-labelledby="dropdownMenu1">
+   		<ul class="dropdown-menu" role="menu" style="min-width:92px" aria-labelledby="dropdownMenu1">
       	  <li role="presentation">
             <a role="menuitem" tabindex="-1" href="loginZHS.do">中文</a>
           </li>
@@ -105,13 +105,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 欢迎页区域 end -->
 	
 	<!-- 登录页区域 start -->
-	<div id='login-page'>
+	<div id="login-page">
 	  <!-- 右上角区域 start -->
-	  <button type='button' class="go-back white">
+	  <button type='button' class="go-back white" style="z-index:106;">
 	    <i class="fa fa-reply fa-2x" aria-hidden="true"></i>	    
 	  </button>
 	  <!-- 右上角区域 end -->
 	  <!-- 正中间区域 start -->
+	  <div class="login-modal-bg"></div> 
 	  <div class="login-frame" >
 	    <img src="/image/login/xyg.gif" style="width:100%">
 	    <form role="form" id="loginFrom" name="loginFrom" method="post" action="login.do">
@@ -136,17 +137,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <button class="forgetPassWord btn pointer"  data-reveal-id="findPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">忘记密码</button>
         <div style="height:15px"></div>
         
-        
+          
         <!-- 找回密码框 start -->
         <div class="pwd-modal-bg"></div>
         <div id="findPWD" class="pwd_frame ">
-          <div class='title pointer'>      
+          <div class="title pointer">      
             <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;找回密码</span>
           </div>
           <a class="close-pwd-frame" data-type="close">&#215;</a>
-          <div class='line'></div>
-          <div class='content'>
-            <form id='updateData'>
+          <div class="line"></div>
+          <div class="content">
+            <form id="updateData">
               <div class="form-group" style="padding:0 25px">
                 <label for="username_F" >用户名</label>
                 <input type="text" id="username_F" class="form-control" name="username" autocomplete="off" placeholder="请填入用户名" required="required"/>
@@ -157,16 +158,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <button id="getMessage_F" class="getMessage pointer left" >获取短信</button>
               </div>
               <div class="form-group" style="padding:0 25px">
-                <label for='N_PASSWORD_F'>新密码</label>
+                <label for="N_PASSWORD_F">新密码</label>
                 <input type="text" style="display:none;" />
-                <input type='text' id='N_PASSWORD_F' class="form-control left N_PASSWORD" name='N_PASSWORD_F' onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" data-update="db" class=' password'/>
+                <input type="text" id="N_PASSWORD_F" class="form-control left N_PASSWORD" name="N_PASSWORD_F" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" data-update="db" class=" password"/>
                 <input type="text" style="display:none;" />
                 <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD_F"></i>
                 <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD_F"></i>
               </div>
             </form>
           </div>
-          <div class='foot'>       
+          <div class="foot">       
             <button id="confirm" class="right update_confirm pointer">修改</button>
           </div>   
         </div>
@@ -269,20 +270,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	
 	$('.start-btn').on('click',function(){ 
-	    $("#welcome-page").css("display","none");
-	    $("#login-page").css("display","block");
+	    //$("#welcome-page").css("display","none");
+	    //$("#login-page").css("display","block");
+	    $('#login-page').fadeIn();
 	    layer.closeAll('tips'); 
 	});
 	
-	$('.go-back').on('click',function(){	 
-  	    $("#welcome-page").css("display","block");
-	    $("#login-page").css("display","none");
+	 $('.go-back').on('click',function(){	 
+  	    //$("#welcome-page").css("display","block");
+	    //$("#login-page").css("display","none");
+	    $('#login-page').fadeOut('fast');
 	    $().tips();
-	});
+	}); 
 	
 	
-	
-	$("#findPWD").draggable({ handle: ".title" });
+	$('#findPWD').draggable({ handle: '.title' });
 	$('i[data-pwd]').on('click',function(){
         if($(this).data('pwd')=='show'){
             $('.fa-eye[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');
