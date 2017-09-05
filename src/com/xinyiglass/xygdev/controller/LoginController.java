@@ -7,8 +7,10 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,8 @@ import com.xinyiglass.xygdev.util.Constant;
 import com.xinyiglass.xygdev.util.CookieUtil;
 import com.xinyiglass.xygdev.util.GlobalInit;
 import com.xinyiglass.xygdev.util.LogUtil;
+import com.xinyiglass.xygdev.util.MD5Util;
+import com.xinyiglass.xygdev.util.NeteaseMsg;
 
 @Controller
 @Scope("prototype")
@@ -65,8 +69,45 @@ public class LoginController extends BaseController {
 		//return "login-us";
 	}
 	
+	@RequestMapping("/sendMsgCode.do")
+	public void sendMsgCode() throws Exception{
+		String userName = this.getPara("USER_NAME");
+		String res = null;
+		try{
+			UserVO uv = uvos.findForUserVOByName(userName.toUpperCase(), loginId);
+			res  = NeteaseMsg.sendCode(uv.getMobileNumber(),3089064L);
+			String[] a = res.split(",");
+			res = a[0] + "}";
+			System.out.println(res);
+		}catch(EmptyResultDataAccessException e){
+			res = "{\"code\":\"8888\"}";
+		}
+		//System.out.println(uv.getMobileNumber());
+		this.renderStr(res);
+	}
+	
+	@RequestMapping("/forgetPwd.do")
+	public void forgetPwd() throws Exception{
+		String userName = this.getPara("username");
+		UserVO uv = uvos.findForUserVOByName(userName.toUpperCase(), loginId);
+		//$/String textVerify = NeteaseMsg.verifyCode(uv.getMobileNumber(), this.getPara("textMsg"));
+		//$/JSONObject strJson = new JSONObject(textVerify);
+		if(!this.getPara("textMsg").equals("0")){
+		//$/if(!strJson.get("code").toString().equals("200")){
+			//$/String retJson = "{\"retcode\":\"2\",\"errbuf\":\"验证码有误,错误代号("+strJson.get("code").toString()+")\"}";
+			String retJson = "{\"retcode\":\"2\",\"errbuf\":\"验证码有误\"}";
+			this.renderStr(retJson);
+		}else{
+			Map<String,Object> conditionMap=new HashMap<String,Object>();
+			conditionMap.put("userId", uv.getUserId());
+			conditionMap.put("oldPassword", uv.getEncryptedUserPassword());
+			conditionMap.put("newPassword", MD5Util.string2MD5(this.getPara("N_PASSWORD_F"),Constant.SALT));
+			this.renderStr(uvos.updatePWD(conditionMap, loginId).toJsonStr());
+		}
+	}
+	
 	@RequestMapping(value="/login.do",method=RequestMethod.POST)
-	public ModelAndView postLogin(String username,String password,String lang) throws Exception{
+	public ModelAndView postLogin(String username,String password,String textMsg,String lang) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object> conditionMap=new HashMap<String,Object>();
 		//Constant.LANG = lang;
@@ -87,24 +128,38 @@ public class LoginController extends BaseController {
 			this.setSessionAttr("errorMsg", ret.getErrbuf());
 		}else{
 			UserVO user=uvos.findForUserVOByName(username.toUpperCase(),null);
-			this.setSessionAttr("LOGIN_ID",TypeConvert.str2Long(ret.getParam1()));
-			this.setSessionAttr("USER_ID", user.getUserId());
-			this.setSessionAttr("USER_NAME", user.getUserName());
-			this.setSessionAttr("DESC", user.getDescription());
-			this.setSessionAttr("IMG", user.getImgUrl());
-			SqlResultSet resp = rvos.getResp(user.getUserId(), loginId);
-			this.setSessionAttr("RESP_ID",resp.getResultSet().get(0)[0].toString());
-			this.setSessionAttr("RESP", resp.getResultSet().get(0)[1].toString());
-			this.setSessionAttr("USER_TYPE", user.getUserType());
-			if(retCode==1){
-				mv.setViewName("redirect:/modifyPWD.do");
-				this.setSessionAttr("errorMsg", ret.getErrbuf());
-			}else if(retCode==0){				
-				mv.setViewName("redirect:/index.do"); 
+			//测试时先去除短信验证流程，正式上线时再开发$号的代码
+			//$/String textVerify = NeteaseMsg.verifyCode(user.getMobileNumber(), textMsg);
+			//$/JSONObject strJson = new JSONObject(textVerify);
+			if(!textMsg.equals("0")){
+				//$/if(!strJson.get("code").toString().equals("200")){
+				if(lang.equals("ZHS")){
+					mv.setViewName("login-zhs");
+				}else{
+					mv.setViewName("login-us");
+				}
+				this.setSessionAttr("errorMsg", "验证码验证失败");	
+				//$/this.setSessionAttr("errorMsg", "验证码验证失败,错误代码:"+strJson.get("code"));	
+			}else{
+				this.setSessionAttr("LOGIN_ID",TypeConvert.str2Long(ret.getParam1()));
+				this.setSessionAttr("USER_ID", user.getUserId());
+				this.setSessionAttr("USER_NAME", user.getUserName());
+				this.setSessionAttr("DESC", user.getDescription());
+				this.setSessionAttr("IMG", user.getImgUrl());
+				SqlResultSet resp = rvos.getResp(user.getUserId(), loginId);
+				this.setSessionAttr("RESP_ID",resp.getResultSet().get(0)[0].toString());
+				this.setSessionAttr("RESP", resp.getResultSet().get(0)[1].toString());
+				this.setSessionAttr("USER_TYPE", user.getUserType());
+				if(retCode==1){
+					mv.setViewName("redirect:/modifyPWD.do");
+					this.setSessionAttr("errorMsg", ret.getErrbuf());
+				}else if(retCode==0){				
+					mv.setViewName("redirect:/index.do"); 
+				}
+				//这里全局初始化。例如启用调试等
+				GlobalInit.init(null);//Boolean.parseBoolean("false")
+				LogUtil.log("成功登录!-->当前SESS会话"+this.session.getId()+" 匹配的longId:"+ret.getParam1());
 			}
-			//这里全局初始化。例如启用调试等
-			GlobalInit.init(null);//Boolean.parseBoolean("false")
-			LogUtil.log("成功登录!-->当前SESS会话"+this.session.getId()+" 匹配的longId:"+ret.getParam1());
 		}
 		return mv;
 	}

@@ -128,11 +128,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		  </div>
    		  <div  class="form-group" style="padding:0 25px;overflow:hidden;">
    		    <label for="textMsg" style="width:100%">短信验证码</label>  		   
-   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="请输入短信"/>
-   		    <button id="getMessage" class="getMessage pointer left">获取短信</button>
+   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="请输入验证码" required="required"/>
+   		    <input type="button" id="getMessage" class="getMessage pointer left" value="获取短信"/>
    		  </div>
    		  <input type="hidden" id="lang" name="lang" value="ZHS"/>
-   		  <button type="submit" class="btn btn-defult login-btn">登录</button>
+   		  <button id="login" type="submit" class="btn btn-defult login-btn">登录</button>
 	    </form>
 	    <button class="forgetPassWord btn pointer"  data-reveal-id="findPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">忘记密码</button>
         <div style="height:15px"></div>
@@ -155,12 +155,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="form-group" style="padding:0 25px;overflow:hidden;">
                 <label for="textMsg_F" class="left" style="width:100%;margin-top:10px;">短信验证码</label>     
                 <input type="text" id="textMsg_F"  class="form-control textMsg left" name="textMsg" autocomplete="off" placeholder="请输入短信"  required="required" />
-                <button id="getMessage_F" class="getMessage pointer left" >获取短信</button>
+                <input type="button" id="getMessage_F" class="getMessage pointer left" value="获取短信"/>
               </div>
               <div class="form-group" style="padding:0 25px">
                 <label for="N_PASSWORD_F">新密码</label>
                 <input type="text" style="display:none;" />
-                <input type="text" id="N_PASSWORD_F" class="form-control left N_PASSWORD" name="N_PASSWORD_F" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" data-update="db" class=" password"/>
+                <input type="text" id="N_PASSWORD_F" class="form-control left N_PASSWORD" name="N_PASSWORD_F" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" required="required" autocomplete="off" data-update="db" class=" password" placeholder="请输入新密码"/>
                 <input type="text" style="display:none;" />
                 <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD_F"></i>
                 <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD_F"></i>
@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </form>
           </div>
           <div class="foot">       
-            <button id="confirm" class="right update_confirm pointer">修改</button>
+            <button id="confirm" class="right update_confirm pointer" data-crudtype="update" data-pageframe="findPWD" data-updateurl="forgetPwd.do">修改</button>
           </div>   
         </div>
         <!-- 找回密码弹出框 end-->   
@@ -185,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 
   <script type="text/javascript" src="plugin/js/data.validate.js"></script>
-  
+  <script type="text/javascript" src="plugin/js/jQuery.crud.js"></script> 
   <script>
     function getCookie(cname) {
     	var arr = document.cookie.split(';');
@@ -195,6 +195,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     	}
     	return "";
+	}
+	
+	//添加cookie
+	function addCookie(name, exMinutes) {
+		var d = new Date();
+    	d.setTime(d.getTime() + (exMinutes*60*1000));
+    	var expires = 'expires='+d.toUTCString();
+    	document.cookie = name + '=' + d + ';' + expires;
 	}
 	
     $.fn.symbol = function(){
@@ -244,12 +252,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             tips: [2, 'green'],
             time: 0
         });
-	}
+	}	
+	
+	$('#getMessage,#getMessage_F').on('click',function(e){
+		e.preventDefault();
+		console.log('短信验证码测试时暂时移除');
+		/*
+		var id = $(this).attr('id');
+		var username;
+		if(id=='getMessage'){
+		    username = $('#username').val();
+		}else if(id=='getMessage_F'){
+			username = $('#username_F').val();
+		}else{
+			layer.alert('按钮事件绑定错误，请联系开发部门',{title:'警告',offset:[150]});
+			return;
+		}
+		if(username==''||username==''){
+			layer.alert('请先输入用户名再获取验证码',{title:'警告',offset:[150]});
+			return;
+		}else{
+			var msgCookie = getCookie(username.toUpperCase());
+			if(msgCookie!=''&&msgCookie!=null){
+				var res = msgCookie.split(' ');
+				layer.alert('此用户已获取过短信验证码，请勿在十分钟内频繁重复获取，'+res[4]+'可再次获取短信验证码',{title:'警告',offset:[150]});
+				return;
+			}else{
+			var param = 'USER_NAME='+username;
+			$.ajax({
+				type:'post', 
+				data:param,
+				url:'sendMsgCode.do',
+				dataType:'json',
+				success: function (data) {
+					if(data.code=='200'){
+						layer.msg('验证码已成功发送至手机，请注意查收！');
+						addCookie(username.toUpperCase(),10);
+				    }else{
+				    	if(data.code=='8888'){
+				    		layer.alert('您输入的用户名不存在,请检查后重新输入！',{title:'警告',offset:[150]});
+				    	}else{
+				    		layer.alert('获取验证码错误！错误代码:'+data.code,{title:'警告',offset:[150]});
+				    	}
+				    }	
+				},
+				error: function () {
+					layer.msg('获取JSON数据失败');	
+					if(window.frameElement != null){
+						//console.log("处于一个iframe中");
+						$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+					}	
+				}
+			});
+			}
+		}
+		*/
+	});
     
 	// $(document).ready  改成   window.onload  2017/8/23 sun
 	window.onload = function(){
         $().symbol();
         $().tips();
+        $().crudListener();
         var userName = getCookie('USER_NAME');
         $('#username').val(userName);
         errorMSG=$('#errorMsg').val();
@@ -266,8 +330,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	$('#myCarousel').carousel({
   		interval: 5000
 	})
-	
-	
 	
 	$('.start-btn').on('click',function(){ 
 	    //$("#welcome-page").css("display","none");
@@ -298,5 +360,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
     
   </script>
+  
   </body>
 </html>

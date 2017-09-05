@@ -27,7 +27,7 @@ public class SecurityServlet extends HttpServlet implements Filter {
         String url=req.getRequestURI(); 
         if(user==null || "".equals(user) || resp == null ||loginId==null|| "".equals(resp)) {        
             //判断获取的路径不为空且不是访问登录页面或执行登录操作时跳转     
-            if(url!=null && !url.equals("") && (url.indexOf("login.do")<0 ) && (url.indexOf("404.do")<0)&& (url.indexOf("sessionTO.do")<0) && (url.indexOf("logout.do")<0)&& (url.indexOf("loginZHS.do")<0)&& (url.indexOf("loginUS.do")<0)) {     
+            if(url!=null && !url.equals("") && (url.indexOf("login.do")<0 ) && (url.indexOf("404.do")<0)&& (url.indexOf("sessionTO.do")<0) && (url.indexOf("logout.do")<0)&& (url.indexOf("loginZHS.do")<0)&& (url.indexOf("loginUS.do")<0)&& (url.indexOf("sendMsgCode.do")<0)&& (url.indexOf("forgetPwd.do")<0)) {     
                 //res.sendRedirect(req.getContextPath() + "/error/sessionTimeout");    
                 req.getRequestDispatcher("/sessionTO.do").forward(req,res);
                 return ;     

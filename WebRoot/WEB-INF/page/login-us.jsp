@@ -20,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="plugin/bootstrap/js/bootstrap.min.js"></script>
 	<script src="plugin/jQuery/jquery-ui.min.js"></script>	
+	<script type="text/javascript" src="plugin/layer/layer.js"></script>
 	<style>
 	    .layui-layer-tips .layui-layer-content{
 	        font-size:0.9em !important;
@@ -128,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		  </div>
    		  <div  class="form-group" style="padding:0 25px;overflow:hidden;">
    		    <label for="textMsg" style="width:100%">Message Code</label>  		   
-   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="Please Enter Your Message Code"/>
+   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="Please Enter Your Message Code" required="required"/>
    		    <button id="getMessage" class="getMessage pointer left">Send Msg</button>
    		  </div>
    		  <input type="hidden" id="lang" name="lang" value="US"/>
@@ -155,12 +156,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="form-group" style="padding:0 25px;overflow:hidden;">
                 <label for="textMsg_F" class="left" style="width:100%;margin-top:10px;">Message Code</label>     
                 <input type="text" id="textMsg_F"  class="form-control textMsg left" name="textMsg" autocomplete="off" placeholder="Please Enter Your Message Code"  required="required" />
-                <button id="getMessage_F" class="getMessage pointer left" >Send Msg</button>
+                <button id="getMessage_F" class="getMessage pointer left" >Get Code</button>
               </div>
               <div class="form-group" style="padding:0 25px">
                 <label for="N_PASSWORD_F">New Password</label>
                 <input type="text" style="display:none;" />
-                <input type="text" id="N_PASSWORD_F" class="form-control left N_PASSWORD" name="N_PASSWORD_F" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" data-update="db" class=" password"/>
+                <input type="text" id="N_PASSWORD_F" class="form-control left N_PASSWORD" name="N_PASSWORD_F" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" required="required" data-update="db" class=" password" placeholder="Please Enter Your New Password"/>
                 <input type="text" style="display:none;" />
                 <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD_F"></i>
                 <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD_F"></i>
@@ -168,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </form>
           </div>
           <div class="foot">       
-            <button id="confirm" class="right update_confirm pointer">Confirm</button>
+            <button id="confirm" class="right update_confirm pointer" data-crudtype="update" data-pageframe="findPWD" data-updateurl="forgetPwd.do">Confirm</button>
           </div>   
         </div>
         <!-- 找回密码弹出框 end-->   
@@ -182,11 +183,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<!-- 登录页区域 end -->
 	
-  <script type="text/javascript" src="plugin/layer/layer.js"></script>
   <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 
-  <script type="text/javascript" src="plugin/js/data.validate.js"></script>
-  <script type="text/javascript" src="plugin/layer/layer.js"></script>
-  
+  <script type="text/javascript" src="plugin/js/data.validate.js"></script>  
+  <script type="text/javascript" src="plugin/js/jQuery.crud.js"></script> 
   <script>
     function getCookie(cname) {
     	var arr = document.cookie.split(';');
@@ -196,6 +195,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     	}
     	return "";
+	}
+	
+	//添加cookie
+	function addCookie(name, exMinutes) {
+		var d = new Date();
+    	d.setTime(d.getTime() + (exMinutes*60*1000));
+    	var expires = 'expires='+d.toUTCString();
+    	document.cookie = name + '=' + d + ';' + expires;
 	}
     
     $.fn.symbol = function(){
@@ -247,10 +254,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 	}
 	
+	$('#getMessage,#getMessage_F').on('click',function(e){
+		e.preventDefault();
+		console.log('短信验证码测试时暂时移除');
+		/*
+		var id = $(this).attr('id');
+		var username;
+		if(id=='getMessage'){
+		    username = $('#username').val();
+		}else if(id=='getMessage_F'){
+			username = $('#username_F').val();
+		}else{
+			layer.alert('Button Error，Please Contact The IT Department',{title:'警告',offset:[150]});
+			return;
+		}
+		if(username==''||username==''){
+			layer.alert('Please Enter Your User Name Before You Request For The Message Code!',{title:'警告',offset:[150]});
+			return;
+		}else{
+			var msgCookie = getCookie(username.toUpperCase());
+			if(msgCookie!=''&&msgCookie!=null){
+				var res = msgCookie.split(' ');
+				layer.alert('This User Has Been Already Request For The Message Code.Please Do Not Request For It Repeatly!You Can Request Again After '+res[4],{title:'警告',offset:[150]});
+				return;
+			}else{
+				var param = 'USER_NAME='+username;
+				$.ajax({
+					type:'post', 
+					data:param,
+					url:'sendMsgCode.do',
+					dataType:'json',
+					success: function (data) {
+						if(data.code=='200'){
+							layer.msg('The Message Code Has Been Sent,Please Check Your Mobile Phone！');
+							addCookie(username.toUpperCase(),10);
+					    }else{
+					    	if(data.code=='8888'){
+				    			layer.alert('The User Name Does Not Exists,Please Check Your Spell！',{title:'警告',offset:[150]});
+				    		}else{
+					    		layer.alert('Message Code Error！Error Code:'+data.code,{title:'警告',offset:[150]});
+					    	}
+					    }	
+					},
+					error: function () {
+						layer.msg('Get Json Data Failed');	
+						if(window.frameElement != null){
+							//console.log("处于一个iframe中");
+							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+						}	
+					}
+				});
+			}
+		}
+		*/
+	});
+	
 	// $(document).ready  改成   window.onload  2017/8/23 sun
 	window.onload = function(){
 	    $().symbol();
         $().tips();
+        $().crudListener();
         var userName = getCookie('USER_NAME');
         $('#username').val(userName);
         errorMSG=$('#errorMsg').val();

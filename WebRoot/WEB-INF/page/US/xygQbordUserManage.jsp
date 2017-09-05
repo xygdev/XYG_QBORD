@@ -192,7 +192,7 @@
             <input type="text" id="END_DATE" name="END_DATE" data-update="db" data-datatype="date" class="left lg"/>
             <br style="clear:both"/>
             <label for="MOBILE_NUMBER" class="left md">Mobile</label>
-            <input type="text" id="MOBILE_NUMBER" name="MOBILE_NUMBER" data-update="db" class="left lg" />  
+            <input type="text" id="MOBILE_NUMBER" name="MOBILE_NUMBER" data-update="db" required="required" class="left lg" />  
             <label for="EMAIL_ADDR" class="left md">Email</label>
             <input type="text" id="EMAIL_ADDR" name="EMAIL_ADDR" data-update="db" class="left lg" />      
              <br style="clear:both"/>
