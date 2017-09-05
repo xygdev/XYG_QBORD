@@ -18,6 +18,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
+    <style type="text/css">  
+		.EN_DESC{
+		    width:110px;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		}
+		.EN_DESC P{
+			background:#C0C0C0;
+			position:absolute;
+			margin-top:-26px;
+			height:31px;
+			line-height:31px;
+			font-weight:bold;
+			border-right:1px solid #ccc;
+			display:none;
+		}
+		
+	</style>  
   </head>
   <body>
     <div id="container">
@@ -301,6 +320,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
               <th class="DESCRIPTION" data-column="db">本厂型号</th>
               <th class="CARNAME" data-column="db">中文描述</th>
+              <th class="EN_DESC" data-column="db">英文描述</th>
+              <th class="SPEC" data-column="db" style="min-width:50px">规格</th>
+              <th class="BEVEL" data-column="db" style="min-width:80px">中高对角</th>
               <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
               <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
               <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
@@ -312,9 +334,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
               <td class="CARNAME text-left" data-column="db"></td>
+              <td class="EN_DESC text-left" data-column="db"></td>
+              <td class="SPEC" data-column="db" style="min-width:50px"></td>
+              <td class="BEVEL" data-column="db" style="min-width:80px"></td>
               <td class="UNIT_PRICE" data-column="db" style="min-width:50px"></td>
               <td class="ORDER_QUANTITY" data-column="db" style="min-width:50px"></td>
-              <td class="LINE_PRICE" data-column="db" style="min-width:50px">总价</td>
+              <td class="LINE_PRICE" data-column="db" style="min-width:50px"></td>
               <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
                 <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="修改行明细" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
@@ -356,7 +381,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <jsp:param name="pageframe" value="sub_table" />
               <jsp:param name="func" value="$().setParam()" />
             </jsp:include>
-            <input type="hidden" data-type="size" value="10"/>
+            <input type="hidden" data-type="size" value="20"/>
             <input type="hidden" data-type="number" value="1"/>
             <input type="hidden" data-type="orderby" value="LINE_NUM"/> 
             <input type="hidden" data-type="cond"/>
@@ -842,6 +867,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      ['.LINE_NUM','LINE_NUM']
                     ,['.DESCRIPTION','DESCRIPTION']
                     ,['.CARNAME','CARNAME']
+                    ,['.EN_DESC','EN_DESC',
+                        function(){
+                            if(data.rows[i].EN_DESC == ''){
+                                null;
+                            }else{
+                                $('#oLine').find('tr:eq('+(i+1)+')').find('.EN_DESC').html('<div class="EN_DESC">'+data.rows[i].EN_DESC+'</div><p>'+data.rows[i].EN_DESC+'</p>');
+                                $('#oLine').find('tr:eq('+(i+1)+')').find('.EN_DESC').hover(function(){
+                                    $(this).children('p').css('display','block')
+                                },function(){
+                                    $(this).children('p').css('display','none')
+                                });
+                            }
+                        }
+                     ]
+                    ,['.SPEC','SPEC']
+                    ,['.BEVEL','BEVEL']
                     ,['.UNIT_PRICE','UNIT_PRICE']                 
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.LINE_PRICE','LINE_PRICE']
