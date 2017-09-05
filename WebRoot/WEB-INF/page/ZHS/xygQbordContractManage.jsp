@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    overflow: hidden;
 		}
 		.EN_DESC P{
+		    color:black;
 			background:#C0C0C0;
 			position:absolute;
 			margin-top:-26px;
@@ -35,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			border-right:1px solid #ccc;
 			display:none;
 		}
-		
+		.detail_frame .detail_table{height:355px;overflow-y:auto;overflow-x:hidden;}
 	</style>  
   </head>
   <body>
