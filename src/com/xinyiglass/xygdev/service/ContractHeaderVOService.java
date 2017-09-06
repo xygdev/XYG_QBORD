@@ -100,7 +100,7 @@ public class ContractHeaderVOService {
 		sqlBuff.append(SqlStmtPub.getAndStmt("SALES_ORG_ID",conditionMap.get("salesOrgId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("CUSTOMER_ID",conditionMap.get("customerId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("XQCH.CREATION_DATE",conditionMap.get("creationDate_F"),conditionMap.get("creationDate_T"),paramMap));
-		sqlBuff.append(SqlStmtPub.getAndStmt("XQCH.STATUS",conditionMap.get("lookupCode"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCH.STATUS",conditionMap.get("status"),paramMap));
 		sqlBuff.append("   AND XQCH.SALES_ORG_ID = XACA.ORG_ID");
 		sqlBuff.append("   AND (XACA.ACT_ID IN(SELECT CUST_ID");
 		sqlBuff.append("					     FROM XYG_ALD_GROUP_LINES");

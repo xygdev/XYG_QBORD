@@ -26,7 +26,7 @@ public class ItemsService {
 	public String findForItems(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		StringBuffer sqlBuff = new StringBuffer();
-		sqlBuff.append("SELECT ITEM_ID,ORGANIZATION_ID,ORGANIZATION_NAME,ITEM_NUMBER,DESCRIPTION,CARNAME,EN_DESC,SPEC,PRODUCT_TYPE_DESC,PROCESS_TYPE_DESC,LOAD_LOCATION_DESC,OEMNO,QBORD_ENABLED_FLAG FROM XYG_QBI_ITEM_TP_B_V WHERE 1=1");
+		sqlBuff.append("SELECT ITEM_ID,ORGANIZATION_ID,ORGANIZATION_NAME,ITEM_NUMBER,DESCRIPTION,CARNAME,EN_DESC,SPEC,PRODUCT_TYPE_DESC,PROCESS_TYPE_DESC,LOAD_LOCATION_DESC,OEMNO,QBORD_ENABLED_FLAG,LAST_SYNC_DATE FROM XYG_QBI_ITEM_TP_B_V WHERE 1=1");
 		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("orgId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("ITEM_NUMBER",conditionMap.get("itemNumber"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
@@ -35,6 +35,7 @@ public class ItemsService {
 		sqlBuff.append(SqlStmtPub.getAndStmt("PROCESS_TYPE_ID",conditionMap.get("processTypeId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("QBORD_ENABLED_FLAG",conditionMap.get("qbordEnabledFlag"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("LAST_SYNC_DATE",conditionMap.get("syncDate_F"),conditionMap.get("syncDate_T"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}

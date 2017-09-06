@@ -51,6 +51,8 @@ public class ItemsController extends BaseController {
 		conditionMap.put("processTypeId", this.getPara("PROCESS_TYPE_ID"));
 		conditionMap.put("loadLocationId", this.getPara("LOAD_LOCATION_ID"));
 		conditionMap.put("qbordEnabledFlag", this.getPara("QBORD_ENABLED_FLAG"));
+		conditionMap.put("syncDate_F",this.getParaToDate("SYNC_DATE_F"));
+		conditionMap.put("syncDate_T",this.getParaToDate("SYNC_DATE_T"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
 		this.renderStr(IS.findForItems(conditionMap, loginId));
 	}

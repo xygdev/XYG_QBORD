@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>汽玻技术资料查询</title>
+    <title>Item Query</title>
     <base href="<%=basePath%>"> 
     <meta http-equiv="content-type" content="text/html;charset=gb2312">
 	<link rel="stylesheet" href="plugin/css/font-awesome.min.css">
@@ -32,22 +32,22 @@
         <table id="main-table" data-table="items">
           <tr>
             <th class="ACTION" data-column="normal" style="min-width:50px"></th> 
-            <th class="ORGANIZATION_NAME" data-column="db">库存组织</th>
-     	    <th class="ITEM_NUMBER" data-column="db">物料编码</th>
-     	    <th class="DESCRIPTION" data-column="db">本厂型号</th>
-     	    <th class="CARNAME" data-column="db">中文描述</th>
-     	    <th class="EN_DESC" data-column="db">英文描述</th>
-     	    <th class="SPEC" data-column="db">规格</th>
-     	    <th class="OEMNO" data-column="db">OEM编码</th> 
-     	    <th class="PRODUCT_TYPE_DESC" data-column="db">产品种类</th>
-     	    <th class="PROCESS_TYPE_DESC" data-column="db">加工类型</th>
-     	    <th class="LOAD_LOCATION_DESC" data-column="db">装车位置</th>
+            <th class="ORGANIZATION_NAME" data-column="db">Inv</th>
+     	    <th class="ITEM_NUMBER" data-column="db">Item No</th>
+     	    <th class="DESCRIPTION" data-column="db">Item</th>
+     	    <th class="CARNAME" data-column="db">CN Desc</th>
+     	    <th class="EN_DESC" data-column="db">EN Desc</th>
+     	    <th class="SPEC" data-column="db">Spec</th>
+     	    <th class="OEMNO" data-column="db">OEM No</th> 
+     	    <th class="PRODUCT_TYPE_DESC" data-column="db">Product Type</th>
+     	    <th class="PROCESS_TYPE_DESC" data-column="db">Process Type</th>
+     	    <th class="LOAD_LOCATION_DESC" data-column="db">Load Location</th>
      	    <th class="ITEM_ID" style="display:none" data-column="hidden">&nbsp;</th> 
      	    <th class="ORGANIZATION_ID" style="display:none" data-column="hidden">&nbsp;</th>  	    
      	  </tr>
      	  <tr>
      	    <td class="ACTION" data-column="normal" style="min-width:50px">
-     	      <i class="fa fa-eye fa-fw pointer hidden" data-show="true" title="物料明细" ></i>
+     	      <i class="fa fa-eye fa-fw pointer hidden" data-show="true" title="Item Detail" ></i>
      	    </td>
             <td class="ORGANIZATION_NAME" data-column="db"></td>
      	    <td class="ITEM_NUMBER" data-column="db"></td>
@@ -68,13 +68,13 @@
       <!-- 主表格按钮区域 start -->
       <div class="table_button" id="table" data-table="items">
         <div class="setting">
-          <i class="fa fa-cog pointer" data-reveal-id="setting" title="表格设置" data-dismissmodalclass="close-setting"></i>
+          <i class="fa fa-cog pointer" data-reveal-id="setting" title="Table Setting" data-dismissmodalclass="close-setting"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
+          <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="Conditional Query" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table" data-func="$().validateOrgan()"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="Refresh Data" data-pagetype="refresh" data-pageframe="table" data-func="$().validateOrgan()"></i>
         </div>
         <div id="setting">
           <!-- 设置菜单区域 start -->
@@ -119,56 +119,56 @@
       <!-- 条件查询区域start -->
       <div id="query" class="pop_frame row-6">     
         <div class="title pointer">      
-          <span><i class="fa fa-search"></i>&nbsp;物料查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;Item Query</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
         <div class="content row-6">
           <form>
-            <label for="ORGANIZATION_NAME_Q" class="left md">库存组织:</label> 
+            <label for="ORGANIZATION_NAME_Q" class="left md">Inv:</label> 
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md" readonly="readonly"/>
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
-            <input type="button" id="ORG_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="orgLov" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>
-            <label for="ITEM_NUMBER_Q" class="left md">物料编码:</label>
+            <input type="button" id="ORG_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="orgLov" data-defaultquery="true" data-th=["ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Code","Inv"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>
+            <label for="ITEM_NUMBER_Q" class="left md">Item No:</label>
             <input type="text" id="ITEM_NUMBER_Q" name="ITEM_NUMBER" class="left lg"/>
             <br style="clear:both"/>
-            <label for="DESCRIPTION_Q" class="left md">本厂型号:</label>
+            <label for="DESCRIPTION_Q" class="left md">Item:</label>
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg"/>
-            <label for="CARNAME_Q" class="left md">中文描述:</label>
+            <label for="CARNAME_Q" class="left md">CN Desc:</label>
             <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>
             <br style="clear:both"/>
-            <label for="PRODUCT_TYPE_DESC_Q" class="left md">产品种类:</label>
+            <label for="PRODUCT_TYPE_DESC_Q" class="left md">Product:</label>
             <input type="text" id="PRODUCT_TYPE_DESC_Q" name="PRODUCT_TYPE_DESC" data-lovbtn="PRODUCT_TYPE_DESC_LOV" data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/>
             <input type="hidden" id="PRODUCT_TYPE_ID_Q" name="PRODUCT_TYPE_ID"/>
-            <input type="button" id="PRODUCT_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品种类查询" data-queryurl="lov/getProductPage.do" data-jsontype="productLov" data-defaultquery="true" data-th=["LOOKUP_CODE","本厂型号"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["本厂型号"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PRODUCT_TYPE_ID_Q","#PRODUCT_TYPE_DESC_Q"] value="···"/>
-            <label for="PROCESS_TYPE_DESC_Q" class="left md">加工型号:</label>       
+            <input type="button" id="PRODUCT_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Product Type Query" data-queryurl="lov/getProductPage.do" data-jsontype="productLov" data-defaultquery="true" data-th=["LOOKUP_CODE","Product&nbsp;Type"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["Product"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PRODUCT_TYPE_ID_Q","#PRODUCT_TYPE_DESC_Q"] value="···"/>
+            <label for="PROCESS_TYPE_DESC_Q" class="left md">Process:</label>       
             <input type="text" id="PROCESS_TYPE_DESC_Q" name="PROCESS_TYPE_DESC" data-lovbtn="PROCESS_TYPE_DESC_LOV" data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/>
             <input type="hidden" id="PROCESS_TYPE_ID_Q" name="PROCESS_TYPE_ID"/>
-            <input type="button" id="PROCESS_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="加工型号查询" data-queryurl="lov/getProcessPage.do" data-jsontype="processLov" data-defaultquery="true" data-th=["LOOKUP_CODE","加工类型"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["加工类型"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PROCESS_TYPE_ID_Q","#PROCESS_TYPE_DESC_Q"] value="···"/>        
+            <input type="button" id="PROCESS_TYPE_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Process Type Query" data-queryurl="lov/getProcessPage.do" data-jsontype="processLov" data-defaultquery="true" data-th=["LOOKUP_CODE","Process&nsbp;Type"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["Process"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#PROCESS_TYPE_ID_Q","#PROCESS_TYPE_DESC_Q"] value="···"/>        
             <br style="clear:both"/>
-            <label for="LOAD_LOCATION_DESC_Q" class="left md">装车位置:</label>
+            <label for="LOAD_LOCATION_DESC_Q" class="left md">Load:</label>
             <input type="text" id="LOAD_LOCATION_DESC_Q" name="LOAD_LOCATION_DESC" data-lovbtn="LOAD_LOCATION_DESC_LOV"  data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md"/> 
             <input type="hidden" id="LOAD_LOCATION_ID_Q" name="LOAD_LOCATION_ID"/>
-            <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="装车位置查询" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","装车位置"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["装车位置"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>        
-            <label for="EN_DESC_Q" class="left md">英文描述:</label>
+            <input type="button" id="LOAD_LOCATION_DESC_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Load Location Query" data-queryurl="lov/getLoadPage.do" data-jsontype="loadLov" data-defaultquery="true" data-th=["LOOKUP_CODE","Load&nbsp;Location"] data-td=["LOOKUP_CODE&none","DESCRIPTION"] data-selectname=["Location"] data-selectvalue=["DESCRIPTION"] data-choose=[".LOOKUP_CODE",".DESCRIPTION"] data-recid=["#LOAD_LOCATION_ID_Q","#LOAD_LOCATION_DESC_Q"] value="···"/>        
+            <label for="EN_DESC_Q" class="left md">EN Desc:</label>
             <input type="text" id="EN_DESC_Q" name="EN_DESC" class="left lg"/>
             <br style="clear:both"/>
-            <label for="CHANG_F" class="left md">长度:</label>
+            <label for="CHANG_F" class="left md">Long:</label>
             <input type="text" id="CHANG_F" name="CHANG_F" class="left xs" style="width:99px"/>
             <label class="left blank" style="width:11px;padding-top:8px">-</label>
             <input type="text" id="CHANG_T" name="CHANG_T" class="left xs" style="width:99px"/>
-            <label for="GAO_F" class="left md">高度:</label>
+            <label for="GAO_F" class="left md">Height:</label>
             <input type="text" id="GAO_F" name="GAO_F" class="left xs" style="width:99px"/>
             <label class="left blank" style="width:11px;padding-top:8px">-</label>
             <input type="text" id="GAO_T" name="GAO_T" class="left xs" style="width:99px"/>    
             <br style="clear:both"/>
-            <label for="OEMNO_Q" class="left md">OEM编码:</label>
+            <label for="OEMNO_Q" class="left md">OEM No:</label>
             <input type="text" id="OEMNO_Q" name="OEMNO" class="left lg"/>
             <br style="clear:both"/>
           </form> 
         </div>
         <div class="foot">             
-          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">查询</button>
+          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">Query</button>
         </div> 
       </div>
       <!-- 条件查询区域end -->
@@ -193,7 +193,7 @@
     		    organizationId = $('#ORGANIZATION_ID_Q').val();
     		    if(organizationId==null||organizationId==''){
     		       $('.ajax_loading').hide();
-    		       layer.alert('必须选择库存组织才能查询物料！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
+    		       layer.alert('You Must Select A Inv Before Query',{skin:'layui-layer-lan',title:'警告',offset:[150]});
     		       throw ('必须选择库存组织才能查询物料！');
     		    }
     		}
@@ -207,7 +207,7 @@
     		    	layer.open({
   						type: 2,
   						area: ['1000px', '620px'],
-  						title:'物料明细',
+  						title:'Item Detail',
   						fixed: false, //不固定
   						maxmin: true,				
   						content: 'items/itemDetail.do?ITEM_ID='+id+'&ORG_ID='+orgid

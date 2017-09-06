@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		  <div  class="form-group" style="padding:0 25px;overflow:hidden;">
    		    <label for="textMsg" style="width:100%">Message Code</label>  		   
    		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="Please Enter Your Message Code" required="required"/>
-   		    <button id="getMessage" class="getMessage pointer left">Send Msg</button>
+   		    <input type="button" id="getMessage" class="getMessage pointer left" value="Send Msg"/>
    		  </div>
    		  <input type="hidden" id="lang" name="lang" value="US"/>
    		  <button type="submit" class="btn btn-defult login-btn">Login</button>

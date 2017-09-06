@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>订单管理</title>
+    <title>Contract Manage</title>
     <base href="<%=basePath%>">
     <meta http-equiv="content-type" content="text/html;charset=gb2312">
     <link rel="stylesheet" href="plugin/css/font-awesome.min.css">
@@ -51,24 +51,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div id="scrollbar" class="table pointer">
         <table id="main-table" data-table="OrderHeader">
           <tr>
-            <th class="CONTRACT_NUMBER" data-column="db">合同号</th>
-            <th class="PARTY_NAME" data-column="db">客户名称</th>
-            <th class="ACCOUNT_NUMBER" data-column="db">客户账号</th>
-            <th class="SALES_ORG_NAME" data-column="db">销售公司</th> 
-            <th class="SHIP_FROM_ORG_NAME" data-column="db">发货组织</th> 
-            <th class="CURR_CODE" data-column="db">币种</th>
-            <th class="PRICE_LIST_NAME" data-column="db">价目表</th>
-            <th class="ORDER_TYPE_NAME" data-column="db">订单类型</th>
-            <th class="STATUS_DESC" data-column="db">状态</th>
-            <th class="CREATION_DATE" data-column="db">创建日期</th>
-            <th class="CREATED_USER_DESC" data-column="db">创建人</th>
-            <th class="STATUS_BOOK_DATE" data-column="db">登记日期</th>
-            <th class="STATUS_RECEIVE_DATE" data-column="db">接收日期</th>
-            <th class="STATUS_CHECK_DATE" data-column="db">审核日期</th>
-            <th class="STATUS_CONFIRM_DATE" data-column="db">确认日期</th>
-            <th class="CUSTOMER_PO" data-column="db">客订PO</th>
-            <th class="REMARKS" data-column="db">备注</th>
-            <th class="ACTION" data-column="normal">操作</th> 
+            <th class="CONTRACT_NUMBER" data-column="db">Contract No</th>
+            <th class="PARTY_NAME" data-column="db">Customer</th>
+            <th class="ACCOUNT_NUMBER" data-column="db">Account No</th>
+            <th class="SALES_ORG_NAME" data-column="db">Sales OU</th> 
+            <th class="SHIP_FROM_ORG_NAME" data-column="db">Ship Inv</th> 
+            <th class="CURR_CODE" data-column="db">Currency</th>
+            <th class="PRICE_LIST_NAME" data-column="db">Price List</th>
+            <th class="ORDER_TYPE_NAME" data-column="db">Order Type</th>
+            <th class="STATUS_DESC" data-column="db">Status</th>
+            <th class="CREATION_DATE" data-column="db">Creation Date</th>
+            <th class="CREATED_USER_DESC" data-column="db">Created By</th>
+            <th class="STATUS_BOOK_DATE" data-column="db">Book Date</th>
+            <th class="STATUS_RECEIVE_DATE" data-column="db">Receive Date</th>
+            <th class="STATUS_CHECK_DATE" data-column="db">Check Date</th>
+            <th class="STATUS_CONFIRM_DATE" data-column="db">Confirm Date</th>
+            <th class="CUSTOMER_PO" data-column="db">Cust PO</th>
+            <th class="REMARKS" data-column="db">Remarks</th>
+            <th class="ACTION" data-column="normal">Action</th> 
             <th class="HEADER_ID" style="display:none" data-column="hidden">&nbsp;</th> 
             <th class="CUSTOMER_ID" style="display:none" data-column="hidden">&nbsp;</th> 
             <th class="SALES_ORG_ID" style="display:none" data-column="hidden">&nbsp;</th> 
@@ -96,9 +96,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="CUSTOMER_PO" data-column="db"></td>
             <td class="REMARKS" data-column="db"></td>
             <td class="ACTION" data-column="normal">
-              <i class="fa fa-pencil fa-fw update pointer hidden" title="修改订单" data-show="true" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateH.do" data-type="update" data-func="$().beforePreUpdateH()" data-updateparam=["HEADER_ID",".HEADER_ID"]></i>            
-              <i class="fa fa fa-eye view pointer show_detail hidden" title="订单明细" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" ></i>
-              <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="删除" data-refresh="refresh"  data-col="CONTRACT_NUMBER" data-crudtype="del" data-delurl="contract/deleteH.do" data-delmsg="是否删除合同号：" data-delparam=["HEADER_ID",".HEADER_ID"] ></i>
+              <i class="fa fa-pencil fa-fw update pointer hidden" title="Modify Contract" data-show="true" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateH.do" data-type="update" data-func="$().beforePreUpdateH()" data-updateparam=["HEADER_ID",".HEADER_ID"]></i>            
+              <i class="fa fa fa-eye view pointer show_detail hidden" title="Contract Detail" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" ></i>
+              <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="Delete" data-refresh="refresh"  data-col="CONTRACT_NUMBER" data-crudtype="del" data-delurl="contract/deleteH.do" data-delmsg="是否删除合同号：" data-delparam=["HEADER_ID",".HEADER_ID"] ></i>
             </td>
             <td class="HEADER_ID" style="display:none" data-column="hidden">&nbsp;</td>
             <td class="CUSTOMER_ID" style="display:none" data-column="hidden">&nbsp;</td> 
@@ -115,16 +115,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 主表格按钮区域 start -->
       <div class="table_button" id="table" data-table="OrderHeader">
         <div class="setting">
-          <i class="fa fa-cog pointer" title="表格设置" data-reveal-id="setting" data-dismissmodalclass="close-setting"></i>
+          <i class="fa fa-cog pointer" title="Table Setting" data-reveal-id="setting" data-dismissmodalclass="close-setting"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-search pointer" title="条件查询" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"  data-revealfunc="$().defaultQueryDate();"></i>
+          <i class="fa fa-search pointer" title="Conditional Query" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"  data-revealfunc="$().defaultQueryDate();"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-plus-circle pointer" title="创建订单" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().beforePreInsertH();"></i>
+          <i class="fa fa-plus-circle pointer" title="Creat Contract" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().beforePreInsertH();"></i>
         </div>
         <div class="setting">
-          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="Refresh Data" data-pagetype="refresh" data-pageframe="table"></i>
         </div>  
         <div id="setting">
           <!-- 设置菜单区域 start -->
@@ -174,44 +174,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 更新/新增菜单区域 start -->
       <div id="ui" class="pop_frame row-6">     
         <div class="title pointer">      
-          <span data-type="update"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;修改订单</span>
-          <span data-type="insert"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;创建订单</span>
+          <span data-type="update"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;Update Contract</span>
+          <span data-type="insert"><i class="fa fa-th-list fa-1x" aria-hidden="true"></i>&nbsp;Creat Contract</span>
         </div>
         <a class="close-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>
         <div class="content row-6">
           <form>
             <input type="hidden" id="HEADER_ID" name="HEADER_ID" data-update="db"/>
-            <label for="CONTRACT_NUMBER" class="left md">合同号:</label>
+            <label for="CONTRACT_NUMBER" class="left md">Contract:</label>
             <input type="text" data-update="db" class="left lgx2" id="CONTRACT_NUMBER" name="CONTRACT_NUMBER" readonly="readonly" placeholder="合同号由系统自动生成"/>
             <br style="clear:both"/> 
-            <label for="PARTY_NAME" class="left md">客户账号:</label> 
+            <label for="PARTY_NAME" class="left md">Customer:</label> 
             <input type="text" required="required" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly"/>
             <input type="hidden" id="CUSTOMER_ID" name="CUSTOMER_ID" data-update="db"/>
-            <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
+            <input type="button" id="PARTY_NAME_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Customer Query" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","Sales&nbsp;OU","客户ID","Customer","Account"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["Customer","Account"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID","#ORG_NAME","#CUSTOMER_ID","#PARTY_NAME"] value="···"/>  
             <br style="clear:both"/>
-            <label for="ORG_NAME" class="left md">销售公司:</label> 
+            <label for="ORG_NAME" class="left md">Sales OU:</label> 
             <input type="text" required="required" data-update="db" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lg" readonly="readonly" />
             <input type="hidden" id="ORG_ID" name="SALES_ORG_ID" data-update="db" readonly="readonly"/>
-            <label for="ORGANIZATION_NAME" class="left md">发货组织:</label> 
+            <label for="ORGANIZATION_NAME" class="left md">Ship Inv:</label> 
             <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE" />
             <input type="hidden" data-update="db" id="ORGANIZATION_ID" name="SHIP_FROM_ORG_ID"/>
-            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Code","Inve"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
             <br style="clear:both"/>
-            <label for="ORDER_TYPE_ID" class="left md none">订单类型:</label>
+            <label for="ORDER_TYPE_ID" class="left md none">OrderType:</label>
             <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE"]></select> 
-            <label for="CUSTOMER_PO" class="left md">客订PO:</label>
+            <label for="CUSTOMER_PO" class="left md">Cust PO:</label>
             <input type="text" data-update="db" class="left lg" id="CUSTOMER_PO" name="CUSTOMER_PO"/>
-            <label for="CURR_CODE" class="left md">币别:</label>
+            <label for="CURR_CODE" class="left md">Currency:</label>
             <select class="left lg" id="CURR_CODE" name="CURR_CODE" data-notnull="true" data-default="CNY" data-listurl="list/getCurrency.do"></select>
             <br style="clear:both"/>
-            <label for="REMARKS" class="left md">备注:</label>
+            <label for="REMARKS" class="left md">Remarks:</label>
             <input type="text" data-update="db" class="left lgx2" id="REMARKS" name="REMARKS"/>
           </form>
         </div>
         <div class="foot">       
-          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="ui" data-updateurl="contract/updateH.do">提交更新</button>
-          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="ui" data-inserturl="contract/insertH.do">创建</button>
+          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="ui" data-updateurl="contract/updateH.do">Update</button>
+          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="ui" data-inserturl="contract/insertH.do">Creat</button>
         </div>    
       </div> 
       <!-- 更新/新增菜单区域 end -->
@@ -219,40 +219,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 条件查询区域 start -->
       <div id="query" class="pop_frame row-5">     
         <div class="title pointer">      
-          <span><i class="fa fa-search"></i>&nbsp;订单查询</span>
+          <span><i class="fa fa-search"></i>&nbsp;Contract</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
         <div class="content row-5">
           <form>
-            <label for="CONTRACT_NUMBER_Q" class="left md">合同号:</label>
+            <label for="CONTRACT_NUMBER_Q" class="left md">Contract:</label>
             <input type="text" class="left lgx2" id="CONTRACT_NUMBER_Q" name="CONTRACT_NUMBER"/>  
             <br style="clear:both"/>
-            <label for="PARTY_NAME_Q" class="left md">客户名称:</label> 
+            <label for="PARTY_NAME_Q" class="left md">Customer:</label> 
             <input type="text" id="PARTY_NAME_Q" name="PARTY_NAME" class="left lglov" readonly="readonly"/>
             <input type="hidden" id="CUSTOMER_ID_Q" name="CUSTOMER_ID" />
-            <input type="button" id="PARTY_NAME_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID_Q","#ORG_NAME_Q","#CUSTOMER_ID_Q","#PARTY_NAME_Q"] value="···"/>  
+            <input type="button" id="PARTY_NAME_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Customer Query" data-queryurl="lov/getUserCustPage.do" data-jsontype="cust" data-defaultquery="true" data-th=["销售公司ID","Sales&nbsp;OU","客户ID","Customer","Account"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME","ACCOUNT_NUMBER"] data-selectname=["Customer","Account"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".ORG_ID",".ORG_NAME",".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#ORG_ID_Q","#ORG_NAME_Q","#CUSTOMER_ID_Q","#PARTY_NAME_Q"] value="···"/>  
             <br style="clear:both"/>
-            <label for="ORG_NAME_Q" class="left md">销售公司:</label> 
+            <label for="ORG_NAME_Q" class="left md">Sales OU:</label> 
             <input type="text" id="ORG_NAME_Q" name="ORG_NAME" class="left lg" readonly="readonly" />
             <input type="hidden" id="ORG_ID_Q" name="ORG_ID" readonly="readonly"/>
-            <label for="ORGANIZATION_NAME_Q" class="left md">发货组织:</label> 
+            <label for="ORGANIZATION_NAME_Q" class="left md">Ship Inv:</label> 
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_CODE" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
-            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Code","Inv"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
             <br style="clear:both"/>
-            <label for="CREATION_DATE_F" class="left md">创建日期:</label>
-            <input type="text" id="CREATION_DATE_F" name="CREATION_DATE_F" class="left time" data-datatype="date" placeholder="起始创建日期"/>
+            <label for="CREATION_DATE_F" class="left md">Creation:</label>
+            <input type="text" id="CREATION_DATE_F" name="CREATION_DATE_F" class="left time" data-datatype="date" placeholder="Creation Date From"/>
             <label class="left blank"></label>
-            <input type="text" id="CREATION_DATE_T" name="CREATION_DATE_T" class="left time" data-datatype="date" placeholder="截止创建日期"/>
+            <input type="text" id="CREATION_DATE_T" name="CREATION_DATE_T" class="left time" data-datatype="date" placeholder="Creation Date To"/>
             <br style="clear:both"/>
-            <label for="STATUS_Q" class="left md">状态:</label>
+            <label for="STATUS_Q" class="left md">Status:</label>
             <select class="left lg" id="STATUS_Q" name="STATUS" data-notnull="false" data-listurl="list/getContractStatus.do"></select>  
             <br style="clear:both"/>
           </form>
         </div>
         <div class="foot">             
-          <button class="right pointer" data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">订单查询</button>
+          <button class="right pointer" data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">Query</button>
         </div> 
       </div>
       <!-- 条件查询区域 end -->
@@ -260,7 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 维护订单类型区域 start -->
       <div id="update_ot" class="pop_frame row-2" style="z-index:104">
         <div class="title pointer">      
-          <span><i class="fa fa-file-text"></i>&nbsp;订单类型维护</span>
+          <span><i class="fa fa-file-text"></i>&nbsp;Order Type</span>
         </div>
         <a class="close-ot-frame" data-type="close">&#215;</a>
         <div class="line"></div>
@@ -268,12 +268,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <form>
             <input type="hidden" id="HEADER_ID_UOT" name="HEADER_ID"/>
             <input type="hidden" id="CURR_CODE_UOT" name="CURR_CODE"/>
-            <label for="ORDER_TYPE_ID_UOT" class="left md">订单类型:</label>
+            <label for="ORDER_TYPE_ID_UOT" class="left md">OrderType:</label>
             <select class="left lgx2" id="ORDER_TYPE_ID_UOT" name="ORDER_TYPE_ID" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE_UOT"]></select> 
           </form>
         </div>
         <div class="foot">             
-          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="update_ot" data-updateurl="contract/updateOT.do">提交</button>
+          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="update_ot" data-updateurl="contract/updateOT.do">Commit</button>
         </div> 
       </div>
       <!-- 维护订单类型区域 end  -->
@@ -282,35 +282,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <div class="detail_frame" id="detail" style="height:603px">
         <div class="title pointer">      
-          <span><i class="fa fa-th-list"></i>&nbsp;订单明细</span>
+          <span><i class="fa fa-th-list"></i>&nbsp;Contract Detail</span>
         </div>
         <a class="close-detail-frame" data-type="close">&#215;</a>    
         <div class="line"></div>             
         <div class="detail_header" style="height:146px">
           <input type="hidden" id="HEADER_ID_L" />
-          <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
+          <label class="mid" for="CONTRACT_NUMBER_L">Contract</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
-          <label class="mid" for="STATUS_DESC_L">状态</label>
+          <label class="mid" for="STATUS_DESC_L">Status</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
           <input type="hidden" id="SALES_ORG_ID_L"/>
-          <label class="mid" for="PARTY_NAME_L">客户名称</label>
+          <label class="mid" for="PARTY_NAME_L">Customer</label>
           <input type="text" id="PARTY_NAME_L" class="long" readonly="readonly"/>
           <input type="hidden" id="CUSTOMER_ID_L"/>
-          <label class="mid" for="CUSTOMER_PO_L">客订PO</label>
+          <label class="mid" for="CUSTOMER_PO_L">Cust PO</label>
           <input type="text" id="CUSTOMER_PO_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
-          <label class="mid" for="SHIP_FROM_ORG_NAME_L">发货组织</label>
+          <label class="mid" for="SHIP_FROM_ORG_NAME_L">Ship Inv</label>
           <input type="text" id="SHIP_FROM_ORG_NAME_L" class="long" readonly="readonly"/>
-          <label class="mid" for="CURR_CODE_L">币别</label>
+          <label class="mid" for="CURR_CODE_L">Currency</label>
           <input type="text" id="CURR_CODE_L" class="long" readonly="readonly"/>
           <input type="hidden" id="SHIP_FROM_ORG_ID_L"/>
           <input type="hidden" id="ORG_ID_L"/>
           <input type="hidden" id="PRICE_LIST_ID_L"/>
           <br style="clear:both"/>
-          <label class="mid" for="TOTAL_QUANTITY_L">总数量</label>
+          <label class="mid" for="TOTAL_QUANTITY_L">Sum Qty</label>
           <input type="text" id="TOTAL_QUANTITY_L" class="long" readonly="readonly"/>
-          <label class="mid" for="TOTAL_PRICE_L">总金额</label>
+          <label class="mid" for="TOTAL_PRICE_L">Sum Price</label>
           <input type="text" id="TOTAL_PRICE_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
         </div>     
@@ -318,17 +318,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="detail_table" style="min-height:355px">
           <table id="oLine" data-table="OrderLine">
             <tr>
-              <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
-              <th class="DESCRIPTION" data-column="db">本厂型号</th>
-              <th class="CARNAME" data-column="db">中文描述</th>
-              <th class="EN_DESC" data-column="db">英文描述</th>
-              <th class="SPEC" data-column="db" style="min-width:50px">规格</th>
-              <th class="BEVEL" data-column="db" style="min-width:80px">中高对角</th>
-              <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
-              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
-              <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
-              <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
-              <th class="ACTION" data-column="normal">操作</th> 
+              <th class="LINE_NUM" data-column="db" style="min-width:50px">Seq</th>
+              <th class="DESCRIPTION" data-column="db">Item</th>
+              <th class="CARNAME" data-column="db">CN Desc</th>
+              <th class="EN_DESC" data-column="db">EN Desc</th>
+              <th class="SPEC" data-column="db" style="min-width:50px">Spec</th>
+              <th class="BEVEL" data-column="db" style="min-width:80px">Bevel</th>
+              <th class="UNIT_PRICE" data-column="db" style="min-width:50px">Unit Price</th>
+              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">Order Qty</th>
+              <th class="LINE_PRICE" data-column="db" style="min-width:50px">Line Price</th>
+              <th class="REMARKS" data-column="db" style="min-width:30px">Remarks</th>
+              <th class="ACTION" data-column="normal">Action</th> 
               <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
             </tr>
             <tr>
@@ -343,8 +343,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td class="LINE_PRICE" data-column="db" style="min-width:50px"></td>
               <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
-                <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="修改行明细" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
-                <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="删除" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="是否删除行：" data-delparam=["LINE_ID",".LINE_ID"] ></i>
+                <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="modify" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
+                <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="delete" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="Delete Line：" data-delparam=["LINE_ID",".LINE_ID"] ></i>
               </td>
               <td class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</td>                          
             </tr>
@@ -360,22 +360,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <i id="sub_refresh" class="fa fa-refresh pointer" data-pagetype="refresh" data-pageframe="sub_table" data-func="$().setParam();"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-upload pointer" title="登记订单" data-status="BOOK" data-statusdesc="登记"></i>
+            <i class="fa fa-upload pointer" title="Book" data-status="BOOK" data-statusdesc="Book"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-download pointer" title="接收订单" data-status="RECEIVE" data-statusdesc="接收"></i>
+            <i class="fa fa-download pointer" title="Receive" data-status="RECEIVE" data-statusdesc="Receive"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-book pointer" title="审核订单" data-status="CHECK" data-statusdesc="审核"></i>
+            <i class="fa fa-book pointer" title="Check" data-status="CHECK" data-statusdesc="Check"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-check-square pointer" title="确认订单" data-status="CONFIRM" data-statusdesc="确认"></i>
+            <i class="fa fa-check-square pointer" title="Confirm" data-status="CONFIRM" data-statusdesc="Confirm"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-times pointer" title="取消订单" data-status="CANCEL" data-statusdesc="取消"></i>
+            <i class="fa fa-times pointer" title="Cancel" data-status="CANCEL" data-statusdesc="Cancel"></i>
           </div>
           <div class="setting">
-            <i class="fa fa-file-text pointer none" data-reveal-id="update_ot" data-bg="detail-modal-bg" data-key="true"  data-dismissmodalclass="close-ot-frame"  title="维护订单类型"></i>
+            <i class="fa fa-file-text pointer none" data-reveal-id="update_ot" data-bg="detail-modal-bg" data-key="true"  data-dismissmodalclass="close-ot-frame"  title="Order Type"></i>
           </div>
           <div>
             <jsp:include page="./public/pageArrow.jsp" >
@@ -396,8 +396,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 订单明细新增区域 start -->
       <div id="detail_ui" class="pop_frame row-5" style="z-index:104">     
         <div class="title pointer">          
-          <span data-type="insert"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;创建订单明细行</span>
-          <span data-type="update"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;修改价格</span>
+          <span data-type="insert"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;Creat Detail Line</span>
+          <span data-type="update"><i class="fa fa-th-list  fa-1x" aria-hidden="true"></i>&nbsp;Modify</span>
         </div>
         <a class="close-detail-ui-frame" data-type="close">&#215;</a>
         <div class="line"></div>  
@@ -408,29 +408,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="hidden" id="CURR_CODE_D" name="CURR_CODE"/>
             <input type="hidden" id="PRICE_LIST_ID_D" name="PRICE_LIST_ID"/>
             <input type="hidden" id="SHIP_FROM_ORG_ID_D" name="SHIP_FROM_ORG_ID"/>
-            <label class="left md">行号</label>
+            <label class="left md">Line No</label>
             <input type="text" id="LINE_NUM_D" name="LINE_NUM" class="lg left" readonly="readonly"/>
             <br style="clear:both"/>
-            <label for="DESCRIPTION_D" class="md left">本厂型号</label> 
+            <label for="DESCRIPTION_D" class="md left">Item</label> 
             <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" required="required" data-modify="false" readonly="readonly"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
-            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] value="···"/> 
-            <label for="CARNAME" class="md left">中文描述</label> 
+            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Item Query" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","Code","Item","CN&nbsp;Desc"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["Item","CN&nbsp;Desc"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] value="···"/> 
+            <label for="CARNAME" class="md left">CN Desc</label> 
             <input type="text" id="CARNAME_D" name="CARNAME" data-update="db" class="left lgx2" data-update="db" required="required" readonly="readonly"/> 
           	<br style="clear:both"/>
-          	<label for="ORDER_QUANTITY_D" class="md left">数量</label>
+          	<label for="ORDER_QUANTITY_D" class="md left">Order Qty</label>
           	<input type="text" id="ORDER_QUANTITY_D" name="ORDER_QUANTITY" class="lg left" data-update="db" required="required"/>
-          	<label for="UNIT_PRICE_D" class="md left">单价</label>
+          	<label for="UNIT_PRICE_D" class="md left">Unit Price</label>
           	<input type="text" id="UNIT_PRICE_D" name="UNIT_PRICE" class="md left" data-update="db" readonly="readonly" required="required"/>
-          	<input type="button" id="PRICE_LIST_BTN" class="left button pointer" data-reveal-id="product_list_d" data-bg="lov-modal-bg" data-dismissmodalclass="close-pl-frame" title="价目表明细" value="￥"/>
+          	<input type="button" id="PRICE_LIST_BTN" class="left button pointer" data-reveal-id="product_list_d" data-bg="lov-modal-bg" data-dismissmodalclass="close-pl-frame" title="Price List" value="￥"/>
           	<br style="clear:both"/>
-          	<label for="REMARKS_D" class="md left">备注</label>
+          	<label for="REMARKS_D" class="md left">Remarks</label>
           	<input type="text" id="REMARKS_D" name="REMARKS" class="left lgx2" data-update="db"/>
           </form> 
         </div>
         <div class="foot">            
-          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">新增</button>
-          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">确定</button>
+          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">Insert</button>
+          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">Confirm</button>
         </div>    
       </div>          
       <!-- 订单明细新增/更新区域 end --> 
@@ -438,27 +438,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 价目表明细区域 start -->
       <div id="product_list_d" class="pop_frame" style="z-index:201">
         <div class="title pointer">      
-          <span><i class="fa fa-file-text"></i>&nbsp;价目表明细</span>
+          <span><i class="fa fa-file-text"></i>&nbsp;Price List</span>
         </div>
         <a class="close-pl-frame" data-type="close">&#215;</a>
         <div class="line"></div>
         <div class="content" style="padding-bottom:0">
           <div class="pl_header">
             <form>
-              <label class="left md" for="REBATE_PRICE">散片价</label>
+              <label class="left md" for="REBATE_PRICE">Rebate</label>
               <input type="text" id="REBATE_PRICE" class="lg left" readonly="readonly"/>
-              <label class="left md" for="COST_PRICE">底价</label>
+              <label class="left md" for="COST_PRICE">Cost</label>
               <input type="text" id="COST_PRICE" class="lg left" readonly="readonly"/>
               <br style="clear:both"/>
-              <label class="left md" for="pList">批量价</label>
+              <label class="left md" for="pList">Batch</label>
             </form>
           </div>
           <div class="pl_title" style="padding:2px">
             <table id="pList" data-table="ProductList" style="width:100%">
               <tr>
-                <th class="AREA_PRICE" data-column="db">价格</th>
-                <th class="GREATE_PRICE" data-column="db">区间大于</th>
-                <th class="NO_GREAT_PRICE" data-column="db">区间小于</th>
+                <th class="AREA_PRICE" data-column="db">Price</th>
+                <th class="GREATE_PRICE" data-column="db">Higher</th>
+                <th class="NO_GREAT_PRICE" data-column="db">Lower</th>
               </tr>
               <tr>
                 <td class="AREA_PRICE" data-column="db"></td>
@@ -566,7 +566,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   var itemId = $('#INVENTORY_ITEM_ID_D').val();
 			   if(itemId == null||itemId == ''){
 			       $('#ORDER_QUANTITY_D').val('');
-			       layer.alert('请先选择本厂型号再填写数量！',{title:'警告',offset:[150]});
+			       layer.alert('Please Select An Item Before Entering Order Qty！',{title:'Warning',offset:[150]});
 			       return;
 			   }
 			   var qty = $('#ORDER_QUANTITY_D').val();
@@ -586,11 +586,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					        if(data.retcode=='0'){
 					            $('#UNIT_PRICE_D').val(data.param2);
 					        }else{
-					            layer.alert('获取单价错误！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+					            layer.alert('Get Unit Price Failed！Error Msg:'+data.errbuf,{title:'Warning',offset:[150]});
 					        }
 					    },
 						error: function () {
-						    layer.msg('获取JSON数据失败');	
+						    layer.msg('Get Json Data Failed!');	
 							if(window.frameElement != null){
 							    //console.log("处于一个iframe中");
 							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
@@ -632,7 +632,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('#LINE_NUM_D').val(data.rows[0].LINE_NUM);
                     },
                     error: function () {
-                        layer.msg('获取JSON数据失败');	
+                        layer.msg('Get Json Data Failed!');	
 						if(window.frameElement != null){
 							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
 						}	
@@ -729,7 +729,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     dataType:'json',
                     success: function (data) {
                         if(data.retcode=='0'){
-				    		layer.msg(status_desc+'成功!');
+				    		layer.msg(status_desc+' Succeed!');
 				    		$('#STATUS_DESC_L').val(status_desc);
 				    		$('i[data-status]:not(i[data-status="CANCEL"])').parent().css('display','none');
 				    		if(new_status=='RECEIVE'){
@@ -740,23 +740,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    	}else{
 				    	    if(new_status=='RECEIVE'){
 				    	        if(data.errbuf == '请先维护好订单类型，再审核'){
-				    	            layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf
-				    	                   ,{title:'警告',offset:[150],btn:['维护订单类型','取消'] }
+				    	            layer.alert(status_desc+' Failed！Error Msg:'+data.errbuf
+				    	                   ,{title:'Warning',offset:[150],btn:['Update Order Type','Cancel'] }
 				    	                   ,function(){
 				    	                       $('[data-reveal-id="update_ot"]').click();
 				    	                       layer.closeAll('dialog');
 				    	                   }
 				    	            );
 				    	        }else{
-				    	            layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+				    	            layer.alert(status_desc+' Failed！Error Msg:'+data.errbuf,{title:'Warning',offset:[150]});
 				    	        }	    	        
 				    	    }else{
-				    	        layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+				    	        layer.alert(status_desc+' Failed！Error Msg:'+data.errbuf,{title:'Warning',offset:[150]});
 				    	    }	
 				    	}
                     },
                     error: function () {
-                        layer.msg('获取JSON数据失败');	
+                        layer.msg('Get Json Data Failed');	
 						if(window.frameElement != null){
 							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
 						}	
@@ -769,8 +769,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		    var new_status = $(this).data('status');
        		    var header_id = $('#HEADER_ID_L').val();
        		    var status_desc = $(this).data('statusdesc');
-       		    layer.alert('是否要'+status_desc+'当前订单吗？'
-				    ,{title:'警告',offset:[150],btn:['是','否'] }
+       		    layer.alert('Do You Want To '+status_desc+' This Contract?'
+				    ,{title:'Warning',offset:[150],btn:['Yea','No'] }
 				    ,function(){
 				    	layer.closeAll('dialog');
 				    	$().changeStatus(new_status,header_id,status_desc);
