@@ -75,7 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	        layer.alert('The New Password Is Null!',{title:'Warning',offset:[150]});
      	        return;
      	    }
-     	    RegExpValidate('^[a-zA-Z]\\w{5,14}$','N_PASSWORD','regExpError("Incorrect Password Format!The New Password Should Be 6-15 Characters Consisting Of Letter and Number");');
+     	    //RegExpValidate('^[a-zA-Z]\\w{5,14}$','N_PASSWORD','regExpError("Incorrect Password Format!The New Password Should Be 6-15 Characters Consisting Of Letter and Number");');
+     	    RegExpValidate('^[a-zA-Z0-9]{5,14}$','O_PASSWORD','$("#O_PASSWORD").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');    
+            RegExpValidate('^[a-zA-Z0-9]{5,14}$','N_PASSWORD','$("#N_PASSWORD").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');    
      	    if(newPwd==oldPwd){
 				layer.alert('The New Password Can Not Be The Same As The Old!',{title:'Warning',offset:[150]});
      	        return;

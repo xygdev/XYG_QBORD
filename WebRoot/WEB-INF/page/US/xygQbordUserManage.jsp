@@ -225,7 +225,7 @@
             <label for="RESP_NAME_R" class="left md">Resp</label> 
             <input type="text" id="RESP_NAME_R" name="RESP_NAME" data-update="db" class="left md" data-modify="true" data-pageframe="resp_assign" required="required" data-lovbtn="RESP_LOV" data-param="RESP_NAME"/>
             <input type="hidden" id="RESP_ID_R" name="RESP_ID" data-update="db"/>
-            <input type="button" id="RESP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="resp_assign" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Resp Query" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["Id","Code","Name","Desc"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["Code","Name"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_R","#RESP_NAME_R"] value="···"/>
+            <input type="button" id="RESP_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="resp_assign" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Resp Query" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["Id","Code","Name","Desc"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["Name","Code"] data-selectvalue=["RESP_NAME","RESP_CODE"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_R","#RESP_NAME_R"] value="···"/>
             <label for="ENABLED_FLAG_R" class="left md">Enabled</label> 
 	        <select class="left lg" id="ENABLED_FLAG_R" name="ENABLED_FLAG" data-update="db" data-notnull="true" required="required" data-listurl="list/getEnableFlag.do"></select> 
 	        <br style="clear:both"/>
@@ -391,7 +391,8 @@
     		
     		$.fn.beforeInsert = function(){
     		    //RegExpValidate('^[a-zA-Z]\\w{5,14}$','USER_NAME','regExpError("用户名格式错误，必须是由字母开头的6-15位字符");');
-                //$().validateUserType();
+                RegExpValidate('^[A-Z][A-Z0-9_]{5,14}$','USER_NAME','$("#USER_NAME").val("");regExpError("用户账号格式错误，包含数字、下划线和字母的6-15位字符，并且必须是由大写字母开头、字母全部大写");');
+                $().validateUserType();
     		}
     		
     		$.fn.afterReveal = function(){
@@ -406,8 +407,14 @@
     			$('#USER_TYPE').attr('disabled','disabled');
     		}
     		
-    		/*
+    		
     		$.fn.validateUserType = function(){
+    		
+                if($('#PASSWORD').val()) RegExpValidate('^[a-zA-Z0-9]{5,14}$','PASSWORD','$("#PASSWORD").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');
+                if($('#MOBILE_NUMBER').val()) RegExpValidate('^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$','MOBILE_NUMBER','$("#MOBILE_NUMBER").val("");regExpError("请输入正确的手机号码!");');
+                if($('#EMAIL_ADDR').val())  RegExpValidate('^([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+','EMAIL_ADDR','$("#EMAIL_ADDR").val("");regExpError("请输入正确的邮箱地址!");');
+                if($('#WECHAT_CODE').val()) RegExpValidate('^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$','WECHAT_CODE','$("#WECHAT_CODE").val("");regExpError("请输入正确的微信号码!");');
+                
     		    if($('#USER_TYPE').val()=='EMP'){
     		        if($('#EMP_ID').val()==null||$('#EMP_ID').val()==''){
     		            layer.alert('员工必须维护员工名称!',{title:'警告',offset: [150]});
@@ -419,7 +426,7 @@
     		            throw new error('客户不能维护员工名称!');
     		        }
     		    }	    
-    		}*/
+    		}
     		
     		$.fn.setParam = function(){
     		    userId=$('#USER_ID_D').val();

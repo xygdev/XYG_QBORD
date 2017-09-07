@@ -235,7 +235,7 @@
                  <label for="GROUP_NAME_D" class="left md">Group</label>
 	             <input type="text" id="SUB_GROUP_NAME_D" name="GROUP_NAME" data-update="db" class="left lglov" data-modify="true" data-suffixflag="true" data-pageframe="detail_ui" data-lovbtn="GROUP_LOV_D"  data-param="GROUP_NAME"/>
 	             <input type="hidden" id="SUB_GROUP_ID_D" name="SUB_GROUP_ID" data-update="db"/>
-	             <input type="button" id="GROUP_LOV_D" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Group Query" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["Id","Code","Name","Desc"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["Code","Name"] data-selectvalue=["GROUP_CODE","GROUP_NAME"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#SUB_GROUP_ID_D","#SUB_GROUP_NAME_D"]  value="···"/>      <!-- 2017/8/2 data-callback -->
+	             <input type="button" id="GROUP_LOV_D" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Group Query" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["Id","Code","Name","Desc"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["Name","Code"] data-selectvalue=["GROUP_NAME","GROUP_CODE"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#SUB_GROUP_ID_D","#SUB_GROUP_NAME_D"]  value="···"/>      <!-- 2017/8/2 data-callback -->
 	           </div>
              </div>
              <div id="tabs-2" class="tab">
@@ -279,8 +279,8 @@
     		$().revealListener();
     		
     		$.fn.beforeInsert = function(){
-                RegExpValidate('^\\w+$','GROUP_CODE','regExpError("工作组编码格式不符合规范!");');
-                RegExpValidate('^[\u4e00-\u9fa5]{0,}$','GROUP_NAME','regExpError("工作组名称必须为汉字!");');
+                RegExpValidate('^\\w+$','GROUP_CODE','$("#GROUP_CODE").val("");regExpError("The GROUP_CODE is not up to standard!");');
+                //RegExpValidate('^[\u4e00-\u9fa5]{0,}$','GROUP_NAME','regExpError("工作组名称必须为汉字!");');
             }       		
     		
     		$.fn.setParam = function(){

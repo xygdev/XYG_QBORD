@@ -152,11 +152,11 @@
         <div class="content row-2">
           <form id="updateData">  
             <input type="hidden" id="PERMISSION_ID" name="PERMISSION_ID" data-update="db"/>
-            <label for="USER_NAME" class="left md">用户账号:</label> 
+            <label for="USER_NAME" class="left md">用户账号</label> 
             <input type="text" id="USER_NAME" name="USER_NAME" class="left md" data-update="db" data-modify="true" data-pageframe="query"  data-lovbtn="USER_LOV"  data-param="USER_NAME" required="required"/>          
             <input type="hidden" id="U_ID" name="USER_ID" data-update="db"/>
             <input type="button" id="USER_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="用户查询" data-queryurl="lov/getUserPage.do" data-jsontype="user" data-defaultquery="true" data-th=["用户id","用户账号","用户名称"] data-td=["USER_ID&none","USER_NAME","DESCRIPTION"] data-selectname=["用户账号","用户名称"] data-selectvalue=["USER_NAME","DESCRIPTION"] data-choose=[".USER_ID",".USER_NAME",".DESCRIPTION"] data-recid=["#U_ID","#USER_NAME","#DESCRIPTION"] value="···"/>
-            <label for="DESCRIPTION" class="left md">用户名称:</label> 
+            <label for="DESCRIPTION" class="left md">用户名称</label> 
             <input type="text" id="DESCRIPTION" name="DESCRIPTION" data-update="db" class="left lg" readonly="readonly" required="required"/>         
             <label for="ORGANIZATION_CODE" class="left md">库存编码</label> 
             <input type="text" id="ORGANIZATION_CODE" name="ORGANIZATION_CODE" class="left md" data-update="db" required="required" data-modify="true" data-pageframe="query" data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE"/>          

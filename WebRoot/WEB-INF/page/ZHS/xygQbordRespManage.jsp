@@ -122,12 +122,12 @@
              <label for="RESP_NAME_Q" class="left md">职责:</label> 
              <input type="text" id="RESP_NAME_Q" name="RESP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query"  data-lovbtn="RESP_LOV_Q"  data-param="RESP_NAME"/>
              <input type="hidden" id="RESP_ID_Q" name="RESP_ID"/>
-             <input type="button" id="RESP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["职责编码","职责名称"] data-selectvalue=["RESP_CODE","RESP_NAME"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_Q","#RESP_NAME_Q"] value="···"/>
+             <input type="button" id="RESP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="职责查询" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["职责ID","职责编码","职责名称","描述"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["职责名称","职责编码"] data-selectvalue=["RESP_NAME","RESP_CODE"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_Q","#RESP_NAME_Q"] value="···"/>
              <br style="clear:both"/>
              <label for="MENU_NAME_Q" class="left md">菜单:</label> 
              <input type="text" id="MENU_NAME_Q" name="MENU_NAME" class="left md" data-modify="true"  data-suffixflag="true" data-pageframe="query"  data-lovbtn="MENU_LOV_Q"  data-param="MENU_NAME"/>
              <input type="hidden" id="MENU_ID_Q" name="MENU_ID"/>
-             <input type="button" id="MENU_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单编码","菜单名称"] data-selectvalue=["MENU_CODE","MENU_NAME"] data-choose=[".MENU_ID",".MENU_NAME"] data-recid=["#MENU_ID_Q","#MENU_NAME_Q"] value="···"/>
+             <input type="button" id="MENU_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单名称","菜单编码"] data-selectvalue=["MENU_NAME","MENU_CODE"] data-choose=[".MENU_ID",".MENU_NAME"] data-recid=["#MENU_ID_Q","#MENU_NAME_Q"] value="···"/>
              <br style="clear:both"/>
              <label for="START_DATE_F" class="left md">启用日期:</label>
              <input type="text" id="START_DATE_F" name="START_DATE_F" class="left time" data-datatype="date" placeholder="起始启用日期"/>
@@ -161,7 +161,7 @@
              <label for="MENU_NAME" class="left md">职责菜单</label> 
              <input type="text" id="MENU_NAME" name="MENU_NAME" data-update="db" class="left md" data-modify="true"  data-suffixflag="true" required="required" data-pageframe="ui"  data-lovbtn="MENU_LOV"  data-param="MENU_NAME"/>                       
              <input type="hidden" id="MENU_ID" name="MENU_ID" data-update="db"/>
-             <input type="button" id="MENU_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单编码","菜单名称"] data-selectvalue=["MENU_CODE","MENU_NAME"] data-choose=[".MENU_ID",".MENU_NAME"] data-recid=["#MENU_ID","#MENU_NAME"] value="···"/>
+             <input type="button" id="MENU_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov"  data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="菜单查询" data-queryurl="lov/getMenuPage.do" data-jsontype="menu" data-defaultquery="true" data-th=["菜单ID","菜单编码","菜单名称","描述"] data-td=["MENU_ID&none","MENU_CODE","MENU_NAME","DESCRIPTION"] data-selectname=["菜单名称","菜单编码"] data-selectvalue=["MENU_NAME","MENU_CODE"] data-choose=[".MENU_ID",".MENU_NAME"] data-recid=["#MENU_ID","#MENU_NAME"] value="···"/>
              <br style="clear:both"/> 
              <label for="START_DATE" class="left md">启用日期</label>
              <input type="text" id="START_DATE" name="START_DATE" data-update="db" data-datatype="date" required="required" class="left lg"/>
@@ -193,8 +193,10 @@
 	          $().revealListener();
               
 	          $.fn.beforeInsert = function(){
-	              RegExpValidate('^\\w+$','RESP_CODE','regExpError("职责编码格式不符合规范!");');
-	              RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','RESP_NAME','regExpError("职责名称必须为汉字和数字!");');
+	              //RegExpValidate('^\\w+$','RESP_CODE','regExpError("职责编码格式不符合规范!");');
+	              //RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','RESP_NAME','regExpError("职责名称必须为汉字和数字!");');
+	              RegExpValidate('^\\w+$','RESP_CODE','$("#RESP_CODE").val("");regExpError("职责编码格式不符合规范!");');
+	              RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','RESP_NAME','$("#RESP_NAME").val("");regExpError("职责名称必须为汉字和数字!");');
 	          }
 	           
 	          $.fn.afterReveal = function(){

@@ -180,6 +180,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 //RegExpValidate('^\\w+$','FUNCTION_CODE','regExpError("功能编码格式不符合规范!");');
                 //RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','FUNCTION_NAME','regExpError("功能名称必须为汉字和数字!");');
                 //RegExpValidate('^[a-zA-Z0-9/]{0,}\\.do$','FUNCTION_URL','regExpError("功能链接格式不符合url规范!");');
+                RegExpValidate('^\\w+$','FUNCTION_CODE','$("#FUNCTION_CODE").val("");regExpError("The FUNCTION_CODE is not up to standard!");');
+                RegExpValidate('^[a-zA-Z0-9/]{0,}\\.do$','FUNCTION_URL','$("#FUNCTION_URL").val("");regExpError("The FUNCTION_URL is not up to standard!");');
             }
         }); 
 	

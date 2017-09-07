@@ -194,9 +194,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" required="required" data-update="db" id="ORG_NAME" name="ORG_NAME" data-update="db" class="left lg" readonly="readonly" />
             <input type="hidden" id="ORG_ID" name="SALES_ORG_ID" data-update="db" readonly="readonly"/>
             <label for="ORGANIZATION_NAME" class="left md">Ship Inv:</label> 
-            <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_CODE" />
+            <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_NAME" />
             <input type="hidden" data-update="db" id="ORGANIZATION_ID" name="SHIP_FROM_ORG_ID"/>
-            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Code","Inve"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Inve","Code"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
             <br style="clear:both"/>
             <label for="ORDER_TYPE_ID" class="left md none">OrderType:</label>
             <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE"]></select> 
@@ -237,9 +237,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="ORG_NAME_Q" name="ORG_NAME" class="left lg" readonly="readonly" />
             <input type="hidden" id="ORG_ID_Q" name="ORG_ID" readonly="readonly"/>
             <label for="ORGANIZATION_NAME_Q" class="left md">Ship Inv:</label> 
-            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_CODE" />
+            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_NAME" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
-            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Code","Inv"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Inv","Code"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
             <br style="clear:both"/>
             <label for="CREATION_DATE_F" class="left md">Creation:</label>
             <input type="text" id="CREATION_DATE_F" name="CREATION_DATE_F" class="left time" data-datatype="date" placeholder="Creation Date From"/>
@@ -308,9 +308,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <input type="hidden" id="ORG_ID_L"/>
           <input type="hidden" id="PRICE_LIST_ID_L"/>
           <br style="clear:both"/>
-          <label class="mid" for="TOTAL_QUANTITY_L">Sum Qty</label>
+          <label class="mid" for="TOTAL_QUANTITY_L">Qty</label>
           <input type="text" id="TOTAL_QUANTITY_L" class="long" readonly="readonly"/>
-          <label class="mid" for="TOTAL_PRICE_L">Sum Price</label>
+          <label class="mid" for="TOTAL_PRICE_L">Price</label>
           <input type="text" id="TOTAL_PRICE_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
         </div>     
@@ -429,8 +429,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </form> 
         </div>
         <div class="foot">            
-          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">Insert</button>
-          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh">Confirm</button>
+          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh" data-func="$().beforeConfirm();">Insert</button>
+          <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh" data-func="$().beforeConfirm();">Confirm</button>
         </div>    
       </div>          
       <!-- 订单明细新增/更新区域 end --> 
@@ -538,6 +538,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
 			}		
 			
+			$.fn.beforeConfirm = function(){
+                RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
+                RegExpValidate('^[0-9]*$','UNIT_PRICE_D','$("#UNIT_PRICE_D").val("");regExpError("单价必须为整数!");');
+            }
+			
 			//汇总订单明细 总数量&总金额
 			$.fn.sumLines = function(){
 			    var contractNumber = $('#CONTRACT_NUMBER_L').val();
@@ -573,6 +578,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   if(qty == null||qty == ''){
 			       $('#UNIT_PRICE_D').val('');
 			   }else{
+			       RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
 			       var orgId = $('#ORG_ID_L').val();
 			       var currCode = $('#CURR_CODE_L').val();
 			       var priceListId = $('#PRICE_LIST_ID_L').val();

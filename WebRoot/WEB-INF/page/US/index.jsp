@@ -223,7 +223,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	        layer.alert('新密码不能为空！',{title:'警告',offset:[150]});
      	        return;
      	    }
-     	    RegExpValidate('^[a-zA-Z]\\w{5,14}$','N_PASSWORD','regExpError("密码格式错误，必须是由字母开头的6-15位字符");');
+     	    //RegExpValidate('^[a-zA-Z]\\w{5,14}$','N_PASSWORD','regExpError("密码格式错误，必须是由字母开头的6-15位字符");');
+     	    RegExpValidate('^[a-zA-Z0-9]{5,14}$','O_PASSWORD','$("#O_PASSWORD").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');    
+            RegExpValidate('^[a-zA-Z0-9]{5,14}$','N_PASSWORD','$("#N_PASSWORD").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');    
      	    if(newPwd==oldPwd){
      	      alert('新密码不能与原密码相同,请重新输入!');
      	      return;

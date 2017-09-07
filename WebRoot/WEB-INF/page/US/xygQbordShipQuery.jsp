@@ -47,9 +47,9 @@
             <td class="SEND_NUM" data-column="db"></td>
             <td class="SHIP_BOX_NUM" data-column="db"></td>
             <td class="ACTUAL_SHIP_DATE" data-column="db"></td>
-            <td class="DESCRIPTION" data-column="db"></td>
-            <td class="CARNAME" data-column="db"></td>
-            <td class="EN_DESC" data-column="db"></td>
+            <td class="DESCRIPTION text-left" data-column="db"></td>
+            <td class="CARNAME text-left" data-column="db"></td>
+            <td class="EN_DESC text-left" data-column="db"></td>
             <td class="SPEC" data-column="db"></td>
             <td class="QUANTITY" data-column="db"></td>
             <td class="SUM_AREA" data-column="db"></td>
