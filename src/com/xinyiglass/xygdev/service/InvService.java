@@ -70,16 +70,21 @@ public class InvService {
 	public String findForInvPage(Map<String,Object> conditionMap,Long loginId) throws Exception{		
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 	    StringBuffer sqlBuff = new StringBuffer();
-	    sqlBuff.append("SELECT * FROM XYG_QBORD_INV_ONHAND_V");
+	    sqlBuff.append("SELECT XQIO.*");
+	    sqlBuff.append("  FROM XYG_QBORD_INV_ONHAND_V XQIO");
+	    sqlBuff.append("      ,XYG_QBI_ITEM_TP_B XQIT");
 	    sqlBuff.append(" WHERE 1=1 ");
-		sqlBuff.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true)); 	 
-		sqlBuff.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap)); 	 
-	    sqlBuff.append(SqlStmtPub.getAndStmt("CARNAME",conditionMap.get("carName"),paramMap)); 
-	    sqlBuff.append(SqlStmtPub.getAndStmt("PRODUCT_TYPE_ID",conditionMap.get("productTypeId"),paramMap));
-		sqlBuff.append(SqlStmtPub.getAndStmt("PROCESS_TYPE_ID",conditionMap.get("processTypeId"),paramMap));
-	    sqlBuff.append(SqlStmtPub.getAndStmt("LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap)); 
-	    sqlBuff.append(SqlStmtPub.getAndStmt("WIDTH",conditionMap.get("width_F"),conditionMap.get("width_T"),paramMap));
-	    sqlBuff.append(SqlStmtPub.getAndStmt("HEIGHT",conditionMap.get("height_F"),conditionMap.get("height_T"),paramMap));
+	    sqlBuff.append("   AND XQIO.ORGANIZATION_ID = XQIT.ORGANIZATION_ID ");
+	    sqlBuff.append("   AND XQIO.INVENTORY_ITEM_ID = XQIT.INVENTORY_ITEM_ID ");
+	    sqlBuff.append("   AND XQIT.QBORD_ENABLED_FLAG = 'Y' ");
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true)); 	 
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.DESCRIPTION",conditionMap.get("description"),paramMap)); 	 
+	    sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.CARNAME",conditionMap.get("carName"),paramMap)); 
+	    sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.PRODUCT_TYPE_ID",conditionMap.get("productTypeId"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.PROCESS_TYPE_ID",conditionMap.get("processTypeId"),paramMap));
+	    sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap)); 
+	    sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.WIDTH",conditionMap.get("width_F"),conditionMap.get("width_T"),paramMap));
+	    sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.HEIGHT",conditionMap.get("height_F"),conditionMap.get("height_T"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 	    return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}

@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="fa fa-cog pointer" title="Table Setting" data-reveal-id="setting" data-dismissmodalclass="close-setting"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-search pointer" title="Conditional Query" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"  data-revealfunc="$().defaultQueryDate();"></i>
+          <i class="fa fa-search pointer" title="Conditional Query" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
           <i id="refresh" class="fa fa-refresh pointer" title="Refresh Data" data-pagetype="refresh" data-pageframe="table"></i>
@@ -309,7 +309,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           +'-01 00:00:00';
                 $('#CREATION_DATE_F').val(firstDay);
                 $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
-            }                        
+            } 
+            
+            $().defaultQueryDate();                       
             
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  

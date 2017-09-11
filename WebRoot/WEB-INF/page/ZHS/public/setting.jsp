@@ -5,6 +5,8 @@
         String rdTable=request.getParameter("rdtable");
         String odTable=request.getParameter("odtable");
         String pageframe=request.getParameter("pageframe");
+        String alias = null;
+        alias = request.getParameter("alias");
     %>    
     <div class="title">
       <span>设置</span>
@@ -43,7 +45,7 @@
             </li> 
           </ul>
         </li>
-        <li><a class="pointer" data-ordertable=<%=odTable %> data-reveal-id="orderby">多维排序</a></li>
+        <li><a class="pointer" data-ordertable=<%=odTable %> data-alias=<%=alias %> data-reveal-id="orderby">多维排序</a></li>
         <li><a class="pointer" data-config="init" data-reveal-id="config">个人配置</a></li>
       </ul>
     </div>      

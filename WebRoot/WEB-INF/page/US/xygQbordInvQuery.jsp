@@ -78,6 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <jsp:param name="rdtable" value="#main-table" />
             <jsp:param name="odtable" value="#main-table" />
             <jsp:param name="pageframe" value="table" />
+            <jsp:param name="alias" value="XQIO" />
           </jsp:include>
         </div>
         <div>
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </jsp:include>
           <input type="hidden" data-type="size" id="page_size" value="10"/>
           <input type="hidden" data-type="number" id="page_no" value="1"/>
-          <input type="hidden" data-type="orderby" id="ORDER_BY" value="ORGANIZATION_ID ASC"/>
+          <input type="hidden" data-type="orderby" id="ORDER_BY" value="XQIO.ORGANIZATION_ID ASC"/>
           <input type="hidden" data-type="cond"/>
           <input type="hidden" data-type="url" value="perm/getInvPage.do"/>
           <input type="hidden" data-type="jsontype" value="table"/> 

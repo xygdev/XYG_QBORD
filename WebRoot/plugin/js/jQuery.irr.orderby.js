@@ -56,7 +56,11 @@
         		name=$(options.ordertable+' th:eq('+i+')').text();
         		column=$(options.ordertable+' th:eq('+i+')').attr('data-column');
         		if(column=="db"){
-        			$(options.orderframe+' select').append('<option value="'+value+'" >'+name+'</option>');	
+        			if(options.alias!=''&&options.alias!=null){
+        				$(options.orderframe+' select').append('<option value="'+options.alias+'.'+value+'" >'+name+'</option>');	
+        			}else{
+        				$(options.orderframe+' select').append('<option value="'+value+'" >'+name+'</option>');	
+        			}
         		}else{
         			continue;
         		}	

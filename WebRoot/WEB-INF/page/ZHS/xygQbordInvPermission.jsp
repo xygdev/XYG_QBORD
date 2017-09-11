@@ -35,7 +35,7 @@
             <th class="ORGANIZATION_CODE" data-column="db">库存编码</th>
             <th class="ORGANIZATION_NAME" data-column="db">库存组织</th>
             <th class="START_DATE_ACTIVE" data-column="db">启用日期</th>
-            <th class="ENABLED_FLAG" data-column="db">是否有效</th>
+            <th class="ENABLED_FLAG" data-column="db">订单标识</th>
             <th class="ACTION" data-column="normal">操作</th> 
             <th class="PERMISSION_ID" style="display:none" data-column="hidden">&nbsp;</th>
           </tr>         
@@ -186,6 +186,20 @@
 	        //初始化CRUD和LOV条件查询
 	        $().crudListener(); 
 	        $().revealListener(); 
+	        
+    		//默认查询时间
+			$.fn.defaultQueryDate = function(){
+			    var sysDate = new Date();
+			    var firstDay;
+			    firstDay = sysDate.getFullYear()
+			              +'-'+(sysDate.getMonth()+1)
+			              +'-01 00:00:00';
+			    
+			    $('#START_DATE_ACTIVE_F').val(firstDay);
+			    $('#START_DATE_ACTIVE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
+			}	
+			
+			$().defaultQueryDate(); 	        
 	               
 	        $('input[data-datatype="date"]').datetimepicker({
 	            lang:'ch',           //语言选择中文

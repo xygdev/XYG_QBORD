@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="fa fa-cog pointer" title="Table Setting" data-reveal-id="setting" data-dismissmodalclass="close-setting"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-search pointer" title="Conditional Query" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"  data-revealfunc="$().defaultQueryDate();"></i>
+          <i class="fa fa-search pointer" title="Conditional Query" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
           <i class="fa fa-plus-circle pointer" title="Creat Contract" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().beforePreInsertH();"></i>
@@ -196,7 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="ORGANIZATION_NAME" class="left md">Ship Inv:</label> 
             <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_NAME" />
             <input type="hidden" data-update="db" id="ORGANIZATION_ID" name="SHIP_FROM_ORG_ID"/>
-            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Inve","Code"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getOrganizationForContr.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Inve","Code"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
             <br style="clear:both"/>
             <label for="ORDER_TYPE_ID" class="left md none">OrderType:</label>
             <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE"]></select> 
@@ -239,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="ORGANIZATION_NAME_Q" class="left md">Ship Inv:</label> 
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_NAME" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
-            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Inv","Code"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Inv Query" data-queryurl="lov/getOrganizationForContr.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","Code","Inv"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["Inv","Code"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
             <br style="clear:both"/>
             <label for="CREATION_DATE_F" class="left md">Creation:</label>
             <input type="text" id="CREATION_DATE_F" name="CREATION_DATE_F" class="left time" data-datatype="date" placeholder="Creation Date From"/>
@@ -412,7 +412,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="LINE_NUM_D" name="LINE_NUM" class="lg left" readonly="readonly"/>
             <br style="clear:both"/>
             <label for="DESCRIPTION_D" class="md left">Item</label> 
-            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" required="required" data-modify="false" readonly="readonly"/>          
+            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
             <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Item Query" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","Code","Item","CN&nbsp;Desc"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["Item","CN&nbsp;Desc"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] value="···"/> 
             <label for="CARNAME" class="md left">CN Desc</label> 
@@ -537,6 +537,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    $('#CREATION_DATE_F').val(firstDay);
 			    $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
 			}		
+			
+			$().defaultQueryDate();
 			
 			$.fn.beforeConfirm = function(){
                 RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');

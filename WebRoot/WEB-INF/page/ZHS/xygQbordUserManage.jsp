@@ -391,6 +391,20 @@
     		    }
     		});
     		
+    		//默认查询时间
+			$.fn.defaultQueryDate = function(){
+			    var sysDate = new Date();
+			    var firstDay;
+			    firstDay = sysDate.getFullYear()
+			              +'-'+(sysDate.getMonth()+1)
+			              +'-01 00:00:00';
+			    
+			    $('#START_DATE_F').val(firstDay);
+			    $('#START_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
+			}	
+			
+			$().defaultQueryDate();
+			
     		/*2017.8.8      暂时去掉用户管理界面的头像修改功能，认为此功能无需在此处出现
     		$.fn.changeIMG = function(){
     		    $('.changeIMG').off('click');

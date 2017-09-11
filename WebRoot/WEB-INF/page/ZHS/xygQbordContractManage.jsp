@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="fa fa-cog pointer" title="表格设置" data-reveal-id="setting" data-dismissmodalclass="close-setting"></i>
         </div>
         <div class="setting">
-          <i class="fa fa-search pointer" title="条件查询" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"  data-revealfunc="$().defaultQueryDate();"></i>
+          <i class="fa fa-search pointer" title="条件查询" data-reveal-id="query" data-key="true" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
           <i class="fa fa-plus-circle pointer" title="创建订单" data-reveal-id="ui" data-key="true"  data-dismissmodalclass="close-ui-frame" data-crudtype="pre-insert" data-type="insert" data-func="$().beforePreInsertH();"></i>
@@ -196,10 +196,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="ORGANIZATION_NAME" class="left md">发货组织:</label> 
             <input type="text" required="required" data-update="db" id="ORGANIZATION_NAME" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV" data-param="ORGANIZATION_NAME" />
             <input type="hidden" data-update="db" id="ORGANIZATION_ID" name="SHIP_FROM_ORG_ID"/>
-            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存组织","库存代号"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getOrganizationForContr.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存组织","库存代号"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID","#ORGANIZATION_NAME"] value="···"/>         
             <br style="clear:both"/>
             <label for="ORDER_TYPE_ID" class="left md none">订单类型:</label>
-            <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE"]></select> 
+            <select class="left lgx2 none" id="ORDER_TYPE_ID" name="ORDER_TYPE_ID" data-update="db" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE","ORG_ID"] data-extparamid=["#CURR_CODE","#ORG_ID"]></select> 
             <label for="CUSTOMER_PO" class="left md">客订PO:</label>
             <input type="text" data-update="db" class="left lg" id="CUSTOMER_PO" name="CUSTOMER_PO"/>
             <label for="CURR_CODE" class="left md">币别:</label>
@@ -239,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="ORGANIZATION_NAME_Q" class="left md">发货组织:</label> 
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md"  data-modify="true" data-pageframe="query"  data-lovbtn="ORGANIZATION_LOV_Q"  data-param="ORGANIZATION_NAME" />
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
-            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存组织","库存代号"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
+            <input type="button" id="ORGANIZATION_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getOrganizationForContr.do" data-jsontype="organ" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存组织","库存代号"] data-selectvalue=["ORGANIZATION_NAME","ORGANIZATION_CODE"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>         
             <br style="clear:both"/>
             <label for="CREATION_DATE_F" class="left md">创建日期:</label>
             <input type="text" id="CREATION_DATE_F" name="CREATION_DATE_F" class="left time" data-datatype="date" placeholder="起始创建日期"/>
@@ -268,8 +268,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <form>
             <input type="hidden" id="HEADER_ID_UOT" name="HEADER_ID"/>
             <input type="hidden" id="CURR_CODE_UOT" name="CURR_CODE"/>
+            <input type="hidden" id="ORG_ID_UOT" name="ORG_ID"/>
             <label for="ORDER_TYPE_ID_UOT" class="left md">订单类型:</label>
-            <select class="left lgx2" id="ORDER_TYPE_ID_UOT" name="ORDER_TYPE_ID" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE"] data-extparamid=["#CURR_CODE_UOT"]></select> 
+            <select class="left lgx2" id="ORDER_TYPE_ID_UOT" name="ORDER_TYPE_ID" data-notnull="true" data-listurl="list/getOrderType.do" data-extparam=["CURR_CODE","ORG_ID"] data-extparamid=["#CURR_CODE_UOT","#ORG_ID_UOT"]></select> 
           </form>
         </div>
         <div class="foot">             
@@ -412,7 +413,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="LINE_NUM_D" name="LINE_NUM" class="lg left" readonly="readonly"/>
             <br style="clear:both"/>
             <label for="DESCRIPTION_D" class="md left">本厂型号</label> 
-            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" required="required" data-modify="false" readonly="readonly"/>          
+            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
             <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] value="···"/> 
             <label for="CARNAME" class="md left">中文描述</label> 
@@ -537,6 +538,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    $('#CREATION_DATE_F').val(firstDay);
 			    $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
 			}	
+			
+			$().defaultQueryDate();
 				
 			$.fn.beforeConfirm = function(){
 			    RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
@@ -792,6 +795,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		$('[data-reveal-id="update_ot"]').click('on',function(){
        		    $('#HEADER_ID_UOT').val($('#HEADER_ID_L').val());
        		    $('#CURR_CODE_UOT').val($('#CURR_CODE_L').val());
+       		    $('#ORG_ID_UOT').val($('#SALES_ORG_ID_L').val());
        		    $('#ORDER_TYPE_ID_UOT').val('');
        		    $().listRef();
        		});

@@ -5,6 +5,8 @@
         String rdTable=request.getParameter("rdtable");
         String odTable=request.getParameter("odtable");
         String pageframe=request.getParameter("pageframe");
+        String alias = null;
+        alias = request.getParameter("alias");
     %>    
     <div class="title">
       <span>Setting</span>
@@ -43,7 +45,7 @@
             </li> 
           </ul>
         </li>
-        <li><a class="pointer" data-ordertable=<%=odTable %> data-reveal-id="orderby">Sorting</a></li>
+        <li><a class="pointer" data-ordertable=<%=odTable %> data-alias=<%=alias %> data-reveal-id="orderby">Sorting</a></li>
         <li><a class="pointer" data-config="init" data-reveal-id="config">Config</a></li>
        </ul>
      </div>      

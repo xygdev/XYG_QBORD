@@ -29,8 +29,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <img src="/image/home/bg1.png" width="100%" />
     </div>
     <div class="title">
+      <!-- 
       <h1>集团概况</h1>
       <p class="subtit">缔造杰出玻璃企业 成就世界一流品牌</p>
+      -->
     </div>
   </div>
   <div id="content">

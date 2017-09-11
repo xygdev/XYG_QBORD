@@ -112,8 +112,22 @@ public class LovService {
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
-	/***用户库存权限LOV***/
-	public String findUserOrganization(Map<String,Object> conditionMap,Long loginId) throws Exception{
+	/***用户库存权限LOV 库存查询,技术资料用***/
+	public String findUserOrganizationForInv(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("1",conditionMap.get("userId"));
+		sqlBuf.append("SELECT ORGANIZATION_ID,ORGANIZATION_CODE,ORGANIZATION_NAME FROM XYG_QBORD_INV_PERMISSION_V");
+		sqlBuf.append(" WHERE 1 = 1");
+		sqlBuf.append("   AND USER_ID = :1");
+		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_CODE",conditionMap.get("oCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_NAME", conditionMap.get("oName"),paramMap));
+		sqlBuf.append(" ORDER BY ORGANIZATION_ID");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
+	}
+	
+	/***用户库存权限LOV 订单明细用***/
+	public String findUserOrganizationForContr(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		paramMap.put("1",conditionMap.get("userId"));
@@ -164,12 +178,12 @@ public class LovService {
 	public String findUserCustForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		sqlBuf.append("SELECT * ");
-		sqlBuf.append("  FROM XYG_ALFR_CUST_ACCOUNT_V");
+		sqlBuf.append("SELECT XACA.* ");
+		sqlBuf.append("  FROM XYG_ALFR_CUST_ACCOUNT_V XACA");
 		sqlBuf.append(" WHERE 1=1");
-		sqlBuf.append(SqlStmtPub.getAndStmt("PARTY_NAME", conditionMap.get("partyName"),paramMap));
-		sqlBuf.append(SqlStmtPub.getAndStmt("ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
-		sqlBuf.append("   AND ACT_ID IN (SELECT CUST_ID");
+		sqlBuf.append(SqlStmtPub.getAndStmt("XACA.PARTY_NAME", conditionMap.get("partyName"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("XACA.ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
+		sqlBuf.append("   AND (XACA.ACT_ID IN (SELECT CUST_ID");
 		sqlBuf.append("					   FROM XYG_ALD_GROUP_LINES");
 		sqlBuf.append("					  WHERE GROUP_ID IN(SELECT SUB_GROUP_ID");
 		sqlBuf.append("										  FROM XYG_ALD_GROUP_LINES");
@@ -186,12 +200,13 @@ public class LovService {
 		sqlBuf.append("										 WHERE USER_ID = :1");
 		sqlBuf.append("										   AND USER_TYPE = 'EMP'");
 		sqlBuf.append("										   AND GROUP_APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
-		sqlBuf.append("    OR ACT_ID IN (SELECT ACT_ID");
-		sqlBuf.append("					   FROM XYG_ALD_USER_CUST_V");
-		sqlBuf.append("					  WHERE USER_ID = :1");
-		sqlBuf.append("					    AND USER_TYPE = 'CUSTOMER'");
-		sqlBuf.append("					    AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID)");
-		sqlBuf.append(" ORDER BY ORG_ID,CUST_ACCOUNT_ID");  
+		sqlBuf.append("    OR XACA.ACT_ID IN (SELECT XACA1.ACT_ID");
+		sqlBuf.append("					   FROM XYG_ALD_USER_CUST_V XACA1");
+		sqlBuf.append("					  WHERE XACA1.USER_ID = :1");
+		sqlBuf.append("					    AND XACA1.USER_TYPE = 'CUSTOMER'");
+		sqlBuf.append("                     AND SYSDATE BETWEEN  XACA1.START_DATE AND NVL( XACA1.END_DATE,SYSDATE+1)");
+		sqlBuf.append("					    AND XACA1.APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
+		sqlBuf.append(" ORDER BY XACA.ORG_ID,XACA.CUST_ACCOUNT_ID");  
 		paramMap.put("1", conditionMap.get("userId"));
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
@@ -201,30 +216,35 @@ public class LovService {
 		StringBuffer sqlBuf=new StringBuffer();
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		sqlBuf.append("SELECT A.*");
-		sqlBuf.append("  FROM (SELECT XQPL.ITEM_ID INVENTORY_ITEM_ID,XQPL.ITEM_NUMBER,XQPL.ITEM_DESCRIPTION DESCRIPTION,XQPL.ITEM_CH_DESCRIPTION CARNAME,XQPH.NOT_CONTROL");
+		sqlBuf.append("  FROM (SELECT XQIT1.INVENTORY_ITEM_ID,XQIT1.ITEM_NUMBER,XQIT1.DESCRIPTION,XQIT1.CARNAME,XQPH.NOT_CONTROL");
 		sqlBuf.append("          FROM XYG_QBO_PRODUCT_LINE_LIST XQPL");
 		sqlBuf.append("              ,XYG_QBO_PRODUCT_HEADER_LIST XQPH");
+		sqlBuf.append("              ,XYG_QBI_ITEM_TP_B XQIT1");
 		sqlBuf.append("         WHERE EXISTS (SELECT 1");
-		sqlBuf.append("                         FROM XYG_ALFR_CUST_ACCOUNT");
-		sqlBuf.append("                        WHERE XQPL.LIST_HEADER_ID = PRODUCT_LIST_HEADER_ID ");
-		sqlBuf.append("                          AND CUST_ACCOUNT_ID = :1");
-		sqlBuf.append("                          AND ORG_ID = :2)");
+		sqlBuf.append("                         FROM XYG_ALFR_CUST_ACCOUNT XACA1");
+		sqlBuf.append("                        WHERE XQPL.LIST_HEADER_ID = XACA1.PRODUCT_LIST_HEADER_ID ");
+		sqlBuf.append("                          AND XACA1.CUST_ACCOUNT_ID = :1");
+		sqlBuf.append("                          AND XACA1.ORG_ID = :2)");
 		sqlBuf.append("           AND EXISTS(SELECT 1");
-		sqlBuf.append("                        FROM XYG_QBI_ITEM_TP_B");
-		sqlBuf.append("                       WHERE INVENTORY_ITEM_ID = XQPL.ITEM_ID ");
-		sqlBuf.append("                         AND ORGANIZATION_ID = :3)");
+		sqlBuf.append("                        FROM XYG_QBI_ITEM_TP_B XQIT2");
+		sqlBuf.append("                       WHERE XQIT2.INVENTORY_ITEM_ID = XQPL.ITEM_ID ");
+		sqlBuf.append("                         AND XQIT2.ORGANIZATION_ID = :3");
+		sqlBuf.append("                         AND XQIT2.QBORD_ENABLED_FLAG = 'Y')");
+		sqlBuf.append("           AND XQIT1.INVENTORY_ITEM_ID = XQPL.ITEM_ID");
+		sqlBuf.append("           AND XQIT1.ORGANIZATION_ID = :3");
 		sqlBuf.append("           AND XQPL.LIST_HEADER_ID = XQPH.LIST_HEADER_ID");
 		sqlBuf.append("           AND XQPH.NOT_CONTROL = 'Y'");
 		sqlBuf.append("         UNION ALL SELECT XQIT.INVENTORY_ITEM_ID,XQIT.ITEM_NUMBER,XQIT.DESCRIPTION,XQIT.CARNAME,'N' NOT_CONTROL");
 		sqlBuf.append("                     FROM XYG_QBI_ITEM_TP_B XQIT");
-		sqlBuf.append("                    WHERE XQIT.ORGANIZATION_ID = :3) A");
+		sqlBuf.append("                    WHERE XQIT.ORGANIZATION_ID = :3");
+		sqlBuf.append("                      AND XQIT.QBORD_ENABLED_FLAG = 'Y') A");
 		sqlBuf.append("       ,XYG_QBO_PRODUCT_HEADER_LIST XQPHL");
 		sqlBuf.append("  WHERE A.NOT_CONTROL = XQPHL.NOT_CONTROL");
 		sqlBuf.append("    AND EXISTS (SELECT 1");  
-		sqlBuf.append("                  FROM XYG_ALFR_CUST_ACCOUNT");
-		sqlBuf.append("                 WHERE XQPHL.LIST_HEADER_ID = PRODUCT_LIST_HEADER_ID ");
-		sqlBuf.append("                   AND CUST_ACCOUNT_ID = :1");
-		sqlBuf.append("                   AND ORG_ID = :2) ");                     	                   
+		sqlBuf.append("                  FROM XYG_ALFR_CUST_ACCOUNT XACA2");
+		sqlBuf.append("                 WHERE XQPHL.LIST_HEADER_ID = XACA2.PRODUCT_LIST_HEADER_ID ");
+		sqlBuf.append("                   AND XACA2.CUST_ACCOUNT_ID = :1");
+		sqlBuf.append("                   AND XACA2.ORG_ID = :2) ");                     	                   
 		//sqlBuf.append(SqlStmtPub.getAndStmt("ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true));
 		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION",conditionMap.get("description"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("CARNAME",conditionMap.get("carName"),paramMap));

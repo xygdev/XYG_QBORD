@@ -20,6 +20,7 @@
            2017.1.6    修改Lov的多级联动的逻辑以及修正联动List的问题。 samt
            2017.8.15   新增功能 Lov抓取值时 可配置清空其他栏位
            2017.9.1    新增data-default参数，设置list default值
+           2017.9.11   修改modify方法，在suffix返回值confirm弹出框前加判定条件
 *********************************************************/
 (function($) {	
 	/******************listener start***********************
@@ -224,7 +225,12 @@
 									//console.log('recidArray[n]:'+recidArray[n]);
 									$(recidArray[n]).val('');
 								}
-    							result=confirm("输入的值不存在或者存在多个匹配的值，是否通过值列表准确选取?");	
+								if(retRows==0){
+									var result=confirm("输入的值不存在，是否通过值列表准确选取?");	
+								}else{
+									var result=confirm("输入的值存在多个匹配的值，是否通过值列表准确选取?");	
+								}
+    							//modify by Bird 2017.9.11
     							if(result==true){
     								var defQuery=$('#'+options.lovbtn).attr('data-defaultquery')||'false';
     								$('#'+options.pageframe).draggable('enable');
