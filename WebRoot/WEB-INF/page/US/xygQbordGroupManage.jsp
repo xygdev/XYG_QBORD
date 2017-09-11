@@ -281,6 +281,7 @@
     		$.fn.beforeInsert = function(){
                 RegExpValidate('^\\w+$','GROUP_CODE','$("#GROUP_CODE").val("");regExpError("The GROUP_CODE is not up to standard!");');
                 //RegExpValidate('^[\u4e00-\u9fa5]{0,}$','GROUP_NAME','regExpError("工作组名称必须为汉字!");');
+                RegExpValidate('^[\u4e00-\u9fa5a-zA-Z0-9]{0,}$','GROUP_NAME','$("#GROUP_NAME").val("");regExpError("工作组名称必须是汉字、字母和数字组合!");');
             }       		
     		
     		$.fn.setParam = function(){

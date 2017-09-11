@@ -210,7 +210,7 @@
 	              //RegExpValidate('^\\w+$','RESP_CODE','regExpError("职责编码格式不符合规范!");');
 	              //RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','RESP_NAME','regExpError("职责名称必须为汉字和数字!");');
 	              RegExpValidate('^\\w+$','RESP_CODE','$("#RESP_CODE").val("");regExpError("职责编码格式不符合规范!");');
-	              RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','RESP_NAME','$("#RESP_NAME").val("");regExpError("职责名称必须为汉字和数字!");');
+	              RegExpValidate('^[\u4e00-\u9fa50-9a-zA-Z]{0,}$','RESP_NAME','$("#RESP_NAME").val("");regExpError("职责名称必须为汉字、字母和数字组合!");');
 	          }
 	           
 	          $.fn.afterReveal = function(){

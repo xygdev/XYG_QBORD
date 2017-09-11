@@ -293,6 +293,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 //RegExpValidate('^\\w+$','MENU_CODE','regExpError("菜单编码格式不符合规范!");');
                 //RegExpValidate('^[\u4e00-\u9fa5\d0-9]{0,}$','MENU_NAME','regExpError("菜单名称必须为汉字和数字!");');
                 RegExpValidate('^\\w+$','MENU_CODE','$("#MENU_CODE").val("");regExpError("菜单编码格式不符合规范!");');
+                RegExpValidate('^[a-zA-Z0-9 ]+$','MENU_NAME','$("#MENU_NAME").val("");regExpError("菜单名称必须为字母、数字和空格组合!");');
             }          
             
             $.fn.setParam = function(){

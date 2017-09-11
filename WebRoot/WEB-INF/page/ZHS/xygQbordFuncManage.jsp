@@ -178,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
 	        $.fn.beforeInsert = function(){
                 RegExpValidate('^\\w+$','FUNCTION_CODE','$("#FUNCTION_CODE").val("");regExpError("功能编码格式不符合规范!");');
-                RegExpValidate('^[\u4e00-\u9fa50-9]{0,}$','FUNCTION_NAME','$("#FUNCTION_NAME").val("");regExpError("功能名称必须为汉字和数字!");');
+                RegExpValidate('^[\u4e00-\u9fa50-9a-zA-Z]{0,}$','FUNCTION_NAME','$("#FUNCTION_NAME").val("");regExpError("功能名称必须为汉字和数字!");');
                 RegExpValidate('^[a-zA-Z0-9/]{0,}\\.do$','FUNCTION_URL','$("#FUNCTION_URL").val("");regExpError("功能链接格式不符合url规范!");');
             }
         }); 
