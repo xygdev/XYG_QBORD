@@ -449,8 +449,8 @@
     		$.fn.validateUserType = function(){
     		
     		    if($('#PASSWORD').val()) RegExpValidate('^[a-zA-Z0-9]{5,14}$','PASSWORD','$("#PASSWORD").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');
-                if($('#MOBILE_NUMBER').val()) RegExpValidate('^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$','MOBILE_NUMBER','$("#MOBILE_NUMBER").val("");regExpError("请输入正确的手机号码!");');
-                if($('#EMAIL_ADDR').val())  RegExpValidate('^([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+','EMAIL_ADDR','$("#EMAIL_ADDR").val("");regExpError("请输入正确的邮箱地址!");');
+                if($('#MOBILE_NUMBER').val()) RegExpValidate('^(1)\\d{10}$','MOBILE_NUMBER','$("#MOBILE_NUMBER").val("");regExpError("请输入正确的手机号码!");');
+                if($('#EMAIL_ADDR').val())  RegExpValidate('^.*\[@\].*$','EMAIL_ADDR','$("#EMAIL_ADDR").val("");regExpError("请输入正确的邮箱地址!");');
                 if($('#WECHAT_CODE').val()) RegExpValidate('^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$','WECHAT_CODE','$("#WECHAT_CODE").val("");regExpError("请输入正确的微信号码!");');
     		    
     		    if($('#USER_TYPE').val()=='EMP'){

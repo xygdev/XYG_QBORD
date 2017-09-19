@@ -47,6 +47,7 @@ public class LoginController extends BaseController {
 	
 	@RequestMapping("/")
 	public String login(){
+		/*
 		String userName = null;
 		try{
 			userName = CookieUtil.getCookieByName(this.getRequest(), "USER_NAME").getValue();
@@ -54,6 +55,7 @@ public class LoginController extends BaseController {
 			userName = null;
 		}
 		this.setSessionAttr("COOKIE_USER", userName);
+		*/
 		return "login-zhs";
 	}
 	

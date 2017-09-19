@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">    
-    <title>信义玻璃</title>    
+    <title>信义玻璃(仅测试用)</title>    
     <!-- 图标cdn引入 -->
     <link rel="stylesheet" href="plugin/css/font-awesome.min.css">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </form>
           </div>
           <div class="foot">       
-            <button id="confirm" class="right update_confirm pointer" data-crudtype="update" data-pageframe="findPWD" data-updateurl="forgetPwd.do">修改</button>
+            <button id="confirm" class="right update_confirm pointer" data-crudtype="update" data-pageframe="findPWD" data-func="$().findPWD();" data-updateurl="forgetPwd.do">修改</button>
           </div>   
         </div>
         <!-- 找回密码弹出框 end-->   
@@ -352,6 +352,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $('.fa-eye[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');
             $(this).css('display','none');
             $('#'+$(this).data('frame')).attr('type','text');
+            if($('#'+$(this).data('frame')).attr('onfocus').length!=0){
+            	$('#'+$(this).data('frame')).removeAttr('onfocus');
+            	$('#'+$(this).data('frame')).removeAttr('onBlur');
+            } 
         }else if($(this).data('pwd')=='hide'){
             $('.fa-eye-slash[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');
             $(this).css('display','none');
@@ -359,6 +363,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     });
     
+    
+    $.fn.findPWD = function(){
+        RegExpValidate('^[a-zA-Z0-9]{5,14}$','N_PASSWORD_F','$("#N_PASSWORD_F").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');
+    }
   </script>
   
   </body>

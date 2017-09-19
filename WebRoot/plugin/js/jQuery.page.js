@@ -127,11 +127,12 @@
 						if(parseInt(data.pageMinRow)!=0){
 							jsontype=$('#'+options.pageframe+' input[data-type="jsontype"]').val();
 							$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','inherit');//ADD BY BIRD 2017.06.08
-							jQuery.json.getContent(data,jsontype);/****获取json遍历数据，插入表格****/
-							//$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','inherit');//MODIFY BY BIRD 2017.05.25
 							for(j=0;j<=(pageSize-(pageMaxRow-pageMinRow+1));j++){/****隐藏空白行****/
 								$('table[data-table="'+tablename+'"] tr:eq('+(pageSize-j+1)+')').css('display','none');
 		                	}
+							/***将空行隐藏 移至数据遍历之前  modify by Bird 2017.9.19****/
+							jQuery.json.getContent(data,jsontype);/****获取json遍历数据，插入表格****/
+							//$('table[data-table="'+tablename+'"] i[data-show="true"]').css('visibility','inherit');//MODIFY BY BIRD 2017.05.25
 							if(firstPageFlag=='true'){/****判断是否为首页，若是，隐藏第一页与上一页按钮****/
 								$('#'+options.pageframe+' i[data-pagetype="prevpage"]').css('display','none');
 								$('#'+options.pageframe+' i[data-pagetype="firstpage"]').css('display','none');
@@ -188,9 +189,17 @@
 									$('td[data-column="db"]',$('table[data-table="'+tablename+'"] tr:eq(1)')).html('');
 									blank_tr=$('tr:eq(1)',$('table[data-table="'+tablename+'"]'));
 									$('td',$('table[data-table="'+tablename+'"]')).parent().remove();
-									for(j=1;j<=pageSize;j++){
-										$('tr:eq(0)',$('table[data-table="'+tablename+'"]')).parent().append(blank_tr.clone());
+									if(displaySize!=null&&displaySize!=''){		
+										for(j=1;j<=displaySize;j++){
+											$('tr:eq(0)',$('table[data-table="'+tablename+'"]')).parent().append(blank_tr.clone());
+										}
+									}else{
+										for(j=1;j<=pageSize;j++){
+											$('tr:eq(0)',$('table[data-table="'+tablename+'"]')).parent().append(blank_tr.clone());
+										}
 									}
+									jsontype=$('#'+options.pageframe+' input[data-type="jsontype"]').val();
+									jQuery.json.getContent('',jsontype);/****获取json遍历数据，插入表格****/
 								}
 							}
 						}
@@ -212,6 +221,11 @@
         return this.each(function() {
         	$(options.load).show();/****显示加载数据加载动画****/
         	pageSize=parseInt($('#'+options.pageframe+' input[data-type="size"]').val());
+        	if($('#'+options.pageframe+' input[data-type="displaysize"]').length!=0){
+        		displaySize=parseInt($('#'+options.pageframe+' input[data-type="displaysize"]').val());
+        	}else{
+        		displaySize = null
+        	}
             /****预查询****/
 			if(options.pagetype=='refresh'){
 				pageNo=parseInt($('#'+options.pageframe+' input[data-type="number"]').val());

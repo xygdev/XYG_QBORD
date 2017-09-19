@@ -344,7 +344,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
                 <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="modify" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
-                <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="delete" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="Delete Line：" data-delparam=["LINE_ID",".LINE_ID"] ></i>
+                <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="delete" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="Delete Line：" data-delparam=["LINE_ID",".LINE_ID"] data-afterdatafunc="$().sumLines();"></i>
               </td>
               <td class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</td>                          
             </tr>
@@ -383,6 +383,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <jsp:param name="func" value="$().setParam()" />
             </jsp:include>
             <input type="hidden" data-type="size" value="20"/>
+            <input type="hidden" data-type="displaysize" value="10"/>
             <input type="hidden" data-type="number" value="1"/>
             <input type="hidden" data-type="orderby" value="LINE_NUM"/> 
             <input type="hidden" data-type="cond"/>

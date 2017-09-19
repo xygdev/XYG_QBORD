@@ -145,6 +145,9 @@
 				    		}else{
 				    			layer.alert("删除失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
 				    		}	
+							if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
+								eval(options.afterdatafunc);
+							}
 						},
 						error: function () {
 							/***ADD BY BIRD 2017.06.14 START***/
@@ -329,8 +332,17 @@
        	                 	因为%在url中为转义符，%25表达%字符本身，
        	                 	所以需要使用正则表达式全局替换，把字符串中
        	                 	所有的%替换为%25
+       	                 	2017.9.14 新增替换项目 
+       	                 	&    --> %26
+       	                 	\?   --> %3F
+       	                 	\s+  -->    (空格)
+       	                 	\+   --> %2B
        	            *****************************************/
-       	            value=value.replace(/%/g,'%25');       
+       	            value=value.replace(/%/g,'%25');  
+       	            value=value.replace(/&/g,'%26');  
+       	            value=value.replace(/\+/g,'%2B');  
+       	         	value=value.replace(/\s+/g,'');  
+       	            value=value.replace(/\?/g,'%3F');  
        	            param=param+'='+value;
        	        }				
 				pageSize=parseInt($('#'+options.pageframe+' input[data-type="size"]').val());				
@@ -474,28 +486,32 @@
      * 也可以是简写：['HEADER_ID','DEPARTMENT_CODE',...]
      */
     $.fn.mapContentJson = function(data,table,mapRowArray){
-    	var minRow=parseInt(data.pageMinRow);
-    	var maxRow=parseInt(data.pageMaxRow);
-    	if(maxRow==0&&minRow==0){
-            console.log('no data');
-            return false;
-        }
-    	for(i=0;i<(maxRow-minRow+1);i++){
-        	var $trRow=$(table).find('tr:eq('+(i+1)+')');
-        	//console.log('typeof:'+typeof mapRowArray);console.log($trRow[0]);
-        	for(var n in mapRowArray){
-            	if(typeof mapRowArray[n]=='object'){
-                	//console.log('col:'+mapRowArray[n][0]+',json:'+data.rows[i][mapRowArray[n][1]]);
-                	$trRow.find(mapRowArray[n][0]).html(data.rows[i][mapRowArray[n][1]]); 
-                	if(mapRowArray[n][2]&&typeof mapRowArray[n][2]== "function"){
-                		mapRowArray[n][2].call();
-                	}
-            	}else if(typeof mapRowArray[n]=='string'){
-                	$trRow.find('.'+mapRowArray[n]).html(data.rows[i][mapRowArray[n]]);
-            	}else{
-            		alert('mapRowArray 定义有误！请联系ERP确认处理！');
-            	}
-        	}
+    	if(data == null||data ==''){
+    		return;//data为空时  方法不执行 add by Bird 2017.9.1
+    	}else{
+	    	var minRow=parseInt(data.pageMinRow);
+	    	var maxRow=parseInt(data.pageMaxRow);
+	    	if(maxRow==0&&minRow==0){
+	            console.log('no data');
+	            return false;
+	        }
+	    	for(i=0;i<(maxRow-minRow+1);i++){
+	        	var $trRow=$(table).find('tr:eq('+(i+1)+')');
+	        	//console.log('typeof:'+typeof mapRowArray);console.log($trRow[0]);
+	        	for(var n in mapRowArray){
+	            	if(typeof mapRowArray[n]=='object'){
+	                	//console.log('col:'+mapRowArray[n][0]+',json:'+data.rows[i][mapRowArray[n][1]]);
+	                	$trRow.find(mapRowArray[n][0]).html(data.rows[i][mapRowArray[n][1]]); 
+	                	if(mapRowArray[n][2]&&typeof mapRowArray[n][2]== "function"){
+	                		mapRowArray[n][2].call();
+	                	}
+	            	}else if(typeof mapRowArray[n]=='string'){
+	                	$trRow.find('.'+mapRowArray[n]).html(data.rows[i][mapRowArray[n]]);
+	            	}else{
+	            		alert('mapRowArray 定义有误！请联系ERP确认处理！');
+	            	}
+	        	}
+	    	}
     	}
         /*“原生”的执行方式：
         for(i=0;i<(pageMaxRow-pageMinRow+1);i++){
