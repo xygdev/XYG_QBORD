@@ -8,11 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">    
-    <title>XinYi Glass(Test Only)</title>    
+    <title>Xinyi Glass(Test Only)</title>    
     <!-- 图标cdn引入 -->
     <link rel="stylesheet" href="plugin/css/font-awesome.min.css">
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-	<link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
 	<!-- 核心布局 CSS文件 -->
 	<link rel="stylesheet" href="plugin/css/login.css">
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
@@ -22,15 +20,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="plugin/jQuery/jquery-ui.min.js"></script>	
 	<script type="text/javascript" src="plugin/layer/layer.js"></script>
 	<style>
-	    .layui-layer-tips .layui-layer-content{
-	        font-size:0.9em !important;
-	        padding:4px 15px !important;
-	    }
+		
 	</style>
 	<script>
 	    var IE = function (version){
-	        document.write('<div class="cover"><div class="browers"><div class="title"><br/><span>Choose A Browers</span><br/><span>Go To The Download Page.</span></div><a href="http://www.firefox.com.cn/"><img width="150" src="/image/login/ff.png"/></a><a href="https://www.google.cn/chrome/browser/desktop/index.html"><img width="150" src="/image/login/chrome.png"/></a><a href="https://www.microsoft.com/zh-cn/download/internet-explorer-11-for-windows-7-details.aspx"><img width="120" src="/image/login/ie.png"/></a></div></div>');
-	    	alert('The Browers '+version+' Could Not Support Visiting Our Website.Please Download Another Browers And Try Again.');
+	        document.write('<div class="cover"><div class="browers"><div class="title"><br/><span>点击图标</span><br/><span>跳转到相应的浏览器下载页面</span></div><a href="http://www.firefox.com.cn/"><img width="140" style="margin-left:20px" src="/image/login/ff.png"/></a><a href="https://www.google.cn/chrome/browser/desktop/index.html"><img width="140" src="/image/login/chrome.png"/></a><a href="https://www.microsoft.com/zh-cn/download/internet-explorer-11-for-windows-7-details.aspx"><img width="130" src="/image/login/ie.png"/></a></div></div>');
+	    	alert(version+'浏览器不支持访问本站点，请更换浏览器重新访问');
 	    }	    
 	    
 	    if (document.all && document.compatMode && !window.XMLHttpRequest) {
@@ -51,142 +46,108 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    
-    <!-- 欢迎页区域 start -->
-    <div id="welcome-page" style="opacity:1;height:100%">
-      <div class="reveal-modal-bg"></div>
-      <!-- 右上角区域 start -->
-      <div class="dropdown langue-frame">
-   		<button type="button" class="btn dropdown-toggle langue-btn" id="dropdownMenu1" data-toggle="dropdown">
-          Language<span class="caret"></span>
-   		</button>
-   		<ul class="dropdown-menu" role="menu" style="min-width:100px" aria-labelledby="dropdownMenu1">
-      	  <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="loginZHS.do">CN</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="loginUS.do">EN</a>
-          </li>
-        </ul>
-      </div>
-      <!-- 右上角区域 end -->
-      <!-- 左上角区域 start -->
-      <div class="logo-frame">
-        <img src="/image/login/xyg.png" class="logo-img">
-        <h1 class="logo-desc">XYG Automobile Glass Online Platform</h1>
-        <i class="fa fa-circle green start-btn pointer">
-          <i class="fa fa-user-circle-o"></i>
-        </i>
-      </div>
-      <!-- 左上角区域 end -->
-
-      <!-- 背景图轮播区域 start -->
-      <div id="myCarousel" class="carousel slide" style="height:inherit;">   	  
-   	    <div class="carousel-inner" style="height:inherit;">
-      	  <div class="item active bg-img bg1">
-      	    <div class="img-desc">
-      	    </div>
-      	  </div>
-      	  <div class="item bg-img bg2">
-      	    <div class="img-desc">
-      	    </div>
-      	  </div>
-      	  <div class="item bg-img bg3">
-      	    <div class="img-desc">
-      	    </div>
-      	  </div>
-      	  <div class="item bg-img bg4">
-      	    <div class="img-desc">
-      	    </div>
-      	  </div>
-   	    </div>
-	  </div> 
-	  <!-- 背景图轮播区域 end -->
-	</div>
-	<!-- 欢迎页区域 end -->
-	
-	<!-- 登录页区域 start -->
-	<div id="login-page">
-	  <!-- 右上角区域 start -->
-	  <button type="button" class="go-back white" style="z-index:106;">
-	    <i class="fa fa-reply fa-2x" aria-hidden="true"></i>	    
-	  </button>
-	  <!-- 右上角区域 end -->
-	  <!-- 正中间区域 start -->
-	  <div class="login-modal-bg"></div> 
-	  <div class="login-frame" >
-	    <img src="/image/login/xyg.gif" style="width:100%">
-	    <form role="form" id="loginFrom" name="loginFrom" method="post" action="login.do">
-   		  <div class="form-group" style="padding:0 25px">
-     	    <label for="username">Username</label>
-      	    <input type="text" class="form-control" id="username" name="username" autocomplete="off" placeholder="Please Enter Your User Name" required="required"/>
-   		  </div>
-   		  <div class="form-group" style="padding:0 25px">
-     	    <label for="password">Password</label>
-     	    <input type="text" style="display:none;" />
-      	    <input type="text" class="form-control" id="password" name="password" autocomplete="off" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" placeholder="Please Enter Your Password" required="required"/>
-   		    <input type="text" style="display:none;" />
-   		  </div>
-   		  <div  class="form-group" style="padding:0 25px;overflow:hidden;">
-   		    <label for="textMsg" style="width:100%">Message Code</label>  		   
-   		    <input type="text" id="textMsg" name="textMsg"  class="form-control textMsg left" autocomplete="off" placeholder="Please Enter Your Message Code" required="required"/>
-   		    <input type="button" id="getMessage" class="getMessage pointer left" value="Send Msg"/>
-   		  </div>
-   		  <input type="hidden" id="lang" name="lang" value="US"/>
-   		  <button type="submit" class="btn btn-defult login-btn">Login</button>
-	    </form>
-	    <button class="forgetPassWord btn pointer"  data-reveal-id="findPWD" data-bg="pwd-modal-bg" data-dismissmodalclass="close-pwd-frame">Forget Password</button>
-        <div style="height:15px"></div>
-        
-        
-        <!-- 找回密码框 start -->
-        <div class="pwd-modal-bg"></div>
-        <div id="findPWD" class="pwd_frame ">
-          <div class="title pointer">      
-            <span><i class="fa fa-user fa-1x" aria-hidden="true"></i>&nbsp;Retrieve Password</span>
-          </div>
-          <a class="close-pwd-frame" data-type="close">&#215;</a>
-          <div class="line"></div>
-          <div class="content">
-            <form id="updateData">
-              <div class="form-group" style="padding:0 25px">
-                <label for="username_F" >Username</label>
-                <input type="text" id="username_F" class="form-control" name="username" autocomplete="off" placeholder="Please Enter Your User Name" required="required"/>
-              </div>   
-              <div class="form-group" style="padding:0 25px;overflow:hidden;">
-                <label for="textMsg_F" class="left" style="width:100%;margin-top:10px;">Message Code</label>     
-                <input type="text" id="textMsg_F"  class="form-control textMsg left" name="textMsg" autocomplete="off" placeholder="Please Enter Your Message Code"  required="required" />
-                <button id="getMessage_F" class="getMessage pointer left" >Get Code</button>
-              </div>
-              <div class="form-group" style="padding:0 25px">
-                <label for="N_PASSWORD_F">New Password</label>
-                <input type="text" style="display:none;" />
-                <input type="text" id="N_PASSWORD_F" class="form-control left N_PASSWORD" name="N_PASSWORD_F" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" autocomplete="off" required="required" data-update="db" class=" password" placeholder="Please Enter Your New Password"/>
-                <input type="text" style="display:none;" />
-                <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="N_PASSWORD_F"></i>
-                <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="N_PASSWORD_F"></i>
-              </div>
-            </form>
-          </div>
-          <div class="foot">       
-            <button id="confirm" class="right update_confirm pointer" data-crudtype="update" data-pageframe="findPWD" data-func="$().findPWD();" data-updateurl="forgetPwd.do">Confirm</button>
-          </div>   
-        </div>
-        <!-- 找回密码弹出框 end-->   
-	    
+	<div style="opacity:1;height:100%">
+	  <div class="modal-bg"></div>
+	  <div class="bg"></div>
+	  <div class="left_top">
+	  	<a href="loginZHS.do">中文</a>
+	  	<span> | </span>
+	  	<a href="loginUS.do">English</a>
 	  </div>
-	  <input type="hidden" id="errorMsg" value=${errorMsg} >
-	  <%
-	     session.setAttribute("errorMsg",null); 
-	   %>
-	  <!-- 正中间区域 end -->
+	  <div class="right_top">
+	    <img src="/image/login/xyg-auto.png" style="width:100%">
+	  </div>
+	  <!-- 登录框 -->
+	  <div class="login-page">
+	    <div class="login-frame">
+	      <div class="top-frame">
+	        <span style="font-size:50px;margin-bottom:10px">
+		      <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+			</span>
+	    	<span style="font-size:20px;margin-bottom:10px;letter-spacing:0">Login Here</span>
+	      </div>
+	      <form role="form" id="loginFrom" name="loginFrom" method="post" action="login.do">
+   		    <div class="form-group" style="padding:0 25px">
+   		      <label for="username" style="padding-right:1px">
+   		        <i class="fa fa-user-o" aria-hidden="true"></i>
+   		      </label>
+      	      <input type="text" class="form-control" id="username" name="username" autocomplete="off" placeholder="User" required="required"/>
+   		    </div>
+   		    <div class="form-group" style="padding:0 25px">
+   		      <label for="password" style="padding-right:6px">
+   		        <i class="fa fa-lock" aria-hidden="true"></i>	
+   		      </label>
+     	      <input type="text" style="display:none;"/>
+      	      <input type="text" class="form-control" id="password" name="password" autocomplete="off" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" placeholder="Password" required="required"/>
+   		      <input type="text" style="display:none;"/>
+   		    </div>
+   		    <div  class="form-group" style="padding:0 25px">	   
+   		      <label for="textMsg" >
+   		        <i class="fa fa-key" aria-hidden="true"></i>
+			  </label>  		   
+   		      <input type="text" id="textMsg" name="textMsg" style="width:120px"  class="form-control textMsg left" autocomplete="off" placeholder="Valid Code" required="required"/>
+   		  	  <input id="getMessage" type="button" class="btn-op pointer" value="Get Code"/>
+   		  	</div>
+   		    <input type="hidden" id="lang" name="lang" value="US"/>
+			<input id="login" type="submit" class="btn pointer" value="Login Now"/>
+			<input type="button" data-select="modify" style="width:150px" class="forget-pwd pointer" value="Forget Password？"/>
+	    </form>
+	    </div>
+	  </div>
+	  
+	  <!-- 忘记密码框  -->
+	  <div class="pwd-page">
+	    <div class="login-frame" id="find_pwd">
+	      <div class="top-frame">
+	        <span style="font-size:50px;margin-bottom:10px">
+		      <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+			</span>
+	    	<span style="font-size:20px;margin-bottom:10px;letter-spacing:0">Retrieve Password</span>
+	      </div>
+	      <form role="form" id="loginFrom" name="loginFrom" method="post" action="login.do">
+   		    <div class="form-group" style="padding:0 25px">
+   		      <label for="username_F" style="padding-right:1px">
+   		        <i class="fa fa-user-o" aria-hidden="true"></i>
+   		      </label>
+      	      <input type="text" class="form-control" id="username_F" name="username" autocomplete="off" placeholder="User" required="required"/>
+   		    </div>
+   		    <div class="form-group" style="padding:0 25px;color:white">
+   		      <label for="password_F" style="padding-right:6px">
+   		        <i class="fa fa-lock" aria-hidden="true"></i>	
+   		      </label>
+     	      <input type="text" style="display:none;"/>
+      	      <input type="text" class="form-control" style="width:185px" id="password_F" name="N_PASSWORD_F" autocomplete="off" onfocus="this.type='password'" onBlur="if(this.value==null||this.value==''){this.type='text'}" placeholder="New Password" required="required"/>
+   		      <input type="text" style="display:none;"/>
+   		      <i class="fa fa-eye-slash pointer left" data-pwd="show" data-frame="password_F"></i>
+              <i class="fa fa-eye pointer left hide" data-pwd="hide" data-frame="password_F"></i>
+   		    </div>
+   		    <div  class="form-group" style="padding:0 25px">	   
+   		      <label for="textMsg_F" >
+   		        <i class="fa fa-key" aria-hidden="true"></i>
+			  </label>  		   
+   		      <input type="text" id="textMsg_F" name="textMsg" style="width:120px"  class="form-control textMsg left" autocomplete="off" placeholder="Valid Code" required="required"/>
+   		  	  <input id="getMessage_F" type="button" class="btn-op pointer" value="Get Code"/>
+   		  	</div>
+   		    <input type="hidden" id="lang" name="lang" value="ZHS"/>
+			<input id="confirm" type="button" class="btn pointer" data-crudtype="update" data-pageframe="find_pwd" data-updateurl="forgetPwd.do" data-func="$().findPWD();" value="Modify Password"/>
+			<input type="button" data-select="goback" class="forget-pwd pointer" style="width:150px" value="Go Back Login Page"/>
+	    </form>
+	    </div>
+	  </div>
 	</div>
-	<!-- 登录页区域 end -->
-	
+        
+   
+	    
+
+	<input type="hidden" id="errorMsg" value=${errorMsg} >
+	<%
+	    session.setAttribute("errorMsg",null); 
+	%>
   <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 
-  <script type="text/javascript" src="plugin/js/data.validate.js"></script>  
+  <script type="text/javascript" src="plugin/js/data.validate.js"></script>
   <script type="text/javascript" src="plugin/js/jQuery.crud.js"></script> 
   <script>
+    //获取cookie
     function getCookie(cname) {
     	var arr = document.cookie.split(';');
     	var name = cname + '=';
@@ -204,57 +165,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var expires = 'expires='+d.toUTCString();
     	document.cookie = name + '=' + d + ';' + expires;
 	}
+	
+	//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+    function banBackSpace(e){   
+        var ev = e || window.event;//获取event对象   
+        var obj = ev.target || ev.srcElement;//获取事件源   
+        var t = obj.type || obj.getAttribute('type');//获取事件源类型  
+        //获取作为判断条件的事件类型
+        var vReadOnly = obj.getAttribute('readonly');
+        //处理null值情况
+        vReadOnly = (vReadOnly == "") ? false : vReadOnly;
+        //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+        //并且readonly属性为true或enabled属性为false的，则退格键失效
+        var flag1=(ev.keyCode == 8 && (t=="password" || t=="text" || t=="textarea") && vReadOnly=="readonly")?true:false;
+        //当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效
+        var flag2=(ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea")?true:false;        
+             
+        //判断
+        if(flag2){
+            return false;
+        }
+        if(flag1){   
+            return false;   
+        }   
+    }    
+	
+	window.onload = function(){
+        $().crudListener();
+        var userName = getCookie('USER_NAME');
+        $('#username').val(userName);
+        errorMSG=$('#errorMsg').val();
+        if(errorMSG!=null&&errorMSG!=''){ 
+            $('.start-btn').click();
+            layer.alert(errorMSG,{title:'Warning',offset:[150]});
+        }
+        //禁止后退键 作用于Firefox、Opera
+        document.onkeypress=banBackSpace;
+        //禁止后退键  作用于IE、Chrome
+        document.onkeydown=banBackSpace;
+    }
     
-    $.fn.symbol = function(){
-    	var screen_h = $(window).height();//screen.height;
-		var screen_w = $(window).width();//screen.width;
-		var h_w = (screen_h/screen_w)*16;
-		if(h_w>7.5&&h_w<=8.5){
-	    	//layer.alert('屏幕分辨率为16:9');
-	    	$('.bg1').html('');
-	    	$('.bg1').append('<img src="/image/login/en-1-symbol.png" style="position:absolute;width:35%;top:27vh;left:35vh"/>');
-	    	$('.bg2').html('');
-	    	$('.bg2').append('<img src="/image/login/en-2-symbol.png" style="position:absolute;width:35%;top:15vh;left:30vh"/>');
-	    	$('.bg3').html('');
-	    	$('.bg3').append('<img src="/image/login/en-3-symbol.png" style="position:absolute;width:35%;top:10vh;left:23vh"/>');
-	    	$('.bg4').html('');
-	    	$('.bg4').append('<img src="/image/login/en-4-symbol.png" style="position:absolute;width:35%;top:18vh;right:15vh"/>');
-		}else if(h_w>8.5&&h_w<=9.5){
-			//layer.alert('屏幕分辨率为16:10');
-			$('.bg1').html('');
-			$('.bg1').append('<img src="/image/login/en-1-symbol.png" style="position:absolute;width:35%;top:30vh;left:30vh"/>');
-			$('.bg2').html('');
-	    	$('.bg2').append('<img src="/image/login/en-2-symbol.png" style="position:absolute;width:35%;top:18vh;left:25vh"/>');
-	    	$('.bg3').html('');
-	    	$('.bg3').append('<img src="/image/login/en-3-symbol.png" style="position:absolute;width:35%;top:14vh;left:20vh"/>');
-	    	$('.bg4').html('');
-	    	$('.bg4').append('<img src="/image/login/en-4-symbol.png" style="position:absolute;width:35%;top:20vh;right:13vh"/>');
-		}else if(h_w>9.5&&h_w<=11.5){
-			//layer.alert('屏幕分辨率为4:3');
-			$('.bg1').html('');
-			$('.bg1').append('<img src="/image/login/en-1-symbol.png" style="position:absolute;width:45%;top:30vh;left:10vh"/>');
-			$('.bg2').html('');
-	    	$('.bg2').append('<img src="/image/login/en-2-symbol.png" style="position:absolute;width:45%;top:16vh;left:10vh"/>');
-	    	$('.bg3').html('');
-	    	$('.bg3').append('<img src="/image/login/en-3-symbol.png" style="position:absolute;width:45%;top:11vh;left:1.5vh"/>');
-	    	$('.bg4').html('');
-	    	$('.bg4').append('<img src="/image/login/en-4-symbol.png" style="position:absolute;width:45%;top:21vh;right:-8vh"/>');
-		}else{
-			$('.bg1').html('');
-			$('.bg2').html('');
-			$('.bg3').html('');
-			$('.bg4').html('');
-		}
-	}
-	
-	$.fn.tips = function(){
-		layer.tips('Login Here', '.start-btn', {
-            tips: [2, 'green'],
-            time: 0
-        });
-	}
-	
-	$('#getMessage,#getMessage_F').on('click',function(e){
+    //获取短信验证码按钮
+    $('#getMessage,#getMessage_F').on('click',function(e){
 		e.preventDefault();
 		console.log('短信验证码测试时暂时移除');
 		/*
@@ -265,94 +217,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}else if(id=='getMessage_F'){
 			username = $('#username_F').val();
 		}else{
-			layer.alert('Button Error，Please Contact The IT Department',{title:'警告',offset:[150]});
+			layer.alert('按钮事件绑定错误，请联系开发部门',{title:'警告',offset:[150]});
 			return;
 		}
 		if(username==''||username==''){
-			layer.alert('Please Enter Your User Name Before You Request For The Message Code!',{title:'警告',offset:[150]});
+			layer.alert('请先输入用户名再获取验证码',{title:'警告',offset:[150]});
 			return;
 		}else{
 			var msgCookie = getCookie(username.toUpperCase());
 			if(msgCookie!=''&&msgCookie!=null){
 				var res = msgCookie.split(' ');
-				layer.alert('This User Has Been Already Request For The Message Code.Please Do Not Request For It Repeatly!You Can Request Again After '+res[4],{title:'警告',offset:[150]});
+				layer.alert('此用户已获取过短信验证码，请勿在十分钟内频繁重复获取，'+res[4]+'可再次获取短信验证码',{title:'警告',offset:[150]});
 				return;
 			}else{
-				var param = 'USER_NAME='+username;
-				$.ajax({
-					type:'post', 
-					data:param,
-					url:'sendMsgCode.do',
-					dataType:'json',
-					success: function (data) {
-						if(data.code=='200'){
-							layer.msg('The Message Code Has Been Sent,Please Check Your Mobile Phone！');
-							addCookie(username.toUpperCase(),10);
-					    }else{
-					    	if(data.code=='8888'){
-				    			layer.alert('The User Name Does Not Exists,Please Check Your Spell！',{title:'警告',offset:[150]});
-				    		}else{
-					    		layer.alert('Message Code Error！Error Code:'+data.code,{title:'警告',offset:[150]});
-					    	}
-					    }	
-					},
-					error: function () {
-						layer.msg('Get Json Data Failed');	
-						if(window.frameElement != null){
-							//console.log("处于一个iframe中");
-							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-						}	
-					}
-				});
+			var param = 'USER_NAME='+username;
+			$.ajax({
+				type:'post', 
+				data:param,
+				url:'sendMsgCode.do',
+				dataType:'json',
+				success: function (data) {
+					if(data.code=='200'){
+						layer.msg('验证码已成功发送至手机，请注意查收！');
+						addCookie(username.toUpperCase(),10);
+				    }else{
+				    	if(data.code=='8888'){
+				    		layer.alert('您输入的用户名不存在,请检查后重新输入！',{title:'警告',offset:[150]});
+				    	}else{
+				    		layer.alert('获取验证码错误！错误代码:'+data.code,{title:'警告',offset:[150]});
+				    	}
+				    }	
+				},
+				error: function () {
+					layer.msg('获取JSON数据失败');	
+					if(window.frameElement != null){
+						//console.log("处于一个iframe中");
+						$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+					}	
+				}
+			});
 			}
 		}
 		*/
 	});
 	
-	// $(document).ready  改成   window.onload  2017/8/23 sun
-	window.onload = function(){
-	    $().symbol();
-        $().tips();
-        $().crudListener();
-        var userName = getCookie('USER_NAME');
-        $('#username').val(userName);
-        errorMSG=$('#errorMsg').val();
-        if(errorMSG!=null&&errorMSG!=''){ 
-            $('.start-btn').click();
-            layer.alert(errorMSG,{title:'Warning',offset:[150]});
-        }
-	}
-	
-	window.onresize=function(){
-	    $().symbol();
-	}
-	
-  	$('#myCarousel').carousel({
-  		interval: 5000
-	})
-	
-	
-	
-	$('.start-btn').on('click',function(){ 
-	    //$("#welcome-page").css("display","none");
-	    //$("#login-page").css("display","block");
-	    $('#login-page').fadeIn();
-	    layer.closeAll('tips'); 
+	//忘记密码&返回登录 按钮
+   	$('input[data-select]').on('click',function(e){
+		e.preventDefault();
+		var select = $(this).data('select');
+		if(select=='modify'){
+			$('.login-page').fadeOut();
+			$('.pwd-page').fadeIn();
+		}else if(select=='goback'){
+			$('.login-page').fadeIn();
+			$('.pwd-page').fadeOut();
+		}else{
+			
+		}
 	});
 	
-	$('.go-back').on('click',function(){	 
-  	    //$("#welcome-page").css("display","block");
-	    //$("#login-page").css("display","none");
-	    $('#login-page').fadeOut('fast');
-	    $().tips();
-	});
-	
-	
-	
-	$('#findPWD').draggable({ handle: '.title' });
 	$('i[data-pwd]').on('click',function(){
         if($(this).data('pwd')=='show'){
-            $('.fa-eye[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');
+            $('.fa-eye[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:inline-block!important');
             $(this).css('display','none');
             $('#'+$(this).data('frame')).attr('type','text');
             if($('#'+$(this).data('frame')).attr('onfocus').length!=0){
@@ -360,15 +286,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	$('#'+$(this).data('frame')).removeAttr('onBlur');
             } 
         }else if($(this).data('pwd')=='hide'){
-            $('.fa-eye-slash[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:block!important');
+            $('.fa-eye-slash[data-frame="'+$(this).data('frame')+'"]').css('cssText', 'display:inline-block!important');
             $(this).css('display','none');
             $('#'+$(this).data('frame')).attr('type','password');
         }
     });
-
-	$.fn.findPWD = function(){
-        RegExpValidate('^[a-zA-Z0-9]{5,14}$','N_PASSWORD_F','$("#N_PASSWORD_F").val("");regExpError("密码格式错误，必须是由字母或数字组成的6-15位字符");');
+    
+    $.fn.findPWD = function(){
+        RegExpValidate('^[a-zA-Z0-9]{5,14}$','password_F','$("#password_F").val("");regExpError("Password Format Error!");');
     }
   </script>
+  
   </body>
 </html>

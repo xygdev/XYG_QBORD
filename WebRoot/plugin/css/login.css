@@ -3,323 +3,42 @@
 /****************************
    Creation Date:2016.5.27
    Created by:bird
-   Last Update:
+   Last Update:2017.9.25
 ****************************/
 
-*{
-	margin:0;
-	padding:0;
-	font-size:16px;
-	font-family:"MicrosoftYaHei";
- }
- 
- body,html{
-    weight:100%;
-    height:100%;
- }
- 
- a:hover{
-    text-decoration:none;
- }
- 
- .white{
-    color:#FFFFFF
- }
- 
- .green{
- 	color:green
- }
- 
- .pointer{
-    cursor:pointer
- }
- 
- .left{
-    float:left;
- }
- 
- .right{
-    float:right;
- }
-/**************背景轮播图  start******************/
-
-.bg1{
-	background-image: url(/image/login/1.jpg);
-}
-
-.bg2{
-	background-image: url(/image/login/2.jpg);
-}
-
-.bg3{
-	background-image: url(/image/login/3.jpg);
-}
-
-.bg4{
-	background-image: url(/image/login/4.jpg);
-}
-
-.bg-img{
-	width:100%;
-	height:100%;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
-
-.bg-img>.img-desc{
-	position:absolute;
-	top:75vh;
-	left:10vh;
-	color:white
-}
-
-/**************背景轮播图  end******************/
-
-/**************欢迎页 start******************/
- .reveal-modal-bg { 
-	position: fixed; 
-	height: 100%;
-	width: 100%;
-	background: #000;
-	background: rgba(0,0,0,.1);
-	z-index: 100;
-	top: 0;
-	left: 0; 
-}
-		
-.center-text{
-	z-index:101;
-	position:absolute;
-	width:100%;
-	top:30vh !important;
-	text-algin:center;
-	font-size:26px;
-	color:white;
-}
-
-.center-text>.welcome-text{
-	text-transform:none !important;
-	text-align:center
-}
-
-.logo-frame>h1{
-	margin:16px 0 0 5px;
-}
-
-.logo-frame>.start-btn{
-	position:relative;
-	font-size:40px;
-	left:10px;
-	top:5px;
-}
-
-.start-btn>i{
-	position:absolute;
-	font-size:26px;
-	left:4px;
-	top:7px;
-	color:#fff;
-}		
-		
-.start-btn:active{
-	color:white !important;	
-}
-
-.langue-frame{
-	z-index:101;
-	position:absolute;
-	top:2vh;
-	right:3vw
-}
-
-.langue-frame>.langue-btn{
-	z-index:101;
-	border:none;
-	background-color:transparent;
-	color:white !important;
-	font-size:16px	
-}
-
-.logo-frame{
-	position:absolute;
-	z-index:101;
-	left:5vh;
-	top:2vh
-}
-
-.logo-frame>.logo-img{
-	float:left;
-	width:50px;
-	height:50px
-}
-
-.logo-frame>.logo-desc{
-	color:white;
-	display:block;
-	float:left;
-	line-height:15px;
-	font-size:30px
-}
-/**************欢迎页  end******************/
-
-/**************登录页 start******************/
-#login-page{
-	position:absolute;
-	top:0;
-	width:100%;
-	height:100%;
-	z-index:101;
-	display:none; 
-   /*  background-color:#2b9152 !important;  */
-}
-
-#login-page>.go-back{
-	position:absolute;
-	top:2vh;
-	right:4.3vw;
-	background-color:transparent;
-	border:none
-}
-
-#login-page>.login-modal-bg{
-	position:fixed;
-	height:100%;
-	width:100%;
-	background:#000;
-	z-index:100;
-	top:0;
-	left:0;
-	opacity:0.3;
-}
-
-#login-page>.login-frame{
-	position:relative;
-	background-color:white;
-	margin:15vh auto;
-	max-width:400px;
-	width:100%;
-	border-radius:10px;
-	z-index:101;
-}
-
-.login-frame .btn{
-	display:block;
-	margin:10px auto;
-	width:90%;
-	color:white
-}
-
-.login-frame .login-btn{
-	background-color:#BB3C31;
-}
-
-.login-frame .forgetPassWord{
-	background-color:#2C4477;
-}
-
-.login-frame .split-line{
-	background:white;
-	margin:0 auto;
-	margin-top:-30px;
-	width:55%;
-	text-align:center;
-	font-weight:bold
-}
-
-.login-frame .etc-btn{
-	margin:15px 5%;
-	display:inline-block !important;
-	width:42%;
-	height:50px;
-	color:white;
-}
-
-.login-frame .getMessage{
-	background-color:black;
-	color:white;
-	width:20%;
-	height:34px;
-	line-height:1;
-	border:none;
-	-moz-border-top-right-radius:5px;
-	-webkit-border-top-right-radius:5px;
-	border-top-right-radius:5px;
-	-moz-border-bottom-right-radius:5px;
-	-webkit-border-bottom-right-radius:5px;
-	border-bottom-right-radius:5px;
-	font-size:12px;
-	text-align:center;
-	vertical-align:middle;
-	margin-top:10px;
-}
-
-#login-page .textMsg{
-	border-radius:0;
-	-moz-border-radius:0;
-	-webkit-border-radius:0;
-    width:80%;
-    margin-top:10px;
-    -moz-border-top-left-radius:5px;
-    -webkit-border-top-left-radius:5px;
-    border-top-left-radius:5px;
-    -moz-border-bottom-left-radius:5px;
-    -webkit-border-bottom-left-radius:5px;
-}
-
-@media screen and (max-width:991px){
-	body{overflow-x:hidden;}
-	#login-page>.login-frame{
-		position:relative;
-		background-color:white;
-		margin:15vh auto;
-		width:100%;
-		max-width:992px;
-		border-radius:10px
-	}	
-	#login-page .textMsg{width:85%;}
-	#login-page .getMessage{font-size:16px;max-width:15%;}	
-	#login-page{
-	    /* background-color:#fff */ 
-	}
-	
-}
-
-/* ==========================================================================
-找回密码框
-========================================================================== */
-.pwd-modal-bg{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,.8);z-index:2000;display:none;top:0;left:0}
-.pwd_frame{visibility:hidden;position:fixed;z-index:2001;top:200px;left:50%;margin-left:-290px;width:580px;height:378px;font-size:16px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-color:white;overflow:auto;}
-.pwd_frame>.title{position:relative;width:100%;height:40px;padding:5px 0;}
-.pwd_frame>.title>span{font-family:Microsoft YaHei;font-size:1.5em;font-weight:700;display:inline-block;:box-sizing:border-box;padding:2px 20px ;margin-bottom:7px; }
-.pwd_frame .close-pwd-frame{font-size:22px;line-height:.5;position:absolute;top:8px;right:11px;color:#aaa;text-shadow:0 -1px 1px rbga(0,0,0,.6);font-weight:bold;cursor:pointer}
-.pwd_frame>.line{position:relative;width:100%;height:3px;background:black;margin-top:6px;}
-.pwd_frame>.content{position:relative;width:580px;height:270px;padding:20px 0}
-.pwd_frame>.foot{position:relative;width:580px;height:40px;padding:5px 0}
-.pwd_frame>.content>form>label{font-size:1.1em;padding:10px 20px 5px 0;width:80px;text-align:right}
-.pwd_frame>.content>form>input{width:200px;height:25px;font-size:1.1em;margin:10px 0}
-.pwd_frame>.content>form>input.password{width:225px}
-.pwd_frame>.content>form i{display:block;margin:12px 5px;}
-.pwd_frame>.content>form i.hide{display:none}
-.pwd_frame>.content>form>input.short{width:150px}
-.pwd_frame>.content>form>input.button{background-color:black;color:white;width:50px;height:25px;line-height:1;border:none;-moz-border-top-right-radius:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px;-moz-border-bottom-right-radius:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px;margin:5px 0;font-size:1.2em;text-align:center;vertical-align:middle}
-.pwd_frame>.content>form>select{width:206px;height:26px;font-size:1em;margin:5px 0;text-algin:center}
-.pwd_frame>.content>form>textarea{width:526px;height:100px;font-size:1em;margin:5px 0}
-.pwd_frame>.foot>button{background-color:black;display:block;border:1px solid black;color:white;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;margin:0 29px;font-weight:bold}
-
-.N_PASSWORD{
-	width:95% ;	
-}
-
-/**************登录页 end******************/
-
-
-
+input,textarea{outline:none}
+input:required:invalid,input:focus:invalid,select:required:invalid,select:focus:invalid,textarea[required]:invalid,textarea:focus:invalid{box-shadow:none}
+input:required,select:required{box-shadow:none}
+*{margin:0;padding:0;font-size:16px;font-family:"MicrosoftYaHei"}
+body,html{weight:100%;height:100%}
+.pointer{cursor:pointer}
+a{text-decoration:none;}
+/* 去除IE输入框的X标记 */
+input[type=text]::-ms-clear { display: none; }
+/* 去除IE输入框的小眼睛标记 */
+input[type=password]::-ms-reveal { display: none; }
+.bg{width:100%;height:100%;background-position:center center;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;background-image:url(/image/login/bg.jpg)}
+.modal-bg{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,0);z-index:100;top:0;left:0}
+.left_top{position:fixed;top:2vh;left:2vh;z-index:102;color:white}
+.left_top a,a:visited{text-decoration:none;color:white}
+.left_top a:hover{text-decoration:none;color:#1AA93A;font-weight:bold}
+.right_top{position:fixed;top:2vh;right:2vh;width:400px;z-index:102}
+.login-page{position:absolute;top:0;width:100%;height:100%;z-index:101}
+.pwd-page{position:absolute;top:0;width:100%;height:100%;z-index:101;display:none}
+.top-frame{position:relative;top:0;left:0;width:300px;z-index:101}
+.top-frame span{display:block;width:300px;text-align:center;color:#aaa;letter-spacing:6px}
+.login-frame{position:absolute;top:28%;left:20vh;width:300px;border-radius:10px;z-index:101}
+.form-group{margin:10px 0;border-width:1px 1px 2px 1px;border-style:solid;border-color:#aaa;border-radius:5px}
+.form-group label{color:white;font-size:15px;height:25px}
+.form-group input{border-width:0;height:25px;background-color:transparent;font-size:15px;padding-left:10px;width:180px;color:white;margin:10px 0}
+.form-group i.hide{display:none}
+.form-group .btn-op{border:0;font-size:15px;color:white;padding:0;width:90px}
+.btn{border:0;border-radius:4px;margin:5px 0;width:300px;height:40px;font-size:15px;color:white;background:-webkit-linear-gradient(#1AA93A,#006633);background:-o-linear-gradient(#1AA93A,#006633);background:-moz-linear-gradient(#1AA93A,#006633);background:linear-gradient(#1AA93A,#006633)}
+.forget-pwd{border:0;font-size:15px;color:white;padding:0;width:90px;float:right;background-color:transparent}
 /************浏览器下载页面 start***********/
 .cover{position: fixed;z-index:990;height: 100%;width:100%;background-attachment: fixed;background-size: cover;background-position: center center;background-repeat:no repeat;background-image:url(/image/login/XYG-BG.jpg);top:0;left:0;}
 .browers{position: absolute;height: 290px;width:450px;background:#c9e7df;border:10px solid #208E5D;bottom:50px;left:50%;margin-left:-235px;}
 .browers>.title{width:430px;height:100px;text-align:center;}
 .browers>.title>span{font-size:25px;color:#208E5D;font-weight:bold;}
-
+.browers img{border:none;outline:none}
 /************浏览器下载页面 end***********/
