@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			border-right:1px solid #ccc;
 			display:none;
 		}
-		.detail_frame .detail_table{height:355px;overflow-y:auto;overflow-x:hidden;}
+        .detail_frame .detail_table{height:355px;overflow:auto;}
 	</style>  
   </head>
   <body>
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="REMARKS" data-column="db"></td>
             <td class="ACTION" data-column="normal">
               <i class="fa fa-pencil fa-fw update pointer hidden" title="Modify Contract" data-show="true" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateH.do" data-type="update" data-func="$().beforePreUpdateH()" data-updateparam=["HEADER_ID",".HEADER_ID"]></i>            
-              <i class="fa fa fa-eye view pointer show_detail hidden" title="Contract Detail" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" ></i>
+              <i class="fa fa fa-eye view pointer show_detail hidden" title="Contract Detail" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" data-dblclick="true"></i>
               <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="Delete" data-refresh="refresh"  data-col="CONTRACT_NUMBER" data-crudtype="del" data-delurl="contract/deleteH.do" data-delmsg="是否删除合同号：" data-delparam=["HEADER_ID",".HEADER_ID"] ></i>
             </td>
             <td class="HEADER_ID" style="display:none" data-column="hidden">&nbsp;</td>
@@ -280,7 +280,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
 <!----------------------------------------------订单明细-------------------------------------------------------- -->      
       
-      <div class="detail_frame" id="detail" style="height:603px">
+      <div class="detail_frame" id="detail" style="width:100%;">
         <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;Contract Detail</span>
         </div>
@@ -504,7 +504,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             //设置拖拽
             $('#ui').draggable({ handle: '.title' });
-            $('#detail').draggable({ handle: '.title' });
+            /* $('#detail').draggable({ handle: '.title' }); */
             $('#detail_ui').draggable({ handle: '.title' });
             $('#query').draggable({ handle: '.title' }); 
             $('#update_ot').draggable({ handle: '.title' }); 
@@ -687,8 +687,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  
                 $('.show_detail').on('click',function(){
+                    
+                    width=$(window).width();
+                    height=$(window).height();
+                    if(width>=768){
+                        headerheight=$('section.content-header').outerHeight();
+                        ifmheight=height-headerheight;
+                    }else{
+                        logoheight=$('a.logo').height();
+                        headerheight=$('section.content-header').outerHeight();
+                        ifmheight=height-logoheight-headerheight;
+                    }
+                    var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
+                    $('#detail').css('height',ifmheight+'px');
+                    $('.detail_table').css('min-height',detailTabH);
+                    
+                    window.onresize=function(){
+                        width=$(window).width();
+                        height=$(window).height();
+                        if(width>=768){
+                            headerheight=$('section.content-header').outerHeight();
+                            ifmheight=height-headerheight;
+                        }else{
+                            logoheight=$('a.logo').height();
+                            headerheight=$('section.content-header').outerHeight();
+                            ifmheight=height-logoheight-headerheight;
+                        }
+                        var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
+                        $('#detail').css({'height':ifmheight+'px','top':'0','margin-left':'-50%'});
+                        $('.detail_table').css('min-height',detailTabH);
+
+                    }
+                    
                     var width='-'+parseInt($('#detail').css('width'))/2+'px';
-                    $('#detail').css('margin-left',width); //add by Bird   2017.08.21
+                    $('#detail').css({'margin-left':width,'top':'0'}); //add by Bird   2017.08.21
                     var userType = '${USER_TYPE}';
                     var tr=$(this).parent().parent();
                     var status = tr.children('.STATUS').text(); 

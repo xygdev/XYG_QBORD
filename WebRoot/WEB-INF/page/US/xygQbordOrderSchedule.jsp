@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="CUSTOMER_PO" data-column="db"></td>
             <td class="REMARKS" data-column="db"></td>
             <td class="ACTION" data-column="normal">  
-              <i class="fa fa fa-eye view pointer show_detail hidden" title="Contract Detail" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" ></i>       
+              <i class="fa fa fa-eye view pointer show_detail hidden" title="Contract Detail" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" data-dblclick="true"></i>       
             </td>
             <td class="HEADER_ID" style="display:none" data-column="hidden">&nbsp;</td>
             <td class="CUSTOMER_ID" style="display:none" data-column="hidden">&nbsp;</td> 
@@ -197,7 +197,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <br style="clear:both"/>
           <label class="mid" for="REQUIRED_QTY_L">Req Qty</label>
           <input type="text" id="REQUIRED_QTY_L" class="long" readonly="readonly"/>
-          <label class="mid" for="ORDER_QTY_L">Order Qty</label>
+          <label class="mid" for="ORDER_QTY_L">OrderQty</label>
           <input type="text" id="ORDER_QTY_L" class="long" readonly="readonly"/>
           <br style="clear:both"/>
           <label class="mid" for="BH_QTY_L">BH Qty</label>

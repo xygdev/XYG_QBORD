@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="CUSTOMER_PO" data-column="db"></td>
             <td class="REMARKS" data-column="db"></td>
             <td class="ACTION" data-column="normal">  
-              <i class="fa fa fa-eye view pointer show_detail hidden" title="订单明细" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" ></i>       
+              <i class="fa fa fa-eye view pointer show_detail hidden" title="订单明细" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" data-dblclick="true"></i>       
             </td>
             <td class="HEADER_ID" style="display:none" data-column="hidden">&nbsp;</td>
             <td class="CUSTOMER_ID" style="display:none" data-column="hidden">&nbsp;</td> 

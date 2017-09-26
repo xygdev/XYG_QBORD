@@ -164,6 +164,20 @@
 							}else{
 								$('#'+options.pageframe+' input[data-type="number"]').val(pageNo);
 							}
+							
+							
+							if($('table[data-table="'+tablename+'"] i[data-dblclick="true"]').length==0){  //add sun 2017/9/25
+								null;
+							}else{
+								$('table[data-table="'+tablename+'"] td').attr('title','双击显示明细');
+								$('table[data-table="'+tablename+'"] td').on('dblclick', function() {
+									$(this).parent().find('.ACTION i[data-dblclick="true"]').click();
+									if(options.dblclickfunc!=null&&options.dblclickfunc!=''){
+										eval(options.dblclickfunc);
+									}
+								})
+							}
+							
 						}else{
 							if(options.pagetype=='nextpage'){								
 								if($('#'+options.pageframe+' i[data-pagetype="lastpage"]').length>0){

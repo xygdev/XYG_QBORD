@@ -49,7 +49,7 @@
      	  </tr>
      	  <tr>
      	    <td class="ACTION" data-column="normal" style="min-width:50px">
-     	      <i class="fa fa-eye fa-fw pointer hidden" data-show="true" title="物料明细" ></i>
+     	      <i class="fa fa-eye fa-fw pointer hidden" data-show="true" title="物料明细" data-dblclick="true" ></i>
      	    </td>
             <td class="ORGANIZATION_NAME" data-column="db"></td>
      	    <td class="ITEM_NUMBER" data-column="db"></td>
