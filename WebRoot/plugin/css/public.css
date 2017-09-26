@@ -20,6 +20,7 @@ td{border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#7a7a7a;
 .text-center{text-align:center !important}
 .hidden{visibility:hidden}
 .none{display:none !important}
+.upper-case{text-transform:uppercase}
 /* 去除IE输入框的X标记 */
 input[type=text]::-ms-clear { display: none; }
 /* 去除IE输入框的小眼睛标记 */

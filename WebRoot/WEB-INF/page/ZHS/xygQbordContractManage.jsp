@@ -416,7 +416,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="DESCRIPTION_D" class="md left">本厂型号</label> 
             <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
-            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] value="···"/> 
+            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION","CARNAME"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] data-func="$().upperCase();" value="···"/> 
             <label for="CARNAME" class="md left">中文描述</label> 
             <input type="text" id="CARNAME_D" name="CARNAME" data-update="db" class="left lgx2" data-update="db" required="required" readonly="readonly"/> 
           	<br style="clear:both"/>
@@ -611,6 +611,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   }
 			
 			}); 
+			
+			//自动转换大写
+			$.fn.upperCase = function(){
+				$('option[value="CARNAME"]').off('click');
+				$('option[value="DESCRIPTION"]').off('click');
+				$('option[value="CARNAME"]').on('click',function(){
+					$('#lov input[data-type="query_val"]').removeClass('upper-case');
+					$('#lov input[data-type="query_val"]').off('keyup');
+				});
+				$('option[value="DESCRIPTION"]').on('click',function(){
+					$('#lov input[data-type="query_val"]').addClass('upper-case');
+					$('#lov input[data-type="query_val"]').on('keyup',function(){
+						this.value=this.value.toUpperCase();
+					});
+				});
+				$('option[value="DESCRIPTION"]').click();
+			}
 			
 			$.fn.beforePreInsertH = function(){
 			    var display = $('#ORDER_TYPE_ID').css('display');

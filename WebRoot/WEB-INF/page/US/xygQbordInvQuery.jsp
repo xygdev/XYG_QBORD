@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left lg" readonly="readonly"/>           
             <br style="clear:both"/>
             <label for="DESCRIPTION_Q" class="left md">Item:</label>
-            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg"/>    
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onkeyup="this.value=this.value.toUpperCase()"/>    
             <label for="CARNAME_Q" class="left md">CN DESC:</label>
             <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>   
             <br style="clear:both"/>

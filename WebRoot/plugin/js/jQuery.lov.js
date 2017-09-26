@@ -127,9 +127,7 @@
         	$('#'+options.pageframe+' select[data-type="select"]').html('');
         	$('#'+options.pageframe+' input[data-type="query_val"]').val('');
         	$('#'+options.pageframe+' input[data-type="extend_param"]').val('');
-        	if(options.func!=null&&options.func!=''){
-				eval(options.func);
-			}
+        	
         	for(j=0;j!=-1;j++){
         		if(options.selectname[j]!=null&&options.selectvalue[j]!=null){
         			$('#'+options.pageframe+' select[data-type="select"]').append('<option value='+options.selectvalue[j]+'>'+options.selectname[j]+'</option>');
@@ -137,6 +135,9 @@
         			break;
         		}
         	}
+        	if(options.func!=null&&options.func!=''){
+				eval(options.func);
+			}
 			//2017.1.6新增自动获取扩展lov参数的逻辑
 			//console.log('options.extparam:'+options.extparam);
 			if(options.extparam){

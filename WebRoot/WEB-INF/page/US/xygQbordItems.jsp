@@ -137,7 +137,7 @@
             <input type="text" id="ITEM_NUMBER_Q" name="ITEM_NUMBER" class="left lg"/>
             <br style="clear:both"/>
             <label for="DESCRIPTION_Q" class="left md">Item:</label>
-            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg"/>
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onkeyup="this.value=this.value.toUpperCase()"/>
             <label for="CARNAME_Q" class="left md">CN Desc:</label>
             <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>
             <br style="clear:both"/>

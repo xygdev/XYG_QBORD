@@ -335,13 +335,14 @@
        	                 	2017.9.14 新增替换项目 
        	                 	&    --> %26
        	                 	\?   --> %3F
-       	                 	\s+  -->    (空格)
+       	                 	\s+  --> %20
        	                 	\+   --> %2B
+       	                 	modify by Bird 2017.9.25
        	            *****************************************/
        	            value=value.replace(/%/g,'%25');  
        	            value=value.replace(/&/g,'%26');  
        	            value=value.replace(/\+/g,'%2B');  
-       	         	value=value.replace(/\s+/g,'');  
+       	         	value=value.replace(/\s+/g,'%20');  
        	            value=value.replace(/\?/g,'%3F');  
        	            param=param+'='+value;
        	        }				
