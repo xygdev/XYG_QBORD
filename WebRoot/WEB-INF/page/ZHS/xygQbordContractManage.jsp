@@ -19,13 +19,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
     <style type="text/css">  
-		.REMARKS,.EN_DESC{
+		.EN_DESC{
 		    width:110px;
 		    white-space: nowrap;
 		    text-overflow: ellipsis;
 		    overflow: hidden;
 		}
-		.REMARKS P,.EN_DESC P{
+		.EN_DESC P{
 		    color:black;
 			background:#C0C0C0;
 			position:absolute;
@@ -529,13 +529,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.setParam = function(){
                 headerId=$('#HEADER_ID_L').val();
                 param=param+'&HEADER_ID='+headerId;
-                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
-                for(var i=0;i<tdL.length;i++){
-                    var tdWid = tdL.eq(i).width()+2.3;
-                    //console.log("tdWid:"+tdWid)
-                    var th = $('.detail_table').find('thead').find('th');
-                    th.eq(i).width(tdWid);
-                }
             }  
 			
 			//默认查询时间
@@ -912,6 +905,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
             tableCont.addEventListener('scroll',scrollHandle);  
             
+            //加载完成后计算th宽度
+            $.fn.setThWid = function(){
+                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
+                for(var i=0;i<tdL.length;i++){
+                    var tdWid = tdL.eq(i).width()+2.3;
+                    //console.log("tdWid:"+tdWid)
+                    var th = $('.detail_table').find('thead').find('th');
+                    th.eq(i).width(tdWid);
+                }
+            }
                 
         });
          
@@ -973,20 +976,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ,['.UNIT_PRICE','UNIT_PRICE']                 
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.LINE_PRICE','LINE_PRICE']
-                    ,['.REMARKS','REMARKS',
-                        function(){
-                            if(data.rows[i].REMARKS == ''){
-                                null;
-                            }else{
-                                $('#oLine').find('tr:eq('+(i+1)+')').find('.REMARKS').html('<div class="REMARKS">'+data.rows[i].REMARKS+'</div><p>'+data.rows[i].REMARKS+'</p>');
-                                $('#oLine').find('tr:eq('+(i+1)+')').find('.REMARKS').hover(function(){
-                                    $(this).children('p').css('display','block')
-                                },function(){
-                                    $(this).children('p').css('display','none')
-                                });
-                            }
-                        }
-                     ]
+                    ,['.REMARKS','REMARKS']
                     ,['.LINE_ID','LINE_ID']
                      ];
                     $().mapContentJson(data,'#oLine',mapRowArray);
@@ -994,6 +984,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#detail').css('margin-left',width); 
                     $().crudListener();             
                     $().revealListener();                    
+                    $().setThWid();
                     
                 }else if(JSONtype=='3rdtable'){            
                      var mapRowArray=[

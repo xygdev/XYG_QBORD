@@ -19,7 +19,7 @@
           Search  
         </div>  
         <select data-type="select" class="left"></select>  
-        <input type="text" data-type="query_val" class="left" >
+        <input type="text" data-type="query_val" class="left" style="width:167px;height:20px;">
         <input type="hidden" data-type="extend_param"/>
         <div class="left lov_button">
           <i class="fa fa-search pointer" data-keyup="enter" data-crudtype="lovquery" data-load=".lov_loading" data-pageframe="lov"></i>
