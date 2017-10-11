@@ -19,13 +19,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
     <style type="text/css">  
-		.EN_DESC{
+		.REMARKS,.EN_DESC{
 		    width:110px;
 		    white-space: nowrap;
 		    text-overflow: ellipsis;
 		    overflow: hidden;
 		}
-		.EN_DESC P{
+		.REMARKS P,.EN_DESC P{
 		    color:black;
 			background:#C0C0C0;
 			position:absolute;
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="CURR_CODE" data-column="db">Currency</th>
             <th class="PRICE_LIST_NAME" data-column="db">Price List</th>
             <th class="ORDER_TYPE_NAME" data-column="db">Order Type</th>
-            <th class="STATUS_DESC" data-column="db">Status</th>
+            <th class="STATUS_DESC" data-column="normal">Status</th>
             <th class="CREATION_DATE" data-column="db">Creation Date</th>
             <th class="CREATED_USER_DESC" data-column="db">Created By</th>
             <th class="STATUS_BOOK_DATE" data-column="db">Book Date</th>
@@ -132,6 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <jsp:param name="rdtable" value="#main-table" />
             <jsp:param name="odtable" value="#main-table" />
             <jsp:param name="pageframe" value="table" />
+            <jsp:param name="alias" value="XQCH" />
           </jsp:include>
           <!-- 设置菜单区域 end -->  
         </div>
@@ -315,22 +316,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <br style="clear:both"/>
         </div>     
         <!-- 订单明细表格区域 start -->
-        <div class="detail_table" style="min-height:355px">
+        <div class="detail_table">
           <table id="oLine" data-table="OrderLine">
-            <tr>
-              <th class="LINE_NUM" data-column="db" style="min-width:50px">Seq</th>
-              <th class="DESCRIPTION" data-column="db">Item</th>
-              <th class="CARNAME" data-column="db">CN Desc</th>
-              <th class="EN_DESC" data-column="db">EN Desc</th>
-              <th class="SPEC" data-column="db" style="min-width:50px">Spec</th>
-              <th class="BEVEL" data-column="db" style="min-width:80px">Bevel</th>
-              <th class="UNIT_PRICE" data-column="db" style="min-width:50px">Unit Price</th>
-              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">Order Qty</th>
-              <th class="LINE_PRICE" data-column="db" style="min-width:50px">Line Price</th>
-              <th class="REMARKS" data-column="db" style="min-width:30px">Remarks</th>
-              <th class="ACTION" data-column="normal">Action</th> 
-              <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
-            </tr>
+            <thead>
+              <tr>
+                <th class="LINE_NUM" data-column="db" style="min-width:50px">Seq</th>
+                <th class="DESCRIPTION" data-column="db">Item</th>
+                <th class="CARNAME" data-column="db">CN Desc</th>
+                <th class="EN_DESC" data-column="db">EN Desc</th>
+                <th class="SPEC" data-column="db" style="min-width:50px">Spec</th>
+                <th class="BEVEL" data-column="db" style="min-width:80px">Bevel</th>
+                <th class="UNIT_PRICE" data-column="db" style="min-width:50px">Unit Price</th>
+                <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">Order Qty</th>
+                <th class="LINE_PRICE" data-column="db" style="min-width:50px">Line Price</th>
+                <th class="REMARKS" data-column="db" style="min-width:30px">Remarks</th>
+                <th class="ACTION" data-column="normal">Action</th> 
+                <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
+              </tr>
+            </thead>
             <tr>
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
@@ -525,6 +528,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.setParam = function(){
                 headerId=$('#HEADER_ID_L').val();
                 param=param+'&HEADER_ID='+headerId;
+                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
+                for(var i=0;i<tdL.length;i++){
+                    var tdWid = tdL.eq(i).width()+2.3;
+                    //console.log("tdWid:"+tdWid)
+                    var th = $('.detail_table').find('thead').find('th');
+                    th.eq(i).width(tdWid);
+                }
             }  
 			
 			//默认查询时间
@@ -884,6 +894,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 step: 30,
                 showOnClick: true
             });
+            
+            //明细表固定表头
+            var tableCont = document.getElementsByClassName('detail_table')[0];
+            function scrollHandle (e){
+                var scrollTop = this.scrollTop;
+                $('.detail_table').find('thead').css({'transform':'translateY(' + scrollTop + 'px)','display':'table-caption'})
+                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
+                for(var i=0;i<tdL.length;i++){
+                    var tdWid = tdL.eq(i).width()+2.3;
+                    //console.log("tdWid:"+tdWid)
+                    var th = $('thead').find('th');
+                    th.eq(i).width(tdWid);
+                }
+            }
+            tableCont.addEventListener('scroll',scrollHandle); 
                 
         });
          
@@ -945,7 +970,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ,['.UNIT_PRICE','UNIT_PRICE']                 
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.LINE_PRICE','LINE_PRICE']
-                    ,['.REMARKS','REMARKS']
+                    ,['.REMARKS','REMARKS',
+                        function(){
+                            if(data.rows[i].REMARKS == ''){
+                                null;
+                            }else{
+                                $('#oLine').find('tr:eq('+(i+1)+')').find('.REMARKS').html('<div class="REMARKS">'+data.rows[i].REMARKS+'</div><p>'+data.rows[i].REMARKS+'</p>');
+                                $('#oLine').find('tr:eq('+(i+1)+')').find('.REMARKS').hover(function(){
+                                    $(this).children('p').css('display','block')
+                                },function(){
+                                    $(this).children('p').css('display','none')
+                                });
+                            }
+                        }
+                     ]
                     ,['.LINE_ID','LINE_ID']
                      ];
                     $().mapContentJson(data,'#oLine',mapRowArray);

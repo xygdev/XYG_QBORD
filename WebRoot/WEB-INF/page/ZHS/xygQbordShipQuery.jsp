@@ -76,6 +76,7 @@
             <jsp:param name="rdtable" value="#main-table" />
             <jsp:param name="odtable" value="#main-table" />
             <jsp:param name="pageframe" value="table" />
+            <jsp:param name="alias" value="XQSQ" />
           </jsp:include>
           <!-- 设置菜单区域 end -->    
         </div>

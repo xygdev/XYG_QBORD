@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="wrapper" name="wrapper" id="wrapper">
   <div class="inside_banner" style="background-image:url(/image/home/bg1.png)">
     <div class="tu">
-      <img src="/image/home/bg1.png" width="100%" />
+      <img src="/image/home/bg1.png" width="100%" oncontextmenu="return false;" ondragstart="return false;" />
     </div>
     <div class="title">
       <!-- 
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
     <div class="company_video clearfix">
       <div class="video_pic fl">
-        <img src="/image/home/video_pic.jpg" width="100%" />
+        <img src="/image/home/video_pic.jpg" width="100%" oncontextmenu="return false;" ondragstart="return false;"/>
         <div class="video_btn">
           <img src="/image/home/video_btn.png" />
         </div>

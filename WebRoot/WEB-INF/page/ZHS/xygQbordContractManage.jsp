@@ -19,17 +19,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
     <style type="text/css">  
-		.EN_DESC{
+		.REMARKS,.EN_DESC{
 		    width:110px;
 		    white-space: nowrap;
 		    text-overflow: ellipsis;
 		    overflow: hidden;
 		}
-		.EN_DESC P{
+		.REMARKS P,.EN_DESC P{
 		    color:black;
 			background:#C0C0C0;
 			position:absolute;
-			margin-top:-26px;
+			margin-top:-25px;
 			height:31px;
 			line-height:31px;
 			font-weight:bold;
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="CURR_CODE" data-column="db">币种</th>
             <th class="PRICE_LIST_NAME" data-column="db">价目表</th>
             <th class="ORDER_TYPE_NAME" data-column="db">订单类型</th>
-            <th class="STATUS_DESC" data-column="db">状态</th>
+            <th class="STATUS_DESC" data-column="normal">状态</th>
             <th class="CREATION_DATE" data-column="db">创建日期</th>
             <th class="CREATED_USER_DESC" data-column="db">创建人</th>
             <th class="STATUS_BOOK_DATE" data-column="db">登记日期</th>
@@ -132,6 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <jsp:param name="rdtable" value="#main-table" />
             <jsp:param name="odtable" value="#main-table" />
             <jsp:param name="pageframe" value="table" />
+            <jsp:param name="alias" value="XQCH" />
           </jsp:include>
           <!-- 设置菜单区域 end -->  
         </div>
@@ -316,22 +317,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <br style="clear:both"/>
         </div>     
         <!-- 订单明细表格区域 start -->
-        <div class="detail_table" style="min-height:355px">
+        <div class="detail_table">
           <table id="oLine" data-table="OrderLine">
-            <tr>
-              <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
-              <th class="DESCRIPTION" data-column="db">本厂型号</th>
-              <th class="CARNAME" data-column="db">中文描述</th>
-              <th class="EN_DESC" data-column="db">英文描述</th>
-              <th class="SPEC" data-column="db" style="min-width:50px">规格</th>
-              <th class="BEVEL" data-column="db" style="min-width:80px">中高对角</th>
-              <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
-              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
-              <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
-              <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
-              <th class="ACTION" data-column="normal">操作</th> 
-              <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
-            </tr>
+            <thead>
+              <tr>
+                <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
+                <th class="DESCRIPTION" data-column="db">本厂型号</th>
+                <th class="CARNAME" data-column="db">中文描述</th>
+                <th class="EN_DESC" data-column="db">英文描述</th>
+                <th class="SPEC" data-column="db" style="min-width:50px">规格</th>
+                <th class="BEVEL" data-column="db" style="min-width:80px">中高对角</th>
+                <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
+                <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
+                <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
+                <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
+                <th class="ACTION" data-column="normal">操作</th> 
+                <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
+              </tr>
+            </thead>
             <tr>
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
@@ -526,6 +529,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.setParam = function(){
                 headerId=$('#HEADER_ID_L').val();
                 param=param+'&HEADER_ID='+headerId;
+                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
+                for(var i=0;i<tdL.length;i++){
+                    var tdWid = tdL.eq(i).width()+2.3;
+                    //console.log("tdWid:"+tdWid)
+                    var th = $('.detail_table').find('thead').find('th');
+                    th.eq(i).width(tdWid);
+                }
             }  
 			
 			//默认查询时间
@@ -886,6 +896,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 step: 30,
                 showOnClick: true
             });
+            
+            //明细表固定表头
+            var tableCont = document.getElementsByClassName('detail_table')[0];
+            function scrollHandle (e){
+                var scrollTop = this.scrollTop;
+                $('.detail_table').find('thead').css({'transform':'translateY(' + scrollTop + 'px)','display':'table-caption'})
+                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
+                for(var i=0;i<tdL.length;i++){
+                    var tdWid = tdL.eq(i).width()+2.3;
+                    //console.log("tdWid:"+tdWid)
+                    var th = $('thead').find('th');
+                    th.eq(i).width(tdWid);
+                }
+            }
+            tableCont.addEventListener('scroll',scrollHandle);  
+            
                 
         });
          
@@ -947,7 +973,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ,['.UNIT_PRICE','UNIT_PRICE']                 
                     ,['.ORDER_QUANTITY','ORDER_QUANTITY']
                     ,['.LINE_PRICE','LINE_PRICE']
-                    ,['.REMARKS','REMARKS']
+                    ,['.REMARKS','REMARKS',
+                        function(){
+                            if(data.rows[i].REMARKS == ''){
+                                null;
+                            }else{
+                                $('#oLine').find('tr:eq('+(i+1)+')').find('.REMARKS').html('<div class="REMARKS">'+data.rows[i].REMARKS+'</div><p>'+data.rows[i].REMARKS+'</p>');
+                                $('#oLine').find('tr:eq('+(i+1)+')').find('.REMARKS').hover(function(){
+                                    $(this).children('p').css('display','block')
+                                },function(){
+                                    $(this).children('p').css('display','none')
+                                });
+                            }
+                        }
+                     ]
                     ,['.LINE_ID','LINE_ID']
                      ];
                     $().mapContentJson(data,'#oLine',mapRowArray);

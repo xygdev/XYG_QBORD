@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="CURR_CODE" data-column="db">币种</th>
             <th class="PRICE_LIST_NAME" data-column="db">价目表</th>
             <th class="ORDER_TYPE_NAME" data-column="db">订单类型</th>
-            <th class="STATUS_DESC" data-column="db">状态</th>
+            <th class="STATUS_DESC" data-column="normal">状态</th>
             <th class="CREATION_DATE" data-column="db">创建日期</th>  
             <th class="CUSTOMER_PO" data-column="db">客订PO</th>
             <th class="REMARKS" data-column="db">备注</th>
@@ -93,6 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <jsp:param name="rdtable" value="#main-table"/>
             <jsp:param name="odtable" value="#main-table"/>
             <jsp:param name="pageframe" value="table"/>
+            <jsp:param name="alias" value="XQCH" />
           </jsp:include>
           <!-- 设置菜单区域 end -->  
         </div>

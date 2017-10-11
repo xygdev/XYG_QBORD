@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <th class="FUNCTION_NAME" data-column="db">Function</th>
 	        <th class="FUNCTION_URL" data-column="db">Url</th>
 	        <th class="DESCRIPTION" data-column="db">Description</th>
-	        <th class="ICON_PREVIEW" data-column="db">Icon</th>
+	        <th class="ICON_PREVIEW" data-column="normal">Icon</th>
 	        <th class="ACTION" data-column="normal">Action</th>
 	        <th class="FUNCTION_ID" style="display:none" data-column="hidden">&nbsp;</th> 
           </tr>

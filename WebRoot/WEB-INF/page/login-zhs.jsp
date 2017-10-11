@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	<a href="loginUS.do">English</a>
 	  </div>
 	  <div class="right_top">
-	    <img src="/image/login/xyg-auto.png" style="width:100%">
+	    <img src="/image/login/xyg-auto.png" oncontextmenu="return false;" ondragstart="return false;" style="width:100%">
 	  </div>
 	  <!-- 登录框 -->
 	  <div class="login-page">

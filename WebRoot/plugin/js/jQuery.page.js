@@ -247,7 +247,11 @@
 				blank_tr=$('tr:eq(1)',$('table[data-table="'+tablename+'"]'));
 				$('td',$('table[data-table="'+tablename+'"]')).parent().remove();
 				for(j=1;j<=pageSize;j++){
-					$('tr:eq(0)',$('table[data-table="'+tablename+'"]')).parent().append(blank_tr.clone());
+					if($('table[data-table="'+tablename+'"]').find('thead').length!=0){
+						$('thead',$('table[data-table="'+tablename+'"]')).parent().append(blank_tr.clone());
+					}else{
+						$('tr:eq(0)',$('table[data-table="'+tablename+'"]')).parent().append(blank_tr.clone());
+					}
 				}
 				jQuery.global.main();
 			}

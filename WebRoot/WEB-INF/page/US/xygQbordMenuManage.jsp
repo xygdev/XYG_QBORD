@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="MENU_CODE" data-column="db">Code</th>
             <th class="MENU_NAME" data-column="db">Menu</th>
             <th class="DESCRIPTION" data-column="db">Description</th>
-            <th class="ICON_PREVIEW" data-column="db">Icon</th>
+            <th class="ICON_PREVIEW" data-column="normal">Icon</th>
             <th class="ACTION" data-column="normal">Action</th> 
             <th class="MENU_ID" style="display:none" data-column="hidden">&nbsp;</th>     
           </tr>
