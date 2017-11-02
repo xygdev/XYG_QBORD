@@ -101,6 +101,7 @@
 		        			var button = $('#'+modal.attr('id')+' [data-keyup="enter"]');
 		        			for(a=0;a<button.length;a++){
 		        				if(button[a].style.display!='none'&&button[a].style.display!=null){
+		        					button[a].focus();
 		        					button[a].click();
 		        					return;
 		        				}
@@ -156,6 +157,7 @@
 		        			var button = $('#'+options.callback+' [data-keyup="enter"]');
 		        			for(a=0;a<button.length;a++){
 		        				if(button[a].style.display!='none'&&button[a].style.display!=null){
+		        					button[a].focus();
 		        					button[a].click();
 		        				}
 		        			}		

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">    
-    <title>信义玻璃(仅测试用)</title>    
+    <title>信义玻璃</title>    
     <!-- 图标cdn引入 -->
     <link rel="stylesheet" href="plugin/css/font-awesome.min.css">
 	<!-- 核心布局 CSS文件 -->
@@ -23,6 +23,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	</style>
 	<script>
+		//移动终端访问限制
+		function isPC(){
+			var browser={  
+		        versions:function(){   
+		        	var u = navigator.userAgent, app = navigator.appVersion; 
+		            return {
+		                trident: u.indexOf('Trident') > -1, 
+		                presto: u.indexOf('Presto') > -1,  
+		                webKit: u.indexOf('AppleWebKit') > -1, 
+		                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,   
+		                mobile: !!u.match(/AppleWebKit.*Mobile.*/),  
+		                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),  
+		                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, 
+		                iPhone: u.indexOf('iPhone') > -1 , 
+		                iPad: u.indexOf('iPad') > -1,    
+		                webApp: u.indexOf('Safari') == -1, 
+		                weixin: u.indexOf('MicroMessenger') > -1,  
+		                qq: u.match(/\sQQ/i) == " qq" 
+		            };  
+		        }(),  
+		        language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+		    }   
+		      
+		    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+		        browser.versions.iPhone || browser.versions.iPad){        
+		        document.write('<div style="width:100%;height:100%;position:absolute;z-index:103;color:white;background:black;"><p style="font-size:3em;text-align:center;margin:300px 55px;letter-spacing:0.2em;line-height:1.8em;">此设备浏览器不支持访问本站点，请换电脑版浏览器重新访问!</p></div>');
+	            //alert('此设备浏览器不支持访问本站点，请换电脑版浏览器重新访问!');
+		    }  
+		}
+		isPC();
+	
 	    var IE = function (version){
 	        document.write('<div class="cover"><div class="browers"><div class="title"><br/><span>点击图标</span><br/><span>跳转到相应的浏览器下载页面</span></div><a href="http://www.firefox.com.cn/"><img width="140" style="margin-left:20px" src="/image/login/ff.png"/></a><a href="https://www.google.cn/chrome/browser/desktop/index.html"><img width="140" src="/image/login/chrome.png"/></a><a href="https://www.microsoft.com/zh-cn/download/internet-explorer-11-for-windows-7-details.aspx"><img width="130" src="/image/login/ie.png"/></a></div></div>');
 	    	alert(version+'浏览器不支持访问本站点，请更换浏览器重新访问');
@@ -146,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript" src="plugin/js/jQuery.reveal.js"></script> 
   <script type="text/javascript" src="plugin/js/data.validate.js"></script>
   <script type="text/javascript" src="plugin/js/jQuery.crud.js"></script> 
-  <script>
+  <script>	
     //获取cookie
     function getCookie(cname) {
     	var arr = document.cookie.split(';');

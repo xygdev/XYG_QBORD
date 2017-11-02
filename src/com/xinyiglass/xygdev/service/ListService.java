@@ -76,7 +76,7 @@ public class ListService {
 				+ "      AND LANGUAGE = :1 "
 				+ "      AND ENABLED_FLAG='Y' "
 				+ "      AND SYSDATE BETWEEN START_DATE_ACTIVE AND NVL(END_DATE_ACTIVE,SYSDATE+1) "
-				+ " ORDER BY LOOKUP_CODE DESC";
+				+ " ORDER BY START_DATE_ACTIVE";
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
 		paramMap.put("1", lang);
 		return pagePub.qSqlForJson(sql, paramMap);

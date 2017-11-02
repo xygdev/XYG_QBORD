@@ -191,7 +191,7 @@ public class LovController extends BaseController{
   		conditionMap.put("customerId", this.getParaToLong("CUSTOMER_ID"));
   		conditionMap.put("salesOrgId", this.getParaToLong("SALES_ORG_ID"));
   		conditionMap.put("organizationId", this.getParaToLong("ORGANIZATION_ID"));
-  		conditionMap.put("description", this.getPara("DESCRIPTION"));
+  		conditionMap.put("description", this.getPara("DESCRIPTION")==null?null:this.getPara("DESCRIPTION").toUpperCase());
   		conditionMap.put("carName", this.getPara("CARNAME"));
   		this.renderStr(lovService.findItemForPage(conditionMap, loginId));
   	}

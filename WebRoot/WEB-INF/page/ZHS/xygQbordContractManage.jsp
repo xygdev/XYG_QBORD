@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div id="scrollbar" class="table pointer">
         <table id="main-table" data-table="OrderHeader">
           <tr>
-            <th class="CONTRACT_NUMBER" data-column="db">合同号</th>
+            <th class="CONTRACT_NUMBER" data-column="db">订单号码</th>
             <th class="PARTY_NAME" data-column="db">客户名称</th>
             <th class="ACCOUNT_NUMBER" data-column="db">客户账号</th>
             <th class="SALES_ORG_NAME" data-column="db">销售公司</th> 
@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="ACTION" data-column="normal">
               <i class="fa fa-pencil fa-fw update pointer hidden" title="修改订单" data-show="true" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateH.do" data-type="update" data-func="$().beforePreUpdateH()" data-updateparam=["HEADER_ID",".HEADER_ID"]></i>            
               <i class="fa fa fa-eye view pointer show_detail hidden" title="订单明细" data-show="true" data-reveal-id="detail" data-dismissmodalclass="close-detail-frame" data-dblclick="true"></i>
-              <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="删除" data-refresh="refresh"  data-col="CONTRACT_NUMBER" data-crudtype="del" data-delurl="contract/deleteH.do" data-delmsg="是否删除合同号：" data-delparam=["HEADER_ID",".HEADER_ID"] ></i>
+              <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="删除" data-refresh="refresh"  data-col="CONTRACT_NUMBER" data-crudtype="del" data-delurl="contract/deleteH.do" data-delmsg="是否删除订单号码：" data-delparam=["HEADER_ID",".HEADER_ID"] ></i>
             </td>
             <td class="HEADER_ID" style="display:none" data-column="hidden">&nbsp;</td>
             <td class="CUSTOMER_ID" style="display:none" data-column="hidden">&nbsp;</td> 
@@ -183,8 +183,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="content row-6">
           <form>
             <input type="hidden" id="HEADER_ID" name="HEADER_ID" data-update="db"/>
-            <label for="CONTRACT_NUMBER" class="left md">合同号:</label>
-            <input type="text" data-update="db" class="left lgx2" id="CONTRACT_NUMBER" name="CONTRACT_NUMBER" readonly="readonly" placeholder="合同号由系统自动生成"/>
+            <label for="CONTRACT_NUMBER" class="left md">订单号码:</label>
+            <input type="text" data-update="db" class="left lgx2" id="CONTRACT_NUMBER" name="CONTRACT_NUMBER" readonly="readonly" placeholder="订单号码由系统自动生成"/>
             <br style="clear:both"/> 
             <label for="PARTY_NAME" class="left md">客户账号:</label> 
             <input type="text" required="required" id="PARTY_NAME" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly"/>
@@ -226,7 +226,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="line"></div>
         <div class="content row-5">
           <form>
-            <label for="CONTRACT_NUMBER_Q" class="left md">合同号:</label>
+            <label for="CONTRACT_NUMBER_Q" class="left md">订单号码:</label>
             <input type="text" class="left lgx2" id="CONTRACT_NUMBER_Q" name="CONTRACT_NUMBER"/>  
             <br style="clear:both"/>
             <label for="PARTY_NAME_Q" class="left md">客户名称:</label> 
@@ -290,7 +290,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="line"></div>             
         <div class="detail_header" style="height:146px">
           <input type="hidden" id="HEADER_ID_L" />
-          <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
+          <label class="mid" for="CONTRACT_NUMBER_L">订单号码</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
           <label class="mid" for="STATUS_DESC_L">状态</label>
           <input type="text" id="STATUS_DESC_L" class="long" readonly="readonly"/>
@@ -417,7 +417,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="LINE_NUM_D" name="LINE_NUM" class="lg left" readonly="readonly"/>
             <br style="clear:both"/>
             <label for="DESCRIPTION_D" class="md left">本厂型号</label> 
-            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov upper-case" onkeyup="this.value=this.value.toUpperCase()" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
+            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov upper-case" onblur="this.value=this.value.toUpperCase()" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
             <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION&text-left","CARNAME&text-left"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] data-func="$().upperCase();" value="···"/> 
             <label for="CARNAME" class="md left">中文描述</label> 
@@ -621,11 +621,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('option[value="DESCRIPTION"]').off('click');
 				$('option[value="CARNAME"]').on('click',function(){
 					$('#lov input[data-type="query_val"]').removeClass('upper-case');
-					$('#lov input[data-type="query_val"]').off('keyup');
+					$('#lov input[data-type="query_val"]').off('blur');
 				});
 				$('option[value="DESCRIPTION"]').on('click',function(){
 					$('#lov input[data-type="query_val"]').addClass('upper-case');
-					$('#lov input[data-type="query_val"]').on('keyup',function(){
+					$('#lov input[data-type="query_val"]').on('blur',function(){
 						this.value=this.value.toUpperCase();
 					});
 				});
@@ -650,6 +650,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			} 
 			
 			$.fn.beforePreInsertL = function(){
+			    $('#ITEM_LOV').attr('disabled',false);
+			    $('#DESCRIPTION_D').removeAttr('readonly');
 			    //自动获取行号
 				headerId = $('#HEADER_ID_L').val();
                 param = 'HEADER_ID='+headerId;
@@ -680,6 +682,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			
 			$.fn.beforePreUpdateL = function(){
+				$('#ITEM_LOV').attr('disabled',true);
+			    $('#DESCRIPTION_D').attr('readonly','readonly');
 			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
 				$('#REMARKS_D').attr('readonly','readonly');
 				var userType = '${USER_TYPE}';
@@ -729,11 +733,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var tr=$(this).parent().parent();
                     var status = tr.children('.STATUS').text(); 
 			    	if(userType=='EMP'){    
+			    		$('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
 			    	    $('i[data-status="RECEIVE"]').parent().css('display','');
 			    	    $('i[data-status="CHECK"]').parent().css('display','');
-			    	    if(status=='BOOK'){
+			    	    if(status=='BOOK'){			    	        
 			    	        $('i[data-status="CHECK"]').parent().css('display','none');
 			    	    }else if(status=='RECEIVE'){
+			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
 			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
 			    	    }else{
 			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
@@ -741,17 +747,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	    }
 			    		$('i[data-status="BOOK"]').parent().css('display','none');
 			    		$('i[data-status="CONFIRM"]').parent().css('display','none');
-			    		$('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
-			    		$('#ITEM_LOV').attr('disabled',true); 
 			    	}else if(userType='CUSTOMER'){
 			    	    $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
 			    	    $('i[data-status="BOOK"]').parent().css('display','');
 			    		$('i[data-status="CONFIRM"]').parent().css('display','');
-			    		$('#ITEM_LOV').attr('disabled',true);
 			    	    if(status=='INPUT'){
 			    	        $('i[data-status="CONFIRM"]').parent().css('display','none');
 			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
-			    	        $('#ITEM_LOV').attr('disabled',false);
 			    	    }else if(status=='CHECK'){
 			    	        $('i[data-status="BOOK"]').parent().css('display','none');
 			    	    }else{

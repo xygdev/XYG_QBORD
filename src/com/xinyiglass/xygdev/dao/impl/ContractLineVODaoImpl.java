@@ -70,13 +70,14 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 	}
 	
 	public PlsqlRetValue insert(Map<String,Object> conditionMap) throws Exception{
-		SqlResultSet srs = countLineItem(conditionMap);
-		String count = srs.getResultSet().get(0)[0].toString();
-		System.out.println(count);
+		SqlResultSet srsCount = countLineItem(conditionMap);
+		String count = srsCount.getResultSet().get(0)[0].toString();
 		if(!count.equals("0")){
 			PlsqlRetValue ret = new PlsqlRetValue();
+			SqlResultSet srsSeq = findLineSeqById(conditionMap);
+			String seq = srsSeq.getResultSet().get(0)[0].toString();
 			ret.setRetcode(2);
-			ret.setErrbuf("此型号产品再订单明细中已存在,请勿重复新增同型号产品");
+			ret.setErrbuf("此型号产品在订单明细行中已存在,请勿重复新增同型号产品！明细行序号："+seq);
 			return ret;
 		}
 		String sql ="Declare "
@@ -179,6 +180,14 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 	public SqlResultSet countLineItem(Map<String,Object> conditionMap) throws Exception{
 		Map<String,Object> paramMap=new  HashMap<String,Object>();
 		String sql = "SELECT COUNT(*) FROM XYG_QBORD_CONTRACT_LINES WHERE HEADER_ID = :1 AND INVENTORY_ITEM_ID = :2";
+		paramMap.put("1", conditionMap.get("headerId"));
+		paramMap.put("2", conditionMap.get("inventoryItemId"));
+		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);
+	}
+	
+	public SqlResultSet findLineSeqById(Map<String,Object> conditionMap) throws Exception{
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+		String sql = "SELECT LINE_NUM FROM XYG_QBORD_CONTRACT_LINES WHERE HEADER_ID = :1 AND INVENTORY_ITEM_ID = :2";
 		paramMap.put("1", conditionMap.get("headerId"));
 		paramMap.put("2", conditionMap.get("inventoryItemId"));
 		return this.getDevJdbcTemplate().queryForResultSet(sql, paramMap);

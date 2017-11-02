@@ -167,7 +167,7 @@ public class LovService {
 		sqlBuf.append(" WHERE 1 = 1");
 		sqlBuf.append("   AND STATUS='A'");
 		sqlBuf.append("   AND XACA.ORG_ID=XAO.OPERATING_UNIT");
-		sqlBuf.append("   AND XACA.PRODUCT_LIST_HEADER_ID IS NOT NULL");
+		//sqlBuf.append("   AND XACA.PRODUCT_LIST_HEADER_ID IS NOT NULL");  去掉价目表非空条件筛选    2017.10.30 MODIFY BY BIRD
 		sqlBuf.append(SqlStmtPub.getAndStmt("PARTY_NAME", conditionMap.get("partyName"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
 		sqlBuf.append(" ORDER BY XACA.ORG_ID,XACA.CUST_ACCOUNT_ID");

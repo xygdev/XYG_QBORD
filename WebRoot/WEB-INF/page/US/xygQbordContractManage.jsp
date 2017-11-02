@@ -416,7 +416,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="LINE_NUM_D" name="LINE_NUM" class="lg left" readonly="readonly"/>
             <br style="clear:both"/>
             <label for="DESCRIPTION_D" class="md left">Item</label> 
-            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov upper-case" onkeyup="this.value=this.value.toUpperCase()"" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
+            <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov upper-case" onblur="this.value=this.value.toUpperCase()"" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
             <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Item Query" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","Code","Item","CN&nbsp;Desc"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION&text-left","CARNAME&text-left"] data-selectname=["Item","CN&nbsp;Desc"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] data-func="$().upperCase();" value="···"/> 
             <label for="CARNAME" class="md left">CN Desc</label> 
@@ -619,11 +619,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('option[value="DESCRIPTION"]').off('click');
 				$('option[value="CARNAME"]').on('click',function(){
 					$('#lov input[data-type="query_val"]').removeClass('upper-case');
-					$('#lov input[data-type="query_val"]').off('keyup');
+					$('#lov input[data-type="query_val"]').off('blur');
 				});
 				$('option[value="DESCRIPTION"]').on('click',function(){
 					$('#lov input[data-type="query_val"]').addClass('upper-case');
-					$('#lov input[data-type="query_val"]').on('keyup',function(){
+					$('#lov input[data-type="query_val"]').on('blur',function(){
 						this.value=this.value.toUpperCase();
 					});
 				});
@@ -648,6 +648,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			} 
 			
 			$.fn.beforePreInsertL = function(){
+			    $('#ITEM_LOV').attr('disabled',false);
+			    $('#DESCRIPTION_D').removeAttr('readonly');
 			    //自动获取行号
 				headerId = $('#HEADER_ID_L').val();
                 param = 'HEADER_ID='+headerId;
@@ -678,6 +680,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			
 			$.fn.beforePreUpdateL = function(){
+				$('#ITEM_LOV').attr('disabled',true);
+			    $('#DESCRIPTION_D').attr('readonly','readonly');
 			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
 				$('#REMARKS_D').attr('readonly','readonly');
 				var userType = '${USER_TYPE}';
@@ -728,11 +732,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var tr=$(this).parent().parent();
                     var status = tr.children('.STATUS').text(); 
 			    	if(userType=='EMP'){    
+			    	    $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
 			    	    $('i[data-status="RECEIVE"]').parent().css('display','');
 			    	    $('i[data-status="CHECK"]').parent().css('display','');
 			    	    if(status=='BOOK'){
 			    	        $('i[data-status="CHECK"]').parent().css('display','none');
 			    	    }else if(status=='RECEIVE'){
+			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
 			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
 			    	    }else{
 			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
@@ -740,17 +746,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	    }
 			    		$('i[data-status="BOOK"]').parent().css('display','none');
 			    		$('i[data-status="CONFIRM"]').parent().css('display','none');
-			    		$('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
-			    		$('#ITEM_LOV').attr('disabled',true); 
 			    	}else if(userType='CUSTOMER'){
 			    	    $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
 			    	    $('i[data-status="BOOK"]').parent().css('display','');
 			    		$('i[data-status="CONFIRM"]').parent().css('display','');
-			    		$('#ITEM_LOV').attr('disabled',true);
 			    	    if(status=='INPUT'){
 			    	        $('i[data-status="CONFIRM"]').parent().css('display','none');
 			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
-			    	        $('#ITEM_LOV').attr('disabled',false);
 			    	    }else if(status=='CHECK'){
 			    	        $('i[data-status="BOOK"]').parent().css('display','none');
 			    	    }else{

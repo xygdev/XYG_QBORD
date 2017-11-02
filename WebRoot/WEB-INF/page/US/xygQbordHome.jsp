@@ -189,7 +189,7 @@ our partners and make contribution to the society.</span>
 
 <div class="video">
   <div class="kuang">
-    <video id="example_video_1" class="video-js vjs-default-skin"  controls preload="none" width="100%" height="100%" poster="/image/home/video.png" autoplay="autoplay">
+    <video id="example_video_1" class="video-js vjs-default-skin"  controls preload="none" width="100%" height="100%" poster="/image/home/video.png">
       <source src="http://www.xinyiglass.com/en/Uploads/201608/57c5582d2023a.mp4" type="video/mp4" />
     </video>
     <div class="close"><img src="/image/home/close.png" /></div>

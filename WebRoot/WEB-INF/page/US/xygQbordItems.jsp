@@ -137,7 +137,7 @@
             <input type="text" id="ITEM_NUMBER_Q" name="ITEM_NUMBER" class="left lg"/>
             <br style="clear:both"/>
             <label for="DESCRIPTION_Q" class="left md">Item:</label>
-            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onkeyup="this.value=this.value.toUpperCase()"/>
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onblur="this.value=this.value.toUpperCase()"/>
             <label for="CARNAME_Q" class="left md">CN Desc:</label>
             <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>
             <br style="clear:both"/>
@@ -165,7 +165,8 @@
           </form> 
         </div>
         <div class="foot">             
-          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">Query</button>
+          <button class="right pointer" style="margin-left:15px" data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">Query</button>
+          <button class="right pointer" style="margin-right:0" data-buttonframe="clear">Clear Column</button>
         </div> 
       </div>
       <!-- 条件查询区域end -->
@@ -211,6 +212,19 @@
 		        step: 30,
 		        showOnClick: true
 	        });
+	        
+	        //固定头表表头
+            window.onscroll=function(){
+                var bodyH = document.documentElement.scrollTop  || window.pageYOffset || document.body.scrollTop ;
+                bodyH=(bodyH==0)?0:(bodyH-9);
+                $('#main-table').css('border-collapse','inherit');
+                $('#main-table').find('th').css('transform','translateY('+(bodyH)+'px)');
+            }
+            
+            //查询界面 清空按钮
+            $('button[data-buttonframe="clear"]').click(function(){
+                $('#query form').find('input,select').not('input[data-pageframe="lov"]').val('');
+            })
 
     		$.fn.detail = function(){
     		    $('.ACTION i').off('click');

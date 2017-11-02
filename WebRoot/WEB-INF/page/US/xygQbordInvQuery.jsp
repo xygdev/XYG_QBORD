@@ -38,9 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th class="LOAD_LOCATION_DESC" data-column="db">Load Location</th> 
             <th class="PRODUCT_TYPE_DESC" data-column="db">Product Type</th>
             <th class="PROCESS_TYPE_DESC" data-column="db">Process Type</th>      
-            <th class="ONHAND_QTY_NC" data-column="db">NC Onhand Qty</th>
+            <!-- <th class="ONHAND_QTY_NC" data-column="db">NC Onhand Qty</th> 暂不显示现有量    2017.10.30  MODIFY BY BIRD-->
             <th class="AVAILABLE_QTY_NC" data-column="db">NC Available Qty</th>
-            <th class="ONHAND_QTY_WC" data-column="db">WC Onhand Qty</th>
+            <!-- <th class="ONHAND_QTY_WC" data-column="db">WC Onhand Qty</th> 暂不显示现有量    2017.10.30  MODIFY BY BIRD-->
             <th class="AVAILABLE_QTY_WC" data-column="db">WC Available Qty</th>
             <th class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></th>         
           </tr>
@@ -55,9 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="LOAD_LOCATION_DESC" data-column="db"></td> 
             <td class="PRODUCT_TYPE_DESC" data-column="db"></td>
             <td class="PROCESS_TYPE_DESC" data-column="db"></td>
-            <td class="ONHAND_QTY_NC" data-column="db"></td>
+            <!-- <td class="ONHAND_QTY_NC" data-column="db"></td> 暂不显示现有量    2017.10.30  MODIFY BY BIRD-->
             <td class="AVAILABLE_QTY_NC" data-column="db"></td>
-            <td class="ONHAND_QTY_WC" data-column="db"></td>
+            <!-- <td class="ONHAND_QTY_WC" data-column="db"></td> 暂不显示现有量    2017.10.30  MODIFY BY BIRD-->
             <td class="AVAILABLE_QTY_WC" data-column="db"></td>
             <td class="ORGANIZATION_ID" data-column="hidden" style="display:none;"></td>          
           </tr>
@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left lg" readonly="readonly"/>           
             <br style="clear:both"/>
             <label for="DESCRIPTION_Q" class="left md">Item:</label>
-            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onkeyup="this.value=this.value.toUpperCase()"/>    
+            <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onblur="this.value=this.value.toUpperCase()"/>    
             <label for="CARNAME_Q" class="left md">CN DESC:</label>
             <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>   
             <br style="clear:both"/>
@@ -147,7 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </form>
         </div>
         <div class="foot">
-          <button class="right pointer"  data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">Query</button>
+          <button class="right pointer" style="margin-left:15px" data-buttonframe="table" data-keyup="enter" data-crudtype="query" data-pageframe="query">Query</button>
+          <button class="right pointer" style="margin-right:0" data-buttonframe="clear">Clear Column</button>
         </div>
       </div>
       <input type="hidden" id="USER_ID" value="${USER_ID}"/>
@@ -171,7 +172,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     layer.alert('You Must Select A Inv Before Query!',{skin:'layui-layer-lan',title:'警告',offset:[150]});
                     throw ('必须选择库存组织才能查询库存信息！');
                 }
-            }   
+            } 
+            
+            //固定头表表头
+            window.onscroll=function(){
+                var bodyH = document.documentElement.scrollTop  || window.pageYOffset || document.body.scrollTop ;
+                bodyH=(bodyH==0)?0:(bodyH-9);
+                $('#main-table').css('border-collapse','inherit');
+                $('#main-table').find('th').css('transform','translateY('+(bodyH)+'px)');
+            }
+            
+            //查询界面 清空按钮
+            $('button[data-buttonframe="clear"]').click(function(){
+                $('#query form').find('input,select').not('input[data-pageframe="lov"]').val('');
+            })  
         }); 
         jQuery.json={
             getContent:function(data,JSONtype){
@@ -187,9 +201,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    ,['.LOAD_LOCATION_DESC','LOAD_LOCATION_DESC'] 
                    ,['.PRODUCT_TYPE_DESC','PRODUCT_TYPE_DESC'] 
                    ,['.PROCESS_TYPE_DESC','PROCESS_TYPE_DESC']          
-                   ,['.ONHAND_QTY_NC','ONHAND_QTY_NC']           
+                   //,['.ONHAND_QTY_NC','ONHAND_QTY_NC'] 暂不显示现有量    2017.10.30  MODIFY BY BIRD          
                    ,['.AVAILABLE_QTY_NC','AVAILABLE_QTY_NC']  
-                   ,['.ONHAND_QTY_WC','ONHAND_QTY_WC']           
+                   //,['.ONHAND_QTY_WC','ONHAND_QTY_WC'] 暂不显示现有量    2017.10.30  MODIFY BY BIRD          
                    ,['.AVAILABLE_QTY_WC','AVAILABLE_QTY_WC'] 
                    ,['.ORGANIZATION_ID','ORGANIZATION_ID']                      
                     ];

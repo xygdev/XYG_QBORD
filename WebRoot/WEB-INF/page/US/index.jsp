@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base id="base_id" href="<%=basePath%>">    
-    <title>XYG Automobile Glass Online Platform(Test Only)</title>
+    <title>XYG Automobile Glass Online Platform</title>
 	<meta http-equiv="content-type" content="text/html;charset=gb2312">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">

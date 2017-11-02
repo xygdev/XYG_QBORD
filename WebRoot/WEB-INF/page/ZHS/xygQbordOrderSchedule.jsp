@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div id="scrollbar" class="table pointer">
         <table id="main-table" data-table="OrderScheduleH">
           <tr>
-            <th class="CONTRACT_NUMBER" data-column="db">合同号</th>
+            <th class="CONTRACT_NUMBER" data-column="db">订单号码</th>
             <th class="PARTY_NAME" data-column="db">客户名称</th>
             <th class="ACCOUNT_NUMBER" data-column="db">客户账号</th>
             <th class="SALES_ORG_NAME" data-column="db">销售公司</th> 
@@ -137,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="line"></div>
         <div class="content row-4">
           <form>
-            <label for="CONTRACT_NUMBER_Q" class="left md">合同号:</label>
+            <label for="CONTRACT_NUMBER_Q" class="left md">订单号码:</label>
             <input type="text" class="left lgx2" id="CONTRACT_NUMBER_Q" name="CONTRACT_NUMBER"/>  
             <br style="clear:both"/>
             <label for="PARTY_NAME_Q" class="left md">客户名称:</label> 
@@ -176,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="line"></div>             
         <div class="detail_header" style="height:182px">
           <input type="hidden" id="CUS_BATCH_L" />
-          <label class="mid" for="CONTRACT_NUMBER_L">合同号</label>
+          <label class="mid" for="CONTRACT_NUMBER_L">订单号码</label>
           <input type="text" id="CONTRACT_NUMBER_L" class="long" readonly="readonly"/>
           <label class="mid" for="CURR_CODE_L">币别</label>
           <input type="text" id="CURR_CODE_L" class="long" readonly="readonly"/>
