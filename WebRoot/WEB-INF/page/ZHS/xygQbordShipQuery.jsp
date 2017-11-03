@@ -121,7 +121,9 @@
         <div class="content row-2">
           <form>
             <label for="SEND_NUM_Q" class="left md">发货单号:</label>
-            <input type="text" id="SEND_NUM_Q" name="SEND_NUM" class="left lg"/>   
+            <input type="text" id="SEND_NUM_Q" name="SEND_NUM" class="left lg"/>  
+            <label for="CUS_BATCH_Q" class="left md">采购订单:</label>
+            <input type="text" id="CUS_BATCH_Q" name="CUS_BATCH" class="left lg"/>     
             <br style="clear:both"/>
             <label for="ACTUAL_SHIP_DATE_F" class="left md">发货日期:</label>
             <input type="text" id="START_DATE_F" name="ACTUAL_SHIP_DATE_F" class="left time" data-datatype="date" placeholder="起始发货日期"/>
@@ -156,10 +158,10 @@
 			    var firstDay;
 			    firstDay = sysDate.getFullYear()
 			              +'-'+(sysDate.getMonth()+1)
-			              +'-01';
+			              +'-01 00:00:00';
 			    
 			    $('#START_DATE_F').val(firstDay);
-			    $('#START_DATE_T').val(sysDate.format('yyyy-MM-dd'));//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
+			    $('#START_DATE_T').val(sysDate.format('yyyy-MM-dd'+' 23:59:59'));//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
 			}	
 			
 			$().defaultQueryDate();             
@@ -167,7 +169,7 @@
             $('input[data-datatype="date"]').datetimepicker({
                   lang:'ch',           //语言选择中文
                   timepicker:true,    //启用时间选项
-                  format:'Y-m-d',      //格式化日期
+                  format:'Y-m-d H:i:s',      //格式化日期
                   step: 30,
                   showOnClick: true
             });

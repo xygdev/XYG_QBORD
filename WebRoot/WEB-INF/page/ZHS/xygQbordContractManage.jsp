@@ -319,22 +319,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- 订单明细表格区域 start -->
         <div class="detail_table">
           <table id="oLine" data-table="OrderLine">
-            <thead>
-              <tr>
-                <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
-                <th class="DESCRIPTION" data-column="db">本厂型号</th>
-                <th class="CARNAME" data-column="db">中文描述</th>
-                <th class="EN_DESC" data-column="db">英文描述</th>
-                <th class="SPEC" data-column="db" style="min-width:50px">规格</th>
-                <th class="BEVEL" data-column="db" style="min-width:80px">中高对角</th>
-                <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
-                <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
-                <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
-                <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
-                <th class="ACTION" data-column="normal">操作</th> 
-                <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
-              </tr>
-            </thead>
+            <tr>
+              <th class="LINE_NUM" data-column="db" style="min-width:50px">序号</th>
+              <th class="DESCRIPTION" data-column="db">本厂型号</th>
+              <th class="CARNAME" data-column="db">中文描述</th>
+              <th class="EN_DESC" data-column="db">英文描述</th>
+              <th class="SPEC" data-column="db" style="min-width:50px">规格</th>
+              <th class="BEVEL" data-column="db" style="min-width:80px">中高对角</th>
+              <th class="UNIT_PRICE" data-column="db" style="min-width:50px">单价</th>
+              <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">数量</th>
+              <th class="LINE_PRICE" data-column="db" style="min-width:50px">金额</th>
+              <th class="REMARKS" data-column="db" style="min-width:30px">备注</th>
+              <th class="ACTION" data-column="normal">操作</th> 
+              <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
+            </tr>
             <tr>
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
@@ -896,28 +894,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var tableCont = document.getElementsByClassName('detail_table')[0];
             function scrollHandle (e){
                 var scrollTop = this.scrollTop;
-                $('.detail_table').find('thead').css({'transform':'translateY(' + scrollTop + 'px)','display':'table-caption'})
-                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
-                for(var i=0;i<tdL.length;i++){
-                    var tdWid = tdL.eq(i).width()+2.3;
-                    //console.log("tdWid:"+tdWid)
-                    var th = $('thead').find('th');
-                    th.eq(i).width(tdWid);
-                }
+                //console.log('scrollTop'+scrollTop);
+                $('#oLine').css({'border-collapse':'inherit'});
+                $('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102','display':'table-cell'});
             }
             tableCont.addEventListener('scroll',scrollHandle);  
-            
-            //加载完成后计算th宽度
-            $.fn.setThWid = function(){
-                var tdL = $($('.detail_table').find('tbody').find('tr').eq(0).find('td'));
-                for(var i=0;i<tdL.length;i++){
-                    var tdWid = tdL.eq(i).width()+2.3;
-                    //console.log("tdWid:"+tdWid)
-                    var th = $('.detail_table').find('thead').find('th');
-                    th.eq(i).width(tdWid);
-                }
-            }
-                
+
         });
          
         jQuery.json={
@@ -986,7 +968,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#detail').css('margin-left',width); 
                     $().crudListener();             
                     $().revealListener();                    
-                    $().setThWid();
                     
                 }else if(JSONtype=='3rdtable'){            
                      var mapRowArray=[

@@ -18,6 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
+    <style>
+        .detail_frame .detail_table{height:355px;overflow:auto;}
+    </style>
   </head>
   <body>
     <div id="container">
@@ -168,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
 <!----------------------------------------------订单明细-------------------------------------------------------- -->      
       
-      <div class="detail_frame" id="detail" style="height:577px">
+      <div class="detail_frame" id="detail" style="width:100%;">
         <div class="title pointer">      
           <span><i class="fa fa-th-list"></i>&nbsp;Contract Detail</span>
         </div>
@@ -242,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <jsp:param name="pageframe" value="sub_table" />
               <jsp:param name="func" value="$().setParam()" />
             </jsp:include>
-            <input type="hidden" data-type="size" value="8"/>
+            <input type="hidden" data-type="size" value="20"/>
             <input type="hidden" data-type="number" value="1"/>
             <input type="hidden" data-type="orderby" value="XQCQ.LINE_NUM"/> 
             <input type="hidden" data-type="cond"/>
@@ -262,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $(function() {
             
             //设置拖拽
-            $('#detail').draggable({ handle: '.title' });
+            /* $('#detail').draggable({ handle: '.title' }); */
             $('#query').draggable({ handle: '.title' }); 
             
             //初始化CRUD和LOV条件查询
@@ -317,6 +320,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  
                 $('.show_detail').on('click',function(){
+                    width=$(window).width();
+                    height=$(window).height();
+                    if(width>=768){
+                        headerheight=$('section.content-header').outerHeight();
+                        ifmheight=height-headerheight;
+                    }else{
+                        logoheight=$('a.logo').height();
+                        headerheight=$('section.content-header').outerHeight();
+                        ifmheight=height-logoheight-headerheight;
+                    }
+                    var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
+                    $('#detail').css({'height':ifmheight+'px','top':'0'});
+                    $('.detail_table').css('min-height',detailTabH);
+                    
+                    window.onresize=function(){
+                        width=$(window).width();
+                        height=$(window).height();
+                        if(width>=768){
+                            headerheight=$('section.content-header').outerHeight();
+                            ifmheight=height-headerheight;
+                        }else{
+                            logoheight=$('a.logo').height();
+                            headerheight=$('section.content-header').outerHeight();
+                            ifmheight=height-logoheight-headerheight;
+                        }
+                        var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
+                        $('#detail').css({'height':ifmheight+'px','top':'0','margin-left':'-50%'});
+                        $('.detail_table').css('min-height',detailTabH);
+
+                    }
+                
+                /* 
                     var userType = '${USER_TYPE}';
                     if(userType=='EMP'){
                         //null;
@@ -326,7 +361,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('i[data-status="RECEIVE"]').parent().css("display","none");
                         $('i[data-status="CHECK"]').parent().css("display","none");
                         $('#change_price_btn').css("display","none");
-                    }
+                    } */
                     tr=$(this).parent().parent();
                     $('.detail_header input').val('');
                     $('#sub_table input[data-type="number"]').val('1');
@@ -353,7 +388,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 format:'Y-m-d H:i:s',      //格式化日期
                 step: 30,
                 showOnClick: true
-            });        
+            });  
+
+            //明细表固定表头
+            var tableCont = document.getElementsByClassName('detail_table')[0];
+            function scrollHandle (e){
+                var scrollTop = this.scrollTop;
+                console.log('scrollTop'+scrollTop);
+                $('#oLine').css('border-collapse','inherit');
+                $('.detail_table').find('th').css('transform','translateY('+scrollTop+'px)');
+            }
+            tableCont.addEventListener('scroll',scrollHandle);  
+                  
         });
          
         jQuery.json={

@@ -28,6 +28,7 @@ public class ShipService {
 		sqlBuff.append("      ,XYG_ALD_USER_GROUP_V XAUG");
 		sqlBuff.append(" WHERE 1=1");
 		sqlBuff.append(SqlStmtPub.getAndStmt("SEND_NUM",conditionMap.get("sendNum")==null?null:conditionMap.get("sendNum").toString().trim(),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("CUS_BATCH",conditionMap.get("cusBatch")==null?null:conditionMap.get("cusBatch").toString().trim(),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("ACTUAL_SHIP_DATE",conditionMap.get("actualShipDate_F"),conditionMap.get("actualShipDate_T"),paramMap));	
 		
 		sqlBuff.append("   AND XAU.USER_ID= :1");

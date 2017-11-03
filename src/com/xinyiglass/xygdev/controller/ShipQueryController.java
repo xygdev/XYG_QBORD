@@ -37,6 +37,7 @@ public class ShipQueryController extends BaseController {
 		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
 		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
 		conditionMap.put("sendNum", this.getPara("SEND_NUM"));
+		conditionMap.put("cusBatch", this.getPara("CUS_BATCH"));
 		conditionMap.put("actualShipDate_F", this.getParaToDate("ACTUAL_SHIP_DATE_F"));
 		conditionMap.put("actualShipDate_T", this.getParaToDate("ACTUAL_SHIP_DATE_T"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
