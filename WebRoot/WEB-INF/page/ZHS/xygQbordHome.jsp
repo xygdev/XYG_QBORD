@@ -126,7 +126,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
       </div>
     </div>
-  </div>   
+  </div>
+  <!-- footer start 2017/11/8 sun-->
+  <div class="footer">
+    <div class="warp">
+      <img src="/image/home/xyg.png" class="footer_logo">
+      <p class="copyright">Copyright  2017 信义玻璃控股有限公司 版权所有</p>
+      <ul class="clearfix footer_info">
+        <li><a href="javascript:void(0)">粤ICP备17142189号 </a></li>
+        <li><a href="javascript:void(0)">法律声明</a></li>
+        <li><a href="http://www.xinyiglass.com/ " target="_blank">友情链接</a></li>
+        <li><a href="javascript:void(0)">联系我们</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- footer end-->   
 </div>
 <script>
 		$(function() {

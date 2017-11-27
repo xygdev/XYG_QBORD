@@ -318,7 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- 订单明细表格区域 start -->
         <div class="detail_table">
           <table id="oLine" data-table="OrderLine">
-            <tr>
+            <tr>   
               <th class="LINE_NUM" data-column="db" style="min-width:50px">Seq</th>
               <th class="DESCRIPTION" data-column="db">Item</th>
               <th class="CARNAME" data-column="db">CN Desc</th>
@@ -328,11 +328,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <th class="UNIT_PRICE" data-column="db" style="min-width:50px">Unit Price</th>
               <th class="ORDER_QUANTITY" data-column="db" style="min-width:50px">Order Qty</th>
               <th class="LINE_PRICE" data-column="db" style="min-width:50px">Line Price</th>
-              <th class="REMARKS" data-column="db" style="min-width:30px">Remarks</th>
+              <th class="REMARKS" data-column="db" style="min-width:30px">Remarks</th>  
               <th class="ACTION" data-column="normal">Action</th> 
               <th class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</th>            
             </tr>
-            <tr>
+            <tr class="pointer">
               <td class="LINE_NUM" data-column="db" style="min-width:50px"></td>
               <td class="DESCRIPTION text-left" data-column="db"></td>
               <td class="CARNAME text-left" data-column="db"></td>
@@ -344,7 +344,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td class="LINE_PRICE" data-column="db" style="min-width:50px"></td>
               <td class="REMARKS" data-column="db" style="min-width:30px"></td>
               <td class="ACTION" data-column="normal">
-                <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="modify" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"]></i>         
+                <i class="fa fa-pencil-square-o fa-fw update pointer hidden" id="change_price_btn" title="modify" data-show="true" data-reveal-id="detail_ui" data-bg="detail-modal-bg" data-key="true" data-dismissmodalclass="close-detail-ui-frame" data-crudtype="pre-update" data-preupdateurl="contract/preUpdateL.do" data-type="update" data-func="$().beforePreUpdateL()" data-updateparam=["LINE_ID",".LINE_ID"] data-dblclick="true"></i>         
                 <i class="fa fa-trash fa-fw pointer hidden" data-show="true" title="delete" data-refresh="sub_refresh"  data-col="LINE_NUM" data-crudtype="del" data-delurl="contract/deleteL.do" data-delmsg="Delete Line：" data-delparam=["LINE_ID",".LINE_ID"] data-afterdatafunc="$().sumLines();"></i>
               </td>
               <td class="LINE_ID" style="display:none" data-column="hidden">&nbsp;</td>                          
@@ -673,8 +673,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 //改变readonly状态
                 //$('#ORDER_QUANTITY_D').removeAttr('readonly');
 				$('#REMARKS_D').removeAttr('readonly');
-				var userType = '${USER_TYPE}';
-			    $('#UNIT_PRICE_D').attr('readonly','readonly');
 			}
 			
 			$.fn.beforePreUpdateL = function(){
@@ -682,10 +680,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    $('#DESCRIPTION_D').attr('readonly','readonly');
 			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
 				$('#REMARKS_D').attr('readonly','readonly');
-				var userType = '${USER_TYPE}';
-			    if(userType=='EMP'){
-					$('#UNIT_PRICE_D').removeAttr('readonly');
-				}
 			}
              
             
@@ -704,8 +698,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         ifmheight=height-logoheight-headerheight;
                     }
                     var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
-                    $('#detail').css('height',ifmheight+'px');
+                    //$('#detail').css('height',ifmheight+'px');
                     $('.detail_table').css('min-height',detailTabH);
+                    $('#detail').css({'height':ifmheight+'px','top':'0','margin-left':'-50%'});
                     
                     window.onresize=function(){
                         width=$(window).width();
@@ -725,10 +720,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }
                     
                     var width='-'+parseInt($('#detail').css('width'))/2+'px';
-                    $('#detail').css({'margin-left':width,'top':'0'}); //add by Bird   2017.08.21
+                    //$('#detail').css({'margin-left':width,'top':'0'}); //add by Bird   2017.08.21
                     var userType = '${USER_TYPE}';
                     var tr=$(this).parent().parent();
                     var status = tr.children('.STATUS').text(); 
+                    $('#ORDER_QUANTITY_D').attr('readonly','readonly');
+                    $('#UNIT_PRICE_D').attr('readonly','readonly');
 			    	if(userType=='EMP'){    
 			    	    $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
 			    	    $('i[data-status="RECEIVE"]').parent().css('display','');
@@ -738,6 +735,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	    }else if(status=='RECEIVE'){
 			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
 			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
+			    	        $('#ORDER_QUANTITY_D').removeAttr('readonly');
+			    	        $('#UNIT_PRICE_D').removeAttr('readonly');
 			    	    }else{
 			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
 			    	        $('i[data-status="CHECK"]').parent().css('display','none');
@@ -751,6 +750,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	    if(status=='INPUT'){
 			    	        $('i[data-status="CONFIRM"]').parent().css('display','none');
 			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
+			    	        $('#ORDER_QUANTITY_D').removeAttr('readonly');
 			    	    }else if(status=='CHECK'){
 			    	        $('i[data-status="BOOK"]').parent().css('display','none');
 			    	    }else{
@@ -867,7 +867,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     dataType:'json',
                     success: function (data) {
                         $('#REBATE_PRICE').val(data.rows[0].REBATE_PRICE);
-                        $('#COST_PRICE').val(data.rows[0].COST_PRICE);
+                    	var userType = '${USER_TYPE}';
+                    	if(userType == 'EMP'){	
+                        	$('#COST_PRICE').val(data.rows[0].COST_PRICE);
+                    	}else if(userType == 'CUSTOMER'){
+                    		$('#COST_PRICE').val('无');
+                    	} 
                     },
                     error: function () {
                         layer.msg('获取JSON数据失败');	
@@ -897,7 +902,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102'});
             }
             tableCont.addEventListener('scroll',scrollHandle);   
-              
+            
+            //处理tab切换 导致的th错乱问题
+			var tabfunc = $('iframe:visible',parent.document).data(tabfunc).tabfunc;
+            $('a[data-tabfunc="'+tabfunc+'"]',parent.document).on('click',function(){
+            	var scrollTop =document.getElementsByClassName('detail_table')[0].scrollTop;
+            	$('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102'});
+            });   
         });
          
         jQuery.json={
@@ -962,8 +973,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ,['.LINE_ID','LINE_ID']
                      ];
                     $().mapContentJson(data,'#oLine',mapRowArray);
-                    width='-'+parseInt($('#detail').css('width'))/2+'px';
-                    $('#detail').css('margin-left',width); 
+                    //width='-'+parseInt($('#detail').css('width'))/2+'px';
+                    //$('#detail').css('margin-left',width); 
                     $().crudListener();             
                     $().revealListener();                    
                     

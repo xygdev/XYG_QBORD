@@ -51,6 +51,14 @@ public class GroupHeaderVOService {
 			sqlBuff.append(" 				   WHERE APPL_ID = XYG_ALD_GLOBAL.APPL_ID");
 			sqlBuff.append(" 					 AND CUST_ID IS NOT NULL)");
 		}
+		String customerId = conditionMap.get("customerId")==null?"":conditionMap.get("customerId").toString();
+		if(!customerId.equals("")){
+			sqlBuff.append(" AND GROUP_ID IN (SELECT DISTINCT(GROUP_ID) ");
+			sqlBuff.append(" 				    FROM XYG_ALD_GROUP_LINES_V");
+			sqlBuff.append(" 				    WHERE 1=1");
+			sqlBuff.append(" 					  AND CUST_ACCOUNT_ID = :1)");
+			paramMap.put("1", customerId);
+		}
 		sqlBuff.append(SqlStmtPub.getAndStmt("GROUP_ID",conditionMap.get("groupId"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));

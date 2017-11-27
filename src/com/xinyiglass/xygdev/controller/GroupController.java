@@ -56,6 +56,7 @@ public class GroupController extends BaseController{
 		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));		
 		conditionMap.put("groupId", this.getParaToLong("GROUP_ID"));
 		conditionMap.put("onlyCust", this.getPara("ONLY_CUST"));
+		conditionMap.put("customerId", this.getPara("CUSTOMER_ID"));
 		conditionMap.put("orderBy", this.getPara("orderby"));
 		this.renderStr(GHVS.findForPage(conditionMap, loginId));
 	}

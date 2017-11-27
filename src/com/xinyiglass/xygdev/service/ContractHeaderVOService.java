@@ -78,6 +78,7 @@ public class ContractHeaderVOService {
 		sqlBuff.append("      ,XYG_QBORD_CONTRACT_LINES XQCL");
 		sqlBuff.append(" WHERE 1=1");
 		sqlBuff.append("   AND XQCQ.CUS_BATCH = :1");
+		sqlBuff.append("   AND XQCH.HEADER_ID = XQCQ.SOURCE_ID");
 		sqlBuff.append("   AND XQCH.CONTRACT_NUMBER = XQCQ.CUS_BATCH");
 		sqlBuff.append("   AND XQCL.HEADER_ID = XQCH.HEADER_ID");
 		sqlBuff.append("   AND XQCQ.LINE_NUM = XQCL.LINE_NUM");

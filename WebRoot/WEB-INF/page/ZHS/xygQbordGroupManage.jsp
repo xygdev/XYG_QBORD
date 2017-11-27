@@ -109,13 +109,13 @@
       <jsp:include page="public/lov.jsp"></jsp:include>
       <!-- lov区域 end -->
       <!-- 条件查询区域start -->
-      <div id="query" class="pop_frame row-1">     
+      <div id="query" class="pop_frame row-2">     
         <div class="title pointer">      
           <span><i class="fa fa-search"></i>&nbsp;工作组查询</span>
         </div>
         <a class="close-query-frame" data-type="close">&#215;</a>
         <div class="line"></div>
-        <div class="content row-1">
+        <div class="content row-2">
           <form>
             <label for="GROUP_NAME_Q" class="left md">工作组</label>
             <input type="text" id="GROUP_NAME_Q" name="GROUP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query" data-lovbtn="GROUP_LOV_Q"  data-param="GROUP_NAME"/>
@@ -123,6 +123,11 @@
             <input type="button" id="GROUP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组名称","工作组编码"] data-selectvalue=["GROUP_NAME","GROUP_CODE"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_Q","#GROUP_NAME_Q"]  value="···"/>         <!-- 2017/8/2 data-callback -->
           	<label for="ONLY_CUST_Q" class="left md">仅客户组</label>
           	<select class="left lg" id="ONLY_CUST_Q" name="ONLY_CUST" data-notnull="false" data-listurl="list/getEnableFlag.do"></select> 
+          	<br style="clear:both"/>
+          	<label for="PARTY_NAME_Q" class="left md">客户名称</label> 
+            <input type="text" id="PARTY_NAME_Q" name="PARTY_NAME" data-update="db" class="left lglov" readonly="readonly" required="required"/>
+            <input type="hidden" id="CUSTOMER_ID_Q" name="CUSTOMER_ID" data-update="db"/>
+            <input type="button" id="PARTY_NAME_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="客户查询" data-queryurl="lov/getCustAllPage.do" data-jsontype="cust_q" data-defaultquery="false" data-th=["销售公司ID","销售公司","客户ID","客户名称","客户账号"] data-td=["ORG_ID&none","ORG_NAME","CUST_ACCOUNT_ID&none","PARTY_NAME&text-left","ACCOUNT_NUMBER"] data-selectname=["客户名称","客户账号"] data-selectvalue=["PARTY_NAME","ACCOUNT_NUMBER"] data-choose=[".CUST_ACCOUNT_ID",".PARTY_NAME"] data-recid=["#CUSTOMER_ID_Q","#PARTY_NAME_Q"] value="···"/>
           </form> 
         </div>
         <div class="foot">             
@@ -351,6 +356,15 @@
         	    	    ,'ACT_ID'
         	    	    ,'PARTY_NAME'
         	    	    ,'ACCOUNT_NUMBER'
+        	    	];
+        	    	$().mapContentJson(data,'#lov',mapRowArray);
+        	    }else if(JSONtype=='cust_q'){
+        	        var mapRowArray=[
+        	    	 'ORG_ID'
+        	    	,'ORG_NAME'
+        	    	,'CUST_ACCOUNT_ID'
+        	    	,'PARTY_NAME'
+        	    	,'ACCOUNT_NUMBER'
         	    	];
         	    	$().mapContentJson(data,'#lov',mapRowArray);
         	    }   

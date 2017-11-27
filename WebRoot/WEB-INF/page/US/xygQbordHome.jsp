@@ -137,6 +137,14 @@ our partners and make contribution to the society.</span>
       </div>
     </div>
   </div>   
+  <!-- footer start 2017/11/8 sun-->
+  <div class="footer" style="height:50px;padding-left:100px;">
+    <div class="warp">
+      <img src="/image/home/xyg.png" class="footer_logo" style="top:0px;left:0px;">
+      <p class="copyright" style="margin:auto 0px;">Copyright  2017 信义玻璃控股有限公司 版权所有       粤ICP备17142189号 </p>
+    </div>
+  </div>
+  <!-- footer end--> 
 </div>
 <script>
 		$(function() {

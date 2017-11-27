@@ -338,3 +338,24 @@ background-size: cover;}
 .banner .bannerImg .bg:nth-of-type(4) .ban_box{left:0; top:5%;}
 .banner .bannerImg .ban_box img{display:block !important;}
 .banner .blue .dian .activeSlide{background:#00b36e;}
+
+/* footer  add by sun 2017/11/8 */
+.footer{width:100%;height:50px;background:#00a65a;}
+.footer .warp{width:100%;height:100%;max-width:1000px;position:relative;margin:0 auto;}
+.footer .footer_logo{width:80px;height:20px;position:absolute;bottom:0;margin:auto;}
+.footer .copyright{position:absolute;top:0;color:#fff;bottom:0;font-size:12px;margin:auto 0px;width:400px;height:12px;left:110px;}
+.footer .footer_info li{float:left;padding:0 10px;font-size:12px;color:#fff;line-height:12px;font-size:12px;border-right:1px solid #fff;}
+.footer .footer_info li a{color:#fff;font-size:12px;}  
+.footer .footer_info li a:hover{color:#333;}
+@media (min-width: 1024px){
+	.footer{height:50px;}
+	.footer .copyright{margin:auto 0px;}
+	.footer .footer_logo{top:0px;left:0px;}
+	.footer .footer_info {margin-left:600px;padding-top:18px;}
+}
+@media (max-width: 1024px){
+	.footer{height:80px;}
+	.footer .copyright{margin:28px 0 0 52px;}
+	.footer .footer_logo{top:14px;left:60px;}
+	.footer .footer_info {margin-left:150px;padding-top:50px;}
+} 

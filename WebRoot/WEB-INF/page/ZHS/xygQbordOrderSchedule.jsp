@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="container">
       <!-- 数据加载动画 start -->
       <div class="ajax_loading" style="z-index:102">
+      	<div class="loading-modal"></div>
         <i class="fa fa-spinner fa-pulse fa-4x" style="color:white"></i>
       </div>
       <!-- 数据加载动画 end -->
@@ -331,8 +332,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         ifmheight=height-logoheight-headerheight;
                     }
                     var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
-                    $('#detail').css({'height':ifmheight+'px','top':'0'});
+                    //$('#detail').css({'height':ifmheight+'px','top':'0'});
                     $('.detail_table').css('min-height',detailTabH);
+                    $('#detail').css({'height':ifmheight+'px','top':'0','margin-left':'-50%'});
                     
                     window.onresize=function(){
                         width=$(window).width();
@@ -399,6 +401,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
             tableCont.addEventListener('scroll',scrollHandle);  
             
+            //处理tab切换 导致的th错乱问题
+            var tabfunc = $('iframe:visible',parent.document).data(tabfunc).tabfunc;
+            $('a[data-tabfunc="'+tabfunc+'"]',parent.document).on('click',function(){
+            	var scrollTop =document.getElementsByClassName('detail_table')[0].scrollTop;
+            	$('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102','display':'table-cell'});
+            });
         });
          
         jQuery.json={
@@ -448,8 +456,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      ]
                      ];
                     $().mapContentJson(data,'#oLine',mapRowArray);
-                    width='-'+parseInt($('#detail').css('width'))/2+'px';
-                    $('#detail').css('margin-left',width); 
+                    //width='-'+parseInt($('#detail').css('width'))/2+'px';
+                    //$('#detail').css('margin-left',width); 
                     $().crudListener();             
                     $().revealListener();                    
                 }else if(JSONtype=='organ'){

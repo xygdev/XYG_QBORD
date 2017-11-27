@@ -52,12 +52,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav"> 
               <!-- 销毁Session 正式上线时应去除-->
-              <li>
+              <!--<li>
                 <a id="sessionD" href="#">
                   <i class="fa fa-bolt" style="font-size:20px"></i>
                   <span data-type="tips" class="label label-danger"></span>
                 </a>
-              </li> 
+              </li>--> 
 
               <!-- 公告 -->
               <li>
