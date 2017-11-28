@@ -32,7 +32,20 @@ public class LovController extends BaseController{
 		conditionMap.put("userName", this.getPara("USER_NAME"));
 		conditionMap.put("userDesc", this.getPara("DESCRIPTION"));
 		this.renderStr(lovService.findUserForPage(conditionMap, loginId));
-	}	
+	}
+	
+	//获取USER(CUST)值列表
+	@RequestMapping(value = "/getCustUserPage.do", method = RequestMethod.POST)
+	public void getCustUserPage() throws Exception
+	{   	
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
+		conditionMap.put("userName", this.getPara("USER_NAME"));
+		conditionMap.put("userDesc", this.getPara("DESCRIPTION"));
+		this.renderStr(lovService.findCustUserForPage(conditionMap, loginId));
+	}
 	
 	//获取RESP值列表
 	@RequestMapping(value = "/getRespPage.do", method = RequestMethod.POST)
@@ -45,6 +58,19 @@ public class LovController extends BaseController{
 		conditionMap.put("respName", this.getPara("RESP_NAME"));
 		conditionMap.put("respCode", this.getPara("RESP_CODE"));
 		this.renderStr(lovService.findRespForPage(conditionMap, loginId));
+	}	
+	
+	//获取RESP值列表
+	@RequestMapping(value = "/getCustRespPage.do", method = RequestMethod.POST)
+	public void getCustRespPage() throws Exception
+	{   
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));
+		conditionMap.put("respName", this.getPara("RESP_NAME"));
+		conditionMap.put("respCode", this.getPara("RESP_CODE"));
+		this.renderStr(lovService.findCustRespForPage(conditionMap, loginId));
 	}	
 	
 	//获取EMP值列表

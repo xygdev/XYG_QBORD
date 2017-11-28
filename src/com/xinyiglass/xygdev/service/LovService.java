@@ -34,6 +34,19 @@ public class LovService {
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
 	}
 	
+	/***用户(客户)LOV***/
+	public String findCustUserForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT USER_ID,USER_NAME,DESCRIPTION FROM XYG_ALD_USER");
+		sqlBuf.append(" WHERE (END_DATE IS NULL OR END_DATE > SYSDATE)");
+		sqlBuf.append("   AND USER_TYPE = 'CUSTOMER'");
+		sqlBuf.append(SqlStmtPub.getAndStmt("USER_NAME", conditionMap.get("userName"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("DESCRIPTION", conditionMap.get("userDesc"),paramMap));
+		sqlBuf.append(" ORDER BY USER_ID ");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
+	}
+	
 	/***职责LOV***/
 	public String findRespForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		StringBuffer sqlBuf=new StringBuffer();
@@ -41,6 +54,20 @@ public class LovService {
 		sqlBuf.append("SELECT RESP_ID,RESP_CODE,RESP_NAME,DESCRIPTION FROM XYG_ALD_RESP_VL");
 		sqlBuf.append(" WHERE (END_DATE IS NULL OR END_DATE > SYSDATE)");
 		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_CODE", conditionMap.get("respCode"),paramMap));
+		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_NAME", conditionMap.get("respName"),paramMap));
+		sqlBuf.append(" ORDER BY RESP_ID ");
+		return pagePub.qPageForJson(sqlBuf.toString(), paramMap,  (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
+	}
+	
+	/***职责(客户)LOV***/
+	public String findCustRespForPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		StringBuffer sqlBuf=new StringBuffer();
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		sqlBuf.append("SELECT RESP_ID,RESP_CODE,RESP_NAME,DESCRIPTION FROM XYG_ALD_RESP_VL");
+		sqlBuf.append(" WHERE (END_DATE IS NULL OR END_DATE > SYSDATE)");
+		sqlBuf.append(" AND APPL_ID = XYG_ALD_GLOBAL_PKG.appl_id");
+		sqlBuf.append(" AND RESP_TYPE = 'CUSTOMER'");
 		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_CODE", conditionMap.get("respCode"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("RESP_NAME", conditionMap.get("respName"),paramMap));
 		sqlBuf.append(" ORDER BY RESP_ID ");

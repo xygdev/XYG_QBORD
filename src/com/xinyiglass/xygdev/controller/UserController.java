@@ -32,6 +32,11 @@ public class UserController extends BaseController {
 		return this.getSessionAttr("LANG")+"/xygQbordUserManage";
 	}
 	
+	@RequestMapping("/custManage.do")
+	public String listCust(){
+		return this.getSessionAttr("LANG")+"/xygQbordCustManage";
+	}
+	
 	@RequestMapping(value = "/getUserPage.do", method = RequestMethod.POST)
 	public void getUserPage() throws Exception
 	{   	
@@ -42,6 +47,21 @@ public class UserController extends BaseController {
 		conditionMap.put("userId", this.getParaToLong("USER_ID"));
 		conditionMap.put("respId", this.getParaToLong("RESP_ID"));
 		conditionMap.put("userType", this.getPara("USER_TYPE"));
+		conditionMap.put("startDate_F", this.getParaToDate("START_DATE_F"));
+		conditionMap.put("startDate_T", this.getParaToDate("START_DATE_T"));
+		conditionMap.put("orderBy", this.getPara("orderby"));
+		this.renderStr(UVS.findForPage(conditionMap,loginId));
+	}
+	
+	@RequestMapping(value = "/getCustPage.do", method = RequestMethod.POST)
+	public void getCustPage() throws Exception
+	{
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));		
+		conditionMap.put("userId", this.getParaToLong("USER_ID"));
+		conditionMap.put("userType", "CUSTOMER");
 		conditionMap.put("startDate_F", this.getParaToDate("START_DATE_F"));
 		conditionMap.put("startDate_T", this.getParaToDate("START_DATE_T"));
 		conditionMap.put("orderBy", this.getPara("orderby"));
@@ -60,6 +80,22 @@ public class UserController extends BaseController {
     	u.setEmpId(this.getParaToLong("EMP_ID"));
     	u.setUserType(this.getPara("USER_TYPE"));
     	u.setImgUrl("default.png");
+    	u.setWechatCode(this.getPara("WECHAT_CODE"));
+    	u.setMobileNumber(this.getParaToLong("MOBILE_NUMBER"));
+    	u.setEmailAddr(this.getPara("EMAIL_ADDR"));
+    	this.renderStr(UVS.insert(u, loginId).toJsonStr());
+	}
+	
+	@RequestMapping(value = "/insertCust.do", method = RequestMethod.POST)
+	public void insretCust() throws Exception
+	{ 
+    	UserVO u = new UserVO();
+    	u.setUserName(this.getPara("USER_NAME").toUpperCase());
+    	u.setDescription(this.getPara("DESC"));
+    	u.setStartDate(this.getParaToDate("START_DATE"));
+    	u.setEndDate(this.getParaToDate("END_DATE"));
+    	u.setEncryptedUserPassword(MD5Util.string2MD5(this.getPara("PASSWORD"),Constant.SALT));
+    	u.setUserType("CUSTOMER");
     	u.setWechatCode(this.getPara("WECHAT_CODE"));
     	u.setMobileNumber(this.getParaToLong("MOBILE_NUMBER"));
     	u.setEmailAddr(this.getPara("EMAIL_ADDR"));

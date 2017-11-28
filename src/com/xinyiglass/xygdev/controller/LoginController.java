@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -28,7 +28,7 @@ import com.xinyiglass.xygdev.service.LoginService;
 import com.xinyiglass.xygdev.service.RespVOService;
 import com.xinyiglass.xygdev.service.UserVOService;
 import com.xinyiglass.xygdev.util.Constant;
-import com.xinyiglass.xygdev.util.CookieUtil;
+//import com.xinyiglass.xygdev.util.CookieUtil;
 import com.xinyiglass.xygdev.util.GlobalInit;
 import com.xinyiglass.xygdev.util.LogUtil;
 import com.xinyiglass.xygdev.util.MD5Util;
