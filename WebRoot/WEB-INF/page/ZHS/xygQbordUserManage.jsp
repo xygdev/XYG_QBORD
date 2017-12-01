@@ -154,6 +154,12 @@
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg" readonly="readonly"/>  
             <label for="USER_TYPE_Q" class="left md">用户类型:</label>
             <select class="left lg" id="USER_TYPE_Q" name="USER_TYPE" data-update="db" data-notnull="true" data-listurl="list/getUserType.do"></select> 
+            
+            <label for="GROUP_NAME_Q" class="left md">工作组:</label>
+            <input type="text" id="GROUP_NAME_Q" name="GROUP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query" data-lovbtn="GROUP_LOV_Q"  data-param="GROUP_NAME"/>
+            <input type="hidden" id="GROUP_ID_Q" name="GROUP_ID" />
+            <input type="button" id="GROUP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="工作组查询" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["工作组ID","工作组编码","工作组名称","描述"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["工作组名称","工作组编码"] data-selectvalue=["GROUP_NAME","GROUP_CODE"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_Q","#GROUP_NAME_Q"]  value="···"/>         <!-- 2017/8/2 data-callback -->
+            
             <br style="clear:both"/>
             <label for="START_DATE_F" class="left md">启用日期:</label>
             <input type="text" id="START_DATE_F" name="START_DATE_F" class="left time" data-datatype="date" placeholder="起始启用日期"/>

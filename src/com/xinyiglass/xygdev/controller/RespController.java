@@ -53,6 +53,7 @@ public class RespController extends BaseController{
 		conditionMap.put("respId",  this.getParaToLong("RESP_ID"));
 		conditionMap.put("startDate_F", this.getParaToDate("START_DATE_F"));
 		conditionMap.put("startDate_T", this.getParaToDate("START_DATE_T"));
+		conditionMap.put("respType",  this.getPara("RESP_TYPE"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
         this.renderStr(RVS.findForPage(conditionMap,loginId));
    }
@@ -67,6 +68,7 @@ public class RespController extends BaseController{
        r.setMenuId(this.getParaToLong("MENU_ID"));	
        r.setStartDate(this.getParaToDate("START_DATE"));
        r.setEndDate(this.getParaToDate("END_DATE"));
+       r.setRespType(this.getPara("RESP_TYPE"));
        this.renderStr(RVS.insert(r, loginId).toJsonStr());
    }
    
@@ -99,6 +101,7 @@ public class RespController extends BaseController{
        r.setMenuId(this.getParaToLong("MENU_ID"));
        r.setStartDate(this.getParaToDate("START_DATE"));
        r.setEndDate(this.getParaToDate("END_DATE"));    	
+       r.setRespType(this.getPara("RESP_TYPE")); 
        this.renderStr(RVS.update(lockRespVO,r, loginId).toJsonStr());          
     }
 }

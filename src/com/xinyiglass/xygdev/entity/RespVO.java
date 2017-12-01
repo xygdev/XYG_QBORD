@@ -29,6 +29,7 @@ public class RespVO extends BaseEntity  implements FactoryBean,RowMapper<RespVO>
 	   	mapCol.put("menuDesc", "MENU_DESC");
         mapCol.put("startDate", "START_DATE");
         mapCol.put("endDate", "END_DATE");
+        mapCol.put("respType", "RESP_TYPE");
 		mapCol.put("createdBy", "CREATED_BY");
 		mapCol.put("creationDate", "CREATION_DATE");
 		mapCol.put("lastUpdatedBy", "LAST_UPDATED_BY");
@@ -48,6 +49,7 @@ public class RespVO extends BaseEntity  implements FactoryBean,RowMapper<RespVO>
    private String menuDesc;
    private java.util.Date startDate;
    private java.util.Date endDate;
+   private String respType;
    private Long createdBy;
    private java.util.Date creationDate;
    private Long lastUpdatedBy;
@@ -132,6 +134,12 @@ public class RespVO extends BaseEntity  implements FactoryBean,RowMapper<RespVO>
    }
    public void setEndDate(java.util.Date endDate) {
    	   this.endDate = endDate;
+   }
+   public String getRespType() {
+   	   return respType;
+   }
+   public void setRespType(String respType) {
+   	   this.respType = respType;
    }
    public Long getCreatedBy() {
    	   return createdBy;

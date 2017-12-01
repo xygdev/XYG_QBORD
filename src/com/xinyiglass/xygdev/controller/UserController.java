@@ -47,6 +47,7 @@ public class UserController extends BaseController {
 		conditionMap.put("userId", this.getParaToLong("USER_ID"));
 		conditionMap.put("respId", this.getParaToLong("RESP_ID"));
 		conditionMap.put("userType", this.getPara("USER_TYPE"));
+		conditionMap.put("groupId", this.getParaToLong("GROUP_ID"));
 		conditionMap.put("startDate_F", this.getParaToDate("START_DATE_F"));
 		conditionMap.put("startDate_T", this.getParaToDate("START_DATE_T"));
 		conditionMap.put("orderBy", this.getPara("orderby"));

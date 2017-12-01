@@ -148,6 +148,10 @@
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg" readonly="readonly"/>  
             <label for="USER_TYPE_Q" class="left md">Type:</label>
             <select class="left lg" id="USER_TYPE_Q" name="USER_TYPE" data-update="db" data-notnull="true" data-listurl="list/getUserType.do"></select> 
+            <label for="GROUP_NAME_Q" class="left md">Group：</label>
+            <input type="text" id="GROUP_NAME_Q" name="GROUP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query" data-lovbtn="GROUP_LOV_Q"  data-param="GROUP_NAME"/>
+            <input type="hidden" id="GROUP_ID_Q" name="GROUP_ID" />
+            <input type="button" id="GROUP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Group Query" data-queryurl="lov/getGroupPage.do" data-jsontype="group" data-defaultquery="true" data-th=["ID","Code","Group","Desc"] data-td=["GROUP_ID&none","GROUP_CODE","GROUP_NAME","DESCRIPTION"] data-selectname=["Group","Code"] data-selectvalue=["GROUP_NAME","GROUP_CODE"] data-choose=[".GROUP_ID",".GROUP_NAME"] data-recid=["#GROUP_ID_Q","#GROUP_NAME_Q"]  value="···"/>         <!-- 2017/8/2 data-callback -->
             <br style="clear:both"/>
             <label for="START_DATE_F" class="left md">Start Date:</label>
             <input type="text" id="START_DATE_F" name="START_DATE_F" class="left time" data-datatype="date" placeholder="Start Date From"/>

@@ -70,6 +70,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
 	            + "  ,:5 "
 	            + "  ,:6 "
 	            + "  ,:7 "
+	            + "  ,:8 "
 	            + " ,:"+PlsqlRetValue.RETCODE
 	            + " ,:"+PlsqlRetValue.ERRBUF
 	            + " ); "
@@ -82,6 +83,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
        paramMap.put("5", vo.getMenuId());
        paramMap.put("6", TypeConvert.u2tDate(vo.getStartDate()));
        paramMap.put("7", TypeConvert.u2tDate(vo.getEndDate()));
+       paramMap.put("8", vo.getRespType());
        return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
     }
    
@@ -96,6 +98,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
 	            + "  ,:5 "
 	            + "  ,:6 "
 	            + "  ,:7 "
+	            + "  ,:8 "
 	            + " ,:"+PlsqlRetValue.RETCODE
 	            + " ,:"+PlsqlRetValue.ERRBUF
 	            + " ); "
@@ -108,6 +111,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
         paramMap.put("5", vo.getMenuId());
         paramMap.put("6", TypeConvert.u2tDate(vo.getStartDate()));
         paramMap.put("7", TypeConvert.u2tDate(vo.getEndDate()));
+        paramMap.put("8", vo.getRespType());
         return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
     }
    
@@ -122,6 +126,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
 	            + "  ,:5 "
 	            + "  ,:6 "
 	            + "  ,:7 "
+	            + "  ,:8 "
 	            + " ,:"+PlsqlRetValue.RETCODE
 	            + " ,:"+PlsqlRetValue.ERRBUF
 	            + " ); "
@@ -134,6 +139,7 @@ public class RespVODaoImpl extends DevJdbcDaoSupport implements RespVODao{
         paramMap.put("5", vo.getMenuId());
         paramMap.put("6", TypeConvert.u2tDate(vo.getStartDate()));
         paramMap.put("7", TypeConvert.u2tDate(vo.getEndDate()));
+        paramMap.put("8", vo.getRespType());
         return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
     }  
    

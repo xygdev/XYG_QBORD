@@ -80,6 +80,7 @@ public class RespVOService {
 	   sqlBuff.append(SqlStmtPub.getAndStmt("RESP_ID",conditionMap.get("respId"),paramMap));
 	   sqlBuff.append(SqlStmtPub.getAndStmt("START_DATE",conditionMap.get("startDate_F"),conditionMap.get("startDate_T"),paramMap));
 	   sqlBuff.append(SqlStmtPub.getAndStmt("END_DATE",conditionMap.get("endDate_F"),conditionMap.get("endDate_T"),paramMap));
+	   sqlBuff.append(SqlStmtPub.getAndStmt("RESP_TYPE",conditionMap.get("respType"),paramMap));
 	   sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
 	   return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}

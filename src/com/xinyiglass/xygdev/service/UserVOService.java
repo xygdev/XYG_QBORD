@@ -32,9 +32,19 @@ public class UserVOService {
 		sqlBuff.append("select A.*,XYG_ALD_COMMON_PKG.GET_LKM_BY_LKCODE('XYG_ALD_USER_TYPE',A.USER_TYPE) USER_TYPE_M from XYG_ALD_USER_V A WHERE 1=1");
 		sqlBuff.append(SqlStmtPub.getAndStmt("USER_ID",conditionMap.get("userId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("USER_TYPE",conditionMap.get("userType"),paramMap));
+		String groupId = conditionMap.get("groupId")==null?"":conditionMap.get("groupId").toString();
+		if(!groupId.equals("")){
+			sqlBuff.append("   AND EXISTS(SELECT 1");
+		    sqlBuff.append("                FROM XYG_ALD_USER_GROUP XAUG");
+			sqlBuff.append("               WHERE 1=1");
+			sqlBuff.append("                 AND XAUG.USER_ID = A.USER_ID");
+			sqlBuff.append("                 AND XAUG.GROUP_APPL_ID = XYG_ALD_GLOBAL.APPL_ID");
+			sqlBuff.append("                 AND XAUG.GROUP_ID = :1)");
+		}
 		sqlBuff.append(SqlStmtPub.getAndStmt("START_DATE",conditionMap.get("startDate_F"),conditionMap.get("startDate_T"),paramMap));
 		//sqlBuff.append(SqlStmtPub.getAndStmt("END_DATE",conditionMap.get("endDate_F"),conditionMap.get("endDate_T"),paramMap));
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
+		paramMap.put("1", conditionMap.get("groupId"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
 	

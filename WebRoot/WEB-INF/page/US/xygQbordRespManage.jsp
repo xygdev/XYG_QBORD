@@ -37,6 +37,7 @@
              <th class="MENU_NAME" data-column="db">Menu</th>
              <th class="START_DATE" data-column="db">Start Date</th>
              <th class="END_DATE" data-column="db">End Date</th>
+             <th class="RESP_TYPE" data-column="db">RESP TYPE</th>
              <th class="ACTION" data-column="normal">Action</th>
              <th class="RESP_ID" style="display:none" data-column="hidden">&nbsp;</th>
            </tr>
@@ -48,6 +49,7 @@
              <td class="MENU_NAME" data-column="db"></td>
              <td class="START_DATE" data-column="db"></td>
              <td class="END_DATE" data-column="db"></td>
+             <td class="RESP_TYPE" data-column="db"></td>
              <td class="ACTION" data-column="normal">
                <i class="fa fa-pencil fa-fw update pointer hidden" data-show="true" title="Update" data-reveal-id="ui" data-key="true" data-dismissmodalclass="close-ui-frame" data-crudtype="pre-update" data-preupdateurl="resp/preUpdate.do" data-type="update" data-updateparam=["RESP_ID",".RESP_ID"]></i>  <!-- 2017/8/2  add data-key="true" -->
              </td>
@@ -123,7 +125,7 @@
              <input type="text" id="RESP_NAME_Q" name="RESP_NAME" class="left md" data-modify="true" data-suffixflag="true" data-pageframe="query"  data-lovbtn="RESP_LOV_Q"  data-param="RESP_NAME"/>
              <input type="hidden" id="RESP_ID_Q" name="RESP_ID"/>
              <input type="button" id="RESP_LOV_Q" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="Resp Query" data-queryurl="lov/getRespPage.do" data-jsontype="resp" data-defaultquery="true" data-th=["ID","Code","Resp","Desc"] data-td=["RESP_ID&none","RESP_CODE","RESP_NAME","DESCRIPTION"] data-selectname=["Resp","Code"] data-selectvalue=["RESP_NAME","RESP_CODE"] data-choose=[".RESP_ID",".RESP_NAME"] data-recid=["#RESP_ID_Q","#RESP_NAME_Q"] value="···"/>
-             <br style="clear:both"/>
+             <!-- <br style="clear:both"/> -->
              <label for="MENU_NAME_Q" class="left md">Menu:</label> 
              <input type="text" id="MENU_NAME_Q" name="MENU_NAME" class="left md" data-modify="true"  data-suffixflag="true" data-pageframe="query"  data-lovbtn="MENU_LOV_Q"  data-param="MENU_NAME"/>
              <input type="hidden" id="MENU_ID_Q" name="MENU_ID"/>
@@ -134,6 +136,8 @@
              <label class="left blank"></label>
              <input type="text" id="START_DATE_T" name="START_DATE_T" class="left time" data-datatype="date" placeholder="Start Date To"/>
              <br style="clear:both"/>
+             <label for="RESP_TYPE_Q" class="left md">Resp Type:</label>
+             <select class="left lg" id="RESP_TYPE_Q" name="RESP_TYPE" data-update="db" data-notnull="false" data-listurl="list/getUserType.do"></select> 
            </form>
          </div>
          <div class="foot">
@@ -142,14 +146,14 @@
        </div>
        <!-- 条件查询区域end -->
        <!-- 更新/新增区域 start -->
-       <div id="ui" class="pop_frame row-3" >
+       <div id="ui" class="pop_frame row-4" >
          <div class="title pointer">
            <span data-type="update"><i class="fa fa-briefcase fa-1x" aria-hidden="true"></i>&nbsp;Update</span>
            <span data-type="insert"><i class="fa fa-briefcase fa-1x" aria-hidden="true"></i>&nbsp;Insert</span>
          </div>
          <a class="close-ui-frame" data-type="close">&#215;</a>
          <div class="line"></div>
-         <div class="content row-3">
+         <div class="content row-4">
            <form id="updateData">
              <input type="hidden" id="R_ID" name="R_ID" data-update="db"/>
              <label for="RESP_CODE" class="left md">Code</label>
@@ -166,7 +170,9 @@
              <label for="START_DATE" class="left md">Start Date</label>
              <input type="text" id="START_DATE" name="START_DATE" data-update="db" data-datatype="date" required="required" class="left lg"/>
              <label for="END_DATE" class="left md">End Date</label>
-             <input type="text" id="END_DATE" name="END_DATE" data-update="db" data-datatype="date" class="left lg"/>  
+             <input type="text" id="END_DATE" name="END_DATE" data-update="db" data-datatype="date" class="left lg"/>       
+             <label for="RESP_TYPE_U" class="left md">Resp Type</label>
+             <select class="left lg" id="RESP_TYPE_U" name="RESP_TYPE" data-update="db" data-notnull="false" data-listurl="list/getUserType.do"></select> 
            </form>
          </div>
          <div class="foot">
@@ -238,7 +244,18 @@
 			         ,['.MENU_NAME','MENU_NAME']
 			         ,['.MENU_DESC','MENU_DESC']
 			         ,['.START_DATE','START_DATE']
-			         ,['.END_DATE','END_DATE']	           		         
+			         ,['.END_DATE','END_DATE']	
+			         ,['.RESP_TYPE','RESP_TYPE'/* ,  //此处直接用CODE值，不用转换     sun 
+                         function(){
+                             if(data.rows[i].RESP_TYPE=='CUSTOMER'){ 
+                                 $('.RESP_TYPE',$('#main-table tr:eq('+(i+1)+')')).text('客户');
+                             }else if(data.rows[i].RESP_TYPE=='EMP'){
+                                 $('.RESP_TYPE',$('#main-table tr:eq('+(i+1)+')')).text('员工');
+                             }else{
+                                 $('.RESP_TYPE',$('#main-table tr:eq('+(i+1)+')')).text(' ');
+                             } 
+                         } */
+                      ]            		         
 			          ];
 			          $().mapContentJson(data,'#main-table',mapRowArray);
 			          $().afterRowDefine();
@@ -275,6 +292,7 @@
 			         ,['#MENU_DESC','MENU_DESC']
 			         ,['#START_DATE','START_DATE']
 			         ,['#END_DATE','END_DATE']
+			         ,['#RESP_TYPE_U','RESP_TYPE']
 			          ];
 			          $().mapUpdateJson(data,mapRowArray);
 		          }
