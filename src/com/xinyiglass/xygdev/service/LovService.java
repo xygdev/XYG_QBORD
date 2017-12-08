@@ -207,9 +207,31 @@ public class LovService {
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		sqlBuf.append("SELECT XACA.* ");
 		sqlBuf.append("  FROM XYG_ALFR_CUST_ACCOUNT_V XACA");
+		sqlBuf.append("      ,XYG_ALD_USER XAU");
+		sqlBuf.append("  	 ,XYG_ALD_USER_GROUP_V XAUG");
 		sqlBuf.append(" WHERE 1=1");
 		sqlBuf.append(SqlStmtPub.getAndStmt("XACA.PARTY_NAME", conditionMap.get("partyName"),paramMap));
 		sqlBuf.append(SqlStmtPub.getAndStmt("XACA.ACCOUNT_NUMBER", conditionMap.get("accountNumber"),paramMap));
+		sqlBuf.append("   AND XAU.USER_ID= :1");
+		sqlBuf.append("   AND XAUG.USER_ID(+)=XAU.USER_ID");
+		sqlBuf.append("   AND XAUG.GROUP_APPL_ID(+) = XYG_ALD_GLOBAL_PKG.APPL_ID");
+	    sqlBuf.append("   AND (XAU.USER_TYPE='CUSTOMER'");
+	    sqlBuf.append("       AND EXISTS(SELECT 1");
+	    sqlBuf.append("                    FROM XYG_ALD_USER_CUST_V XAUC");
+	    sqlBuf.append("		              WHERE XAUC.USER_ID = :1");
+	    sqlBuf.append("		                AND XAUC.ACT_ID = XACA.ACT_ID)");
+	    sqlBuf.append("		   OR XAU.USER_TYPE='EMP'");
+	    sqlBuf.append("		      AND XACA.ACT_ID IN (SELECT H.CUST_ID");
+	    sqlBuf.append("                                 FROM XYG_ALD_GROUP_LINES H");
+	    sqlBuf.append("		                           WHERE H.GROUP_ID IN (SELECT S.SUB_GROUP_ID");
+	    sqlBuf.append("		                                                  FROM XYG_ALD_GROUP_LINES S");
+	    sqlBuf.append("		                                                 WHERE 1=1");
+	    sqlBuf.append("		                                                   AND S.SUB_GROUP_ID IS NOT NULL");
+	    sqlBuf.append("                                                 CONNECT BY NOCYCLE PRIOR S.SUB_GROUP_ID = S.GROUP_ID");
+	    sqlBuf.append("                                                 START WITH S.GROUP_ID = XAUG.GROUP_ID");
+	    sqlBuf.append("                                                  UNION ALL");
+	    sqlBuf.append("		                                                SELECT XAUG.GROUP_ID FROM DUAL)))");
+		/*
 		sqlBuf.append("   AND (XACA.ACT_ID IN (SELECT CUST_ID");
 		sqlBuf.append("					   FROM XYG_ALD_GROUP_LINES");
 		sqlBuf.append("					  WHERE GROUP_ID IN(SELECT SUB_GROUP_ID");
@@ -233,6 +255,7 @@ public class LovService {
 		sqlBuf.append("					    AND XACA1.USER_TYPE = 'CUSTOMER'");
 		sqlBuf.append("                     AND SYSDATE BETWEEN  XACA1.START_DATE AND NVL( XACA1.END_DATE,SYSDATE+1)");
 		sqlBuf.append("					    AND XACA1.APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
+		*/
 		sqlBuf.append(" ORDER BY XACA.ORG_ID,XACA.CUST_ACCOUNT_ID");  
 		paramMap.put("1", conditionMap.get("userId"));
 		return pagePub.qPageForJson(sqlBuf.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"),(boolean)conditionMap.get("goLastPage"));
@@ -251,12 +274,12 @@ public class LovService {
 		sqlBuf.append("                         FROM XYG_ALFR_CUST_ACCOUNT XACA1");
 		sqlBuf.append("                        WHERE XQPL.LIST_HEADER_ID = XACA1.PRODUCT_LIST_HEADER_ID ");
 		sqlBuf.append("                          AND XACA1.CUST_ACCOUNT_ID = :1");
-		sqlBuf.append("                          AND XACA1.ORG_ID = :2)");
+		sqlBuf.append("                          AND XACA1.ORG_ID = :2)");	
 		sqlBuf.append("           AND EXISTS(SELECT 1");
 		sqlBuf.append("                        FROM XYG_QBI_ITEM_TP_B XQIT2");
 		sqlBuf.append("                       WHERE XQIT2.INVENTORY_ITEM_ID = XQPL.ITEM_ID ");
 		sqlBuf.append("                         AND XQIT2.ORGANIZATION_ID = :3");
-		sqlBuf.append("                         AND XQIT2.QBORD_ENABLED_FLAG = 'Y')");
+		sqlBuf.append("                         AND XQIT2.CHECKFLAG <> 'N')");		
 		sqlBuf.append("           AND XQIT1.INVENTORY_ITEM_ID = XQPL.ITEM_ID");
 		sqlBuf.append("           AND XQIT1.ORGANIZATION_ID = :3");
 		sqlBuf.append("           AND XQPL.LIST_HEADER_ID = XQPH.LIST_HEADER_ID");

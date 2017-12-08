@@ -135,7 +135,7 @@
             <label for="DESCRIPTION_Q" class="left md">本厂型号:</label>
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onblur="this.value=this.value.toUpperCase()"/>
             <label for="CARNAME_Q" class="left md">中文描述:</label>
-            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>
+            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg" value="%%"/>
             <br style="clear:both"/>
             <label for="PRODUCT_TYPE_DESC_Q" class="left md">产品种类:</label>
             <input type="text" id="PRODUCT_TYPE_DESC_Q" name="PRODUCT_TYPE_DESC" data-lovbtn="PRODUCT_TYPE_DESC_LOV" data-pageframe="query" data-modify="true" data-param="DESCRIPTION" class="left md" />

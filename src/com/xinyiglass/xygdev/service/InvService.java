@@ -76,6 +76,7 @@ public class InvService {
 	    sqlBuff.append(" WHERE 1=1 ");
 	    sqlBuff.append("   AND XQIO.ORGANIZATION_ID = XQIT.ORGANIZATION_ID ");
 	    sqlBuff.append("   AND XQIO.INVENTORY_ITEM_ID = XQIT.INVENTORY_ITEM_ID ");
+	    sqlBuff.append("   AND XQIT.CHECKFLAG <> 'N' ");
 	    sqlBuff.append("   AND XQIT.QBORD_ENABLED_FLAG = 'Y' ");
 		sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.ORGANIZATION_ID",conditionMap.get("organizationId"),paramMap,true)); 	 
 		sqlBuff.append(SqlStmtPub.getAndStmt("XQIO.DESCRIPTION",conditionMap.get("description"),paramMap)); 	 

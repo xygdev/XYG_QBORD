@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="DESCRIPTION_Q" class="left md">Item:</label>
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onblur="this.value=this.value.toUpperCase()"/>    
             <label for="CARNAME_Q" class="left md">CN DESC:</label>
-            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>   
+            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg" value="%%"/>   
             <br style="clear:both"/>
             <label for="WIDTH_F" class="left md">Long:</label>
             <input type="text" id="WIDTH_F" name="WIDTH_F" class="left xs" style="width:99px"/>

@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="DESCRIPTION_Q" class="left md">本厂型号:</label>
             <input type="text" id="DESCRIPTION_Q" name="DESCRIPTION" class="left lg upper-case" onblur="this.value=this.value.toUpperCase()"/>    
             <label for="CARNAME_Q" class="left md">中文描述:</label>
-            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg"/>   
+            <input type="text" id="CARNAME_Q" name="CARNAME" class="left lg" value="%%"/>   
             <br style="clear:both"/>
             <label for="WIDTH_F" class="left md">长度:</label>
             <input type="text" id="WIDTH_F" name="WIDTH_F" class="left xs" style="width:99px"/>

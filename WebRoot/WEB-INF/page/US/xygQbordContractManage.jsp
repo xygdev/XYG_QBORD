@@ -618,12 +618,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('option[value="CARNAME"]').on('click',function(){
 					$('#lov input[data-type="query_val"]').removeClass('upper-case');
 					$('#lov input[data-type="query_val"]').off('blur');
+					$('#lov input[data-type="query_val"]').val('%%');
 				});
 				$('option[value="DESCRIPTION"]').on('click',function(){
 					$('#lov input[data-type="query_val"]').addClass('upper-case');
 					$('#lov input[data-type="query_val"]').on('blur',function(){
 						this.value=this.value.toUpperCase();
 					});
+					$('#lov input[data-type="query_val"]').val('');
 				});
 				$('option[value="DESCRIPTION"]').click();
 			}
