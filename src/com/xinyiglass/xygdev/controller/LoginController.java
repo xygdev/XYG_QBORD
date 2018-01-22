@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+
 //import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -185,6 +186,7 @@ public class LoginController extends BaseController {
 		this.getRequest().getRequestDispatcher("/WEB-INF/page/"+this.getSessionAttr("LANG")+"/modifyPWD.jsp").forward(this.getRequest(),this.getResponse());	
 	}	
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value="/logout.do",method=RequestMethod.POST)
 	public ModelAndView getLogout() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -193,7 +195,7 @@ public class LoginController extends BaseController {
 		if(ret.getRetcode()!=0){
 			LogUtil.log("Error:"+ret.getErrbuf());
 		}	
-		if(this.getSession().equals(true)){
+		if(this.getSession().getValue("USER_ID")!=null){
 			String lang = this.getSessionAttr("LANG");
 			this.getSession().invalidate();
 			if(lang.equals("ZHS")){

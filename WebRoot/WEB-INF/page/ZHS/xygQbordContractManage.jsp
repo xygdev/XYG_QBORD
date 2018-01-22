@@ -417,7 +417,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label for="DESCRIPTION_D" class="md left">本厂型号</label> 
             <input type="text" id="DESCRIPTION_D" name="DESCRIPTION" data-update="db" class="left lglov upper-case" onblur="this.value=this.value.toUpperCase()" data-suffixflag="true" data-pageframe="detail_ui" required="required" data-modify="true" data-lovbtn="ITEM_LOV"  data-param="DESCRIPTION"/>          
             <input type="hidden" id="INVENTORY_ITEM_ID_D" name="INVENTORY_ITEM_ID" data-update="db"/>
-            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#SALES_ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION&text-left","CARNAME&text-left"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] data-func="$().upperCase();" value="···"/> 
+            <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION&text-left","CARNAME&text-left"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] data-func="$().upperCase();" value="···"/> 
             <label for="CARNAME" class="md left">中文描述</label> 
             <input type="text" id="CARNAME_D" name="CARNAME" data-update="db" class="left lgx2" data-update="db" required="required" readonly="readonly"/> 
           	<br style="clear:both"/>
@@ -431,8 +431,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	<input type="text" id="REMARKS_D" name="REMARKS" class="left lgx2" data-update="db"/>
           </form> 
         </div>
-        <div class="foot">            
-          <button class="right update_confirm pointer" data-type="insert" data-keyup="enter" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh" data-func="$().beforeConfirm();">新增</button>
+        <div class="foot">              
+          <button class="right update_confirm pointer" style="margin-left:15px" data-type="insert" data-crudtype="insert" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh" data-func="$().beforeConfirm();">新增并关闭</button>
+          <button class="right update_confirm pointer" style="margin-right:0" data-type="insert" data-keyup="enter" data-crudtype="insert-noclose" data-pageframe="detail_ui" data-inserturl="contract/insertL.do" data-afterdatafunc="$().afterInsertL();" data-refresh="sub_refresh" data-func="$().beforeConfirm();">新增</button>
           <button class="right update_confirm pointer" data-type="update" data-keyup="enter" data-crudtype="update" data-pageframe="detail_ui" data-updateurl="contract/updateL.do" data-afterdatafunc="$().sumLines();" data-refresh="sub_refresh" data-func="$().beforeConfirm();">确定</button>
         </div>    
       </div>          
@@ -685,7 +686,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
 				$('#REMARKS_D').attr('readonly','readonly');
 			}
-             
+            
+            $.fn.afterInsertL = function(){
+            	$().sumLines();
+            	$().beforePreInsertL();
+            } 
             
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  

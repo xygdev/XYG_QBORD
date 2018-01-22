@@ -308,6 +308,55 @@
 					return;
 				}
 			}
+			else if(options.crudtype=='insert-noclose'){
+				jQuery.global.validate();
+				if(validate_flag==true){
+				/****************************/
+					param=$('#'+options.pageframe+' form').serialize();
+	       	        if(options.func!=null&&options.func!=''){
+						eval(options.func);
+					}
+	       	        //console.log(param);
+				    $.ajax({
+				    	type:'post', 
+				    	data:param,
+				    	url:options.inserturl,
+				    	dataType:'json',
+				    	success: function (data) {
+				    		if(data.retcode=="0"){
+				    			layer.msg("新增成功!");
+				    			//$('#'+options.pageframe+' a[data-type="close"]').click();/****点击关闭更新框按钮****/
+				    			$('#'+options.refresh).click();/****点击刷新当前页按钮，刷新数据****/
+				    			$('#'+pageframe+' span[data-type]').hide();
+				                $('#'+pageframe+' button[data-type]').hide();
+				                $('#'+pageframe+' span[data-type="'+options.type+'"]').show();
+				                $('#'+pageframe+' button[data-type="'+options.type+'"]').show();
+				                $('#'+pageframe+' input[data-update="db"]').val('');
+				                $('#'+pageframe+' input[type="checkbox"]').prop('checked',false);
+				                $('#'+pageframe+' select[data-update="db"]').val('');
+				                $('#'+pageframe+' textarea[data-update="db"]').val('');
+				    		}else{
+				    			layer.alert("新增处理失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
+				    		}		
+							if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2017.1.5新增匿名函数功能：数据完成后自动执行的
+								eval(options.afterdatafunc);
+							}				  
+				    	},
+				    	error: function () {
+				    		/***ADD BY BIRD 2017.06.14 START***/
+							layer.msg('获取JSON数据失败');	
+							if(window.frameElement != null){
+							    //console.log("处于一个iframe中");
+							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+							}	
+							/***ADD BY BIRD 2017.06.14 END***/
+				    	}			
+				    });	
+				/*****************************************/
+				}else{
+					return;
+				}
+			}
 			/******条件查询方法******/
 			else if(options.crudtype=='query'){
 				cond=$('#'+options.pageframe+' form').serialize();
