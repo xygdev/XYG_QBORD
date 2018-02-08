@@ -279,7 +279,8 @@ public class LovService {
 		sqlBuf.append("                			FROM XYG_QBI_ITEM_TP_B XQIT2");
 		sqlBuf.append("               		   WHERE XQIT2.INVENTORY_ITEM_ID = XQPL.ITEM_ID ");
 		sqlBuf.append("                 		 AND XQIT2.ORGANIZATION_ID = :3");
-		sqlBuf.append("                 		 AND XQIT2.CHECKFLAG <> 'N')");		
+		sqlBuf.append("                 		 AND XQIT2.CHECKFLAG <> 'N'");		
+		sqlBuf.append("                 		 AND XQIT2.ENABLED_FLAG <> 'N')");	
 		sqlBuf.append("   		  AND XQIT1.INVENTORY_ITEM_ID = XQPL.ITEM_ID");
 		sqlBuf.append("   		  AND XQIT1.ORGANIZATION_ID = :3");
 		sqlBuf.append("   	      AND XQPL.LIST_HEADER_ID = XQPH.LIST_HEADER_ID");

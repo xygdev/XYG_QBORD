@@ -1,6 +1,7 @@
 package com.xinyiglass.xygdev.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xinyiglass.xygdev.dao.ContractLineVODao;
+import com.xinyiglass.xygdev.entity.BatchExcel;
 import com.xinyiglass.xygdev.entity.ContractLineVO;
 
 import xygdev.commons.entity.PlsqlRetValue;
@@ -118,5 +120,14 @@ public class ContractLineVOService {
 	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 	public String sumQuantity(String contractNumber,Long loginId) throws Exception{
 		return cld.sumQuantity(contractNumber).toJsonStr();
+	}
+	
+	public String batchInsert(List<BatchExcel> list,Map<String,Object> conditionMap) throws Exception{
+		cld.batchInsertTemp(list, conditionMap);
+		PlsqlRetValue ret=cld.batchInsert(conditionMap);
+		if(ret.getRetcode()!=0){
+			DevJdbcSubProcess.setRollbackOnly();
+		}	
+		return ret.toJsonStr();
 	}
 }

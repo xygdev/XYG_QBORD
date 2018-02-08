@@ -142,6 +142,8 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 .pop_frame>.content form input.lgx2{width:545px}
 .pop_frame>.content form input.password{width:195px}
 .pop_frame>.content form input.time{width:262px}
+.pop_frame>.content form a.upload{margin-left:50px;padding: 4px 10px;height: 20px;line-height: 20px;position: relative;border: 1px solid #999;text-decoration: none;color: #666;}
+.pop_frame>.content form input.file{position: absolute;overflow: hidden;right: 0;top: 0;opacity: 0;}
 .pop_frame>.content form label.checkbox{font-size:1em;padding:10px 5px 5px 0;width:80px;text-align:right}
 .pop_frame>.content form input.checkbox{width:30px;margin:12px 2px}
 .pop_frame>.content form i{display:block;margin:8px 5px;}

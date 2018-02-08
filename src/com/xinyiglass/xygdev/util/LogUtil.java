@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import xygdev.commons.util.TypeConvert;
 
 
+
+
 /** 
  * 日志处理包。以后所有的日志 LogUtil.log()
  * @author Sam.T  2016-12-21
@@ -23,6 +25,21 @@ public class LogUtil {
 		logger.error(err);
 		System.out.println(TypeConvert.type2Str(err));
     }    
+    
+    /**
+     * get postfix of the path
+     * @param path
+     * @return
+     */
+    public static String getPostfix(String path) {
+        if (path == null || Constant.EMPTY.equals(path.trim())) {
+            return Constant.EMPTY;
+        }
+        if (path.contains(Constant.POINT)) {
+            return path.substring(path.lastIndexOf(Constant.POINT) + 1, path.length());
+        }
+        return Constant.EMPTY;
+    }
 }  
 
 

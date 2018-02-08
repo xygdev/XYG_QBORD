@@ -1,7 +1,10 @@
 package com.xinyiglass.xygdev.dao.impl;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -10,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.xinyiglass.xygdev.dao.ContractLineVODao;
+import com.xinyiglass.xygdev.entity.BatchExcel;
 import com.xinyiglass.xygdev.entity.ContractLineVO;
 
 import xygdev.commons.entity.PlsqlRetValue;
 import xygdev.commons.entity.SqlResultSet;
 import xygdev.commons.springjdbc.DevJdbcDaoSupport;
+import xygdev.commons.util.TypeConvert;
 
 @Repository("ContractLineVODao")
 public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements ContractLineVODao{
@@ -228,5 +233,53 @@ public class ContractLineVODaoImpl extends DevJdbcDaoSupport implements Contract
 		sqlBuff.append("           AND XQCQ.LINE_NUM = XQCL.LINE_NUM)");
 		paramMap.put("1", contractNumber);
 		return this.getDevJdbcTemplate().queryForResultSet(sqlBuff.toString(), paramMap);
+	}
+	
+	public void batchInsertTemp(List<BatchExcel> list,Map<String,Object> conditionMap) throws Exception{
+		StringBuffer sqlBuff = new StringBuffer();
+		sqlBuff.append("INSERT INTO XYG_ALD_ANALYDOC_GT(DOC_TYPE,DOC_ROW,COL1,COL2,COL3，COL4,COL5)");
+		sqlBuff.append("     VALUES(:1,:2,:3,:4,:5,:6,:7) ");
+		//String sql = "insert into XYG_ALD_ANALYDOC_GT (doc_type, col1,col2,col3) values (:1, :2, :3,:4)";
+		Connection connection = this.getConnection();
+		PreparedStatement ps = connection.prepareStatement(sqlBuff.toString());
+		final int batchSize = 1000;
+		int count = 1;
+		try{
+			for (BatchExcel be : list) {
+				ps.setString(1, TypeConvert.type2Str(conditionMap.get("docType")));
+				ps.setInt(2, list.size());
+				ps.setString(3, be.getCol1());
+			    ps.setString(4, be.getCol2());
+			    ps.setString(5, be.getCol3());
+			    ps.setString(6, be.getCol4());
+			    ps.setString(7, be.getCol5());
+			    ps.addBatch();
+			    if(++count % batchSize == 0) {
+			        ps.executeBatch();
+			    }
+			}
+			ps.executeBatch(); // insert remaining records
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		ps.close();
+		//connection.close();
+	}
+	
+	public PlsqlRetValue batchInsert(Map<String,Object> conditionMap) throws Exception{
+		String sql ="Declare "
+				+ "     l_line_id number; "
+				+ "  begin "
+				+ "  XYG_QBORD_CONTRACT_PKG.BATCH_INSERT_LINE( "
+				+ "  :1"
+				+ " ,:2"
+				+ " ,:"+PlsqlRetValue.RETCODE
+				+ " ,:"+PlsqlRetValue.ERRBUF
+				+ " ); "
+				+ "end;";
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("1", null);
+		paramMap.put("2", conditionMap.get("headerId"));
+		return this.getDevJdbcTemplate().executeForRetValue(sql, paramMap);
 	}
 }

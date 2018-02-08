@@ -166,6 +166,7 @@ public class ContractController extends BaseController {
 		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));		
 		conditionMap.put("headerId", this.getParaToLong("HEADER_ID"));
 		conditionMap.put("orderBy", this.getPara("orderby"));
+		this.setSessionAttr("CONTRACT_HEADER_ID", this.getPara("HEADER_ID"));
 		this.renderStr(CLS.findForPage(conditionMap, loginId));
 	}
 	

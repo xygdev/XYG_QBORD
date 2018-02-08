@@ -36,4 +36,17 @@ public class Constant extends DevJdbcDaoSupport{
     public static final String APP_SECRET="f0bbcde0f259";
     //验证码长度，范围4～10，默认为4
     public static final String CODELEN="6";
+    
+    
+    /*
+     * POI 配置参数*
+     */
+    public static final String OFFICE_EXCEL_2003_POSTFIX = "xls";
+    public static final String OFFICE_EXCEL_2010_POSTFIX = "xlsx";
+    public static final String EMPTY = "";
+    public static final String POINT = ".";
+    public static final String LIB_PATH = "E:\\Excel\\";//"/home/web/upload/";"E:\\Excel\\";
+    public static final String LIB_TEMP_PATH = "E:\\Excel\\buffer";//"/home/web/upload/buffer/";"E:\\Excel\\buffer";
+    public static final String LIB_MODEL_PATH = "E:\\Excel\\model\\";
+    public static final String NOT_EXCEL_FILE = " : Not the Excel file!";
 }

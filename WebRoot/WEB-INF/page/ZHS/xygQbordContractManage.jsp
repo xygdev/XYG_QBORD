@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="plugin/jQuery/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="plugin/css/jquery.datetimepicker.css">
     <script src="plugin/jQuery/jquery.datetimepicker.full.js"></script>
+    <script src="plugin/jQuery/ajaxfileupload.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
     <style type="text/css">  
 		.EN_DESC{
@@ -377,6 +378,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <i class="fa fa-times pointer" title="取消订单" data-status="CANCEL" data-statusdesc="取消"></i>
           </div>
           <div class="setting">
+            <i class="fa fa-files-o pointer" title="批量上传" data-reveal-id="batch_update" data-bg="detail-modal-bg" data-dismissmodalclass="close-bu-frame"></i>
+          </div>
+          <div class="setting">
             <i class="fa fa-file-text pointer none" data-reveal-id="update_ot" data-bg="detail-modal-bg" data-key="true"  data-dismissmodalclass="close-ot-frame"  title="维护订单类型"></i>
           </div>
           <div>
@@ -438,6 +442,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>    
       </div>          
       <!-- 订单明细新增/更新区域 end --> 
+      
+      <!-- 批量上传区域 start -->
+      <div id="batch_update" class="pop_frame row-2" style="z-index:104">     
+        <div class="title pointer">          
+          <span><i class="fa fa-files-o  fa-1x" aria-hidden="true"></i>&nbsp;批量导入</span>
+        </div>
+        <a class="close-bu-frame" data-type="close">&#215;</a>
+        <div class="line"></div>  
+        <div class="content row-2">
+          <!--<form action="file/batchInsert.do" id="batchForm" enctype="multipart/form-data" method="post" > -->
+          <form id="batchForm" enctype="multipart/form-data" method="post" >
+          	<a href="javascript:void(0);" class="upload pointer">选择文件 
+          		<input type="file" class="file" id="FILE" name="FILE" >
+          	</a> 
+          	<div class="show"></div>
+          	<input type="hidden" id="HEADER_ID_B" name="HEADER_ID"/>
+          </form> 
+        </div>
+        <div class="foot">   
+          <div style="float:left;margin-left:30px">
+            <span>XLS模板下载:</span>
+            <a href="file/downloadXls.do"><i class="fa fa-download"></i></a>
+          </div>
+          <div style="float:left;margin-left:10px">
+            <span>XLSX模板下载:</span>
+            <a href="file/downloadXlsx.do"><i class="fa fa-download"></i></a>
+          </div>
+          <button id="uploadBatch" class="right pointer" style="margin-left:15px">导入</button>	
+        </div>
+      </div>
+      <!-- 批量上传区域 end -->
       
       <!-- 价目表明细区域 start -->
       <div id="product_list_d" class="pop_frame" style="z-index:201">
@@ -517,6 +552,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $().crudListener(); 
             $().revealListener(); 
             
+            //批量上传
+            $('#uploadBatch').on('click',function(){
+            	$.ajaxFileUpload({
+                    url: 'file/batchInsert.do', //用于文件上传的服务器端请求地址
+                    secureuri: false, //一般设置为false
+                    fileElementId: 'FILE', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                    dataType: 'json', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        if(data.retcode=="0"){
+							layer.msg("批量导入成功!");
+				    		//$('#'+options.refresh).click();/****点击刷新当前页按钮，刷新数据****/	
+				    	}else{
+				    		layer.alert("批量导入失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
+				    	}	
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        var obj = JSON.parse(data.responseText);
+                         if(obj.retcode=="0"){
+                         	$().sumLines();
+							layer.msg("批量导入成功!");
+				    	}else{
+				    		layer.alert("批量导入失败！错误信息:"+obj.errbuf,{title:'警告',offset:[150]});
+				    	}	
+				    	$('#batch_update a[data-type="close"]').click();
+				    	$('#sub_refresh').click();
+                        //alert(e);
+                    }
+                });
+            	return false;
+            });
+            
             //设置价目表查询参数
 			$.fn.setPlParam = function(){
                 itemId = $('#INVENTORY_ITEM_ID_D').val();
@@ -543,6 +611,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}	
 			
 			$().defaultQueryDate();
+				
+			//打开批量上传界面
+			$('i[data-reveal-id="batch_update"]').on('click',function(){
+				console.log('打开批量上传界面');
+				var file = document.getElementById('FILE');
+				file.outerHTML = file.outerHTML; 
+			});				
 				
 			$.fn.beforeConfirm = function(){
 			    RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');

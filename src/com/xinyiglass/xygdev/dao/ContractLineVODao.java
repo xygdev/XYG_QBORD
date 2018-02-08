@@ -1,7 +1,9 @@
 package com.xinyiglass.xygdev.dao;
 
+import java.util.List;
 import java.util.Map;
 
+import com.xinyiglass.xygdev.entity.BatchExcel;
 import com.xinyiglass.xygdev.entity.ContractLineVO;
 
 import xygdev.commons.entity.PlsqlRetValue;
@@ -31,4 +33,8 @@ public interface ContractLineVODao {
 	public SqlResultSet sumQuantityAndPrice(String contractNumber) throws Exception;
 	
 	public SqlResultSet sumQuantity(String contractNumber) throws Exception;
+	
+	public void batchInsertTemp(List<BatchExcel> list,Map<String,Object> conditionMap) throws Exception;
+	
+	public PlsqlRetValue batchInsert(Map<String,Object> conditionMap) throws Exception;
 }
