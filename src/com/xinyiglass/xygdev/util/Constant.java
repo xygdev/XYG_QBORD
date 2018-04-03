@@ -11,10 +11,10 @@ public class Constant extends DevJdbcDaoSupport{
 	public static String DIR_SEP="/";//ftp和unix用：/    ；本地win系统用：\\\\ 
 	
 	//FTP参数
-	public static final String FTP_HOST="192.168.88.32";//"192.168.0.7";//"192.168.88.32";
-	public static final int    FTP_PORT=21;//51322; //21;
-	public static final String FTP_USER="oracle";//"appl";//"oracle";
-	public static final String FTP_PASS="erp";//"mantou2017";//"erp";
+	public static final String FTP_HOST="192.168.0.7";//"192.168.0.7";//"192.168.88.32";
+	public static final int    FTP_PORT=51322;//51322; //21;
+	public static final String FTP_USER="appl";//"appl";//"oracle";
+	public static final String FTP_PASS="mantou2017";//"mantou2017";//"erp";
 	
 	//系统编码 
 	public static final String APPL_CODE = "XYG_QBORD";
@@ -45,8 +45,8 @@ public class Constant extends DevJdbcDaoSupport{
     public static final String OFFICE_EXCEL_2010_POSTFIX = "xlsx";
     public static final String EMPTY = "";
     public static final String POINT = ".";
-    public static final String LIB_PATH = "E:\\Excel\\";//"/home/web/upload/";"E:\\Excel\\";
-    public static final String LIB_TEMP_PATH = "E:\\Excel\\buffer";//"/home/web/upload/buffer/";"E:\\Excel\\buffer";
-    public static final String LIB_MODEL_PATH = "E:\\Excel\\model\\";
+    public static final String LIB_PATH = "/oracle/orcl/web/upload/";//"/home/web/upload/";"E:\\Excel\\";
+    public static final String LIB_TEMP_PATH = "/oracle/orcl/web/upload/buffer";//"/home/web/upload/buffer/";"E:\\Excel\\buffer";
+    public static final String LIB_MODEL_PATH = "/oracle/orcl/web/upload/model/";//"/home/web/upload/model/";"E:\\Excel\\model\\";
     public static final String NOT_EXCEL_FILE = " : Not the Excel file!";
 }

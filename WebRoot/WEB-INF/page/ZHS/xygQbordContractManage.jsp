@@ -20,25 +20,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="plugin/jQuery/ajaxfileupload.js"></script>
     <script src="plugin/js/xygdev.commons.js"></script>
     <style type="text/css">  
-		.EN_DESC{
-		    width:110px;
-		    white-space: nowrap;
-		    text-overflow: ellipsis;
-		    overflow: hidden;
-		}
-		.EN_DESC P{
-		    color:black;
-			background:#C0C0C0;
-			position:absolute;
-			margin-top:-25px;
-			height:31px;
-			line-height:31px;
-			font-weight:bold;
-			border-right:1px solid #ccc;
-			display:none;
-		}
-		.detail_frame .detail_table{height:355px;overflow:auto;}
-	</style>  
+        .EN_DESC{
+            width:110px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .EN_DESC P{
+            color:black;
+            background:#C0C0C0;
+            position:absolute;
+            margin-top:-25px;
+            height:31px;
+            line-height:31px;
+            font-weight:bold;
+            border-right:1px solid #ccc;
+            display:none;
+        }
+        .detail_frame .detail_table{height:355px;overflow:auto;}
+    </style>  
   </head>
   <body>
     <div id="container">
@@ -424,15 +424,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="button" id="ITEM_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="detail_ui" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="产品查询" data-queryurl="lov/getItemPage.do" data-jsontype="item" data-defaultquery="false" data-extparam=["ORGANIZATION_ID","CUSTOMER_ID","SALES_ORG_ID"] data-extparamid=["#SHIP_FROM_ORG_ID_L","#CUSTOMER_ID_L","#ORG_ID_L"] data-th=["物料ID","物料编码","本厂型号","中文描述"] data-td=["INVENTORY_ITEM_ID&none","ITEM_NUMBER","DESCRIPTION&text-left","CARNAME&text-left"] data-selectname=["本厂型号","中文描述"] data-selectvalue=["DESCRIPTION","CARNAME"] data-choose=[".INVENTORY_ITEM_ID",".DESCRIPTION",".CARNAME","NONE","NONE"] data-recid=["#INVENTORY_ITEM_ID_D","#DESCRIPTION_D","#CARNAME_D","#ORDER_QUANTITY_D","#UNIT_PRICE_D"] data-func="$().upperCase();" value="···"/> 
             <label for="CARNAME" class="md left">中文描述</label> 
             <input type="text" id="CARNAME_D" name="CARNAME" data-update="db" class="left lgx2" data-update="db" required="required" readonly="readonly"/> 
-          	<br style="clear:both"/>
-          	<label for="ORDER_QUANTITY_D" class="md left">数量</label>
-          	<input type="text" id="ORDER_QUANTITY_D" name="ORDER_QUANTITY" class="lg left" data-update="db" required="required"/>
-          	<label for="UNIT_PRICE_D" class="md left">单价</label>
-          	<input type="text" id="UNIT_PRICE_D" name="UNIT_PRICE" class="md left" data-update="db" readonly="readonly" required="required"/>
-          	<input type="button" id="PRICE_LIST_BTN" class="left button pointer" data-reveal-id="product_list_d" data-bg="lov-modal-bg" data-dismissmodalclass="close-pl-frame" title="价目表明细" value="￥"/>
-          	<br style="clear:both"/>
-          	<label for="REMARKS_D" class="md left">备注</label>
-          	<input type="text" id="REMARKS_D" name="REMARKS" class="left lgx2" data-update="db"/>
+            <br style="clear:both"/>
+            <label for="ORDER_QUANTITY_D" class="md left">数量</label>
+            <input type="text" id="ORDER_QUANTITY_D" name="ORDER_QUANTITY" class="lg left" data-update="db" required="required"/>
+            <label for="UNIT_PRICE_D" class="md left">单价</label>
+            <input type="text" id="UNIT_PRICE_D" name="UNIT_PRICE" class="md left" data-update="db" readonly="readonly" required="required"/>
+            <input type="button" id="PRICE_LIST_BTN" class="left button pointer" data-reveal-id="product_list_d" data-bg="lov-modal-bg" data-dismissmodalclass="close-pl-frame" title="价目表明细" value="￥"/>
+            <br style="clear:both"/>
+            <label for="REMARKS_D" class="md left">备注</label>
+            <input type="text" id="REMARKS_D" name="REMARKS" class="left lgx2" data-update="db"/>
           </form> 
         </div>
         <div class="foot">              
@@ -453,11 +453,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="content row-2">
           <!--<form action="file/batchInsert.do" id="batchForm" enctype="multipart/form-data" method="post" > -->
           <form id="batchForm" enctype="multipart/form-data" method="post" >
-          	<a href="javascript:void(0);" class="upload pointer">选择文件 
-          		<input type="file" class="file" id="FILE" name="FILE" >
-          	</a> 
-          	<div class="show"></div>
-          	<input type="hidden" id="HEADER_ID_B" name="HEADER_ID"/>
+            <a href="javascript:void(0);" class="upload pointer">选择文件 
+                <!-- <input type="file" class="file" id="FILE" name="FILE" > -->
+            </a> 
+            <input type="file" class="file pointer" id="FILE" name="FILE"  onchange="$().fileChange();" style="position:relative;width:90px;height:30px;left:-90px;top:0px;opacity:0;" >
+            <div class="show" style="position:absolute;left:145px;top:28px;padding:3px;"></div>
+            <input type="hidden" id="HEADER_ID_B" name="HEADER_ID"/>
           </form> 
         </div>
         <div class="foot">   
@@ -469,7 +470,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span>XLSX模板下载:</span>
             <a href="file/downloadXlsx.do"><i class="fa fa-download"></i></a>
           </div>
-          <button id="uploadBatch" class="right pointer" style="margin-left:15px">导入</button>	
+          <button id="uploadBatch" class="right pointer" style="margin-left:15px">导入</button>   
         </div>
       </div>
       <!-- 批量上传区域 end -->
@@ -552,9 +553,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $().crudListener(); 
             $().revealListener(); 
             
+            //点击批量上传按钮显示 
+            $.fn.fileChange = function(){
+                var fileName = document.getElementById("FILE").files[0].name;
+                $('#batchForm').find('.show').html(fileName);
+            } 
+            
             //批量上传
             $('#uploadBatch').on('click',function(){
-            	$.ajaxFileUpload({
+                $.ajaxFileUpload({
                     url: 'file/batchInsert.do', //用于文件上传的服务器端请求地址
                     secureuri: false, //一般设置为false
                     fileElementId: 'FILE', //文件上传空间的id属性  <input type="file" id="file" name="file" />
@@ -562,31 +569,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     success: function (data, status)  //服务器成功响应处理函数
                     {
                         if(data.retcode=="0"){
-							layer.msg("批量导入成功!");
-				    		//$('#'+options.refresh).click();/****点击刷新当前页按钮，刷新数据****/	
-				    	}else{
-				    		layer.alert("批量导入失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
-				    	}	
+                            layer.msg("批量导入成功!");
+                            //$('#'+options.refresh).click();/****点击刷新当前页按钮，刷新数据****/   
+                        }else{
+                            layer.alert("批量导入失败！错误信息:"+data.errbuf,{title:'警告',offset:[150]});
+                        }   
                     },
                     error: function (data, status, e)//服务器响应失败处理函数
                     {
                         var obj = JSON.parse(data.responseText);
                          if(obj.retcode=="0"){
-                         	$().sumLines();
-							layer.msg("批量导入成功!");
-				    	}else{
-				    		layer.alert("批量导入失败！错误信息:"+obj.errbuf,{title:'警告',offset:[150]});
-				    	}	
-				    	$('#batch_update a[data-type="close"]').click();
-				    	$('#sub_refresh').click();
+                            $().sumLines();
+                            layer.msg("批量导入成功!");
+                        }else{
+                            layer.alert("批量导入失败！错误信息:"+obj.errbuf,{title:'警告',offset:[150]});
+                        }   
+                        $('#batch_update a[data-type="close"]').click();
+                        $('#sub_refresh').click();
                         //alert(e);
                     }
                 });
-            	return false;
+                return false;
             });
             
             //设置价目表查询参数
-			$.fn.setPlParam = function(){
+            $.fn.setPlParam = function(){
                 itemId = $('#INVENTORY_ITEM_ID_D').val();
                 productListId = $('#PRICE_LIST_ID_L').val();
                 param=param+'&ITEM_ID='+itemId+'&PRODUCT_LIST_ID='+productListId;
@@ -597,139 +604,140 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 headerId=$('#HEADER_ID_L').val();
                 param=param+'&HEADER_ID='+headerId;
             }  
-			
-			//默认查询时间
-			$.fn.defaultQueryDate = function(){
-			    var sysDate = new Date();
-			    var firstDay;
-			    firstDay = sysDate.getFullYear()
-			              +'-'+(sysDate.getMonth()+1)
-			              +'-01 00:00:00';
-			    
-			    $('#CREATION_DATE_F').val(firstDay);
-			    $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
-			}	
-			
-			$().defaultQueryDate();
-				
-			//打开批量上传界面
-			$('i[data-reveal-id="batch_update"]').on('click',function(){
-				console.log('打开批量上传界面');
-				var file = document.getElementById('FILE');
-				file.outerHTML = file.outerHTML; 
-			});				
-				
-			$.fn.beforeConfirm = function(){
-			    RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
-			    RegExpValidate('^[0-9]*$','UNIT_PRICE_D','$("#UNIT_PRICE_D").val("");regExpError("单价必须为整数!");');
-			}
-			
-			//汇总订单明细 总数量&总金额
-			$.fn.sumLines = function(){
-			    var contractNumber = $('#CONTRACT_NUMBER_L').val();
-			    param = 'CONTRACT_NUMBER=' + contractNumber;
-			    $.ajax({
-					type:'post', 
-					data:param,
-					url:'contract/sumQuantityAndPrice.do',
-					dataType:'json',
-					success: function (data) {
-					    console.log('sum');
-					    $('#TOTAL_QUANTITY_L').val(data.rows[0].TOTAL_QUANTITY);
-					    $('#TOTAL_PRICE_L').val(data.rows[0].TOTAL_PRICE);
-					},
-					error: function () {
-						layer.msg('获取JSON数据失败');	
-						if(window.frameElement != null){
-							//console.log("处于一个iframe中");
-							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-						}
-					}
-			    });
-			}	
-			
-			$('#ORDER_QUANTITY_D').on('change',function(){
-			   var itemId = $('#INVENTORY_ITEM_ID_D').val();
-			   if(itemId == null||itemId == ''){
-			       $('#ORDER_QUANTITY_D').val('');
-			       layer.alert('请先选择本厂型号再填写数量！',{title:'警告',offset:[150]});
-			       return;
-			   }
-			   var qty = $('#ORDER_QUANTITY_D').val();
-			   if(qty == null||qty == ''){
-			       $('#UNIT_PRICE_D').val('');
-			   }else{
-			       RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
+            
+            //默认查询时间
+            $.fn.defaultQueryDate = function(){
+                var sysDate = new Date();
+                var firstDay;
+                firstDay = sysDate.getFullYear()
+                          +'-'+(sysDate.getMonth()+1)
+                          +'-01 00:00:00';
+                
+                $('#CREATION_DATE_F').val(firstDay);
+                $('#CREATION_DATE_T').val(sysDate.format('yyyy-MM-dd')+' 23:59:59');//modify by bird 2017.08.10  修改默认当前时间的时分秒为23:59:59
+            }   
+            
+            $().defaultQueryDate();
+                
+            //打开批量上传界面
+            $('i[data-reveal-id="batch_update"]').on('click',function(){
+                console.log('打开批量上传界面');
+                var file = document.getElementById('FILE');
+                file.outerHTML = file.outerHTML; 
+                $('#batchForm').find('.show').html("");
+            });             
+                
+            $.fn.beforeConfirm = function(){
+                RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
+                RegExpValidate('^[0-9]*$','UNIT_PRICE_D','$("#UNIT_PRICE_D").val("");regExpError("单价必须为整数!");');
+            }
+            
+            //汇总订单明细 总数量&总金额
+            $.fn.sumLines = function(){
+                var contractNumber = $('#CONTRACT_NUMBER_L').val();
+                param = 'CONTRACT_NUMBER=' + contractNumber;
+                $.ajax({
+                    type:'post', 
+                    data:param,
+                    url:'contract/sumQuantityAndPrice.do',
+                    dataType:'json',
+                    success: function (data) {
+                        console.log('sum');
+                        $('#TOTAL_QUANTITY_L').val(data.rows[0].TOTAL_QUANTITY);
+                        $('#TOTAL_PRICE_L').val(data.rows[0].TOTAL_PRICE);
+                    },
+                    error: function () {
+                        layer.msg('获取JSON数据失败');    
+                        if(window.frameElement != null){
+                            //console.log("处于一个iframe中");
+                            $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+                        }
+                    }
+                });
+            }   
+            
+            $('#ORDER_QUANTITY_D').on('change',function(){
+               var itemId = $('#INVENTORY_ITEM_ID_D').val();
+               if(itemId == null||itemId == ''){
+                   $('#ORDER_QUANTITY_D').val('');
+                   layer.alert('请先选择本厂型号再填写数量！',{title:'警告',offset:[150]});
+                   return;
+               }
+               var qty = $('#ORDER_QUANTITY_D').val();
+               if(qty == null||qty == ''){
+                   $('#UNIT_PRICE_D').val('');
+               }else{
+                   RegExpValidate('^[0-9]*[1-9][0-9]*$','ORDER_QUANTITY_D','$("#ORDER_QUANTITY_D").val("");regExpError("数量必须为正整数!");');
                    //RegExpValidate('^[0-9]*[1-9][0-9]*$','UNIT_PRICE_D','$("#UNIT_PRICE_D").val("");regExpError("单价必须为正整数!");');
-			       var orgId = $('#ORG_ID_L').val();
-			       var currCode = $('#CURR_CODE_L').val();
-			       var priceListId = $('#PRICE_LIST_ID_L').val();
-			       var param = 'INVENTORY_ITEM_ID='+itemId+'&ORG_ID='+orgId+'&CURR_CODE='+currCode+'&PRICE_LIST_ID='+priceListId+'&ORDER_QUANTITY='+qty;
-			       $.ajax({
-					   type:'post', 
-					    data:param,
-					    url:'contract/getUnitPrice.do',
-					    dataType:'json',
-					    success: function (data) {
-					        if(data.retcode=='0'){
-					            $('#UNIT_PRICE_D').val(data.param2);
-					        }else{
-					            layer.alert('获取单价错误！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
-					        }
-					    },
-						error: function () {
-						    layer.msg('获取JSON数据失败');	
-							if(window.frameElement != null){
-							    //console.log("处于一个iframe中");
-							    $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-							}
-						}
-			       });
-			   }
-			
-			}); 
-			
-			//自动转换大写
-			$.fn.upperCase = function(){
-				$('option[value="CARNAME"]').off('click');
-				$('option[value="DESCRIPTION"]').off('click');
-				$('option[value="CARNAME"]').on('click',function(){
-					$('#lov input[data-type="query_val"]').removeClass('upper-case');
-					$('#lov input[data-type="query_val"]').off('blur');
-					$('#lov input[data-type="query_val"]').val('%%');
-				});
-				$('option[value="DESCRIPTION"]').on('click',function(){
-					$('#lov input[data-type="query_val"]').addClass('upper-case');
-					$('#lov input[data-type="query_val"]').on('blur',function(){
-						this.value=this.value.toUpperCase();
-					});
-					$('#lov input[data-type="query_val"]').val('');
-				});
-				$('option[value="DESCRIPTION"]').click();
-			}
-			
-			$.fn.beforePreInsertH = function(){
-			    var display = $('#ORDER_TYPE_ID').css('display');
-			    if(display!='none'){
-			    	$('#ORDER_TYPE_ID').addClass('none');
-			    	$('label[for="ORDER_TYPE_ID"]').addClass('none');
-			    }
-			} 
-			
-			$.fn.beforePreUpdateH = function(){
-			    var userType = '${USER_TYPE}';
-			    if(userType=='EMP'){
-			    	$('#ORDER_TYPE_ID').removeClass('none');
-			    	$('label[for="ORDER_TYPE_ID"]').removeClass('none');
-			    	$('#CURR_CODE').attr('disabled','disabled');
-			    }
-			} 
-			
-			$.fn.beforePreInsertL = function(){
-			    $('#ITEM_LOV').attr('disabled',false);
-			    $('#DESCRIPTION_D').removeAttr('readonly');
-			    //自动获取行号
-				headerId = $('#HEADER_ID_L').val();
+                   var orgId = $('#ORG_ID_L').val();
+                   var currCode = $('#CURR_CODE_L').val();
+                   var priceListId = $('#PRICE_LIST_ID_L').val();
+                   var param = 'INVENTORY_ITEM_ID='+itemId+'&ORG_ID='+orgId+'&CURR_CODE='+currCode+'&PRICE_LIST_ID='+priceListId+'&ORDER_QUANTITY='+qty;
+                   $.ajax({
+                       type:'post', 
+                        data:param,
+                        url:'contract/getUnitPrice.do',
+                        dataType:'json',
+                        success: function (data) {
+                            if(data.retcode=='0'){
+                                $('#UNIT_PRICE_D').val(data.param2);
+                            }else{
+                                layer.alert('获取单价错误！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+                            }
+                        },
+                        error: function () {
+                            layer.msg('获取JSON数据失败');    
+                            if(window.frameElement != null){
+                                //console.log("处于一个iframe中");
+                                $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+                            }
+                        }
+                   });
+               }
+            
+            }); 
+            
+            //自动转换大写
+            $.fn.upperCase = function(){
+                $('option[value="CARNAME"]').off('click');
+                $('option[value="DESCRIPTION"]').off('click');
+                $('option[value="CARNAME"]').on('click',function(){
+                    $('#lov input[data-type="query_val"]').removeClass('upper-case');
+                    $('#lov input[data-type="query_val"]').off('blur');
+                    $('#lov input[data-type="query_val"]').val('%%');
+                });
+                $('option[value="DESCRIPTION"]').on('click',function(){
+                    $('#lov input[data-type="query_val"]').addClass('upper-case');
+                    $('#lov input[data-type="query_val"]').on('blur',function(){
+                        this.value=this.value.toUpperCase();
+                    });
+                    $('#lov input[data-type="query_val"]').val('');
+                });
+                $('option[value="DESCRIPTION"]').click();
+            }
+            
+            $.fn.beforePreInsertH = function(){
+                var display = $('#ORDER_TYPE_ID').css('display');
+                if(display!='none'){
+                    $('#ORDER_TYPE_ID').addClass('none');
+                    $('label[for="ORDER_TYPE_ID"]').addClass('none');
+                }
+            } 
+            
+            $.fn.beforePreUpdateH = function(){
+                var userType = '${USER_TYPE}';
+                if(userType=='EMP'){
+                    $('#ORDER_TYPE_ID').removeClass('none');
+                    $('label[for="ORDER_TYPE_ID"]').removeClass('none');
+                    $('#CURR_CODE').attr('disabled','disabled');
+                }
+            } 
+            
+            $.fn.beforePreInsertL = function(){
+                $('#ITEM_LOV').attr('disabled',false);
+                $('#DESCRIPTION_D').removeAttr('readonly');
+                //自动获取行号
+                headerId = $('#HEADER_ID_L').val();
                 param = 'HEADER_ID='+headerId;
                 $.ajax({
                     type:'post', 
@@ -741,10 +749,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('#LINE_NUM_D').val(data.rows[0].LINE_NUM);
                     },
                     error: function () {
-                        layer.msg('获取JSON数据失败');	
-						if(window.frameElement != null){
-							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-						}	
+                        layer.msg('获取JSON数据失败');    
+                        if(window.frameElement != null){
+                            $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+                        }   
                     }           
                 }); 
                 $('#CURR_CODE_D').val($('#CURR_CODE_L').val());
@@ -752,34 +760,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('#PRICE_LIST_ID_D').val($('#PRICE_LIST_ID_L').val());
                 //改变readonly状态
                 //$('#ORDER_QUANTITY_D').removeAttr('readonly');
-				$('#REMARKS_D').removeAttr('readonly');
-			}
-			
-			$.fn.beforePreUpdateL = function(){
-				$('#ITEM_LOV').attr('disabled',true);
-			    $('#DESCRIPTION_D').attr('readonly','readonly');
-			    //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
-				$('#REMARKS_D').attr('readonly','readonly');
-			}
+                $('#REMARKS_D').removeAttr('readonly');
+            }
+            
+            $.fn.beforePreUpdateL = function(){
+                $('#ITEM_LOV').attr('disabled',true);
+                $('#DESCRIPTION_D').attr('readonly','readonly');
+                //$('#ORDER_QUANTITY_D').attr('readonly','readonly');
+                $('#REMARKS_D').attr('readonly','readonly');
+            }
             
             $.fn.afterInsertL = function(){
-            	$().sumLines();
-            	$().beforePreInsertL();
+                $().sumLines();
+                $().beforePreInsertL();
             } 
             
             $.fn.detailShow = function(){
                 $('.show_detail').off('click');  
                 $('.show_detail').on('click',function(){
                     width=$(window).width();
-	                height=$(window).height();
-		            if(width>=768){
-		                headerheight=$('section.content-header').outerHeight();
-		                ifmheight=height-headerheight;
-		            }else{
-		                logoheight=$('a.logo').height();
-		                headerheight=$('section.content-header').outerHeight();
-		                ifmheight=height-logoheight-headerheight;
-		            }
+                    height=$(window).height();
+                    if(width>=768){
+                        headerheight=$('section.content-header').outerHeight();
+                        ifmheight=height-headerheight;
+                    }else{
+                        logoheight=$('a.logo').height();
+                        headerheight=$('section.content-header').outerHeight();
+                        ifmheight=height-logoheight-headerheight;
+                    }
                     var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
                     //$('#detail').css('height',ifmheight+'px');
                     $('.detail_table').css('min-height',detailTabH);
@@ -789,13 +797,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         width=$(window).width();
                         height=$(window).height();
                         if(width>=768){
-	                        headerheight=$('section.content-header').outerHeight();
-	                        ifmheight=height-headerheight;
-	                    }else{
-	                        logoheight=$('a.logo').height();
-	                        headerheight=$('section.content-header').outerHeight();
-	                        ifmheight=height-logoheight-headerheight;
-	                    }
+                            headerheight=$('section.content-header').outerHeight();
+                            ifmheight=height-headerheight;
+                        }else{
+                            logoheight=$('a.logo').height();
+                            headerheight=$('section.content-header').outerHeight();
+                            ifmheight=height-logoheight-headerheight;
+                        }
                         var detailTabH = ifmheight-$('#detail').find('.title').outerHeight()-$('#detail').find('.detail_header').outerHeight()-$('#detail').find('#sub_table').outerHeight()-4;
                         $('#detail').css({'height':ifmheight+'px','top':'0','margin-left':'-50%'});
                         $('.detail_table').css('min-height',detailTabH);
@@ -809,41 +817,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var status = tr.children('.STATUS').text(); 
                     $('#ORDER_QUANTITY_D').attr('readonly','readonly');
                     $('#UNIT_PRICE_D').attr('readonly','readonly');
-			    	if(userType=='EMP'){    
-			    		$('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
-			    	    $('i[data-status="RECEIVE"]').parent().css('display','');
-			    	    $('i[data-status="CHECK"]').parent().css('display','');
-			    	    if(status=='BOOK'){			    	        
-			    	        $('i[data-status="CHECK"]').parent().css('display','none');
-			    	    }else if(status=='RECEIVE'){
-			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
-			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
-			    	        $('#ORDER_QUANTITY_D').removeAttr('readonly');
-			    	        $('#UNIT_PRICE_D').removeAttr('readonly');
-			    	    }else{
-			    	        $('i[data-status="RECEIVE"]').parent().css('display','none');
-			    	        $('i[data-status="CHECK"]').parent().css('display','none');
-			    	    }
-			    		$('i[data-status="BOOK"]').parent().css('display','none');
-			    		$('i[data-status="CONFIRM"]').parent().css('display','none');
-			    	}else if(userType='CUSTOMER'){
-			    	    $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
-			    	    $('i[data-status="BOOK"]').parent().css('display','');
-			    		$('i[data-status="CONFIRM"]').parent().css('display','');
-			    	    if(status=='INPUT'){
-			    	        $('i[data-status="CONFIRM"]').parent().css('display','none');
-			    	        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
-			    	        $('#ORDER_QUANTITY_D').removeAttr('readonly');
-			    	    }else if(status=='CHECK'){
-			    	        $('i[data-status="BOOK"]').parent().css('display','none');
-			    	    }else{
-			    	        $('i[data-status="BOOK"]').parent().css('display','none');
-			    		    $('i[data-status="CONFIRM"]').parent().css('display','none');
-			    	    }
-			    	    $('i[data-status="RECEIVE"]').parent().css('display','none');
-			    	    $('i[data-status="CHECK"]').parent().css('display','none');
-			    	    //$('#change_price_btn').css('display','none');
-			    	}
+                    if(userType=='EMP'){    
+                        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
+                        $('i[data-status="RECEIVE"]').parent().css('display','');
+                        $('i[data-status="CHECK"]').parent().css('display','');
+                        if(status=='BOOK'){                         
+                            $('i[data-status="CHECK"]').parent().css('display','none');
+                        }else if(status=='RECEIVE'){
+                            $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
+                            $('i[data-status="RECEIVE"]').parent().css('display','none');
+                            $('#ORDER_QUANTITY_D').removeAttr('readonly');
+                            $('#UNIT_PRICE_D').removeAttr('readonly');
+                        }else{
+                            $('i[data-status="RECEIVE"]').parent().css('display','none');
+                            $('i[data-status="CHECK"]').parent().css('display','none');
+                        }
+                        $('i[data-status="BOOK"]').parent().css('display','none');
+                        $('i[data-status="CONFIRM"]').parent().css('display','none');
+                    }else if(userType='CUSTOMER'){
+                        $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','none');
+                        $('i[data-status="BOOK"]').parent().css('display','');
+                        $('i[data-status="CONFIRM"]').parent().css('display','');
+                        if(status=='INPUT'){
+                            $('i[data-status="CONFIRM"]').parent().css('display','none');
+                            $('i[data-reveal-id="detail_ui"]').parent('.setting').css('display','');
+                            $('#ORDER_QUANTITY_D').removeAttr('readonly');
+                        }else if(status=='CHECK'){
+                            $('i[data-status="BOOK"]').parent().css('display','none');
+                        }else{
+                            $('i[data-status="BOOK"]').parent().css('display','none');
+                            $('i[data-status="CONFIRM"]').parent().css('display','none');
+                        }
+                        $('i[data-status="RECEIVE"]').parent().css('display','none');
+                        $('i[data-status="CHECK"]').parent().css('display','none');
+                        //$('#change_price_btn').css('display','none');
+                    }
                     $('.detail_header input').val('');
                     $('#sub_table input[data-type="number"]').val('1');
                     $('#CONTRACT_NUMBER_L').val(tr.children('.CONTRACT_NUMBER').text());
@@ -866,83 +874,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             //改变订单状态
             $.fn.changeStatus = function(new_status,header_id,status_desc) {
                 param = 'HEADER_ID='+header_id+'&NEW_STATUS='+new_status;
-       		    $.ajax({
+                $.ajax({
                     type:'post', 
                     data:param,
                     url:'contract/changeStatus.do',
                     dataType:'json',
                     success: function (data) {
                         if(data.retcode=='0'){
-				    		layer.msg(status_desc+'成功!');
-				    		$('#STATUS_DESC_L').val(status_desc);
-				    		$('i[data-status]:not(i[data-status="CANCEL"])').parent().css('display','none');
-				    		if(new_status=='RECEIVE'){
-				    		    $('i[data-status="CHECK"]').parent().css('display','');
-				    		}
-				    		//$('#'+options.pageframe+' a[data-type="close"]').click();/****点击关闭更新框按钮****/
-				    		$('#refresh').click();/****点击刷新当前页按钮，刷新数据****/
-				    	}else{
-				    	    if(new_status=='RECEIVE'){
-				    	        if(data.errbuf == '请先维护好订单类型，再审核'){
-				    	            layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf
-				    	                   ,{title:'警告',offset:[150],btn:['维护订单类型','取消'] }
-				    	                   ,function(){
-				    	                       $('[data-reveal-id="update_ot"]').click();
-				    	                       layer.closeAll('dialog');
-				    	                   }
-				    	            );
-				    	        }else{
-				    	            layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
-				    	        }	    	        
-				    	    }else{
-				    	        layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
-				    	    }	
-				    	}
+                            layer.msg(status_desc+'成功!');
+                            $('#STATUS_DESC_L').val(status_desc);
+                            $('i[data-status]:not(i[data-status="CANCEL"])').parent().css('display','none');
+                            if(new_status=='RECEIVE'){
+                                $('i[data-status="CHECK"]').parent().css('display','');
+                            }
+                            //$('#'+options.pageframe+' a[data-type="close"]').click();/****点击关闭更新框按钮****/
+                            $('#refresh').click();/****点击刷新当前页按钮，刷新数据****/
+                        }else{
+                            if(new_status=='RECEIVE'){
+                                if(data.errbuf == '请先维护好订单类型，再审核'){
+                                    layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf
+                                           ,{title:'警告',offset:[150],btn:['维护订单类型','取消'] }
+                                           ,function(){
+                                               $('[data-reveal-id="update_ot"]').click();
+                                               layer.closeAll('dialog');
+                                           }
+                                    );
+                                }else{
+                                    layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+                                }                   
+                            }else{
+                                layer.alert(status_desc+'处理失败！错误信息:'+data.errbuf,{title:'警告',offset:[150]});
+                            }   
+                        }
                     },
                     error: function () {
-                        layer.msg('获取JSON数据失败');	
-						if(window.frameElement != null){
-							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-						}	
+                        layer.msg('获取JSON数据失败');    
+                        if(window.frameElement != null){
+                            $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+                        }   
                     }           
                 }); 
             }
             
-       		//改变订单状态按钮事件
-       		$('i[data-status]').on('click',function(){
-       		    var new_status = $(this).data('status');
-       		    var header_id = $('#HEADER_ID_L').val();
-       		    var status_desc = $(this).data('statusdesc');
-       		    layer.alert('是否要'+status_desc+'当前订单吗？'
-				    ,{title:'警告',offset:[150],btn:['是','否'] }
-				    ,function(){
-				    	layer.closeAll('dialog');
-				    	$().changeStatus(new_status,header_id,status_desc);
-				    }
-				    ,function(){
-				    	return;
-				    }
-				);   		    
-       		});
-       		
-       		//修改订单类型
-       		$('[data-reveal-id="update_ot"]').click('on',function(){
-       		    $('#HEADER_ID_UOT').val($('#HEADER_ID_L').val());
-       		    $('#CURR_CODE_UOT').val($('#CURR_CODE_L').val());
-       		    $('#ORG_ID_UOT').val($('#SALES_ORG_ID_L').val());
-       		    $('#ORDER_TYPE_ID_UOT').val('');
-       		    $().listRef();
-       		});
-       		
-       		//价目表明细
-       		$('[data-reveal-id="product_list_d"]').click('on',function(){
-       		    $('#REBATE_PRICE').val('');
+            //改变订单状态按钮事件
+            $('i[data-status]').on('click',function(){
+                var new_status = $(this).data('status');
+                var header_id = $('#HEADER_ID_L').val();
+                var status_desc = $(this).data('statusdesc');
+                layer.alert('是否要'+status_desc+'当前订单吗？'
+                    ,{title:'警告',offset:[150],btn:['是','否'] }
+                    ,function(){
+                        layer.closeAll('dialog');
+                        $().changeStatus(new_status,header_id,status_desc);
+                    }
+                    ,function(){
+                        return;
+                    }
+                );              
+            });
+            
+            //修改订单类型
+            $('[data-reveal-id="update_ot"]').click('on',function(){
+                $('#HEADER_ID_UOT').val($('#HEADER_ID_L').val());
+                $('#CURR_CODE_UOT').val($('#CURR_CODE_L').val());
+                $('#ORG_ID_UOT').val($('#SALES_ORG_ID_L').val());
+                $('#ORDER_TYPE_ID_UOT').val('');
+                $().listRef();
+            });
+            
+            //价目表明细
+            $('[data-reveal-id="product_list_d"]').click('on',function(){
+                $('#REBATE_PRICE').val('');
                 $('#COST_PRICE').val('');
-       		    var itemId = $('#INVENTORY_ITEM_ID_D').val(); 
-       		    if(itemId==null||itemId==''){
-       		        layer.msg('需先选择产品，才能查看价目表');
-       		    }
-       		    var productListId = $('#PRICE_LIST_ID_L').val();       
+                var itemId = $('#INVENTORY_ITEM_ID_D').val(); 
+                if(itemId==null||itemId==''){
+                    layer.msg('需先选择产品，才能查看价目表');
+                }
+                var productListId = $('#PRICE_LIST_ID_L').val();       
                 param='ITEM_ID='+itemId+'&PRODUCT_LIST_ID='+productListId;
                 $.ajax({
                     type:'post', 
@@ -950,25 +958,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     url:'contract/getStandardPrice.do',
                     dataType:'json',
                     success: function (data) {
-                    	$('#REBATE_PRICE').val(data.rows[0].REBATE_PRICE);
-                    	var userType = '${USER_TYPE}';
-                    	if(userType == 'EMP'){	
-                        	$('#COST_PRICE').val(data.rows[0].COST_PRICE);
-                    	}else if(userType == 'CUSTOMER'){
-                    		$('#COST_PRICE').val('无');
-                    	}         
+                        $('#REBATE_PRICE').val(data.rows[0].REBATE_PRICE);
+                        var userType = '${USER_TYPE}';
+                        if(userType == 'EMP'){  
+                            $('#COST_PRICE').val(data.rows[0].COST_PRICE);
+                        }else if(userType == 'CUSTOMER'){
+                            $('#COST_PRICE').val('无');
+                        }         
                     },
                     error: function () {
-                        layer.msg('获取JSON数据失败');	
-						if(window.frameElement != null){
-							$('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
-						}	
+                        layer.msg('获取JSON数据失败');    
+                        if(window.frameElement != null){
+                            $('body',parent.document).find('a[data-tabtype="refreshTab"]')[0].click(); 
+                        }   
                     }           
                 });
-       		    $('#3rd_refresh').click();
-       		});
-       		
-       		//日期选择
+                $('#3rd_refresh').click();
+            });
+            
+            //日期选择
             $('input[data-datatype="date"]').datetimepicker({
                 lang:'ch',           //语言选择中文
                 timepicker:true,    //启用时间选项
@@ -986,12 +994,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102'});
             }
             tableCont.addEventListener('scroll',scrollHandle);  
-			
-			//处理tab切换 导致的th错乱问题
-			var tabfunc = $('iframe:visible',parent.document).data(tabfunc).tabfunc;
+            
+            //处理tab切换 导致的th错乱问题
+            var tabfunc = $('iframe:visible',parent.document).data(tabfunc).tabfunc;
             $('a[data-tabfunc="'+tabfunc+'"]',parent.document).on('click',function(){
-            	var scrollTop =document.getElementsByClassName('detail_table')[0].scrollTop;
-            	$('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102'});
+                var scrollTop =document.getElementsByClassName('detail_table')[0].scrollTop;
+                $('.detail_table').find('th').css({'transform':'translateY('+scrollTop+'px)','z-index':'102'});
             }); 
         });
          
@@ -999,33 +1007,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             getContent:function(data,JSONtype){    
                 if(JSONtype=='table'){
                       var mapRowArray=[
-	                  ['.HEADER_ID','HEADER_ID']    
-	                 ,['.CONTRACT_NUMBER','CONTRACT_NUMBER']
-	                 ,['.PARTY_NAME','PARTY_NAME']   
-	                 ,['.ACCOUNT_NUMBER','ACCOUNT_NUMBER']   
-	                 ,['.CUSTOMER_ID','CUSTOMER_ID']   
-	                 ,['.SALES_ORG_ID','SALES_ORG_ID']   
-	                 ,['.SALES_ORG_NAME','SALES_ORG_NAME']
-	                 ,['.SHIP_FROM_ORG_ID','SHIP_FROM_ORG_ID']
-	                 ,['.ORG_ID','ORG_ID']
-	                 ,['.SHIP_FROM_ORG_NAME','SHIP_FROM_ORG_NAME']
-	                 ,['.CURR_CODE','CURR_CODE']
-	                 ,['.PRICE_LIST_ID','PRICE_LIST_ID']
-	                 ,['.PRICE_LIST_NAME','PRICE_LIST_NAME']
-	                 ,['.ORDER_TYPE_NAME','ORDER_TYPE_NAME']
-	                 ,['.STATUS','STATUS']
-	                 ,['.STATUS_DESC','STATUS_DESC']
-	                 ,['.CREATION_DATE','CREATION_DATE']
-	                 ,['.CREATED_USER_DESC','CREATED_USER_DESC']
-	                 ,['.STATUS_BOOK_DATE','STATUS_BOOK_DATE']
-	                 ,['.STATUS_RECEIVE_DATE','STATUS_RECEIVE_DATE']
-	                 ,['.STATUS_CHECK_DATE','STATUS_CHECK_DATE']
-	                 ,['.STATUS_CONFIRM_DATE','STATUS_CONFIRM_DATE']
-	                 ,['.CUSTOMER_PO','CUSTOMER_PO']
-	                 ,['.REMARKS','REMARKS']
-	                  ];
-	                 $().mapContentJson(data,'#main-table',mapRowArray);
-	                 $().afterRowDefine();
+                      ['.HEADER_ID','HEADER_ID']    
+                     ,['.CONTRACT_NUMBER','CONTRACT_NUMBER']
+                     ,['.PARTY_NAME','PARTY_NAME']   
+                     ,['.ACCOUNT_NUMBER','ACCOUNT_NUMBER']   
+                     ,['.CUSTOMER_ID','CUSTOMER_ID']   
+                     ,['.SALES_ORG_ID','SALES_ORG_ID']   
+                     ,['.SALES_ORG_NAME','SALES_ORG_NAME']
+                     ,['.SHIP_FROM_ORG_ID','SHIP_FROM_ORG_ID']
+                     ,['.ORG_ID','ORG_ID']
+                     ,['.SHIP_FROM_ORG_NAME','SHIP_FROM_ORG_NAME']
+                     ,['.CURR_CODE','CURR_CODE']
+                     ,['.PRICE_LIST_ID','PRICE_LIST_ID']
+                     ,['.PRICE_LIST_NAME','PRICE_LIST_NAME']
+                     ,['.ORDER_TYPE_NAME','ORDER_TYPE_NAME']
+                     ,['.STATUS','STATUS']
+                     ,['.STATUS_DESC','STATUS_DESC']
+                     ,['.CREATION_DATE','CREATION_DATE']
+                     ,['.CREATED_USER_DESC','CREATED_USER_DESC']
+                     ,['.STATUS_BOOK_DATE','STATUS_BOOK_DATE']
+                     ,['.STATUS_RECEIVE_DATE','STATUS_RECEIVE_DATE']
+                     ,['.STATUS_CHECK_DATE','STATUS_CHECK_DATE']
+                     ,['.STATUS_CONFIRM_DATE','STATUS_CONFIRM_DATE']
+                     ,['.CUSTOMER_PO','CUSTOMER_PO']
+                     ,['.REMARKS','REMARKS']
+                      ];
+                     $().mapContentJson(data,'#main-table',mapRowArray);
+                     $().afterRowDefine();
                      $().crudListener();
                      $().detailShow();  
                      $().revealListener(); 
@@ -1081,23 +1089,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ];
                     $().mapContentJson(data,'.contentbox',mapRowArray);                     
                 }else if(JSONtype=='cust'){
-        	        var mapRowArray=[
-        	    	 'ORG_ID'
-        	    	,'ORG_NAME'
-        	    	,'CUST_ACCOUNT_ID'
-        	    	,'PARTY_NAME'
-        	    	,'ACCOUNT_NUMBER'
-        	    	];
-        	    	$().mapContentJson(data,'#lov',mapRowArray);
-        	    }else if(JSONtype=='item'){
-        	        var mapRowArray=[
-        	    	 'INVENTORY_ITEM_ID'
-        	    	,'ITEM_NUMBER'
-        	    	,'DESCRIPTION'
-        	    	,'CARNAME'
-        	    	];
-        	    	$().mapContentJson(data,'#lov',mapRowArray);
-        	    }                              
+                    var mapRowArray=[
+                     'ORG_ID'
+                    ,'ORG_NAME'
+                    ,'CUST_ACCOUNT_ID'
+                    ,'PARTY_NAME'
+                    ,'ACCOUNT_NUMBER'
+                    ];
+                    $().mapContentJson(data,'#lov',mapRowArray);
+                }else if(JSONtype=='item'){
+                    var mapRowArray=[
+                     'INVENTORY_ITEM_ID'
+                    ,'ITEM_NUMBER'
+                    ,'DESCRIPTION'
+                    ,'CARNAME'
+                    ];
+                    $().mapContentJson(data,'#lov',mapRowArray);
+                }                              
             },  
             getUpdateJSON:function(data,pageframe){   
                 if(pageframe=='ui'){         

@@ -10,7 +10,7 @@ th{border-style:solid;border-width:1px 0 0 1px;border-color:#e6e6e6;background-c
 tr:focus>td{border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#f9f9f9;background-color:#00A65A;text-align:center;height:40px}
 tr:hover>td{border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#f9f9f9;background-color:#7a7a7a;text-align:center;height:40px}
 */
-td{border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#7a7a7a;background-color:#f9f9f9;text-align:center;height:40px;/*min-width:100px;white-space:nowrap;text-indent:20px*/}	
+td{border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#7a7a7a;background-color:#f9f9f9;text-align:center;height:40px;/*min-width:100px;white-space:nowrap;text-indent:20px*/} 
 
 .pointer{cursor:pointer}
 .left{float:left;}
@@ -102,7 +102,7 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 #orderby>.contain{position:relative;width:86%;height:160px;padding:0 7%;}
 #orderby>.contain>.item{position:relative;width:75%;margin:25px auto;}
 #orderby>.contain>.item>.select{width:150px;}
-#orderby>.footer{position:relative;width:86%;	height:30px;padding:0 7%;}
+#orderby>.footer{position:relative;width:86%;   height:30px;padding:0 7%;}
 #orderby>.footer>button{background-color:black;border:1px solid black;color:white;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius: 5px;border-radius: 5px;margin:0 10px;font-weight:bold;}
 /* ==========================================================================
 弹出框
@@ -142,7 +142,7 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 .pop_frame>.content form input.lgx2{width:545px}
 .pop_frame>.content form input.password{width:195px}
 .pop_frame>.content form input.time{width:262px}
-.pop_frame>.content form a.upload{margin-left:50px;padding: 4px 10px;height: 20px;line-height: 20px;position: relative;border: 1px solid #999;text-decoration: none;color: #666;}
+.pop_frame>.content form a.upload{margin-left:30px;padding: 4px 10px;height: 20px;line-height: 20px;position: relative;border: 1px solid #999;text-decoration: none;color: #666;}
 .pop_frame>.content form input.file{position: absolute;overflow: hidden;right: 0;top: 0;opacity: 0;}
 .pop_frame>.content form label.checkbox{font-size:1em;padding:10px 5px 5px 0;width:80px;text-align:right}
 .pop_frame>.content form input.checkbox{width:30px;margin:12px 2px}
@@ -174,7 +174,7 @@ input[readonly=readonly],select[readonly=readonly]{background-color:#C0C0C0;heig
 .detail_frame .detail_table>table{border-collapse:collapse;border-spacing:0;width:100%;border-style:solid;border-width:0 1px 1px 1px;border-color:#e6e6e6}
 .detail_frame .detail_table>table thead{z-index:105}
 .detail_frame .detail_table>table tbody tr th{border-style:solid;border-width:1px 0 0 1px;border-color:#e6e6e6;background-color:#f2f2f2;height:40px}
-.detail_frame .detail_table>table tbody tr td{min-width:110px;white-space:nowrap;border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#7a7a7a;background-color:#f9f9f9;text-align:center;height:30px;padding:0 5px 0 0;}	
+.detail_frame .detail_table>table tbody tr td{min-width:110px;white-space:nowrap;border-style:solid;border-width:1px 0 0 0;border-color:#e6e6e6;color:#7a7a7a;background-color:#f9f9f9;text-align:center;height:30px;padding:0 5px 0 0;}    
 .detail_frame .detail_table>table tbody tr td>i{margin:0 3px}
 .detail-modal-bg{position:fixed;height:100%;width:100%;background:#000;background:rgba(0,0,0,.8);z-index:103;display:none;top:0;left:0}
 /* ==========================================================================

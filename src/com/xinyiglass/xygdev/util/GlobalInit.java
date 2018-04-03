@@ -14,7 +14,7 @@ public class GlobalInit {
         	Constant.DEBUG_MODE = debug;//调试模式
         	//System.out.println("debugMode:"+debug);
     	}
-    	Constant.IMAGE_USER_PATH = "/home/web/image/user/";//"/oracle/orcl/web/image/user/";//"/home/web/image/user/";// "E:\\image\\user\\";
+    	Constant.IMAGE_USER_PATH = "/oracle/orcl/web/image/user/";//"/oracle/orcl/web/image/user/";//"/home/web/image/user/";// "E:\\image\\user\\";
     	Constant.LOCAL_CHARSET = "GBK";
     	Constant.SERVER_CHARSET = FTP.DEFAULT_CONTROL_ENCODING;
     	Constant.DIR_SEP="/";//ftp和unix用：/    ；本地win系统用：\\\\
