@@ -78,7 +78,7 @@
           <i class="fa fa-search pointer" data-reveal-id="query" data-key="true" title="条件查询" data-dismissmodalclass="close-query-frame"></i>
         </div>
         <div class="setting">
-          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table" data-func="$().validateOrgan()"></i>
+          <i id="refresh" class="fa fa-refresh pointer" title="刷新数据" data-pagetype="refresh" data-pageframe="table" data-func="$().validateOrgan()" data-afterdatafunc="$().afterRefresh()"></i>
         </div>
         <div id="setting">
           <!-- 设置菜单区域 start -->
@@ -130,7 +130,7 @@
         <div class="content row-5">
           <form>
             <label for="ORGANIZATION_NAME_Q" class="left md">库存组织:</label> 
-            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME" class="left md" readonly="readonly"/>
+            <input type="text" id="ORGANIZATION_NAME_Q" name="ORGANIZATION_NAME"  data-lovbtn="ORG_LOV" data-pageframe="query" data-modify="true" data-param="ORGANIZATION_NAME"  class="left md"/>
             <input type="hidden" id="ORGANIZATION_ID_Q" name="ORGANIZATION_ID"/>
             <input type="button" id="ORG_LOV" class="left button pointer" data-pageframe="lov" data-reveal-id="lov" data-key="true" data-callback="query" data-bg="lov-modal-bg" data-dismissmodalclass="close-lov" data-lovname="库存组织查询" data-queryurl="lov/getUserOrganization.do" data-jsontype="orgLov" data-defaultquery="true" data-th=["库存ID","库存编码","库存组织"] data-td=["ORGANIZATION_ID&none","ORGANIZATION_CODE","ORGANIZATION_NAME"] data-selectname=["库存代号","库存组织"] data-selectvalue=["ORGANIZATION_CODE","ORGANIZATION_NAME"] data-choose=[".ORGANIZATION_ID",".ORGANIZATION_NAME"] data-recid=["#ORGANIZATION_ID_Q","#ORGANIZATION_NAME_Q"] value="···"/>
             <label for="ITEM_NUMBER_Q" class="left md">物料编码:</label>
@@ -187,13 +187,27 @@
     		
     		//条件查询限制
     		$.fn.validateOrgan = function(){
-    		    organizationId = $('#ORGANIZATION_ID_Q').val();
+    		    /* organizationId = $('#ORGANIZATION_ID_Q').val();
     		    if(organizationId==null||organizationId==''){
     		       $('.ajax_loading').hide();
     		       layer.alert('必须选择库存组织才能查询物料！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
     		       throw ('必须选择库存组织才能查询物料！');
+    		    } */
+    		    organizationId = $('#ORGANIZATION_ID_Q').val();
+                itemNumber = $('#ITEM_NUMBER_Q').val();
+                description = $('#DESCRIPTION_Q').val();
+                if((organizationId==null||organizationId=='')&&(itemNumber==null||itemNumber=='')&&(description==null||description=='')){
+                    $('.ajax_loading').hide();
+                    layer.alert('库存组织、物料编码、本厂型号不能全部为空！',{skin:'layui-layer-lan',title:'警告',offset:[150]});
+                    throw ('库存组织、物料编码、本厂型号不能全部为空！');
     		    }
     		}
+
+            // afterRefresh        
+            $.fn.afterRefresh = function(){
+                $('#ORGANIZATION_ID_Q').val('');
+                $('#ORGANIZATION_NAME_Q').val(''); 
+            }   
 
     		//默认查询时间
 			$.fn.defaultQueryDate = function(){

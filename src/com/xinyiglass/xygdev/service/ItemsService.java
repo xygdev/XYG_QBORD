@@ -38,7 +38,12 @@ public class ItemsService {
 		sqlBuff.append(SqlStmtPub.getAndStmt("LOAD_LOCATION_ID",conditionMap.get("loadLocationId"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("QBORD_ENABLED_FLAG",conditionMap.get("qbordEnabledFlag"),paramMap));
 		sqlBuff.append(SqlStmtPub.getAndStmt("LAST_SYNC_DATE",conditionMap.get("syncDate_F"),conditionMap.get("syncDate_T"),paramMap));
+		sqlBuff.append("  AND XYG_QBI_ITEM_TP_B_V.ORGANIZATION_ID IN(SELECT XOIP.ORGANIZATION_ID ");
+		sqlBuff.append("                                               FROM XYG_QBORD_INV_PERMISSION XOIP");   
+		sqlBuff.append("                                              WHERE XOIP.USER_ID=:1 ");
+		sqlBuff.append("                                                          )");
 		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
+		paramMap.put("1", conditionMap.get("userId"));
 		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
 	}
 	

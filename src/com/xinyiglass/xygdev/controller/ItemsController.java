@@ -54,6 +54,7 @@ public class ItemsController extends BaseController {
 		conditionMap.put("syncDate_F",this.getParaToDate("SYNC_DATE_F"));
 		conditionMap.put("syncDate_T",this.getParaToDate("SYNC_DATE_T"));
 		conditionMap.put("orderBy",  this.getPara("orderby"));
+		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
 		this.renderStr(IS.findForItems(conditionMap, loginId));
 	}
 	

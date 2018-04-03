@@ -4,6 +4,8 @@
                     Create By:bird
                     Last Update Date:2017.6.14
                     Last Update By:bird
+                    Update Date:2018.3.29
+                    Update By:  sun
                           修改日志
            2015.12.12   创建文件
            2016.4.18    新增按钮动作绑定监听
@@ -21,7 +23,8 @@
            2016.9.05    修改bug，当条件查询查无数据时，显示查无数据，并且隐藏隐藏上一页，
            				下一页等四个按钮以及清空记录数栏位
            2017.6.14    在ajax的error：function中新增刷新当前iframe逻辑
- 		                检查是否session过期导致error	   
+ 		                检查是否session过期导致error	 
+ 		   2018.3.29    新增匿名函数扩展功能： 预查询 数据完成后自动执行   
 *********************************************************/
 (function($) {                                      	
 	/******************listener start***********************
@@ -254,6 +257,9 @@
 					}
 				}
 				jQuery.global.main();
+				if(options.afterdatafunc!=null&&options.afterdatafunc!=''){//2018.3.29新增匿名函数功能：数据完成后自动执行的
+					eval(options.afterdatafunc);
+				}
 			}
 			/****第一页****/
 			else if(options.pagetype=='firstpage'){
