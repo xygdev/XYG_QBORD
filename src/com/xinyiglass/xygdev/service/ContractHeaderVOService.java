@@ -26,6 +26,49 @@ public class ContractHeaderVOService {
 	ContractHeaderVODao chd;
 	
 	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	public String findForTransferDetailPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		StringBuffer sqlBuff = new StringBuffer();
+		sqlBuff.append("SELECT XQCD.*");
+		sqlBuff.append("  FROM XYG_QBORD_CONTRACT_DETAILS_V  XQCD");
+		sqlBuff.append(" WHERE 1=1");	
+		sqlBuff.append("   AND XQCD.STATUS = 'TRANSFER' ");
+		//sqlBuff.append(SqlStmtPub.getAndStmt("CONTRACT_NUMBER",conditionMap.get("contractNumber").toString().trim(),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.CONTRACT_NUMBER",conditionMap.get("contractNumber")==null?null:conditionMap.get("contractNumber").toString().trim(),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.SHIP_FROM_ORG_ID",conditionMap.get("shipFromOrgId"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.SALES_ORG_ID",conditionMap.get("salesOrgId"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.CUSTOMER_ID",conditionMap.get("customerId"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.DESCRIPTION",conditionMap.get("description"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.CARNAME",conditionMap.get("carname"),paramMap));
+		sqlBuff.append(SqlStmtPub.getAndStmt("XQCD.CREATION_DATE",conditionMap.get("creationDate_F"),conditionMap.get("creationDate_T"),paramMap));
+		sqlBuff.append("   AND (XQCD.ACT_ID IN(SELECT CUST_ID");
+		sqlBuff.append("					     FROM XYG_ALD_GROUP_LINES");
+		sqlBuff.append(" 						WHERE GROUP_ID IN(SELECT SUB_GROUP_ID");
+		sqlBuff.append("						 					FROM XYG_ALD_GROUP_LINES");
+		sqlBuff.append("										   WHERE 1=1");
+		sqlBuff.append("											 AND SUB_GROUP_ID IS NOT NULL");              
+		sqlBuff.append("                                      CONNECT BY NOCYCLE PRIOR SUB_GROUP_ID = GROUP_ID");
+		sqlBuff.append("									  START WITH GROUP_ID = (SELECT GROUP_ID ");
+		sqlBuff.append("										                       FROM XYG_ALD_USER_GROUP_V");
+		sqlBuff.append(" 															  WHERE USER_ID = :1");
+		sqlBuff.append("															    AND USER_TYPE = 'EMP'");
+		sqlBuff.append("																AND GROUP_APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");                     
+		sqlBuff.append(" 						   OR GROUP_ID = (SELECT GROUP_ID ");
+		sqlBuff.append("                                            FROM XYG_ALD_USER_GROUP_V");
+		sqlBuff.append("										   WHERE USER_ID = :1");
+		sqlBuff.append("									         AND USER_TYPE = 'EMP'");
+		sqlBuff.append("											 AND GROUP_APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
+		sqlBuff.append("    OR XQCD.ACT_ID IN (SELECT ACT_ID");
+		sqlBuff.append("						 FROM XYG_ALD_USER_CUST_V");
+		sqlBuff.append(" 					    WHERE USER_ID = :1");
+		sqlBuff.append("						  AND USER_TYPE = 'CUSTOMER'");
+		sqlBuff.append("						  AND APPL_ID = XYG_ALD_GLOBAL_PKG.APPL_ID))");
+		sqlBuff.append(" ORDER BY "+conditionMap.get("orderBy"));
+		paramMap.put("1", conditionMap.get("userId"));
+		return pagePub.qPageForJson(sqlBuff.toString(), paramMap, (Integer)conditionMap.get("pageSize"), (Integer)conditionMap.get("pageNo"), (boolean)conditionMap.get("goLastPage"));
+	}
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 	public String findForTransferPage(Map<String,Object> conditionMap,Long loginId) throws Exception{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		StringBuffer sqlBuff = new StringBuffer();

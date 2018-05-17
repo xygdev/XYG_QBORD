@@ -36,6 +36,32 @@ public class ContractController extends BaseController {
 		return this.getSessionAttr("LANG")+"/xygQbordOrderSchedule";
 	}
 	
+
+	@RequestMapping("/orderScheduleDetail.do")
+	public String orderScheduleDetail(){
+		return this.getSessionAttr("LANG")+"/xygQbordOrderScheduleDetail";
+	}
+	
+	@RequestMapping(value = "/getTransferContractDetail.do", method = RequestMethod.POST)
+	public void getTransferContractDetailPage() throws Exception
+	{   
+		Map<String,Object> conditionMap=new HashMap<String,Object>();
+		conditionMap.put("pageSize", this.getParaToInt("pageSize"));
+		conditionMap.put("pageNo", this.getParaToInt("pageNo"));
+		conditionMap.put("goLastPage", this.getParaToBoolean("goLastPage"));		
+		conditionMap.put("userId", this.getSessionAttr("USER_ID"));
+		conditionMap.put("contractNumber", this.getPara("CONTRACT_NUMBER"));
+		conditionMap.put("shipFromOrgId", this.getParaToLong("ORGANIZATION_ID"));
+		conditionMap.put("salesOrgId", this.getParaToLong("ORG_ID"));
+		conditionMap.put("customerId", this.getParaToLong("CUSTOMER_ID"));
+		conditionMap.put("description", this.getPara("DESCRIPTION"));
+		conditionMap.put("carname", this.getPara("CARNAME"));
+		conditionMap.put("creationDate_F", this.getParaToDate("CREATION_DATE_F"));
+		conditionMap.put("creationDate_T", this.getParaToDate("CREATION_DATE_T"));
+		conditionMap.put("orderBy", this.getPara("orderby"));
+		this.renderStr(CHS.findForTransferDetailPage(conditionMap, loginId));
+	}
+	
 	@RequestMapping(value = "/getTransferContractH.do", method = RequestMethod.POST)
 	public void getTransferContractPage() throws Exception
 	{   	
